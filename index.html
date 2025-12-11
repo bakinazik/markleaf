@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Markleaf</title>
+<meta name="description" content="Simple and practical bookmark manager.">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:300,500,600,700&display=swap">
+<link rel="icon" href="/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
+<link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+
+<style>
+:root {
+  --primary: #01be1a;
+  --primary-dark: #019c16;
+  --secondary: #ccc;
+  --light: #F3F4F5;
+  --dark: #121212;
+  --text: #333;
+  --text-light: #666;
+  --white: #fff;
+  --gray: #ddd;
+  --gray-dark: #333;
+  --radius: 2rem;
+  --shadow: 0 4px 15px rgba(0,0,0,0.1);
+  --shadow-hover: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --light: #222222;
+    --text: #e0e0e0;
+    --text-light: #aaa;
+    --white: #1e1e1e;
+    --gray: #333;
+    --gray-dark: #222;
+    --secondary: #444;
+  }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent;}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+section {
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.logo {
+  width: 150px;
+  display: block;
+}
+
+h1 { 
+  font-size: clamp(2.5rem, 5vw, 3.5rem); 
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+h2 { 
+  font-size: clamp(1.8rem, 4vw, 2.5rem); 
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+h4 {
+  text-align: center;
+  margin:0 0 10px;
+}
+
+a { 
+  color: var(--primary); 
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover { color: var(--primary-dark); }
+
+.button {
+  display: inline-block;
+  padding: 7px;
+  background: var(--gray);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-weight: 500;
+  margin: 0.5rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  min-width: 140px;
+  text-align: center;
+}
+
+.button:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+nav { 
+  margin: 2rem 0; 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+}
+
+.store {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  background: var(--gray);
+  border-radius: var(--radius);
+  margin-top: 2rem;
+  color: var(--text);
+}
+
+.store img { 
+  width: 50px; 
+  height: 50px; 
+}
+
+.store p { 
+  margin: 0; 
+  text-align: left;
+  color: inherit;
+}
+
+.store b { 
+  font-size: 1.1rem; 
+  color: inherit;
+}
+
+.screenshots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin-top: 2rem;
+    background: var(--gray);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.screenshots img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 12px;
+}
+
+.accordion {
+    max-width: 600px;
+    margin-top: 2rem;
+    width: 100%;
+    background: var(--gray);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.accordion-item { 
+  margin-bottom: 1rem; 
+  border-radius: 12px; 
+  overflow: hidden; 
+  transition: all 0.3s ease;
+}
+
+.accordion-item:last-child {
+    margin-bottom: 0;
+}
+
+.accordion-item:last-child .accordion-header{
+    border-bottom: none;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text);
+    transition: all 0.3s ease;
+    background: var(--gray);
+    border: none;
+    border-bottom: 1px solid var(--secondary);
+}
+
+.accordion-header:hover {
+  color: var(--primary);
+}
+
+.accordion-header::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.accordion-header.active::after {
+  content: '−';
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.5rem;
+  transition: all 0.3s ease;
+  background: var(--gray);
+}
+
+.accordion-content p {
+  color: var(--text);
+}
+
+.accordion-content.active {
+  max-height: 500px;
+  padding: 1.5rem;
+}
+
+footer {
+  color: var(--text);
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+footer p {
+  color: var(--text);
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    color: var(--primary);
+}
+
+hr {
+    border: 3px solid var(--primary);
+    width: 100px;
+    border-radius: 5px;
+}
+
+ul{
+    padding-left: 15px;
+}
+
+@media (max-width: 768px) {
+  section { padding: 3rem 1rem; }
+  .store { padding: 1rem 1.5rem; }
+  .screenshots { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .button { width: 90%; margin: 0.25rem; }
+}
+</style>
+</head>
+<body>
+<section id="home">
+  <img class="logo" src="logo.webp" alt="Markleaf">
+  <h1>Markleaf</h1>
+  <p>Simple and practical bookmark manager</p>
+  <nav>
+    <a class="button" href="#screenshots">Screenshots</a>
+    <a class="button" href="#qa">Q&A</a>
+    <a class="button" href="#changelogs">Changelogs</a>
+  </nav>
+  <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg" target="_blank" rel="noopener">
+    <div class="store">
+      <img src="chromewebstore.webp" alt="Chrome Web Store">
+      <div>
+        <p>Available on <br><b>Google Web Store</b></p>
+      </div>
+    </div>
+  </a>
+</section>
+
+<section id="screenshots">
+<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg>
+  <h2>Screenshots</h2>
+  <hr>
+  <div class="screenshots">
+    <div>
+      <img src="dark.webp" alt="Dark Theme">
+    </div>
+    <div>
+      <img src="light.webp" alt="Light Theme">
+    </div>
+  </div>
+</section>
+
+<section id="qa">
+<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-message-question"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h8" /><path d="M8 13h6" /><path d="M14 18h-1l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5" /><path d="M19 22v.01" /><path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" /></svg>   
+  <h2>Questions & Answers</h2>
+  <hr>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">Is this free?</button>
+      <div class="accordion-content">
+        <p>Yes, Markleaf is free for personal, non-commercial use.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">Is any data being collected?</button>
+      <div class="accordion-content">
+        <p>No, your data is private. Markleaf operates entirely locally on your browser.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">Can I request a feature?</button>
+      <div class="accordion-content">
+        <p>Yes! Submit feature requests via <a href="mailto:bakinazikk@gmail.com">email</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="changelogs">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-code"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
+  <h2>Changelogs</h2>
+  <hr>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">1.0.4: Enhanced Violet</button>
+      <div class="accordion-content">
+        <ul>
+            <li>The list view has been redesigned with a modern design approach.</li>
+            <li>You can now open the context menu by right-clicking a list item.</li>
+            <li>Folders now display the total number of bookmarks they contain.</li>
+            <li>Shortcut improvements.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">1.0.3: Smooth Horizon</button>
+      <div class="accordion-content">
+        <ul>
+            <li>Added a “Back to Top” button.</li>
+            <li>Scrollbar is now visible.</li>
+            <li>Performance and design improvements.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">1.0.2: Vanilla Touch</button>
+      <div class="accordion-content">
+        <p>Performance and design improvements.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">1.0.1: Apple Pie</button>
+      <div class="accordion-content">
+        <ul>
+            <li>Open all bookmarks in a folder with middle-click.</li>
+            <li>Performance improvements.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">1.0.0: Black Hole</button>
+      <div class="accordion-content">
+        <p>First version of the extension.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer id="contact">
+  <p>COPYRIGHT © <span id="year"></span> <b>MARKLEAF</b></p>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+document.querySelectorAll('.accordion-header').forEach(button => {
+  button.addEventListener('click', () => {
+    const isActive = button.classList.contains('active');
+    
+    // Close all other accordions
+    document.querySelectorAll('.accordion-header.active').forEach(activeBtn => {
+      if (activeBtn !== button) {
+        activeBtn.classList.remove('active');
+        activeBtn.nextElementSibling.classList.remove('active');
+      }
+    });
+    
+    // Toggle current accordion
+    button.classList.toggle('active');
+    button.nextElementSibling.classList.toggle('active');
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
