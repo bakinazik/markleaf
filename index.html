@@ -67,9 +67,17 @@ section {
   min-height: 100vh;
 }
 
+.logo-section {
+    display: flex;
+    gap: 15px;
+    line-height: 2;
+    align-items: center;
+}
+
 .logo {
-  width: 150px;
-  display: block;
+    width: 50px;
+    display: block;
+    margin-top: -15px;
 }
 
 h1 { 
@@ -124,15 +132,22 @@ nav {
   justify-content: center; 
 }
 
+.store-addon {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+}
+
 .store {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.25rem 2rem;
-  background: var(--gray);
-  border-radius: var(--radius);
-  margin-top: 2rem;
-  color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 2rem;
+    background: var(--gray);
+    border-radius: var(--radius);
+    color: var(--text);
+    width: 100%;
+    justify-content: center;
 }
 
 .store img { 
@@ -267,6 +282,8 @@ ul{
   section { padding: 3rem 1rem; }
   .store { padding: 1rem 1.5rem; }
   .screenshots { grid-template-columns: 1fr; }
+  .store-addon {grid-template-columns: 1fr;}
+  .store{justify-content: flex-start;}
 }
 
 @media (max-width: 480px) {
@@ -276,14 +293,16 @@ ul{
 </head>
 <body>
 <section id="home">
-  <img class="logo" src="logo.webp" alt="Markleaf">
-  <h1>Markleaf</h1>
+  <div class="logo-section"><img class="logo" src="logo.webp" alt="Markleaf"><h1>Markleaf</h1></div>
+  
   <p>Simple and practical bookmark manager</p>
   <nav>
     <a class="button" href="#screenshots">Screenshots</a>
     <a class="button" href="#qa">Q&A</a>
     <a class="button" href="#changelog">Changelog</a>
   </nav>
+  
+  <div class="store-addon">
   <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg" target="_blank" rel="noopener">
     <div class="store">
       <img src="chromewebstore.webp" alt="Chrome Web Store">
@@ -292,6 +311,16 @@ ul{
       </div>
     </div>
   </a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/markleaf-bookmark-manage/hbkhddleogcneclojioeaaccpcfehndk" target="_blank" rel="noopener">
+    <div class="store">
+      <img src="edgeaddons.webp" alt="Edge Addons">
+      <div>
+        <p>Available on <br><b>Edge Addons</b></p>
+      </div>
+    </div>
+  </a>
+  </div>
+
 </section>
 
 <section id="screenshots">
