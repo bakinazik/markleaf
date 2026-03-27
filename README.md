@@ -2,6 +2,9 @@
 
 Simple and practical bookmark manager.
 
+<a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg?authuser=0&hl=tr"><img width="206" height="58" alt="image" src="https://github.com/user-attachments/assets/d027e2b0-e4c2-4f36-98ce-84e7c18f7db5" /></a>
+
+
 ## Features
 
 - List and grid layout
