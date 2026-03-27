@@ -17,11 +17,6 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [
-        "terms-of-use.txt",
-        "privacy-policy.txt",
-        "license.txt"
-      ],
       "matches": ["<all_urls>"]
     }
   ],
