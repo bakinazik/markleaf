@@ -20,7 +20,7 @@ Simple and practical bookmark manager.
     </td>
   </tr>
   <tr>
-    <td colspan="2">The store is taking a while to approve updates. You can track the status here.</td>
+    <td colspan="2">Stores are taking a long time to approve updates. You can track the status here.</td>
   </tr>
 </table>
 
