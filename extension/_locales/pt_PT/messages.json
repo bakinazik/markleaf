@@ -1,0 +1,92 @@
+{
+  "searchPlaceholder": {
+    "message": "Pesquisar..."
+  },
+  "noBookmarksMessage": {
+    "message": "Não existem favoritos aqui."
+  },
+  "noSearchResultsMessage": {
+    "message": "Não foram encontrados resultados que correspondam aos seus critérios."
+  },
+  "saveButton": {
+    "message": "Guardar"
+  },
+  "cancelButton": {
+    "message": "Cancelar"
+  },
+  "editButton": {
+    "message": "Editar"
+  },
+  "removeButton": {
+    "message": "Remover"
+  },
+  "createFolderButton": {
+    "message": "Criar pasta aqui"
+  },
+  "newFolderName": {
+    "message": "Nova pasta"
+  },
+  "addCurrentSiteButton": {
+    "message": "Adicionar separador aqui"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Adicionar separador à pasta"
+  },
+  "confirmRemoval": {
+    "message": "Tem a certeza?"
+  },
+  "moveButton": {
+    "message": "Mover para a pasta"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Pesquisar nas pastas..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "Nenhuma pasta encontrada."
+  },
+  "moveBtnText": {
+    "message": "Mover"
+  },
+  "upFolderButton": {
+    "message": "Ir para a pasta superior"
+  },
+  "addBookmark": {
+    "message": "Adicionar favorito"
+  },
+  "newFolderTitle": {
+    "message": "Criar nova pasta"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Nome da pasta"
+  },
+  "createFolderModalButton": {
+    "message": "Criar"
+  },
+  "editTitle": {
+    "message": "Editar"
+  },
+  "editTitlePlaceholder": {
+    "message": "Título"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Abrir todos"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Pretende abrir <b>$2</b> favoritos na pasta <b>$1</b>?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Sim"
+  },
+  "copyLinkButton": {
+    "message": "Copiar ligação"
+  },
+  "openInCurrentTab": {
+    "message": "Abrir no separador atual"
+  },
+  "openInNewTab": {
+    "message": "Abrir em novo separador"
+  }
+}

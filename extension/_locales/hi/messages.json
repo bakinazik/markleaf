@@ -1,0 +1,92 @@
+{
+  "searchPlaceholder": {
+    "message": "खोजें..."
+  },
+  "noBookmarksMessage": {
+    "message": "यहाँ कोई बुकमार्क नहीं है।"
+  },
+  "noSearchResultsMessage": {
+    "message": "आपके मानदंडों से मेल खाने वाले कोई परिणाम नहीं मिले।"
+  },
+  "saveButton": {
+    "message": "सहेजें"
+  },
+  "cancelButton": {
+    "message": "रद्द करें"
+  },
+  "editButton": {
+    "message": "संपादित करें"
+  },
+  "removeButton": {
+    "message": "हटाएँ"
+  },
+  "createFolderButton": {
+    "message": "यहाँ फ़ोल्डर बनाएँ"
+  },
+  "newFolderName": {
+    "message": "नया फ़ोल्डर"
+  },
+  "addCurrentSiteButton": {
+    "message": "यहाँ टैब जोड़ें"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "फ़ोल्डर में टैब जोड़ें"
+  },
+  "confirmRemoval": {
+    "message": "क्या आप सुनिश्चित हैं?"
+  },
+  "moveButton": {
+    "message": "फ़ोल्डर में ले जाएँ"
+  },
+  "searchFolderPlaceholder": {
+    "message": "फ़ोल्डरों में खोजें..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "कोई फ़ोल्डर नहीं मिला।"
+  },
+  "moveBtnText": {
+    "message": "ले जाएँ"
+  },
+  "upFolderButton": {
+    "message": "ऊपरी फ़ोल्डर में जाएँ"
+  },
+  "addBookmark": {
+    "message": "बुकमार्क जोड़ें"
+  },
+  "newFolderTitle": {
+    "message": "नया फ़ोल्डर बनाएँ"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "फ़ोल्डर का नाम"
+  },
+  "createFolderModalButton": {
+    "message": "बनाएँ"
+  },
+  "editTitle": {
+    "message": "संपादित करें"
+  },
+  "editTitlePlaceholder": {
+    "message": "शीर्षक"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "सभी खोलें"
+  },
+  "confirmOpenAllMessage": {
+    "message": "क्या आप <b>$1</b> फ़ोल्डर में मौजूद <b>$2</b> बुकमार्क खोलना चाहते हैं?"
+  },
+  "confirmOpenAllButton": {
+    "message": "हाँ"
+  },
+  "copyLinkButton": {
+    "message": "लिंक कॉपी करें"
+  },
+  "openInCurrentTab": {
+    "message": "मौजूदा टैब में खोलें"
+  },
+  "openInNewTab": {
+    "message": "नई टैब में खोलें"
+  }
+}

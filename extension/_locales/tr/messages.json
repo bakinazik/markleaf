@@ -1,0 +1,92 @@
+{
+  "searchPlaceholder": {
+    "message": "Ara..."
+  },
+  "noBookmarksMessage": {
+    "message": "Burada hiç yer imi yok."
+  },
+  "noSearchResultsMessage": {
+    "message": "Aradığınız kriterlere uygun sonuç bulunamadı."
+  },
+  "saveButton": {
+    "message": "Kaydet"
+  },
+  "cancelButton": {
+    "message": "İptal"
+  },
+  "editButton": {
+    "message": "Düzenle"
+  },
+  "removeButton": {
+    "message": "Kaldır"
+  },
+  "createFolderButton": {
+    "message": "Burada klasör oluştur"
+  },
+  "newFolderName": {
+    "message": "Yeni klasör"
+  },
+  "addCurrentSiteButton": {
+    "message": "Sekmeyi buraya ekle"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Sekmeyi klasöre ekle"
+  },
+  "confirmRemoval": {
+    "message": "Emin misin?"
+  },
+  "moveButton": {
+    "message": "Klasöre taşı"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Klasörlerde ara..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "Klasör bulunamadı."
+  },
+  "moveBtnText": {
+    "message": "Taşı"
+  },
+  "upFolderButton": {
+    "message": "Üst klasöre git"
+  },
+  "addBookmark": {
+    "message": "Yer imi ekle"
+  },
+  "newFolderTitle": {
+    "message": "Yeni Klasör Oluştur"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Klasör adı"
+  },
+  "createFolderModalButton": {
+    "message": "Oluştur"
+  },
+  "editTitle": {
+    "message": "Düzenle"
+  },
+  "editTitlePlaceholder": {
+    "message": "Başlık"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Tümünü Aç"
+  },
+  "confirmOpenAllMessage": {
+    "message": "<b>$1</b> klasöründeki <b>$2</b> yer imini açmak istiyor musun?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Evet"
+  },
+  "copyLinkButton": {
+    "message": "Bağlantıyı kopyala"
+  },
+  "openInCurrentTab": {
+    "message": "Mevcut sekmede aç"
+  },
+  "openInNewTab": {
+    "message": "Yeni sekmede aç"
+  }
+}

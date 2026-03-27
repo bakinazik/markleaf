@@ -1,0 +1,92 @@
+{
+  "searchPlaceholder": {
+    "message": "Поиск..."
+  },
+  "noBookmarksMessage": {
+    "message": "Здесь нет закладок."
+  },
+  "noSearchResultsMessage": {
+    "message": "Результаты, соответствующие вашим критериям, не найдены."
+  },
+  "saveButton": {
+    "message": "Сохранить"
+  },
+  "cancelButton": {
+    "message": "Отмена"
+  },
+  "editButton": {
+    "message": "Редактировать"
+  },
+  "removeButton": {
+    "message": "Удалить"
+  },
+  "createFolderButton": {
+    "message": "Создать папку здесь"
+  },
+  "newFolderName": {
+    "message": "Новая папка"
+  },
+  "addCurrentSiteButton": {
+    "message": "Добавить вкладку сюда"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Добавить вкладку в папку"
+  },
+  "confirmRemoval": {
+    "message": "Вы уверены?"
+  },
+  "moveButton": {
+    "message": "Переместить в папку"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Поиск по папкам..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "Папки не найдены."
+  },
+  "moveBtnText": {
+    "message": "Переместить"
+  },
+  "upFolderButton": {
+    "message": "Перейти в родительскую папку"
+  },
+  "addBookmark": {
+    "message": "Добавить закладку"
+  },
+  "newFolderTitle": {
+    "message": "Создать новую папку"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Название папки"
+  },
+  "createFolderModalButton": {
+    "message": "Создать"
+  },
+  "editTitle": {
+    "message": "Редактировать"
+  },
+  "editTitlePlaceholder": {
+    "message": "Заголовок"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Открыть все"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Вы хотите открыть <b>$2</b> закладок в папке <b>$1</b>?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Да"
+  },
+  "copyLinkButton": {
+    "message": "Копировать ссылку"
+  },
+  "openInCurrentTab": {
+    "message": "Открыть в текущей вкладке"
+  },
+  "openInNewTab": {
+    "message": "Открыть в новой вкладке"
+  }
+}
