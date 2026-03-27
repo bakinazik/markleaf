@@ -39,8 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let scrollToTopBtn = document.getElementById('scrollToTop');
   const contextMenuOverlay = document.getElementById('contextMenuOverlay');
   const plusIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>`;
-  const xIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`;
-  const x2Icon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`;
+  const getXIcon = (size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`;
   const editIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>`;
   const folderIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`;
   const folderIconLargeSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`;
@@ -116,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   function updateAddBookmarkButton(isBookmarked) {
-    addBookmarkBtn.innerHTML = isBookmarked ? xIcon : plusIcon;
+    addBookmarkBtn.innerHTML = isBookmarked ? getXIcon(18) : plusIcon;
   }
   function closeMenu() {
     if (activeMenu) {
@@ -437,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
     moveMenuItem.innerHTML = `${moveIcon} ${chrome.i18n.getMessage('moveButton')}`;
     const removeMenuItem = document.createElement('button');
     removeMenuItem.classList.add('context-menu-item');
-    removeMenuItem.innerHTML = `${x2Icon} ${chrome.i18n.getMessage('removeButton')}`;
+    removeMenuItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
     removeMenuItem.dataset.state = 'initial';
     const createFolderMenuItem = document.createElement('button');
     createFolderMenuItem.classList.add('context-menu-item');
@@ -553,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const thisRemoveItem = contextMenu.querySelector('.context-menu-item[data-state]');
       if (thisRemoveItem) {
         thisRemoveItem.dataset.state = 'initial';
-        thisRemoveItem.innerHTML = `${x2Icon} ${chrome.i18n.getMessage('removeButton')}`;
+        thisRemoveItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
       }
     };
     editMenuItem.onclick = (event) => {
