@@ -1,0 +1,92 @@
+{
+  "searchPlaceholder": {
+    "message": "검색..."
+  },
+  "noBookmarksMessage": {
+    "message": "여기에 북마크가 없습니다."
+  },
+  "noSearchResultsMessage": {
+    "message": "검색 기준에 맞는 결과를 찾을 수 없습니다."
+  },
+  "saveButton": {
+    "message": "저장"
+  },
+  "cancelButton": {
+    "message": "취소"
+  },
+  "editButton": {
+    "message": "편집"
+  },
+  "removeButton": {
+    "message": "삭제"
+  },
+  "createFolderButton": {
+    "message": "여기에 폴더 만들기"
+  },
+  "newFolderName": {
+    "message": "새 폴더"
+  },
+  "addCurrentSiteButton": {
+    "message": "여기에 탭 추가"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "폴더에 탭 추가"
+  },
+  "confirmRemoval": {
+    "message": "정말로 삭제하시겠습니까?"
+  },
+  "moveButton": {
+    "message": "폴더로 이동"
+  },
+  "searchFolderPlaceholder": {
+    "message": "폴더 검색..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "폴더를 찾을 수 없습니다."
+  },
+  "moveBtnText": {
+    "message": "이동"
+  },
+  "upFolderButton": {
+    "message": "상위 폴더로 이동"
+  },
+  "addBookmark": {
+    "message": "북마크 추가"
+  },
+  "newFolderTitle": {
+    "message": "새 폴더 만들기"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "폴더 이름"
+  },
+  "createFolderModalButton": {
+    "message": "만들기"
+  },
+  "editTitle": {
+    "message": "편집"
+  },
+  "editTitlePlaceholder": {
+    "message": "제목"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "모두 열기"
+  },
+  "confirmOpenAllMessage": {
+    "message": "<b>$1</b> 폴더에 있는 <b>$2</b> 북마크를 모두 여시겠습니까?"
+  },
+  "confirmOpenAllButton": {
+    "message": "예"
+  },
+  "copyLinkButton": {
+    "message": "링크 복사"
+  },
+  "openInCurrentTab": {
+    "message": "현재 탭에서 열기"
+  },
+  "openInNewTab": {
+    "message": "새 탭에서 열기"
+  }
+}

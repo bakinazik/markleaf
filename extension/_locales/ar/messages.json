@@ -1,0 +1,92 @@
+{
+  "searchPlaceholder": {
+    "message": "بحث..."
+  },
+  "noBookmarksMessage": {
+    "message": "لا توجد علامات مرجعية هنا."
+  },
+  "noSearchResultsMessage": {
+    "message": "لم يتم العثور على نتائج لمعايير البحث الخاصة بك."
+  },
+  "saveButton": {
+    "message": "حفظ"
+  },
+  "cancelButton": {
+    "message": "إلغاء"
+  },
+  "editButton": {
+    "message": "تعديل"
+  },
+  "removeButton": {
+    "message": "إزالة"
+  },
+  "createFolderButton": {
+    "message": "إنشاء مجلد هنا"
+  },
+  "newFolderName": {
+    "message": "مجلد جديد"
+  },
+  "addCurrentSiteButton": {
+    "message": "إضافة علامة تبويب هنا"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "إضافة علامة التبويب إلى المجلد"
+  },
+  "confirmRemoval": {
+    "message": "هل أنت متأكد؟"
+  },
+  "moveButton": {
+    "message": "نقل إلى مجلد"
+  },
+  "searchFolderPlaceholder": {
+    "message": "البحث في المجلدات..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "لم يتم العثور على مجلدات."
+  },
+  "moveBtnText": {
+    "message": "نقل"
+  },
+  "upFolderButton": {
+    "message": "الذهاب إلى المجلد الأعلى"
+  },
+  "addBookmark": {
+    "message": "إضافة علامة مرجعية"
+  },
+  "newFolderTitle": {
+    "message": "إنشاء مجلد جديد"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "اسم المجلد"
+  },
+  "createFolderModalButton": {
+    "message": "إنشاء"
+  },
+  "editTitle": {
+    "message": "تعديل"
+  },
+  "editTitlePlaceholder": {
+    "message": "العنوان"
+  },
+  "editUrlPlaceholder": {
+    "message": "الرابط"
+  },
+  "confirmOpenAllTitle": {
+    "message": "فتح الكل"
+  },
+  "confirmOpenAllMessage": {
+    "message": "هل تريد فتح <b>$2</b> علامة مرجعية في مجلد <b>$1</b>؟"
+  },
+  "confirmOpenAllButton": {
+    "message": "نعم"
+  },
+  "copyLinkButton": {
+    "message": "نسخ الرابط"
+  },
+  "openInCurrentTab": {
+    "message": "فتح في علامة التبويب الحالية"
+  },
+  "openInNewTab": {
+    "message": "فتح في علامة تبويب جديدة"
+  }
+}

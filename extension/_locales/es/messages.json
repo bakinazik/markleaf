@@ -1,0 +1,92 @@
+{
+  "searchPlaceholder": {
+    "message": "Buscar..."
+  },
+  "noBookmarksMessage": {
+    "message": "No hay marcadores aquí."
+  },
+  "noSearchResultsMessage": {
+    "message": "No se encontraron resultados que coincidan con sus criterios de búsqueda."
+  },
+  "saveButton": {
+    "message": "Guardar"
+  },
+  "cancelButton": {
+    "message": "Cancelar"
+  },
+  "editButton": {
+    "message": "Editar"
+  },
+  "removeButton": {
+    "message": "Eliminar"
+  },
+  "createFolderButton": {
+    "message": "Crear carpeta aquí"
+  },
+  "newFolderName": {
+    "message": "Nueva carpeta"
+  },
+  "addCurrentSiteButton": {
+    "message": "Agregar pestaña actual aquí"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Agregar pestaña a la carpeta"
+  },
+  "confirmRemoval": {
+    "message": "¿Estás seguro?"
+  },
+  "moveButton": {
+    "message": "Mover a carpeta"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Buscar en carpetas..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "No se encontraron carpetas."
+  },
+  "moveBtnText": {
+    "message": "Mover"
+  },
+  "upFolderButton": {
+    "message": "Subir de carpeta"
+  },
+  "addBookmark": {
+    "message": "Agregar marcador"
+  },
+  "newFolderTitle": {
+    "message": "Crear nueva carpeta"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Nombre de la carpeta"
+  },
+  "createFolderModalButton": {
+    "message": "Crear"
+  },
+  "editTitle": {
+    "message": "Editar"
+  },
+  "editTitlePlaceholder": {
+    "message": "Título"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Abrir todo"
+  },
+  "confirmOpenAllMessage": {
+    "message": "¿Quieres abrir <b>$2</b> marcadores en la carpeta <b>$1</b>?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Sí"
+  },
+  "copyLinkButton": {
+    "message": "Copiar enlace"
+  },
+  "openInCurrentTab": {
+    "message": "Abrir en la pestaña actual"
+  },
+  "openInNewTab": {
+    "message": "Abrir en nueva pestaña"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "searchPlaceholder": {
+    "message": "Search..."
+  },
+  "noBookmarksMessage": {
+    "message": "No bookmarks here."
+  },
+  "noSearchResultsMessage": {
+    "message": "No results found matching your search criteria."
+  },
+  "saveButton": {
+    "message": "Save"
+  },
+  "cancelButton": {
+    "message": "Cancel"
+  },
+  "editButton": {
+    "message": "Edit"
+  },
+  "removeButton": {
+    "message": "Remove"
+  },
+  "createFolderButton": {
+    "message": "Create folder here"
+  },
+  "newFolderName": {
+    "message": "New folder"
+  },
+  "addCurrentSiteButton": {
+    "message": "Add current tab here"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Add tab to folder"
+  },
+  "confirmRemoval": {
+    "message": "Are you sure?"
+  },
+  "moveButton": {
+    "message": "Move to folder"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Search in folders..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "No folders found."
+  },
+  "moveBtnText": {
+    "message": "Move"
+  },
+  "upFolderButton": {
+    "message": "Go up folder"
+  },
+  "addBookmark": {
+    "message": "Add bookmark"
+  },
+  "newFolderTitle": {
+    "message": "Create New Folder"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Folder name"
+  },
+  "createFolderModalButton": {
+    "message": "Create"
+  },
+  "editTitle": {
+    "message": "Edit"
+  },
+  "editTitlePlaceholder": {
+    "message": "Title"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Open All"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Do you want to open <b>$2</b> bookmarks in <b>$1</b> folder?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Yes"
+  },
+  "copyLinkButton": {
+    "message": "Copy link"
+  },
+  "openInCurrentTab": {
+    "message": "Open in current tab"
+  },
+  "openInNewTab": {
+    "message": "Open in new tab"
+  }
+}
