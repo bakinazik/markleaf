@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const editUrlInput = document.getElementById('editUrlInput');
   const viewToggleBtn = document.getElementById('viewToggleBtn');
   const viewToggleIcon = document.getElementById('viewToggleIcon');
-  searchInput.focus();
+  const isMobile = matchMedia('(hover: none) and (pointer: coarse)').matches;
   let currentBookmarkId = null;
   let allItems = [];
   let currentFolderId = '1';
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
           (item.url && item.url.toLowerCase().includes(searchTerm))
         );
         updateItemsList(results);
-        searchInput.focus();
+        !isMobile && searchInput.focus();
       });
     } else {
       listItems(currentFolderId);
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       updateUpButtonVisibility();
       clearKeyboardSelection();
-      searchInput.focus();
+      !isMobile && searchInput.focus();
     });
   }
   function appendEmptyMessage(text) {
@@ -777,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bList = document.getElementById('bookmarksList');
     bList.scrollTo({ top: 0, behavior: 'smooth' });
     hideScrollToTop();
-    searchInput.focus();
+    !isMobile && searchInput.focus();
   }
   searchInput.addEventListener('input', () => {
     clearKeyboardSelection();
@@ -801,18 +801,25 @@ document.addEventListener('DOMContentLoaded', () => {
       updateItemsList(searchResults);
     });
   });
+  
   chrome.storage.local.get(['folderStack', 'isGridView'], (data) => {
     if (data.folderStack && data.folderStack.length > 0) {
       folderStack = data.folderStack;
       currentFolderId = folderStack[folderStack.length - 1];
     } else {
-      folderStack = ['1'];
-      currentFolderId = '1';
+      if (isMobile) {
+        folderStack = ['3'];
+        currentFolderId = '3';
+      } else {
+        folderStack = ['1'];
+        currentFolderId = '1';
+      }
     }
     isGridView = !!data.isGridView;
     setToggleIcon();
     listItems(currentFolderId);
   });
+  
   document.addEventListener('keydown', e => {
     const popupOpen =
       moveModal.classList.contains('active') ||
@@ -842,7 +849,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       if (keyboardSelectedIndex <= 0) {
         clearKeyboardSelection();
-        searchInput.focus();
+        !isMobile && searchInput.focus();
       } else {
         setKeyboardSelection(keyboardSelectedIndex - 1);
       }
@@ -885,13 +892,13 @@ document.addEventListener('DOMContentLoaded', () => {
     moveModal.classList.remove('active');
     folderList.innerHTML = '';
     folderSearchInput.value = '';
-    searchInput.focus();
+    !isMobile && searchInput.focus();
   }
   function closeEditModal() {
     editModal.classList.remove('active');
     editTitleInput.value = '';
     editUrlInput.value = '';
-    searchInput.focus();
+    !isMobile && searchInput.focus();
   }
   function openCreateFolderModal() {
     createFolderModal.classList.add('active');
@@ -903,7 +910,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeCreateFolderModal() {
     createFolderModal.classList.remove('active');
     newFolderNameInput.value = '';
-    searchInput.focus();
+    !isMobile && searchInput.focus();
     newFolderParentId = null;
     newFolderIndex = null;
   }
