@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const removeItem = menuToClose.querySelector('.context-menu-item[data-state]');
         if (removeItem) {
           removeItem.dataset.state = 'initial';
-          removeItem.innerHTML = `${x2Icon} ${chrome.i18n.getMessage('removeButton')}`;
+          removeItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
         }
       }, 150);
     }
