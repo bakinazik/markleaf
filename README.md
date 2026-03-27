@@ -9,7 +9,7 @@ Simple and practical bookmark manager.
   </tr>
   <tr>
     <td>
-      <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg?authuser=0&hl=tr">
+      <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg">
         <img width="206" src="https://github.com/user-attachments/assets/d027e2b0-e4c2-4f36-98ce-84e7c18f7db5" alt="Chrome Web Store" />
       </a>
     </td>
