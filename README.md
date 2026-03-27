@@ -2,7 +2,10 @@
 
 Simple and practical bookmark manager.
 
-<a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg?authuser=0&hl=tr"><img width="206" height="58" alt="image" src="https://github.com/user-attachments/assets/d027e2b0-e4c2-4f36-98ce-84e7c18f7db5" /></a>
+| Chrome Web Store | Microsoft Edge Addons |
+| :---: | :---: |
+| <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg?authuser=0&hl=tr"><img width="206" src="https://github.com/user-attachments/assets/d027e2b0-e4c2-4f36-98ce-84e7c18f7db5" alt="Chrome Web Store" /></a> | <a href="https://microsoftedge.microsoft.com/addons/detail/markleaf-bookmark-manage/hbkhddleogcneclojioeaaccpcfehndk"><img width="236" src="https://github.com/user-attachments/assets/3cb9a9c2-061c-4e38-b3ab-a10e78d74a84" alt="Edge Addons" /></a> |
+
 
 
 ## Features
