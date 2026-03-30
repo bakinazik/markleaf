@@ -43,14 +43,16 @@ Simple and practical bookmark manager.
 
 ## Shortcuts
 
-- **Up / Down**: Navigate through the list
-- **Enter**: Open selected item or enter folder
-- **Left / Tab**: Go to parent folder
-- **Left click**: Open in current tab
-- **Right click**: Open context menu
-- **Middle click**: Open in new tab
-- **Ctrl + click**: Open in new tab
-- **Shift + click**: Open in new window
+| Key           | Action                              |
+|---------------|-------------------------------------|
+| Up / Down     | Navigate through the list           |
+| Enter         | Open selected item or enter folder  |
+| Left / Tab    | Go to parent folder                 |
+| Left click    | Open in current tab                 |
+| Right click   | Open context menu                   |
+| Middle click  | Open in new tab                     |
+| Ctrl + click  | Open in new tab                     |
+| Shift + click | Open in new window                  |
 
 ---
 
