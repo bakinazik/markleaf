@@ -4,7 +4,7 @@ Simple and practical bookmark manager.
 
 <table>
   <tr>
-    <th>Chrome Web Store: 1.1.0</th>
+    <th>Chrome Web Store: 1.1.1</th>
     <th>Microsoft Edge Addons: 1.0.5</th>
   </tr>
   <tr>
