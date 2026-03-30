@@ -30,16 +30,17 @@ Simple and practical bookmark manager.
 |---|---|
 
 
-## Features
+## Features and Roadmap
 
-- List and grid layout
-- Create: Folder and bookmark/current page
-- Edit: URL and name
-- Draggable sorting for folders and bookmarks
-- Dynamic search (all/in-folder)
-- Dark/light theme follows browser preference
-- Remember last bookmark page
-- Supports 17 languages
+- [x] List and grid layout
+- [x] Create: Folder and bookmark/current page
+- [x] Edit: URL and name
+- [x] Draggable sorting for folders and bookmarks
+- [x] Dynamic search (all/in-folder)
+- [x] Dark/light theme follows browser preference
+- [x] Remember last bookmark page
+- [x] Supports 17 languages
+- [ ] Looking for another feature? [Click here](https://github.com/bakinazik/markleaf/issues/new)
 
 ## Shortcuts
 
