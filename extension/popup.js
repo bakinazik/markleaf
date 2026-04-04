@@ -285,186 +285,296 @@ document.addEventListener('DOMContentLoaded', () => {
   const restoreIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 14l-4 -4l4 -4"/><path d="M5 10h11a4 4 0 1 1 0 8h-1"/></svg>`;
   const deleteForeverIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>`;
 
+  
   function loadTrashPanel(filterTerm = '') {
-    trashList.innerHTML = '';
-    document.querySelectorAll('body > .trash-context-menu').forEach(el => el.remove());
-    chrome.bookmarks.getChildren(trashFolderId, (children) => {
-      if (!children || children.length === 0) {
-        const empty = document.createElement('div');
-        empty.classList.add('empty-message');
-        empty.textContent = chrome.i18n.getMessage('trashIsEmpty');
-        empty.style.marginTop = '30px';
-        trashList.appendChild(empty);
-        return;
+  trashList.innerHTML = '';
+  document.querySelectorAll('body > .trash-context-menu').forEach(el => el.remove());
+  
+  chrome.bookmarks.getChildren(trashFolderId, (children) => {
+    if (!children || children.length === 0) {
+      const empty = document.createElement('div');
+      empty.classList.add('empty-message');
+      empty.textContent = chrome.i18n.getMessage('trashIsEmpty');
+      empty.style.marginTop = '30px';
+      trashList.appendChild(empty);
+      return;
+    }
+    
+    const now = Date.now();
+    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+    let trashItems = children
+      .map(item => ({ item, parsed: parseTrashTitle(item.title) }))
+      .filter(({ parsed }) => parsed !== null)
+      .sort((a, b) => b.parsed.ts - a.parsed.ts);
+
+    if (filterTerm) {
+      const lower = filterTerm.toLowerCase();
+      trashItems = trashItems.filter(({ parsed, item }) =>
+        parsed.originalTitle.toLowerCase().includes(lower) ||
+        (item.url && item.url.toLowerCase().includes(lower))
+      );
+    }
+
+    if (trashItems.length === 0) {
+      const empty = document.createElement('div');
+      empty.classList.add('empty-message');
+      empty.textContent = filterTerm ? chrome.i18n.getMessage('trashNoResults') : chrome.i18n.getMessage('trashIsEmpty');
+      empty.style.marginTop = '30px';
+      trashList.appendChild(empty);
+      return;
+    }
+
+    if (!isMobile && tabTrash.classList.contains('active')) {
+      setTimeout(() => trashSearchInput.focus(), 0);
+    }
+
+    trashItems.forEach(({ item, parsed }) => {
+      const daysLeft = Math.max(0, Math.ceil((THIRTY_DAYS - (now - parsed.ts)) / (24 * 60 * 60 * 1000)));
+      const li = document.createElement('li');
+      li.classList.add('trash-item');
+      li.dataset.bookmarkId = item.id;
+
+      const a = document.createElement('a');
+      a.href = '#';
+      
+      if (item.url) {
+        a.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          if (event.ctrlKey || event.metaKey) {
+            chrome.tabs.create({ url: item.url, active: false });
+            return false;
+          }
+          if (event.shiftKey) {
+            chrome.windows.create({ url: item.url });
+            return false;
+          }
+          chrome.tabs.update({ url: item.url });
+          return false;
+        });
+        
+        a.addEventListener('auxclick', (event) => {
+          if (event.button === 1) {
+            event.preventDefault();
+            event.stopPropagation();
+            chrome.tabs.create({ url: item.url, active: false });
+            return false;
+          }
+        });
+      } else {
+        a.addEventListener('click', (e) => e.preventDefault());
       }
-      const now = Date.now();
-      const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
-      let trashItems = children
-        .map(item => ({ item, parsed: parseTrashTitle(item.title) }))
-        .filter(({ parsed }) => parsed !== null)
-        .sort((a, b) => b.parsed.ts - a.parsed.ts);
 
-      if (filterTerm) {
-        const lower = filterTerm.toLowerCase();
-        trashItems = trashItems.filter(({ parsed, item }) =>
-          parsed.originalTitle.toLowerCase().includes(lower) ||
-          (item.url && item.url.toLowerCase().includes(lower))
-        );
+      const iconSpan = document.createElement('span');
+      iconSpan.classList.add('item-icon');
+      if (item.url) {
+        const img = document.createElement('img');
+        img.src = getFaviconUrl(item.url);
+        img.alt = '';
+        img.style.cssText = 'width:16px;height:16px;margin-right:8px;border-radius:100%;';
+        iconSpan.appendChild(img);
+      } else {
+        iconSpan.innerHTML = folderIconSVG;
+        iconSpan.style.marginRight = '8px';
       }
 
-      if (trashItems.length === 0) {
-        const empty = document.createElement('div');
-        empty.classList.add('empty-message');
-        empty.textContent = filterTerm ? chrome.i18n.getMessage('trashNoResults') : chrome.i18n.getMessage('trashIsEmpty');
-        empty.style.marginTop = '30px';
-        trashList.appendChild(empty);
-        return;
+      const contentDiv = document.createElement('div');
+      contentDiv.classList.add('bookmark-content');
+      contentDiv.style.flex = '1';
+      contentDiv.style.overflow = 'hidden';
+      const titleSpan = document.createElement('span');
+      titleSpan.classList.add('bookmark-title');
+      titleSpan.textContent = parsed.originalTitle;
+      contentDiv.appendChild(titleSpan);
+      if (item.url) {
+        const urlSpan = document.createElement('span');
+        urlSpan.classList.add('bookmark-url');
+        urlSpan.textContent = item.url;
+        contentDiv.appendChild(urlSpan);
       }
 
-      if (!isMobile && tabTrash.classList.contains('active')) {
-        setTimeout(() => trashSearchInput.focus(), 0);
-      }
+      const daysBadge = document.createElement('span');
+      daysBadge.classList.add('trash-days');
+      daysBadge.textContent = daysLeft + chrome.i18n.getMessage('trashDaysLeft');
 
-      trashItems.forEach(({ item, parsed }) => {
-        const daysLeft = Math.max(0, Math.ceil((THIRTY_DAYS - (now - parsed.ts)) / (24 * 60 * 60 * 1000)));
-        const li = document.createElement('li');
-        li.classList.add('trash-item');
-        li.dataset.bookmarkId = item.id;
+      a.appendChild(iconSpan);
+      a.appendChild(contentDiv);
+      a.appendChild(daysBadge);
+      li.appendChild(a);
 
-        const a = document.createElement('a');
-        a.href = '#';
+      const bookmarkButtons = document.createElement('div');
+      bookmarkButtons.classList.add('bookmark-buttons');
 
-        const iconSpan = document.createElement('span');
-        iconSpan.classList.add('item-icon');
-        if (item.url) {
-          const img = document.createElement('img');
-          img.src = getFaviconUrl(item.url);
-          img.alt = '';
-          img.style.cssText = 'width:16px;height:16px;margin-right:8px;border-radius:100%;';
-          iconSpan.appendChild(img);
-        } else {
-          iconSpan.innerHTML = folderIconSVG;
-          iconSpan.style.marginRight = '8px';
-        }
+      const menuBtn = document.createElement('button');
+      menuBtn.classList.add('menu-button');
+      menuBtn.innerHTML = menuIcon;
 
-        const contentDiv = document.createElement('div');
-        contentDiv.classList.add('bookmark-content');
-        contentDiv.style.flex = '1';
-        contentDiv.style.overflow = 'hidden';
-        const titleSpan = document.createElement('span');
-        titleSpan.classList.add('bookmark-title');
-        titleSpan.textContent = parsed.originalTitle;
-        contentDiv.appendChild(titleSpan);
-        if (item.url) {
-          const urlSpan = document.createElement('span');
-          urlSpan.classList.add('bookmark-url');
-          urlSpan.textContent = item.url;
-          contentDiv.appendChild(urlSpan);
-        }
+      const ctxMenu = document.createElement('div');
+      ctxMenu.classList.add('context-menu', 'trash-context-menu');
 
-        const daysBadge = document.createElement('span');
-        daysBadge.classList.add('trash-days');
-        daysBadge.textContent = daysLeft + chrome.i18n.getMessage('trashDaysLeft');
-
-        a.appendChild(iconSpan);
-        a.appendChild(contentDiv);
-        a.appendChild(daysBadge);
-        li.appendChild(a);
-
-        const bookmarkButtons = document.createElement('div');
-        bookmarkButtons.classList.add('bookmark-buttons');
-
-        const menuBtn = document.createElement('button');
-        menuBtn.classList.add('menu-button');
-        menuBtn.innerHTML = menuIcon;
-
-        const ctxMenu = document.createElement('div');
-        ctxMenu.classList.add('context-menu', 'trash-context-menu');
-
-        const restoreBtn = document.createElement('button');
-        restoreBtn.classList.add('context-menu-item');
-        restoreBtn.innerHTML = `${restoreIcon} ${chrome.i18n.getMessage('trashRestoreButton')}`;
-        restoreBtn.onclick = (e) => {
-          e.stopPropagation();
-          closeMenu();
-          chrome.bookmarks.move(item.id, { parentId: parsed.parentId, index: parsed.index }, () => {
-            chrome.bookmarks.update(item.id, { title: parsed.originalTitle }, () => {
-              loadTrashPanel(trashSearchInput.value);
+      const restoreBtn = document.createElement('button');
+      restoreBtn.classList.add('context-menu-item');
+      restoreBtn.innerHTML = `${restoreIcon} ${chrome.i18n.getMessage('trashRestoreButton')}`;
+      
+      restoreBtn.onclick = (e) => {
+        e.stopPropagation();
+        closeMenu();
+        
+        if (ctxMenu && ctxMenu.parentNode) ctxMenu.remove();
+        
+        chrome.bookmarks.move(item.id, { parentId: parsed.parentId, index: parsed.index }, () => {
+          chrome.bookmarks.update(item.id, { title: parsed.originalTitle }, () => {
+            loadTrashPanel(trashSearchInput.value);
+            if (tabBookmarks.classList.contains('active')) {
               listItems(currentFolderId);
-            });
+            }
           });
-        };
+        });
+      };
 
-        const deleteBtn = document.createElement('button');
-        deleteBtn.classList.add('context-menu-item');
+      const deleteBtn = document.createElement('button');
+      deleteBtn.classList.add('context-menu-item');
+      deleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
+      deleteBtn.style.color = 'var(--hover-color-remove)';
+      deleteBtn.dataset.state = 'initial';
+      
+      deleteBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (deleteBtn.dataset.state === 'initial') {
+          deleteBtn.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('trashConfirmDelete')}`;
+          deleteBtn.dataset.state = 'confirm';
+        } else {
+          closeMenu();
+          if (ctxMenu && ctxMenu.parentNode) ctxMenu.remove();
+          if (item.url) chrome.bookmarks.remove(item.id, () => loadTrashPanel(trashSearchInput.value));
+          else chrome.bookmarks.removeTree(item.id, () => loadTrashPanel(trashSearchInput.value));
+        }
+      };
+
+      const quickActionsContainer = document.createElement('div');
+      quickActionsContainer.classList.add('quick-actions');
+      
+      const copyLinkBtn = document.createElement('button');
+      copyLinkBtn.classList.add('quick-action-btn');
+      copyLinkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>`;
+      copyLinkBtn.title = chrome.i18n.getMessage('copyLinkButton');
+      copyLinkBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (item.url) {
+          navigator.clipboard.writeText(item.url);
+        }
+        closeMenu();
+      };
+      
+      const openInCurrentTabBtn = document.createElement('button');
+      openInCurrentTabBtn.classList.add('quick-action-btn');
+      openInCurrentTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`;
+      openInCurrentTabBtn.title = chrome.i18n.getMessage('openInCurrentTab');
+      openInCurrentTabBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (item.url) {
+          chrome.tabs.update({ url: item.url });
+        }
+        closeMenu();
+      };
+      
+      const openInNewTabBtn = document.createElement('button');
+      openInNewTabBtn.classList.add('quick-action-btn');
+      openInNewTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`;
+      openInNewTabBtn.title = chrome.i18n.getMessage('openInNewTab');
+      openInNewTabBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (item.url) {
+          chrome.tabs.create({ url: item.url, active: false });
+        }
+        closeMenu();
+      };
+      
+      quickActionsContainer.appendChild(copyLinkBtn);
+      quickActionsContainer.appendChild(openInCurrentTabBtn);
+      quickActionsContainer.appendChild(openInNewTabBtn);
+      
+      if (!item.url) {
+        quickActionsContainer.style.display = 'none';
+      }
+
+      ctxMenu.appendChild(restoreBtn);
+      ctxMenu.appendChild(deleteBtn);
+      ctxMenu.appendChild(quickActionsContainer);
+      
+      document.body.appendChild(ctxMenu);
+
+      menuBtn.onclick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        if (activeMenu && activeMenu !== ctxMenu) { 
+          closeMenu(); 
+        }
+        
+        if (activeMenu === ctxMenu && ctxMenu.style.display === 'flex') { 
+          closeMenu(); 
+          return; 
+        }
+        
+        const btnRect = menuBtn.getBoundingClientRect();
+        const availableSpaceBelow = window.innerHeight - btnRect.bottom;
+        
+        ctxMenu.style.display = 'flex';
+        ctxMenu.style.visibility = 'hidden';
+        
+        const mw = ctxMenu.offsetWidth;
+        const mh = ctxMenu.offsetHeight;
+        
+        ctxMenu.style.visibility = '';
+        ctxMenu.classList.remove('open-upwards');
+        
+        let top = btnRect.bottom + 4;
+        let left = btnRect.right - mw;
+        
+        if (availableSpaceBelow < mh && btnRect.top > mh) { 
+          top = btnRect.top - mh - 4; 
+          ctxMenu.classList.add('open-upwards'); 
+        }
+        if (left < 4) left = 4;
+        
+        ctxMenu.style.top = top + 'px';
+        ctxMenu.style.left = left + 'px';
+        ctxMenu.style.right = 'auto';
+        ctxMenu.style.bottom = 'auto';
+        ctxMenu.style.display = 'flex';
+        
+        bookmarkButtons.classList.add('is-visible');
+        contextMenuOverlay.classList.add('active');
+        document.activeElement.blur();
+        
+        activeMenu = ctxMenu;
+        activeBookmarkButtons = bookmarkButtons;
+        
+        deleteBtn.dataset.state = 'initial';
         deleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
         deleteBtn.style.color = 'var(--hover-color-remove)';
-        deleteBtn.dataset.state = 'initial';
-        deleteBtn.onclick = (e) => {
-          e.stopPropagation();
-          if (deleteBtn.dataset.state === 'initial') {
-            deleteBtn.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('trashConfirmDelete')}`;
-            deleteBtn.dataset.state = 'confirm';
-          } else {
-            closeMenu();
-            if (item.url) chrome.bookmarks.remove(item.id, () => loadTrashPanel(trashSearchInput.value));
-            else chrome.bookmarks.removeTree(item.id, () => loadTrashPanel(trashSearchInput.value));
-          }
-        };
+      };
 
-        ctxMenu.appendChild(restoreBtn);
-        ctxMenu.appendChild(deleteBtn);
-        document.body.appendChild(ctxMenu);
-
-        menuBtn.onclick = (e) => {
-          e.stopPropagation();
-          if (activeMenu === ctxMenu && ctxMenu.style.display === 'flex') { closeMenu(); return; }
-          if (activeMenu) closeMenu();
-          ctxMenu.style.display = 'flex';
-          ctxMenu.style.visibility = 'hidden';
-          const mw = ctxMenu.offsetWidth;
-          const mh = ctxMenu.offsetHeight;
-          ctxMenu.style.visibility = '';
-          ctxMenu.style.animation = '';
-          ctxMenu.classList.remove('open-upwards');
-          const btnRect = menuBtn.getBoundingClientRect();
-          let top = btnRect.bottom + 2;
-          let left = btnRect.right - mw;
-          if (top + mh > window.innerHeight - 4) { top = btnRect.top - mh - 2; ctxMenu.classList.add('open-upwards'); }
-          if (left < 4) left = 4;
-          ctxMenu.style.top = top + 'px';
-          ctxMenu.style.left = left + 'px';
-          ctxMenu.style.right = 'auto';
-          ctxMenu.style.bottom = 'auto';
-          ctxMenu.style.display = 'flex';
-          contextMenuOverlay.classList.add('active');
-          document.activeElement.blur();
-          activeMenu = ctxMenu;
-          activeBookmarkButtons = bookmarkButtons;
-          deleteBtn.dataset.state = 'initial';
-          deleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
-          deleteBtn.style.color = 'var(--hover-color-remove)';
-        };
-
-        bookmarkButtons.appendChild(menuBtn);
-        li.appendChild(bookmarkButtons);
-        a.addEventListener('click', (e) => e.preventDefault());
-
-        li.addEventListener('contextmenu', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          menuBtn.click();
-        });
-
-        li.draggable = false;
-        a.draggable = false;
-        li.addEventListener('dragstart', (e) => { e.preventDefault(); e.stopPropagation(); return false; });
-        a.addEventListener('dragstart', (e) => { e.preventDefault(); e.stopPropagation(); return false; });
-
-        trashList.appendChild(li);
+      bookmarkButtons.appendChild(menuBtn);
+      li.appendChild(bookmarkButtons);
+      
+      li.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        menuBtn.onclick(e);
       });
+
+      li.draggable = false;
+      a.draggable = false;
+      li.addEventListener('dragstart', (e) => { e.preventDefault(); e.stopPropagation(); return false; });
+      a.addEventListener('dragstart', (e) => { e.preventDefault(); e.stopPropagation(); return false; });
+
+      trashList.appendChild(li);
     });
-  }
+  });
+}
+
 
   trashSearchInput.addEventListener('input', () => {
     loadTrashPanel(trashSearchInput.value);
