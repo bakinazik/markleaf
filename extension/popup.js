@@ -140,7 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const removeItem = menuToClose.querySelector('.context-menu-item[data-state]');
         if (removeItem) {
           removeItem.dataset.state = 'initial';
-          removeItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
+          if (!menuToClose.classList.contains('trash-context-menu')) {
+            removeItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
+          } else {
+            removeItem.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
+            removeItem.style.color = 'var(--hover-color-remove)';
+          }
         }
         if (!isMobile) {
           if (tabTrash.classList.contains('active')) trashSearchInput.focus();
@@ -316,6 +321,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      if (!isMobile && tabTrash.classList.contains('active')) {
+        setTimeout(() => trashSearchInput.focus(), 0);
+      }
+
       trashItems.forEach(({ item, parsed }) => {
         const daysLeft = Math.max(0, Math.ceil((THIRTY_DAYS - (now - parsed.ts)) / (24 * 60 * 60 * 1000)));
         const li = document.createElement('li');
@@ -362,6 +371,13 @@ document.addEventListener('DOMContentLoaded', () => {
         a.appendChild(daysBadge);
         li.appendChild(a);
 
+        const bookmarkButtons = document.createElement('div');
+        bookmarkButtons.classList.add('bookmark-buttons');
+
+        const menuBtn = document.createElement('button');
+        menuBtn.classList.add('menu-button');
+        menuBtn.innerHTML = menuIcon;
+
         const ctxMenu = document.createElement('div');
         ctxMenu.classList.add('context-menu', 'trash-context-menu');
 
@@ -400,9 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctxMenu.appendChild(deleteBtn);
         document.body.appendChild(ctxMenu);
 
-
-        function openTrashCtx(e) {
-          e.preventDefault();
+        menuBtn.onclick = (e) => {
           e.stopPropagation();
           if (activeMenu === ctxMenu && ctxMenu.style.display === 'flex') { closeMenu(); return; }
           if (activeMenu) closeMenu();
@@ -413,10 +427,10 @@ document.addEventListener('DOMContentLoaded', () => {
           ctxMenu.style.visibility = '';
           ctxMenu.style.animation = '';
           ctxMenu.classList.remove('open-upwards');
-          const liRect = li.getBoundingClientRect();
-          let top = liRect.bottom + 2;
-          let left = liRect.right - mw;
-          if (top + mh > window.innerHeight - 4) { top = liRect.top - mh - 2; ctxMenu.classList.add('open-upwards'); }
+          const btnRect = menuBtn.getBoundingClientRect();
+          let top = btnRect.bottom + 2;
+          let left = btnRect.right - mw;
+          if (top + mh > window.innerHeight - 4) { top = btnRect.top - mh - 2; ctxMenu.classList.add('open-upwards'); }
           if (left < 4) left = 4;
           ctxMenu.style.top = top + 'px';
           ctxMenu.style.left = left + 'px';
@@ -426,16 +440,26 @@ document.addEventListener('DOMContentLoaded', () => {
           contextMenuOverlay.classList.add('active');
           document.activeElement.blur();
           activeMenu = ctxMenu;
-          activeBookmarkButtons = null;
-          // reset confirm state
+          activeBookmarkButtons = bookmarkButtons;
           deleteBtn.dataset.state = 'initial';
           deleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
           deleteBtn.style.color = 'var(--hover-color-remove)';
-        }
+        };
 
-        li.addEventListener('contextmenu', openTrashCtx);
-        a.addEventListener('contextmenu', openTrashCtx);
+        bookmarkButtons.appendChild(menuBtn);
+        li.appendChild(bookmarkButtons);
         a.addEventListener('click', (e) => e.preventDefault());
+
+        li.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          menuBtn.click();
+        });
+
+        li.draggable = false;
+        a.draggable = false;
+        li.addEventListener('dragstart', (e) => { e.preventDefault(); e.stopPropagation(); return false; });
+        a.addEventListener('dragstart', (e) => { e.preventDefault(); e.stopPropagation(); return false; });
 
         trashList.appendChild(li);
       });
@@ -452,6 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cancelEmptyTrashBtn.addEventListener('click', () => {
     emptyTrashModal.classList.remove('active');
+    !isMobile && trashSearchInput.focus();
   });
 
   confirmEmptyTrashBtn.addEventListener('click', () => {
@@ -468,6 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         trashSearchInput.value = '';
         loadTrashPanel();
+        !isMobile && trashSearchInput.focus();
       }, 200);
     });
   });
@@ -477,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.target == createFolderModal) closeCreateFolderModal();
     if (event.target == editModal) closeEditModal();
     if (event.target == openAllModal) openAllModal.classList.remove('active');
-    if (event.target == emptyTrashModal) emptyTrashModal.classList.remove('active');
+    if (event.target == emptyTrashModal) { emptyTrashModal.classList.remove('active'); !isMobile && trashSearchInput.focus(); }
   };
 
   function updateSettingsUI() {
