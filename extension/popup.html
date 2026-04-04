@@ -15,7 +15,7 @@
       --link-background: #ededf2;
       --link-color: #111;
       --box-shadow: 0 4px 25px rgb(179 179 179 / 35%);
-      --hover-color-edit: #4cd964;
+      --hover-color-edit: #757575;
       --hover-color-remove: #ff5c5c;
       --border-color: #ddd;
       --form-background: #eee;
@@ -218,7 +218,9 @@
 	    margin-left: auto;
 	    border-radius: 7px;
 	    font-family: monospace;
-	    color: var(--placeholder-color);
+	    display: flex;
+	    align-items: center;
+	    gap: 5px;
 	}
 
     select,
@@ -575,7 +577,7 @@
       gap: 10px;
     }
 
-    #closeCreateFolderModal, #closeMoveModal, #cancelOpenAllBtn {
+    #closeCreateFolderModal, #closeMoveModal, #cancelOpenAllBtn, #cancelEmptyTrashBtn {
       background: transparent;
       color: #eee;
       border: 1px solid var(--border-color);
@@ -655,9 +657,15 @@
       margin-top: 10px;
     }
     
-    button[data-state="confirm"] {
-        color: var(--hover-color-remove);
-    }
+	#confirmEmptyTrashBtn {
+	    width: 100%;
+	    text-align: center;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    background: var(--card-bg);
+	    color: var(--input-text-color);
+	}
     
     #folderList {
         padding-right: 5px;
@@ -714,7 +722,7 @@
         justify-content: center;
     }
     
-    .modal-close-btn:hover, #closeCreateFolderModal:hover, #moveBtn:hover, #cancelOpenAllBtn:hover, #closeMoveModal:hover, #createFolderInModalBtn:hover, #saveEditBtn:hover, #cancelEditBtn:hover {
+    .modal-close-btn:hover, #closeCreateFolderModal:hover, #moveBtn:hover, #cancelOpenAllBtn:hover, #closeMoveModal:hover, #createFolderInModalBtn:hover, #saveEditBtn:hover, #cancelEditBtn:hover, #cancelEmptyTrashBtn:hover {
       background: var(--secondary-button-background);
       color: var(--input-text-color);
     }
@@ -741,7 +749,7 @@
     
     .scroll-to-top {
         position: fixed;
-        bottom: 20px;
+        bottom: 80px;
         left: 50%;
         transform: translate(-50%, 100px);
         width: 40px;
@@ -915,8 +923,8 @@
 
     ul.grid-mode li .bookmark-buttons {
       position: absolute !important;
-      top: -6px !important;
-      left: -6px !important;
+      top: 0px !important;
+      left: 0px !important;
       right: auto !important;
       transform: none !important;
       height: 22px !important;
@@ -958,6 +966,311 @@
         background: var(--secondary-button-background) !important;
     }
 
+    html.theme-force-dark {
+      --background-color: #222;
+      --text-color: #ffffff;
+      --primary-button-background: #333;
+      --primary-button-text: #ccc;
+      --secondary-button-background: #444;
+      --secondary-button-text: #ccc;
+      --link-background: #333;
+      --link-color: #ccc;
+      --border-color: #444;
+      --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+      --form-background: #333;
+      --input-background: transparent;
+      --input-border-color: #444;
+      --input-text-color: #fff;
+      --placeholder-color: #aaa;
+      --context-menu-background: #333;
+      --context-menu-item-hover: #444;
+      --card-bg: #2e2e2e;
+      --card-hover-bg: #383838;
+      color-scheme: dark;
+    }
+
+    html.theme-force-light {
+      --background-color: #fff;
+      --text-color: #111;
+      --primary-button-background: #ededf2;
+      --primary-button-text: #111;
+      --secondary-button-background: #ddd;
+      --secondary-button-text: #111;
+      --link-background: #ededf2;
+      --link-color: #111;
+      --border-color: #ddd;
+      --box-shadow: 0 4px 25px rgb(179 179 179 / 35%);
+      --form-background: #eee;
+      --input-background: transparent;
+      --input-border-color: #ddd;
+      --input-text-color: #111;
+      --placeholder-color: #aaa;
+      --context-menu-background: #ededf2;
+      --context-menu-item-hover: #f0f0f0;
+      --card-bg: #f0f0f5;
+      --card-hover-bg: #e4e4ec;
+      color-scheme: light;
+    }
+
+    #trashPanel {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+    }
+    #trashPanel.active {
+      display: flex;
+    }
+    #trashList {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin: 0 10px 10px;
+      border-radius: var(--border-radius);
+    }
+    .trash-item a {
+      margin: 0;
+      padding: var(--padding-medium);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: var(--link-background);
+      color: var(--link-color);
+      border-bottom: 1px solid var(--border-color);
+      cursor: default;
+      text-decoration: none;
+    }
+    .trash-item:last-child > a {
+      border-bottom: none;
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+    .trash-item:first-child > a {
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
+    .trash-days {
+      font-size: 11px;
+      opacity: 0.55;
+      white-space: nowrap;
+      margin-left: auto;
+      padding-left: 6px;
+      flex-shrink: 0;
+    }
+    .trash-header {
+      display: flex;
+      gap: 8px;
+      padding: 10px 10px 10px;
+      flex-shrink: 0;
+    }
+    .trash-header .search {
+      flex: 1;
+    }
+    .trash-header #trashSearchInput {
+      background: var(--input-background);
+      border: none;
+      padding: var(--padding-small);
+      border-radius: var(--border-radius);
+      color: var(--input-text-color);
+      display: block;
+      width: 100%;
+      padding-left: 40px;
+      font-size: 15px;
+    }
+	#emptyTrashBtn {
+	    flex-shrink: 0;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    border-radius: 9px;
+	    cursor: pointer;
+	    background: var(--primary-button-background);
+	    color: var(--primary-button-text);
+	    transition: 0.2s color;
+	    padding: var(--padding-small);
+	}
+    #emptyTrashBtn:hover {
+      color: var(--hover-color-remove);
+    }
+
+	.bottom-nav {
+	    display: flex;
+	    background: var(--background-color);
+	    flex-shrink: 0;
+	    padding: 0 10px 10px;
+	    gap: 10px;
+	}
+
+	.bottom-nav-btn {
+	    flex: 1;
+	    flex-direction: row;
+	    gap: 4px;
+	    align-items: center;
+	    justify-content: center;
+	    padding: 10px 0;
+	    background: transparent;
+	    color: var(--link-color);
+	    font-size: 11px;
+	    transition: color 0.2s;
+	    border-radius: 10px;
+	    border: 1px solid var(--card-bg);
+	}
+
+    .bottom-nav-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+	.bottom-nav-btn.active {
+	    color: var(--text-color);
+	    background: var(--card-bg);
+	}
+
+    #settingsPanel {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 10px;
+    }
+
+    #settingsPanel.active {
+      display: flex;
+    }
+
+	.settings-row {
+	    display: flex;
+	    justify-content: space-between;
+	    gap: 10px;
+	    padding: 10px 12px;
+	    background: var(--primary-button-background);
+	    border-radius: var(--border-radius);
+	    flex-direction: column;
+	}
+	
+	.settings-flex {
+	    display: flex;
+	    flex-direction: row;
+	    align-items: center;
+	    width: 100%;
+	    justify-content: space-between;
+	}
+
+    .settings-label {
+      font-size: 13px;
+      color: var(--text-color);
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+	.settings-select {
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		color: var(--text-color);
+		font-size: 12px;
+		padding: 5px 8px;
+		cursor: pointer;
+		width: auto;
+		padding-left: 8px;
+		-webkit-appearance: auto;
+		-moz-appearance: auto;
+		appearance: auto;
+		min-width: 130px;
+		max-width: 130px;
+	}
+
+
+	.theme-btn-group {
+	    display: flex;
+	    gap: 3px;
+	    background: var(--background-color);
+	    border-radius: 9px;
+	    padding: 3px;
+	    flex-shrink: 0;
+	    width: 100%;
+	}
+	
+	.theme-btn {
+	    padding: 5px 11px;
+	    border-radius: 6px;
+	    font-size: 12px;
+	    background: transparent;
+	    transition: 0.18s all;
+	    border: none;
+	    cursor: pointer;
+	    font-family: var(--font-family);
+	    white-space: nowrap;
+	    width: 100%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    color: var(--input-text-color);
+	}
+
+
+    .theme-btn.active {
+      background: var(--primary-button-background);
+      color: var(--text-color);
+    }
+
+    .theme-btn:hover:not(.active) {
+      color: var(--text-color);
+      background: var(--primary-button-background)
+    }
+
+    .toggle-slider {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .toggle-slider input[type="checkbox"] {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .toggle-track {
+      width: 42px;
+      height: 24px;
+      background: var(--border-color);
+      border-radius: 12px;
+      position: relative;
+      transition: background 0.22s;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .toggle-track::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.22s cubic-bezier(.4,0,.2,1), background 0.22s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+
+    .toggle-slider input:checked + .toggle-track {
+      background: var(--hover-color-edit);
+    }
+
+    .toggle-slider input:checked + .toggle-track::after {
+      transform: translateX(18px);
+    }
+
+
     </style>
   </head>
   <body>
@@ -971,7 +1284,7 @@
         </button>
       <div class="search">
         <svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
-        <input type="text" id="searchInput" placeholder="Ara">
+        <input type="text" id="searchInput" placeholder="Search...">
         <button id="viewToggleBtn">
           <svg id="viewToggleIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
@@ -983,7 +1296,9 @@
       <button id="upButton" class="up-button">
          <svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
          <span data-i18n="upFolderButton"></span>
-         <span class="shortcut">TAB</span>
+         <span class="shortcut">
+         TAB
+         </span>
       </button>
   </section>
 
@@ -1029,8 +1344,8 @@
         </div>
         <p id="openAllMessage"></p>
         <div class="modal-buttons">
-          <button id="cancelOpenAllBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
-          <button id="confirmOpenAllBtn" class="modal-close-btn" data-i18n="confirmOpenAllButton"></button>
+          <button id="cancelOpenAllBtn" class="modal-close-btn" data-i18n="cancelButton">İptal</button>
+          <button id="confirmOpenAllBtn" class="modal-close-btn" data-i18n="confirmOpenAllButton">Evet, Aç</button>
         </div>
       </div>
     </div>
@@ -1038,7 +1353,7 @@
     <div id="createFolderModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg><h3 data-i18n="newFolderTitle">Yeni Klasör Oluştur</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg><h3 data-i18n="newFolderTitle"></h3>
         </div>
         <input type="text" id="newFolderNameInput" placeholder="">
         <div class="modal-buttons">
@@ -1047,6 +1362,87 @@
         </div>
       </div>
     </div>
+
+    <div id="emptyTrashModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg><h3 data-i18n="emptyTrashTitle">Empty Trash</h3>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelEmptyTrashBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmEmptyTrashBtn" data-i18n="emptyTrashButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="settingsPanel">
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingThemeLabel">Theme</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn" data-theme="auto"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10" /><path d="M7 20h10" /><path d="M9 16v4" /><path d="M15 16v4" /></svg></button>
+          <button class="theme-btn" data-theme="dark"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008" /></svg></button>
+          <button class="theme-btn" data-theme="light"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-sun"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" /></svg></button>
+        </div>
+      </div>
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingDeleteModeLabel">Delete mode</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="deleteMode" data-value="trash"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg><span data-i18n="settingDeleteModeTrash">Trash</span></button>
+          <button class="theme-btn setting-btn" data-setting="deleteMode" data-value="permanent"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg><span data-i18n="settingDeleteModePermanent">Permanent</span></button>
+        </div>
+        <p data-i18n="deleteModeText"></p>
+      </div>
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingBookmarksLabel">Bookmarks</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="view" data-value="list"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -2" /><path d="M4 16a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -2" /></svg><span data-i18n="settingViewList">List</span></button>
+          <button class="theme-btn setting-btn" data-setting="view" data-value="grid"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-grid"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M14 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /></svg><span data-i18n="settingViewGrid">Grid</span></button>
+        </div>
+      </div>
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingFolderStyleLabel">Folder style</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="folderStyle" data-value="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg><span data-i18n="settingFolderStyleIcon">Folder</span></button>
+          <button class="theme-btn setting-btn" data-setting="folderStyle" data-value="stack"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-grid-dots"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M18 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M18 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg><span data-i18n="settingFolderStyleStack">Stack</span></button>
+        </div>
+        <p data-i18n="folderStyleText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingFolderBadgeLabel">Folder badge</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingFolderBadge">
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="folderBadgeText"></p>
+      </div>
+    </div>
+
+    <div id="trashPanel">
+      <div class="trash-header">
+        <div class="search">
+          <svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+          <input type="text" id="trashSearchInput" data-i18n="trashSearchPlaceholder" placeholder="Search trash...">
+        </div>
+        <button id="emptyTrashBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>
+        </button>
+      </div>
+      <ul id="trashList"></ul>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="bottom-nav-btn active" id="tabBookmarks">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"/></svg>
+      </button>
+      <button class="bottom-nav-btn" id="tabTrash">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>
+      </button>
+      <button class="bottom-nav-btn" id="tabSettings">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>
+      </button>
+    </nav>
 
     <div id="contextMenuOverlay"></div>
 
