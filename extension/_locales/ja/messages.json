@@ -3,10 +3,10 @@
     "message": "検索..."
   },
   "noBookmarksMessage": {
-    "message": "ここにはブックマークがありません。"
+    "message": "ブックマークはありません。"
   },
   "noSearchResultsMessage": {
-    "message": "条件に一致する結果が見つかりませんでした。"
+    "message": "検索条件に一致する結果は見つかりませんでした。"
   },
   "saveButton": {
     "message": "保存"
@@ -21,43 +21,43 @@
     "message": "削除"
   },
   "createFolderButton": {
-    "message": "ここにフォルダーを作成"
+    "message": "ここにフォルダを作成"
   },
   "newFolderName": {
-    "message": "新しいフォルダー"
+    "message": "新しいフォルダ"
   },
   "addCurrentSiteButton": {
-    "message": "ここにタブを追加"
+    "message": "現在のタブをここに追加"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "フォルダーにタブを追加"
+    "message": "タブをフォルダに追加"
   },
   "confirmRemoval": {
-    "message": "本当によろしいですか？"
+    "message": "よろしいですか？"
   },
   "moveButton": {
-    "message": "フォルダーに移動"
+    "message": "フォルダへ移動"
   },
   "searchFolderPlaceholder": {
-    "message": "フォルダーを検索..."
+    "message": "フォルダ内を検索..."
   },
   "noFoldersFoundMessage": {
-    "message": "フォルダーが見つかりません。"
+    "message": "フォルダが見つかりません。"
   },
   "moveBtnText": {
     "message": "移動"
   },
   "upFolderButton": {
-    "message": "親フォルダーへ移動"
+    "message": "上のフォルダへ"
   },
   "addBookmark": {
     "message": "ブックマークを追加"
   },
   "newFolderTitle": {
-    "message": "新しいフォルダーを作成"
+    "message": "新しいフォルダを作成"
   },
   "newFolderNamePlaceholder": {
-    "message": "フォルダー名"
+    "message": "フォルダ名"
   },
   "createFolderModalButton": {
     "message": "作成"
@@ -75,7 +75,7 @@
     "message": "すべて開く"
   },
   "confirmOpenAllMessage": {
-    "message": "<b>$1</b> フォルダー内の <b>$2</b> 件のブックマークを開きますか？"
+    "message": "<b>$1</b> フォルダ内の <b>$2</b> 個のブックマークを開きますか？"
   },
   "confirmOpenAllButton": {
     "message": "はい"
@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "新しいタブで開く"
+  },
+  "trashSearchPlaceholder": {
+    "message": "検索..."
+  },
+  "trashIsEmpty": {
+    "message": "ゴミ箱は空です"
+  },
+  "trashNoResults": {
+    "message": "結果が見つかりませんでした"
+  },
+  "trashRestoreButton": {
+    "message": "復元"
+  },
+  "trashDeletePermanently": {
+    "message": "完全に削除"
+  },
+  "trashConfirmDelete": {
+    "message": "よろしいですか？"
+  },
+  "emptyTrashTitle": {
+    "message": "ゴミ箱内のすべてのブックマークを削除してもよろしいですか？この操作は取り消せません。"
+  },
+  "emptyTrashButton": {
+    "message": "はい"
+  },
+  "settingDeleteModeLabel": {
+    "message": "削除モード"
+  },
+  "settingDeleteModeTrash": {
+    "message": "ゴミ箱"
+  },
+  "settingDeleteModePermanent": {
+    "message": "削除"
+  },
+  "settingTrashFolderLabel": {
+    "message": "ゴミ箱フォルダ"
+  },
+  "settingBookmarksLabel": {
+    "message": "ブックマーク"
+  },
+  "settingFolderStyleLabel": {
+    "message": "フォルダースタイル"
+  },
+  "settingFolderStyleIcon": {
+    "message": "フォルダー"
+  },
+  "settingFolderStyleStack": {
+    "message": "スタック"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "フォルダーバッジ"
+  },
+  "settingFolderBadgeYes": {
+    "message": "はい"
+  },
+  "settingFolderBadgeNo": {
+    "message": "いいえ"
+  },
+  "settingThemeLabel": {
+    "message": "テーマ"
+  },
+  "settingViewLabel": {
+    "message": "ブックマーク"
+  },
+  "settingViewList": {
+    "message": "リスト"
+  },
+  "settingViewGrid": {
+    "message": "グリッド"
+  },
+  "folderBadgeText": {
+    "message": "フォルダ内のブックマークの総数を表示します。"
+  },
+  "folderStyleText": {
+    "message": "この設定はグリッド表示にのみ適用されます。"
+  },
+  "deleteModeText": {
+    "message": "ゴミ箱が有効な場合、削除されたブックマークは「その他のブックマーク」フォルダに移動され、30日後に削除されます。"
+  },
+  "trashDaysLeft": {
+    "message": "日"
   }
 }

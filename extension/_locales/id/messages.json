@@ -6,7 +6,7 @@
     "message": "Tidak ada bookmark di sini."
   },
   "noSearchResultsMessage": {
-    "message": "Tidak ditemukan hasil yang sesuai dengan kriteria Anda."
+    "message": "Tidak ada hasil yang cocok dengan kriteria pencarian Anda."
   },
   "saveButton": {
     "message": "Simpan"
@@ -27,7 +27,7 @@
     "message": "Folder baru"
   },
   "addCurrentSiteButton": {
-    "message": "Tambahkan tab ke sini"
+    "message": "Tambahkan tab saat ini di sini"
   },
   "addCurrentSiteToFolderButton": {
     "message": "Tambahkan tab ke folder"
@@ -42,13 +42,13 @@
     "message": "Cari di folder..."
   },
   "noFoldersFoundMessage": {
-    "message": "Folder tidak ditemukan."
+    "message": "Tidak ada folder yang ditemukan."
   },
   "moveBtnText": {
     "message": "Pindahkan"
   },
   "upFolderButton": {
-    "message": "Pergi ke folder induk"
+    "message": "Naik ke folder atas"
   },
   "addBookmark": {
     "message": "Tambah bookmark"
@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "Buka di tab baru"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Cari..."
+  },
+  "trashIsEmpty": {
+    "message": "Tempat sampah kosong"
+  },
+  "trashNoResults": {
+    "message": "Tidak ada hasil yang ditemukan"
+  },
+  "trashRestoreButton": {
+    "message": "Pulihkan"
+  },
+  "trashDeletePermanently": {
+    "message": "Hapus permanen"
+  },
+  "trashConfirmDelete": {
+    "message": "Apakah Anda yakin?"
+  },
+  "emptyTrashTitle": {
+    "message": "Apakah Anda yakin ingin menghapus semua bookmark di tempat sampah? Tindakan ini tidak dapat dibatalkan!"
+  },
+  "emptyTrashButton": {
+    "message": "Ya"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Mode hapus"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Tempat sampah"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Hapus"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Folder tempat sampah"
+  },
+  "settingBookmarksLabel": {
+    "message": "Bookmark"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Gaya folder"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Folder"
+  },
+  "settingFolderStyleStack": {
+    "message": "Tumpukan"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Lencana folder"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Ya"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Tidak"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingViewLabel": {
+    "message": "Bookmark"
+  },
+  "settingViewList": {
+    "message": "Daftar"
+  },
+  "settingViewGrid": {
+    "message": "Grid"
+  },
+  "folderBadgeText": {
+    "message": "Menampilkan jumlah total bookmark di dalam folder."
+  },
+  "folderStyleText": {
+    "message": "Pengaturan ini hanya berlaku untuk tampilan grid."
+  },
+  "deleteModeText": {
+    "message": "Saat tempat sampah diaktifkan, bookmark yang dihapus akan dipindahkan ke folder bookmark lainnya dan akan dihapus setelah 30 hari."
+  },
+  "trashDaysLeft": {
+    "message": "h"
   }
 }

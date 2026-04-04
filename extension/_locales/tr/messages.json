@@ -3,10 +3,10 @@
     "message": "Ara..."
   },
   "noBookmarksMessage": {
-    "message": "Burada hiç yer imi yok."
+    "message": "Yer imi bulunamadı."
   },
   "noSearchResultsMessage": {
-    "message": "Aradığınız kriterlere uygun sonuç bulunamadı."
+    "message": "Aramanıza uygun sonuç bulunamadı."
   },
   "saveButton": {
     "message": "Kaydet"
@@ -24,10 +24,10 @@
     "message": "Burada klasör oluştur"
   },
   "newFolderName": {
-    "message": "Yeni klasör"
+    "message": "Yeni Klasör"
   },
   "addCurrentSiteButton": {
-    "message": "Sekmeyi buraya ekle"
+    "message": "Açık sekmeyi buraya ekle"
   },
   "addCurrentSiteToFolderButton": {
     "message": "Sekmeyi klasöre ekle"
@@ -48,13 +48,13 @@
     "message": "Taşı"
   },
   "upFolderButton": {
-    "message": "Üst klasöre git"
+    "message": "Üst klasöre çık"
   },
   "addBookmark": {
     "message": "Yer imi ekle"
   },
   "newFolderTitle": {
-    "message": "Yeni Klasör Oluştur"
+    "message": "Yeni klasör oluştur"
   },
   "newFolderNamePlaceholder": {
     "message": "Klasör adı"
@@ -72,7 +72,7 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "Tümünü Aç"
+    "message": "Hepsini aç"
   },
   "confirmOpenAllMessage": {
     "message": "<b>$1</b> klasöründeki <b>$2</b> yer imini açmak istiyor musun?"
@@ -84,9 +84,90 @@
     "message": "Bağlantıyı kopyala"
   },
   "openInCurrentTab": {
-    "message": "Mevcut sekmede aç"
+    "message": "Açık sekmede aç"
   },
   "openInNewTab": {
     "message": "Yeni sekmede aç"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Ara..."
+  },
+  "trashIsEmpty": {
+    "message": "Çöp kutusu boş"
+  },
+  "trashNoResults": {
+    "message": "Sonuç bulunamadı"
+  },
+  "trashRestoreButton": {
+    "message": "Geri yükle"
+  },
+  "trashDeletePermanently": {
+    "message": "Kalıcı olarak sil"
+  },
+  "trashConfirmDelete": {
+    "message": "Emin misin?"
+  },
+  "emptyTrashTitle": {
+    "message": "Çöp kutusundaki tüm yer imlerini silmek istediğine emin misin? Bu işlem geri alınamaz!"
+  },
+  "emptyTrashButton": {
+    "message": "Evet"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Silme biçimi"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Çöp"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Sil"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Çöp kutusu klasörü"
+  },
+  "settingBookmarksLabel": {
+    "message": "Yer imleri"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Klasör biçimi"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Klasör"
+  },
+  "settingFolderStyleStack": {
+    "message": "Simgeli"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Klasör ayrıntıları"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Evet"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Hayır"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingViewLabel": {
+    "message": "Evet"
+  },
+  "settingViewList": {
+    "message": "Liste"
+  },
+  "settingViewGrid": {
+    "message": "Izgara"
+  },
+  "folderBadgeText": {
+    "message": "Klasördeki yer imi sayısını gösterir."
+  },
+  "folderStyleText": {
+    "message": "Bu ayar yalnızca ızgara görünümüyle çalışır."
+  },
+  "deleteModeText": {
+    "message": "Çöp Kutusu özelliği etkinleştirildiğinde, silinen yer imleri 'Diğer Yer İmleri' klasörüne taşınır ve 30 gün sonra silinir."
+  },
+   "trashDaysLeft": {
+    "message": "g"
   }
 }

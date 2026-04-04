@@ -6,7 +6,7 @@
     "message": "यहाँ कोई बुकमार्क नहीं है।"
   },
   "noSearchResultsMessage": {
-    "message": "आपके मानदंडों से मेल खाने वाले कोई परिणाम नहीं मिले।"
+    "message": "आपकी खोज के मानदंडों से मेल खाने वाला कोई परिणाम नहीं मिला।"
   },
   "saveButton": {
     "message": "सहेजें"
@@ -27,10 +27,10 @@
     "message": "नया फ़ोल्डर"
   },
   "addCurrentSiteButton": {
-    "message": "यहाँ टैब जोड़ें"
+    "message": "वर्तमान टैब यहाँ जोड़ें"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "फ़ोल्डर में टैब जोड़ें"
+    "message": "टैब को फ़ोल्डर में जोड़ें"
   },
   "confirmRemoval": {
     "message": "क्या आप सुनिश्चित हैं?"
@@ -48,7 +48,7 @@
     "message": "ले जाएँ"
   },
   "upFolderButton": {
-    "message": "ऊपरी फ़ोल्डर में जाएँ"
+    "message": "ऊपर के फ़ोल्डर में जाएँ"
   },
   "addBookmark": {
     "message": "बुकमार्क जोड़ें"
@@ -69,13 +69,13 @@
     "message": "शीर्षक"
   },
   "editUrlPlaceholder": {
-    "message": "URL"
+    "message": "यूआरएल"
   },
   "confirmOpenAllTitle": {
     "message": "सभी खोलें"
   },
   "confirmOpenAllMessage": {
-    "message": "क्या आप <b>$1</b> फ़ोल्डर में मौजूद <b>$2</b> बुकमार्क खोलना चाहते हैं?"
+    "message": "क्या आप <b>$1</b> फ़ोल्डर में <b>$2</b> बुकमार्क खोलना चाहते हैं?"
   },
   "confirmOpenAllButton": {
     "message": "हाँ"
@@ -84,9 +84,90 @@
     "message": "लिंक कॉपी करें"
   },
   "openInCurrentTab": {
-    "message": "मौजूदा टैब में खोलें"
+    "message": "वर्तमान टैब में खोलें"
   },
   "openInNewTab": {
-    "message": "नई टैब में खोलें"
+    "message": "नए टैब में खोलें"
+  },
+  "trashSearchPlaceholder": {
+    "message": "खोजें..."
+  },
+  "trashIsEmpty": {
+    "message": "रद्दी खाली है"
+  },
+  "trashNoResults": {
+    "message": "कोई परिणाम नहीं मिला"
+  },
+  "trashRestoreButton": {
+    "message": "पुनर्स्थापित करें"
+  },
+  "trashDeletePermanently": {
+    "message": "स्थायी रूप से हटाएँ"
+  },
+  "trashConfirmDelete": {
+    "message": "क्या आप सुनिश्चित हैं?"
+  },
+  "emptyTrashTitle": {
+    "message": "क्या आप रद्दी के सभी बुकमार्क हटाना चाहते हैं? यह क्रिया वापस नहीं ली जा सकती!"
+  },
+  "emptyTrashButton": {
+    "message": "हाँ"
+  },
+  "settingDeleteModeLabel": {
+    "message": "हटाने का तरीका"
+  },
+  "settingDeleteModeTrash": {
+    "message": "रद्दी"
+  },
+  "settingDeleteModePermanent": {
+    "message": "हटाएँ"
+  },
+  "settingTrashFolderLabel": {
+    "message": "रद्दी फ़ोल्डर"
+  },
+  "settingBookmarksLabel": {
+    "message": "बुकमार्क"
+  },
+  "settingFolderStyleLabel": {
+    "message": "फ़ोल्डर शैली"
+  },
+  "settingFolderStyleIcon": {
+    "message": "फ़ोल्डर"
+  },
+  "settingFolderStyleStack": {
+    "message": "स्टैक"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "फ़ोल्डर बैज"
+  },
+  "settingFolderBadgeYes": {
+    "message": "हाँ"
+  },
+  "settingFolderBadgeNo": {
+    "message": "नहीं"
+  },
+  "settingThemeLabel": {
+    "message": "थीम"
+  },
+  "settingViewLabel": {
+    "message": "बुकमार्क"
+  },
+  "settingViewList": {
+    "message": "सूची"
+  },
+  "settingViewGrid": {
+    "message": "ग्रिड"
+  },
+  "folderBadgeText": {
+    "message": "फ़ोल्डरों के भीतर बुकमार्क की कुल संख्या प्रदर्शित करता है।"
+  },
+  "folderStyleText": {
+    "message": "यह सेटिंग केवल ग्रिड व्यू पर लागू होती है।"
+  },
+  "deleteModeText": {
+    "message": "जब रद्दी सक्षम होती है, तो हटाए गए बुकमार्क अन्य बुकमार्क फ़ोल्डर में चले जाते हैं और 30 दिनों के बाद हटा दिए जाते हैं।"
+  },
+  "trashDaysLeft": {
+    "message": "दि"
   }
 }

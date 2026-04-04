@@ -6,7 +6,7 @@
     "message": "لا توجد علامات مرجعية هنا."
   },
   "noSearchResultsMessage": {
-    "message": "لم يتم العثور على نتائج لمعايير البحث الخاصة بك."
+    "message": "لم يتم العثور على نتائج تطابق معايير بحثك."
   },
   "saveButton": {
     "message": "حفظ"
@@ -27,10 +27,10 @@
     "message": "مجلد جديد"
   },
   "addCurrentSiteButton": {
-    "message": "إضافة علامة تبويب هنا"
+    "message": "إضافة التبويب الحالي هنا"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "إضافة علامة التبويب إلى المجلد"
+    "message": "إضافة التبويب إلى المجلد"
   },
   "confirmRemoval": {
     "message": "هل أنت متأكد؟"
@@ -39,7 +39,7 @@
     "message": "نقل إلى مجلد"
   },
   "searchFolderPlaceholder": {
-    "message": "البحث في المجلدات..."
+    "message": "بحث في المجلدات..."
   },
   "noFoldersFoundMessage": {
     "message": "لم يتم العثور على مجلدات."
@@ -48,7 +48,7 @@
     "message": "نقل"
   },
   "upFolderButton": {
-    "message": "الذهاب إلى المجلد الأعلى"
+    "message": "الانتقال للمجلد الأعلى"
   },
   "addBookmark": {
     "message": "إضافة علامة مرجعية"
@@ -69,13 +69,13 @@
     "message": "العنوان"
   },
   "editUrlPlaceholder": {
-    "message": "الرابط"
+    "message": "رابط URL"
   },
   "confirmOpenAllTitle": {
     "message": "فتح الكل"
   },
   "confirmOpenAllMessage": {
-    "message": "هل تريد فتح <b>$2</b> علامة مرجعية في مجلد <b>$1</b>؟"
+    "message": "هل تريد فتح <b>$2</b> من العلامات المرجعية في مجلد <b>$1</b>؟"
   },
   "confirmOpenAllButton": {
     "message": "نعم"
@@ -84,9 +84,90 @@
     "message": "نسخ الرابط"
   },
   "openInCurrentTab": {
-    "message": "فتح في علامة التبويب الحالية"
+    "message": "فتح في التبويب الحالي"
   },
   "openInNewTab": {
-    "message": "فتح في علامة تبويب جديدة"
+    "message": "فتح في تبويب جديد"
+  },
+  "trashSearchPlaceholder": {
+    "message": "بحث..."
+  },
+  "trashIsEmpty": {
+    "message": "سلة المهملات فارغة"
+  },
+  "trashNoResults": {
+    "message": "لا توجد نتائج"
+  },
+  "trashRestoreButton": {
+    "message": "استعادة"
+  },
+  "trashDeletePermanently": {
+    "message": "حذف نهائي"
+  },
+  "trashConfirmDelete": {
+    "message": "هل أنت متأكد؟"
+  },
+  "emptyTrashTitle": {
+    "message": "هل أنت متأكد أنك تريد حذف جميع العلامات المرجعية في سلة المهملات؟ لا يمكن التراجع عن هذا الإجراء!"
+  },
+  "emptyTrashButton": {
+    "message": "نعم"
+  },
+  "settingDeleteModeLabel": {
+    "message": "وضع الحذف"
+  },
+  "settingDeleteModeTrash": {
+    "message": "سلة المهملات"
+  },
+  "settingDeleteModePermanent": {
+    "message": "حذف"
+  },
+  "settingTrashFolderLabel": {
+    "message": "مجلد سلة المهملات"
+  },
+  "settingBookmarksLabel": {
+    "message": "العلامات المرجعية"
+  },
+  "settingFolderStyleLabel": {
+    "message": "نمط المجلد"
+  },
+  "settingFolderStyleIcon": {
+    "message": "أيقونة"
+  },
+  "settingFolderStyleStack": {
+    "message": "تكديس"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "شارة المجلد"
+  },
+  "settingFolderBadgeYes": {
+    "message": "نعم"
+  },
+  "settingFolderBadgeNo": {
+    "message": "لا"
+  },
+  "settingThemeLabel": {
+    "message": "المظهر"
+  },
+  "settingViewLabel": {
+    "message": "العلامات المرجعية"
+  },
+  "settingViewList": {
+    "message": "قائمة"
+  },
+  "settingViewGrid": {
+    "message": "شبكة"
+  },
+  "folderBadgeText": {
+    "message": "يعرض العدد الإجمالي للعلامات المرجعية داخل المجلدات."
+  },
+  "folderStyleText": {
+    "message": "هذا الإعداد ينطبق فقط على عرض الشبكة."
+  },
+  "deleteModeText": {
+    "message": "عند تفعيل سلة المهملات، يتم نقل العلامات المرجعية المحذوفة إلى مجلد العلامات المرجعية الأخرى ويتم حذفها نهائياً بعد 30 يوماً."
+  },
+  "trashDaysLeft": {
+    "message": "يوم"
   }
 }

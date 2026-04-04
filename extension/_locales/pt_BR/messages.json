@@ -3,10 +3,10 @@
     "message": "Pesquisar..."
   },
   "noBookmarksMessage": {
-    "message": "Não há favoritos aqui."
+    "message": "Nenhum favorito aqui."
   },
   "noSearchResultsMessage": {
-    "message": "Nenhum resultado corresponde aos seus critérios."
+    "message": "Nenhum resultado encontrado para os seus critérios de busca."
   },
   "saveButton": {
     "message": "Salvar"
@@ -27,7 +27,7 @@
     "message": "Nova pasta"
   },
   "addCurrentSiteButton": {
-    "message": "Adicionar aba aqui"
+    "message": "Adicionar aba atual aqui"
   },
   "addCurrentSiteToFolderButton": {
     "message": "Adicionar aba à pasta"
@@ -36,10 +36,10 @@
     "message": "Tem certeza?"
   },
   "moveButton": {
-    "message": "Mover para a pasta"
+    "message": "Mover para pasta"
   },
   "searchFolderPlaceholder": {
-    "message": "Pesquisar nas pastas..."
+    "message": "Pesquisar em pastas..."
   },
   "noFoldersFoundMessage": {
     "message": "Nenhuma pasta encontrada."
@@ -48,13 +48,13 @@
     "message": "Mover"
   },
   "upFolderButton": {
-    "message": "Ir para a pasta superior"
+    "message": "Subir nível da pasta"
   },
   "addBookmark": {
     "message": "Adicionar favorito"
   },
   "newFolderTitle": {
-    "message": "Criar nova pasta"
+    "message": "Criar Nova Pasta"
   },
   "newFolderNamePlaceholder": {
     "message": "Nome da pasta"
@@ -72,7 +72,7 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "Abrir todos"
+    "message": "Abrir Todos"
   },
   "confirmOpenAllMessage": {
     "message": "Deseja abrir <b>$2</b> favoritos na pasta <b>$1</b>?"
@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "Abrir em nova aba"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Pesquisar..."
+  },
+  "trashIsEmpty": {
+    "message": "A lixeira está vazia"
+  },
+  "trashNoResults": {
+    "message": "Nenhum resultado encontrado"
+  },
+  "trashRestoreButton": {
+    "message": "Restaurar"
+  },
+  "trashDeletePermanently": {
+    "message": "Excluir permanentemente"
+  },
+  "trashConfirmDelete": {
+    "message": "Tem certeza?"
+  },
+  "emptyTrashTitle": {
+    "message": "Tem certeza de que deseja excluir todos os favoritos da lixeira? Esta ação não pode ser desfeita!"
+  },
+  "emptyTrashButton": {
+    "message": "Sim"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Modo de exclusão"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Lixeira"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Excluir"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Pasta da lixeira"
+  },
+  "settingBookmarksLabel": {
+    "message": "Favoritos"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Estilo da pasta"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Pasta"
+  },
+  "settingFolderStyleStack": {
+    "message": "Pilha"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Contador da pasta"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Sim"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Não"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingViewLabel": {
+    "message": "Favoritos"
+  },
+  "settingViewList": {
+    "message": "Lista"
+  },
+  "settingViewGrid": {
+    "message": "Grade"
+  },
+  "folderBadgeText": {
+    "message": "Exibe o número total de favoritos dentro das pastas."
+  },
+  "folderStyleText": {
+    "message": "Esta configuração aplica-se apenas à visualização em grade."
+  },
+  "deleteModeText": {
+    "message": "Quando a lixeira está ativada, os favoritos excluídos são movidos para a pasta 'Outros favoritos' e excluídos após 30 dias."
+  },
+  "trashDaysLeft": {
+    "message": "d"
   }
 }

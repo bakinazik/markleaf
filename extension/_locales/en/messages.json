@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "Open in new tab"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Search..."
+  },
+  "trashIsEmpty": {
+    "message": "Trash is empty"
+  },
+  "trashNoResults": {
+    "message": "No results found"
+  },
+  "trashRestoreButton": {
+    "message": "Restore"
+  },
+  "trashDeletePermanently": {
+    "message": "Delete permanently"
+  },
+  "trashConfirmDelete": {
+    "message": "Are you sure?"
+  },
+  "emptyTrashTitle": {
+    "message": "Are you sure you want to delete all the bookmarks in the trash? This action cannot be undone!"
+  },
+  "emptyTrashButton": {
+    "message": "Yes"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Delete mode"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Trash"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Delete"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Trash folder"
+  },
+  "settingBookmarksLabel": {
+    "message": "Bookmarks"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Folder style"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Folder"
+  },
+  "settingFolderStyleStack": {
+    "message": "Stack"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Folder badge"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Yes"
+  },
+  "settingFolderBadgeNo": {
+    "message": "No"
+  },
+  "settingThemeLabel": {
+    "message": "Theme"
+  },
+  "settingViewLabel": {
+    "message": "Bookmarks"
+  },
+  "settingViewList": {
+    "message": "List"
+  },
+  "settingViewGrid": {
+    "message": "Grid"
+  },
+  "folderBadgeText": {
+    "message": "Displays the total number of bookmarks within the folders."
+  },
+  "folderStyleText": {
+    "message": "This setting applies only to the grid view."
+  },
+  "deleteModeText": {
+    "message": "When trash is enabled, deleted bookmarks are moved to the other bookmarks folder and are deleted after 30 days."
+  },
+  "trashDaysLeft": {
+    "message": "d"
   }
 }

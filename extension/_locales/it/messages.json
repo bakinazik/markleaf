@@ -3,10 +3,10 @@
     "message": "Cerca..."
   },
   "noBookmarksMessage": {
-    "message": "Qui non ci sono segnalibri."
+    "message": "Nessun preferito qui."
   },
   "noSearchResultsMessage": {
-    "message": "Nessun risultato corrisponde ai tuoi criteri."
+    "message": "Nessun risultato trovato per i criteri di ricerca."
   },
   "saveButton": {
     "message": "Salva"
@@ -21,16 +21,16 @@
     "message": "Rimuovi"
   },
   "createFolderButton": {
-    "message": "Crea una cartella qui"
+    "message": "Crea cartella qui"
   },
   "newFolderName": {
     "message": "Nuova cartella"
   },
   "addCurrentSiteButton": {
-    "message": "Aggiungi la scheda qui"
+    "message": "Aggiungi scheda corrente qui"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "Aggiungi la scheda alla cartella"
+    "message": "Aggiungi scheda alla cartella"
   },
   "confirmRemoval": {
     "message": "Sei sicuro?"
@@ -48,16 +48,16 @@
     "message": "Sposta"
   },
   "upFolderButton": {
-    "message": "Vai alla cartella superiore"
+    "message": "Torna su di una cartella"
   },
   "addBookmark": {
-    "message": "Aggiungi segnalibro"
+    "message": "Aggiungi preferito"
   },
   "newFolderTitle": {
-    "message": "Crea una nuova cartella"
+    "message": "Crea nuova cartella"
   },
   "newFolderNamePlaceholder": {
-    "message": "Nome della cartella"
+    "message": "Nome cartella"
   },
   "createFolderModalButton": {
     "message": "Crea"
@@ -72,10 +72,10 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "Apri tutto"
+    "message": "Apri tutti"
   },
   "confirmOpenAllMessage": {
-    "message": "Vuoi aprire <b>$2</b> segnalibri nella cartella <b>$1</b>?"
+    "message": "Vuoi aprire <b>$2</b> preferiti nella cartella <b>$1</b>?"
   },
   "confirmOpenAllButton": {
     "message": "Sì"
@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "Apri in una nuova scheda"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Cerca..."
+  },
+  "trashIsEmpty": {
+    "message": "Il cestino è vuoto"
+  },
+  "trashNoResults": {
+    "message": "Nessun risultato trovato"
+  },
+  "trashRestoreButton": {
+    "message": "Ripristina"
+  },
+  "trashDeletePermanently": {
+    "message": "Elimina definitivamente"
+  },
+  "trashConfirmDelete": {
+    "message": "Sei sicuro?"
+  },
+  "emptyTrashTitle": {
+    "message": "Sei sicuro di voler eliminare tutti i preferiti nel cestino? L'azione è irreversibile!"
+  },
+  "emptyTrashButton": {
+    "message": "Sì"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Modalità eliminazione"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Cestino"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Elimina"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Cartella cestino"
+  },
+  "settingBookmarksLabel": {
+    "message": "Preferiti"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Stile cartella"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Cartella"
+  },
+  "settingFolderStyleStack": {
+    "message": "Pila"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Badge cartella"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Sì"
+  },
+  "settingFolderBadgeNo": {
+    "message": "No"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingViewLabel": {
+    "message": "Preferiti"
+  },
+  "settingViewList": {
+    "message": "Elenco"
+  },
+  "settingViewGrid": {
+    "message": "Griglia"
+  },
+  "folderBadgeText": {
+    "message": "Mostra il numero totale di preferiti all'interno delle cartelle."
+  },
+  "folderStyleText": {
+    "message": "Questa impostazione si applica solo alla visualizzazione a griglia."
+  },
+  "deleteModeText": {
+    "message": "Quando il cestino è abilitato, i preferiti eliminati vengono spostati nella cartella 'Altri preferiti' e rimossi dopo 30 giorni."
+  },
+  "trashDaysLeft": {
+    "message": "g"
   }
 }

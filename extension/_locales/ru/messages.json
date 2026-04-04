@@ -6,7 +6,7 @@
     "message": "Здесь нет закладок."
   },
   "noSearchResultsMessage": {
-    "message": "Результаты, соответствующие вашим критериям, не найдены."
+    "message": "Результатов, соответствующих вашему запросу, не найдено."
   },
   "saveButton": {
     "message": "Сохранить"
@@ -15,7 +15,7 @@
     "message": "Отмена"
   },
   "editButton": {
-    "message": "Редактировать"
+    "message": "Изменить"
   },
   "removeButton": {
     "message": "Удалить"
@@ -27,7 +27,7 @@
     "message": "Новая папка"
   },
   "addCurrentSiteButton": {
-    "message": "Добавить вкладку сюда"
+    "message": "Добавить текущую вкладку сюда"
   },
   "addCurrentSiteToFolderButton": {
     "message": "Добавить вкладку в папку"
@@ -39,7 +39,7 @@
     "message": "Переместить в папку"
   },
   "searchFolderPlaceholder": {
-    "message": "Поиск по папкам..."
+    "message": "Поиск в папках..."
   },
   "noFoldersFoundMessage": {
     "message": "Папки не найдены."
@@ -48,7 +48,7 @@
     "message": "Переместить"
   },
   "upFolderButton": {
-    "message": "Перейти в родительскую папку"
+    "message": "На уровень выше"
   },
   "addBookmark": {
     "message": "Добавить закладку"
@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "Открыть в новой вкладке"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Поиск..."
+  },
+  "trashIsEmpty": {
+    "message": "Корзина пуста"
+  },
+  "trashNoResults": {
+    "message": "Результатов не найдено"
+  },
+  "trashRestoreButton": {
+    "message": "Восстановить"
+  },
+  "trashDeletePermanently": {
+    "message": "Удалить навсегда"
+  },
+  "trashConfirmDelete": {
+    "message": "Вы уверены?"
+  },
+  "emptyTrashTitle": {
+    "message": "Вы уверены, что хотите удалить все закладки из корзины? Это действие нельзя отменить!"
+  },
+  "emptyTrashButton": {
+    "message": "Да"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Режим удаления"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Корзина"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Удаление"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Папка корзины"
+  },
+  "settingBookmarksLabel": {
+    "message": "Закладки"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Стиль папок"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Папка"
+  },
+  "settingFolderStyleStack": {
+    "message": "Стопка"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Счетчик в папках"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Да"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Нет"
+  },
+  "settingThemeLabel": {
+    "message": "Тема"
+  },
+  "settingViewLabel": {
+    "message": "Закладки"
+  },
+  "settingViewList": {
+    "message": "Список"
+  },
+  "settingViewGrid": {
+    "message": "Сетка"
+  },
+  "folderBadgeText": {
+    "message": "Отображает общее количество закладок внутри папок."
+  },
+  "folderStyleText": {
+    "message": "Этот параметр применяется только к виду «Сетка»."
+  },
+  "deleteModeText": {
+    "message": "Если корзина включена, удаленные закладки перемещаются в папку «Другие закладки» и окончательно удаляются через 30 дней."
+  },
+  "trashDaysLeft": {
+    "message": "д"
   }
 }

@@ -3,10 +3,10 @@
     "message": "搜尋..."
   },
   "noBookmarksMessage": {
-    "message": "這裡沒有書籤。"
+    "message": "暫無書籤。"
   },
   "noSearchResultsMessage": {
-    "message": "找不到符合條件的結果。"
+    "message": "未找到符合搜尋條件的結果。"
   },
   "saveButton": {
     "message": "儲存"
@@ -21,19 +21,19 @@
     "message": "移除"
   },
   "createFolderButton": {
-    "message": "在此建立資料夾"
+    "message": "在此處建立資料夾"
   },
   "newFolderName": {
     "message": "新資料夾"
   },
   "addCurrentSiteButton": {
-    "message": "將分頁新增到此處"
+    "message": "在此處加入目前分頁"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "將分頁新增至資料夾"
+    "message": "將分頁加入資料夾"
   },
   "confirmRemoval": {
-    "message": "確定嗎？"
+    "message": "確定要移除嗎？"
   },
   "moveButton": {
     "message": "移動到資料夾"
@@ -42,16 +42,16 @@
     "message": "在資料夾中搜尋..."
   },
   "noFoldersFoundMessage": {
-    "message": "找不到資料夾。"
+    "message": "未找到資料夾。"
   },
   "moveBtnText": {
     "message": "移動"
   },
   "upFolderButton": {
-    "message": "前往上層資料夾"
+    "message": "返回上層資料夾"
   },
   "addBookmark": {
-    "message": "新增書籤"
+    "message": "加入書籤"
   },
   "newFolderTitle": {
     "message": "建立新資料夾"
@@ -75,7 +75,7 @@
     "message": "全部開啟"
   },
   "confirmOpenAllMessage": {
-    "message": "是否要開啟資料夾 <b>$1</b> 中的 <b>$2</b> 個書籤？"
+    "message": "您確定要開啟 <b>$1</b> 資料夾中的 <b>$2</b> 個書籤嗎？"
   },
   "confirmOpenAllButton": {
     "message": "是"
@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "在新分頁開啟"
+  },
+  "trashSearchPlaceholder": {
+    "message": "搜尋..."
+  },
+  "trashIsEmpty": {
+    "message": "回收站為空"
+  },
+  "trashNoResults": {
+    "message": "未找到結果"
+  },
+  "trashRestoreButton": {
+    "message": "還原"
+  },
+  "trashDeletePermanently": {
+    "message": "永久刪除"
+  },
+  "trashConfirmDelete": {
+    "message": "確定要刪除嗎？"
+  },
+  "emptyTrashTitle": {
+    "message": "您確定要刪除回收站中的所有書籤嗎？此操作無法復原！"
+  },
+  "emptyTrashButton": {
+    "message": "確定"
+  },
+  "settingDeleteModeLabel": {
+    "message": "刪除模式"
+  },
+  "settingDeleteModeTrash": {
+    "message": "回收站"
+  },
+  "settingDeleteModePermanent": {
+    "message": "直接刪除"
+  },
+  "settingTrashFolderLabel": {
+    "message": "回收站資料夾"
+  },
+  "settingBookmarksLabel": {
+    "message": "書籤"
+  },
+  "settingFolderStyleLabel": {
+    "message": "資料夾樣式"
+  },
+  "settingFolderStyleIcon": {
+    "message": "圖示"
+  },
+  "settingFolderStyleStack": {
+    "message": "層疊"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "資料夾角標"
+  },
+  "settingFolderBadgeYes": {
+    "message": "開啟"
+  },
+  "settingFolderBadgeNo": {
+    "message": "關閉"
+  },
+  "settingThemeLabel": {
+    "message": "主題"
+  },
+  "settingViewLabel": {
+    "message": "書籤檢視"
+  },
+  "settingViewList": {
+    "message": "列表"
+  },
+  "settingViewGrid": {
+    "message": "網格"
+  },
+  "folderBadgeText": {
+    "message": "顯示資料夾內包含的書籤總數。"
+  },
+  "folderStyleText": {
+    "message": "此設定僅適用於網格檢視。"
+  },
+  "deleteModeText": {
+    "message": "啟用回收站後，刪除的書籤將移至「其他書籤」資料夾，並於 30 天後自動刪除。"
+  },
+  "trashDaysLeft": {
+    "message": "天"
   }
 }

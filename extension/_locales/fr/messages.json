@@ -3,7 +3,7 @@
     "message": "Rechercher..."
   },
   "noBookmarksMessage": {
-    "message": "Il n’y a aucun favori ici."
+    "message": "Aucun favori ici."
   },
   "noSearchResultsMessage": {
     "message": "Aucun résultat ne correspond à votre recherche."
@@ -27,10 +27,10 @@
     "message": "Nouveau dossier"
   },
   "addCurrentSiteButton": {
-    "message": "Ajouter l’onglet ici"
+    "message": "Ajouter l'onglet actuel ici"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "Ajouter l’onglet au dossier"
+    "message": "Ajouter l'onglet au dossier"
   },
   "confirmRemoval": {
     "message": "Êtes-vous sûr ?"
@@ -48,7 +48,7 @@
     "message": "Déplacer"
   },
   "upFolderButton": {
-    "message": "Aller au dossier parent"
+    "message": "Dossier parent"
   },
   "addBookmark": {
     "message": "Ajouter un favori"
@@ -84,9 +84,90 @@
     "message": "Copier le lien"
   },
   "openInCurrentTab": {
-    "message": "Ouvrir dans l’onglet actuel"
+    "message": "Ouvrir dans l'onglet actuel"
   },
   "openInNewTab": {
     "message": "Ouvrir dans un nouvel onglet"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Rechercher..."
+  },
+  "trashIsEmpty": {
+    "message": "La corbeille est vide"
+  },
+  "trashNoResults": {
+    "message": "Aucun résultat trouvé"
+  },
+  "trashRestoreButton": {
+    "message": "Restaurer"
+  },
+  "trashDeletePermanently": {
+    "message": "Supprimer définitivement"
+  },
+  "trashConfirmDelete": {
+    "message": "Êtes-vous sûr ?"
+  },
+  "emptyTrashTitle": {
+    "message": "Voulez-vous vraiment supprimer tous les favoris de la corbeille ? Cette action est irréversible !"
+  },
+  "emptyTrashButton": {
+    "message": "Oui"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Mode de suppression"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Corbeille"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Supprimer"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Dossier corbeille"
+  },
+  "settingBookmarksLabel": {
+    "message": "Favoris"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Style de dossier"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Dossier"
+  },
+  "settingFolderStyleStack": {
+    "message": "Pile"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Badge de dossier"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Oui"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Non"
+  },
+  "settingThemeLabel": {
+    "message": "Thème"
+  },
+  "settingViewLabel": {
+    "message": "Favoris"
+  },
+  "settingViewList": {
+    "message": "Liste"
+  },
+  "settingViewGrid": {
+    "message": "Grille"
+  },
+  "folderBadgeText": {
+    "message": "Affiche le nombre total de favoris à l'intérieur des dossiers."
+  },
+  "folderStyleText": {
+    "message": "Ce paramètre s'applique uniquement à la vue en grille."
+  },
+  "deleteModeText": {
+    "message": "Lorsque la corbeille est activée, les favoris supprimés sont déplacés vers le dossier 'Autres favoris' et sont supprimés après 30 jours."
+  },
+  "trashDaysLeft": {
+    "message": "j"
   }
 }

@@ -3,10 +3,10 @@
     "message": "Sök..."
   },
   "noBookmarksMessage": {
-    "message": "Det finns inga bokmärken här."
+    "message": "Inga bokmärken här."
   },
   "noSearchResultsMessage": {
-    "message": "Inga resultat matchade dina kriterier."
+    "message": "Inga resultat matchade din sökning."
   },
   "saveButton": {
     "message": "Spara"
@@ -27,7 +27,7 @@
     "message": "Ny mapp"
   },
   "addCurrentSiteButton": {
-    "message": "Lägg till flik här"
+    "message": "Lägg till aktuell flik här"
   },
   "addCurrentSiteToFolderButton": {
     "message": "Lägg till flik i mapp"
@@ -48,7 +48,7 @@
     "message": "Flytta"
   },
   "upFolderButton": {
-    "message": "Gå till överordnad mapp"
+    "message": "Gå upp en mapp"
   },
   "addBookmark": {
     "message": "Lägg till bokmärke"
@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "Öppna i ny flik"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Sök..."
+  },
+  "trashIsEmpty": {
+    "message": "Papperskorgen är tom"
+  },
+  "trashNoResults": {
+    "message": "Inga resultat hittades"
+  },
+  "trashRestoreButton": {
+    "message": "Återställ"
+  },
+  "trashDeletePermanently": {
+    "message": "Ta bort permanent"
+  },
+  "trashConfirmDelete": {
+    "message": "Är du säker?"
+  },
+  "emptyTrashTitle": {
+    "message": "Är du säker på att du vill ta bort alla bokmärken i papperskorgen? Denna åtgärd kan inte ångras!"
+  },
+  "emptyTrashButton": {
+    "message": "Ja"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Borttagningsläge"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Papperskorg"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Ta bort"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Papperskorgsmapp"
+  },
+  "settingBookmarksLabel": {
+    "message": "Bokmärken"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Mappstil"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Mapp"
+  },
+  "settingFolderStyleStack": {
+    "message": "Stapel"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Mappräknare"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Ja"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Nej"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingViewLabel": {
+    "message": "Bokmärken"
+  },
+  "settingViewList": {
+    "message": "Lista"
+  },
+  "settingViewGrid": {
+    "message": "Rutnät"
+  },
+  "folderBadgeText": {
+    "message": "Visar det totala antalet bokmärken i mapparna."
+  },
+  "folderStyleText": {
+    "message": "Denna inställning gäller endast för rutnätsvy."
+  },
+  "deleteModeText": {
+    "message": "När papperskorgen är aktiverad flyttas raderade bokmärken till mappen 'Övriga bokmärken' och tas bort efter 30 dagar."
+  },
+  "trashDaysLeft": {
+    "message": "d"
   }
 }

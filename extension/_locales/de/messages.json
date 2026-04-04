@@ -3,10 +3,10 @@
     "message": "Suchen..."
   },
   "noBookmarksMessage": {
-    "message": "Hier sind keine Lesezeichen vorhanden."
+    "message": "Keine Lesezeichen vorhanden."
   },
   "noSearchResultsMessage": {
-    "message": "Es wurden keine Ergebnisse gefunden, die Ihren Suchkriterien entsprechen."
+    "message": "Keine Ergebnisse für Ihre Suchkriterien gefunden."
   },
   "saveButton": {
     "message": "Speichern"
@@ -33,13 +33,13 @@
     "message": "Tab zum Ordner hinzufügen"
   },
   "confirmRemoval": {
-    "message": "Bist du sicher?"
+    "message": "Sind Sie sicher?"
   },
   "moveButton": {
     "message": "In Ordner verschieben"
   },
   "searchFolderPlaceholder": {
-    "message": "Ordner durchsuchen..."
+    "message": "In Ordnern suchen..."
   },
   "noFoldersFoundMessage": {
     "message": "Keine Ordner gefunden."
@@ -48,7 +48,7 @@
     "message": "Verschieben"
   },
   "upFolderButton": {
-    "message": "In übergeordneten Ordner wechseln"
+    "message": "Ordner nach oben"
   },
   "addBookmark": {
     "message": "Lesezeichen hinzufügen"
@@ -84,9 +84,90 @@
     "message": "Link kopieren"
   },
   "openInCurrentTab": {
-    "message": "In aktuellem Tab öffnen"
+    "message": "Im aktuellen Tab öffnen"
   },
   "openInNewTab": {
     "message": "In neuem Tab öffnen"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Suchen..."
+  },
+  "trashIsEmpty": {
+    "message": "Papierkorb ist leer"
+  },
+  "trashNoResults": {
+    "message": "Keine Ergebnisse gefunden"
+  },
+  "trashRestoreButton": {
+    "message": "Wiederherstellen"
+  },
+  "trashDeletePermanently": {
+    "message": "Endgültig löschen"
+  },
+  "trashConfirmDelete": {
+    "message": "Sind Sie sicher?"
+  },
+  "emptyTrashTitle": {
+    "message": "Sind Sie sicher, dass Sie alle Lesezeichen im Papierkorb löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!"
+  },
+  "emptyTrashButton": {
+    "message": "Ja"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Löschmodus"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Papierkorb"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Löschen"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Papierkorb-Ordner"
+  },
+  "settingBookmarksLabel": {
+    "message": "Lesezeichen"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Ordner-Stil"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Ordner"
+  },
+  "settingFolderStyleStack": {
+    "message": "Stapel"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Ordner-Badge"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Ja"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Nein"
+  },
+  "settingThemeLabel": {
+    "message": "Design"
+  },
+  "settingViewLabel": {
+    "message": "Lesezeichen"
+  },
+  "settingViewList": {
+    "message": "Liste"
+  },
+  "settingViewGrid": {
+    "message": "Raster"
+  },
+  "folderBadgeText": {
+    "message": "Zeigt die Gesamtzahl der Lesezeichen in den Ordnern an."
+  },
+  "folderStyleText": {
+    "message": "Diese Einstellung gilt nur für die Rasteransicht."
+  },
+  "deleteModeText": {
+    "message": "Wenn der Papierkorb aktiviert ist, werden gelöschte Lesezeichen in den Ordner 'Sonstige Lesezeichen' verschoben und nach 30 Tagen gelöscht."
+  },
+  "trashDaysLeft": {
+    "message": "T"
   }
 }

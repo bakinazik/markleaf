@@ -6,7 +6,7 @@
     "message": "No hay marcadores aquí."
   },
   "noSearchResultsMessage": {
-    "message": "No se encontraron resultados que coincidan con sus criterios de búsqueda."
+    "message": "No se encontraron resultados que coincidan con tu búsqueda."
   },
   "saveButton": {
     "message": "Guardar"
@@ -27,16 +27,16 @@
     "message": "Nueva carpeta"
   },
   "addCurrentSiteButton": {
-    "message": "Agregar pestaña actual aquí"
+    "message": "Añadir pestaña actual aquí"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "Agregar pestaña a la carpeta"
+    "message": "Añadir pestaña a la carpeta"
   },
   "confirmRemoval": {
     "message": "¿Estás seguro?"
   },
   "moveButton": {
-    "message": "Mover a carpeta"
+    "message": "Mover a la carpeta"
   },
   "searchFolderPlaceholder": {
     "message": "Buscar en carpetas..."
@@ -48,10 +48,10 @@
     "message": "Mover"
   },
   "upFolderButton": {
-    "message": "Subir de carpeta"
+    "message": "Subir nivel de carpeta"
   },
   "addBookmark": {
-    "message": "Agregar marcador"
+    "message": "Añadir marcador"
   },
   "newFolderTitle": {
     "message": "Crear nueva carpeta"
@@ -87,6 +87,87 @@
     "message": "Abrir en la pestaña actual"
   },
   "openInNewTab": {
-    "message": "Abrir en nueva pestaña"
+    "message": "Abrir en una nueva pestaña"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Buscar..."
+  },
+  "trashIsEmpty": {
+    "message": "La papelera está vacía"
+  },
+  "trashNoResults": {
+    "message": "No se encontraron resultados"
+  },
+  "trashRestoreButton": {
+    "message": "Restaurar"
+  },
+  "trashDeletePermanently": {
+    "message": "Eliminar permanentemente"
+  },
+  "trashConfirmDelete": {
+    "message": "¿Estás seguro?"
+  },
+  "emptyTrashTitle": {
+    "message": "¿Estás seguro de que quieres eliminar todos los marcadores de la papelera? ¡Esta acción no se puede deshacer!"
+  },
+  "emptyTrashButton": {
+    "message": "Sí"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Modo de eliminación"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Papelera"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Eliminar"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Carpeta de papelera"
+  },
+  "settingBookmarksLabel": {
+    "message": "Marcadores"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Estilo de carpeta"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Carpeta"
+  },
+  "settingFolderStyleStack": {
+    "message": "Pila"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Contador de carpeta"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Sí"
+  },
+  "settingFolderBadgeNo": {
+    "message": "No"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingViewLabel": {
+    "message": "Marcadores"
+  },
+  "settingViewList": {
+    "message": "Lista"
+  },
+  "settingViewGrid": {
+    "message": "Cuadrícula"
+  },
+  "folderBadgeText": {
+    "message": "Muestra el número total de marcadores dentro de las carpetas."
+  },
+  "folderStyleText": {
+    "message": "Este ajuste solo se aplica a la vista de cuadrícula."
+  },
+  "deleteModeText": {
+    "message": "Cuando la papelera está activada, los marcadores eliminados se mueven a la carpeta de otros marcadores y se eliminan después de 30 días."
+  },
+  "trashDaysLeft": {
+    "message": "d"
   }
 }

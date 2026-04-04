@@ -3,10 +3,10 @@
     "message": "搜索..."
   },
   "noBookmarksMessage": {
-    "message": "这里没有书签。"
+    "message": "暂无书签。"
   },
   "noSearchResultsMessage": {
-    "message": "未找到符合条件的结果。"
+    "message": "未找到符合搜索条件的搜索结果。"
   },
   "saveButton": {
     "message": "保存"
@@ -21,19 +21,19 @@
     "message": "移除"
   },
   "createFolderButton": {
-    "message": "在此创建文件夹"
+    "message": "在此处创建文件夹"
   },
   "newFolderName": {
-    "message": "新建文件夹"
+    "message": "新文件夹"
   },
   "addCurrentSiteButton": {
-    "message": "将标签页添加到此处"
+    "message": "在此处添加当前标签页"
   },
   "addCurrentSiteToFolderButton": {
     "message": "将标签页添加到文件夹"
   },
   "confirmRemoval": {
-    "message": "确定吗？"
+    "message": "确定要移除吗？"
   },
   "moveButton": {
     "message": "移动到文件夹"
@@ -48,7 +48,7 @@
     "message": "移动"
   },
   "upFolderButton": {
-    "message": "转到上级文件夹"
+    "message": "返回上级文件夹"
   },
   "addBookmark": {
     "message": "添加书签"
@@ -75,7 +75,7 @@
     "message": "全部打开"
   },
   "confirmOpenAllMessage": {
-    "message": "是否要打开文件夹 <b>$1</b> 中的 <b>$2</b> 个书签？"
+    "message": "您确定要打开 <b>$1</b> 文件夹中的 <b>$2</b> 个书签吗？"
   },
   "confirmOpenAllButton": {
     "message": "是"
@@ -84,9 +84,90 @@
     "message": "复制链接"
   },
   "openInCurrentTab": {
-    "message": "在当前标签页中打开"
+    "message": "在当前标签页打开"
   },
   "openInNewTab": {
-    "message": "在新标签页中打开"
+    "message": "在新标签页打开"
+  },
+  "trashSearchPlaceholder": {
+    "message": "搜索..."
+  },
+  "trashIsEmpty": {
+    "message": "回收站为空"
+  },
+  "trashNoResults": {
+    "message": "未找到结果"
+  },
+  "trashRestoreButton": {
+    "message": "还原"
+  },
+  "trashDeletePermanently": {
+    "message": "永久删除"
+  },
+  "trashConfirmDelete": {
+    "message": "确定要删除吗？"
+  },
+  "emptyTrashTitle": {
+    "message": "您确定要删除回收站中的所有书签吗？此操作无法撤销！"
+  },
+  "emptyTrashButton": {
+    "message": "确定"
+  },
+  "settingDeleteModeLabel": {
+    "message": "删除模式"
+  },
+  "settingDeleteModeTrash": {
+    "message": "回收站"
+  },
+  "settingDeleteModePermanent": {
+    "message": "直接删除"
+  },
+  "settingTrashFolderLabel": {
+    "message": "回收站文件夹"
+  },
+  "settingBookmarksLabel": {
+    "message": "书签"
+  },
+  "settingFolderStyleLabel": {
+    "message": "文件夹样式"
+  },
+  "settingFolderStyleIcon": {
+    "message": "图标"
+  },
+  "settingFolderStyleStack": {
+    "message": "层叠"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "文件夹角标"
+  },
+  "settingFolderBadgeYes": {
+    "message": "开启"
+  },
+  "settingFolderBadgeNo": {
+    "message": "关闭"
+  },
+  "settingThemeLabel": {
+    "message": "主题"
+  },
+  "settingViewLabel": {
+    "message": "书签视图"
+  },
+  "settingViewList": {
+    "message": "列表"
+  },
+  "settingViewGrid": {
+    "message": "网格"
+  },
+  "folderBadgeText": {
+    "message": "显示文件夹内包含的书签总数。"
+  },
+  "folderStyleText": {
+    "message": "此设置仅适用于网格视图。"
+  },
+  "deleteModeText": {
+    "message": "启用回收站后，删除的书签将移至“其他书签”文件夹，并于 30 天后自动删除。"
+  },
+  "trashDaysLeft": {
+    "message": "天"
   }
 }

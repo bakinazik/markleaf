@@ -3,10 +3,10 @@
     "message": "검색..."
   },
   "noBookmarksMessage": {
-    "message": "여기에 북마크가 없습니다."
+    "message": "북마크가 없습니다."
   },
   "noSearchResultsMessage": {
-    "message": "검색 기준에 맞는 결과를 찾을 수 없습니다."
+    "message": "검색 조건에 맞는 결과가 없습니다."
   },
   "saveButton": {
     "message": "저장"
@@ -15,25 +15,25 @@
     "message": "취소"
   },
   "editButton": {
-    "message": "편집"
+    "message": "수정"
   },
   "removeButton": {
     "message": "삭제"
   },
   "createFolderButton": {
-    "message": "여기에 폴더 만들기"
+    "message": "여기에 폴더 생성"
   },
   "newFolderName": {
     "message": "새 폴더"
   },
   "addCurrentSiteButton": {
-    "message": "여기에 탭 추가"
+    "message": "현재 탭을 여기에 추가"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "폴더에 탭 추가"
+    "message": "탭을 폴더에 추가"
   },
   "confirmRemoval": {
-    "message": "정말로 삭제하시겠습니까?"
+    "message": "정말 삭제하시겠습니까?"
   },
   "moveButton": {
     "message": "폴더로 이동"
@@ -54,16 +54,16 @@
     "message": "북마크 추가"
   },
   "newFolderTitle": {
-    "message": "새 폴더 만들기"
+    "message": "새 폴더 생성"
   },
   "newFolderNamePlaceholder": {
     "message": "폴더 이름"
   },
   "createFolderModalButton": {
-    "message": "만들기"
+    "message": "생성"
   },
   "editTitle": {
-    "message": "편집"
+    "message": "수정"
   },
   "editTitlePlaceholder": {
     "message": "제목"
@@ -75,7 +75,7 @@
     "message": "모두 열기"
   },
   "confirmOpenAllMessage": {
-    "message": "<b>$1</b> 폴더에 있는 <b>$2</b> 북마크를 모두 여시겠습니까?"
+    "message": "<b>$1</b> 폴더에 있는 <b>$2</b>개의 북마크를 여시겠습니까?"
   },
   "confirmOpenAllButton": {
     "message": "예"
@@ -88,5 +88,86 @@
   },
   "openInNewTab": {
     "message": "새 탭에서 열기"
+  },
+  "trashSearchPlaceholder": {
+    "message": "검색..."
+  },
+  "trashIsEmpty": {
+    "message": "휴지통이 비어 있습니다"
+  },
+  "trashNoResults": {
+    "message": "결과가 없습니다"
+  },
+  "trashRestoreButton": {
+    "message": "복원"
+  },
+  "trashDeletePermanently": {
+    "message": "영구 삭제"
+  },
+  "trashConfirmDelete": {
+    "message": "정말 삭제하시겠습니까?"
+  },
+  "emptyTrashTitle": {
+    "message": "휴지통의 모든 북마크를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다!"
+  },
+  "emptyTrashButton": {
+    "message": "예"
+  },
+  "settingDeleteModeLabel": {
+    "message": "삭제 모드"
+  },
+  "settingDeleteModeTrash": {
+    "message": "휴지통"
+  },
+  "settingDeleteModePermanent": {
+    "message": "삭제"
+  },
+  "settingTrashFolderLabel": {
+    "message": "휴지통 폴더"
+  },
+  "settingBookmarksLabel": {
+    "message": "북마크"
+  },
+  "settingFolderStyleLabel": {
+    "message": "폴더 스타일"
+  },
+  "settingFolderStyleIcon": {
+    "message": "폴더"
+  },
+  "settingFolderStyleStack": {
+    "message": "스택"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "폴더 배지"
+  },
+  "settingFolderBadgeYes": {
+    "message": "사용"
+  },
+  "settingFolderBadgeNo": {
+    "message": "사용 안 함"
+  },
+  "settingThemeLabel": {
+    "message": "테마"
+  },
+  "settingViewLabel": {
+    "message": "북마크"
+  },
+  "settingViewList": {
+    "message": "목록"
+  },
+  "settingViewGrid": {
+    "message": "그리드"
+  },
+  "folderBadgeText": {
+    "message": "폴더 내의 총 북마크 수를 표시합니다."
+  },
+  "folderStyleText": {
+    "message": "이 설정은 그리드 뷰에만 적용됩니다."
+  },
+  "deleteModeText": {
+    "message": "휴지통을 사용하면 삭제된 북마크가 기타 북마크 폴더로 이동되며 30일 후에 완전히 삭제됩니다."
+  },
+  "trashDaysLeft": {
+    "message": "일"
   }
 }
