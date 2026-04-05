@@ -2,27 +2,11 @@
 
 Simple and practical bookmark manager.
 
-<table>
-  <tr>
-    <th>Chrome Web Store: 1.1.1</th>
-    <th>Microsoft Edge Addons: 1.1.1</th>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg">
-        <img width="206" src="https://github.com/user-attachments/assets/d027e2b0-e4c2-4f36-98ce-84e7c18f7db5" alt="Chrome Web Store" />
-      </a>
-    </td>
-    <td>
-      <a href="https://microsoftedge.microsoft.com/addons/detail/markleaf-bookmark-manage/hbkhddleogcneclojioeaaccpcfehndk">
-        <img width="236" src="https://github.com/user-attachments/assets/3cb9a9c2-061c-4e38-b3ab-a10e78d74a84" alt="Edge Addons" />
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">Stores are taking a long time to approve updates. You can track the status here.</td>
-  </tr>
-</table>
+
+<a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg">
+      <img width="206" src="https://github.com/user-attachments/assets/d027e2b0-e4c2-4f36-98ce-84e7c18f7db5" alt="Chrome Web Store" />
+</a>
+
 
 ## Screenshots
 
