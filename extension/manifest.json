@@ -10,7 +10,8 @@
     "storage",
     "activeTab",
     "favicon",
-    "contextMenus"
+    "contextMenus",
+    "alarms"
   ],
   "background": {
     "service_worker": "background.js"
