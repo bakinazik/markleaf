@@ -3,10 +3,10 @@
     "message": "Pesquisar..."
   },
   "noBookmarksMessage": {
-    "message": "Nenhum marcador aqui."
+    "message": "Sem marcadores aqui."
   },
   "noSearchResultsMessage": {
-    "message": "Nenhum resultado encontrado para os critérios de pesquisa."
+    "message": "Nenhum resultado encontrado para os seus critérios de pesquisa."
   },
   "saveButton": {
     "message": "Guardar"
@@ -72,7 +72,7 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "Abrir Todos"
+    "message": "Abrir Tudo"
   },
   "confirmOpenAllMessage": {
     "message": "Deseja abrir <b>$2</b> marcadores na pasta <b>$1</b>?"
@@ -93,13 +93,22 @@
     "message": "Pesquisar..."
   },
   "trashIsEmpty": {
-    "message": "O lixo está vazio"
+    "message": "A reciclagem está vazia"
   },
   "trashNoResults": {
     "message": "Nenhum resultado encontrado"
   },
   "trashRestoreButton": {
     "message": "Restaurar"
+  },
+  "restoreAllTrashButton": {
+    "message": "Restaurar tudo"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Tem a certeza de que deseja restaurar todos os marcadores da reciclagem?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Sim"
   },
   "trashDeletePermanently": {
     "message": "Eliminar permanentemente"
@@ -108,7 +117,7 @@
     "message": "Tem a certeza?"
   },
   "emptyTrashTitle": {
-    "message": "Tem a certeza de que deseja eliminar todos os marcadores no lixo? Esta ação não pode ser anulada!"
+    "message": "Tem a certeza de que deseja eliminar todos os marcadores na reciclagem? Esta ação não pode ser desfeita!"
   },
   "emptyTrashButton": {
     "message": "Sim"
@@ -117,13 +126,13 @@
     "message": "Modo de eliminação"
   },
   "settingDeleteModeTrash": {
-    "message": "Lixo"
+    "message": "Reciclagem"
   },
   "settingDeleteModePermanent": {
     "message": "Eliminar"
   },
   "settingTrashFolderLabel": {
-    "message": "Pasta do lixo"
+    "message": "Pasta de reciclagem"
   },
   "settingBookmarksLabel": {
     "message": "Marcadores"
@@ -135,7 +144,7 @@
     "message": "Pasta"
   },
   "settingFolderStyleStack": {
-    "message": "Pilha"
+    "message": "Empilhado"
   },
   "settingFolderBadgeLabel": {
     "message": "Contador da pasta"
@@ -162,12 +171,84 @@
     "message": "Exibe o número total de marcadores dentro das pastas."
   },
   "folderStyleText": {
-    "message": "Esta configuração aplica-se apenas à visualização em grelha."
+    "message": "Esta definição aplica-se apenas à vista em grelha."
   },
   "deleteModeText": {
-    "message": "Quando o lixo está ativado, os marcadores eliminados são movidos para a pasta 'Outros marcadores' e eliminados após 30 dias."
+    "message": "Quando a reciclagem está ativada, os marcadores eliminados são movidos para a mesma e removidos definitivamente após o período especificado."
   },
   "trashDaysLeft": {
     "message": "d"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Eliminação automática após"
+  },
+  "trashExpiry3Days": {
+    "message": "3 dias"
+  },
+  "trashExpiry7Days": {
+    "message": "7 dias"
+  },
+  "trashExpiry1Month": {
+    "message": "1 mês"
+  },
+  "settingImportExportLabel": {
+    "message": "Gestão de dados"
+  },
+  "exportButton": {
+    "message": "Exportar"
+  },
+  "importButton": {
+    "message": "Importar"
+  },
+  "importError": {
+    "message": "Falha na importação. O ficheiro pode ser inválido ou estar corrompido."
+  },
+  "importConfirmMessage": {
+    "message": "Isto irá substituir os seus marcadores, definições e dados da reciclagem. Tem a certeza?"
+  },
+  "importConfirmTitle": {
+    "message": "Confirmar Importação"
+  },
+  "importConfirmYes": {
+    "message": "Sim"
+  },
+  "viewToggleLabel": {
+    "message": "Alternar vista"
+  },
+  "contextMenuLabel": {
+    "message": "Opções"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Selecionar"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Selecionar"
+  },
+  "bulkOpenSelected": {
+    "message": "Abrir selecionados ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Mover para pasta"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Criar pasta da seleção"
+  },
+  "bulkDelete": {
+    "message": "Eliminar selecionados"
+  },
+  "bulkConfirmDelete": {
+    "message": "Tem a certeza?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Restaurar selecionados"
+  },
+  "bulkDeletePermanently": {
+    "message": "Eliminar permanentemente"
+  },
+  "selectionCount": {
+    "message": "$1 selecionado(s)"
   }
 }

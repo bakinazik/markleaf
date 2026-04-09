@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let isFolderStackMode = false;
   let keyboardSelectedIndex = -1;
   let scrollToTopBtn = document.getElementById('scrollToTop');
+  
+  let allBookmarksCache = null;   
+  let searchRenderToken = 0;      
+  let searchDebounceTimer = null; 
+  let trashSearchDebounceTimer = null; 
   const contextMenuOverlay = document.getElementById('contextMenuOverlay');
   const plusIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>`;
   const getXIcon = (size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`;
@@ -50,6 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const moveIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 4l3 3l-3 3" /><path d="M18 7h-14l3 3" /><path d="M7 20l-3 -3l3 -3" /><path d="M7 17h14l-3 -3" /></svg>`;
   const gridIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`;
   const listIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>`;
+  let isSelectionMode = false;
+  let selectedItemIds = new Set();
+  let isTrashSelectionMode = false;
+  let selectedTrashIds = new Set();
+  let selectionMoveMode = false;
+  let selectionFolderMode = false;
+  const selectModeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="16" height="16" rx="2"/><path d="M9 12l2 2 4-4"/></svg>`;
+  const checkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>`;
   const i18nElements = document.querySelectorAll('[data-i18n]');
   i18nElements.forEach(element => {
     const messageKey = element.getAttribute('data-i18n');
@@ -64,57 +77,266 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   function setToggleIcon() {
     if (isGridView) {
-      viewToggleIcon.innerHTML = '';
-      const paths = [
-        ['path', 'M9 6l11 0'],
-        ['path', 'M9 12l11 0'],
-        ['path', 'M9 18l11 0'],
-        ['path', 'M5 6l0 .01'],
-        ['path', 'M5 12l0 .01'],
-        ['path', 'M5 18l0 .01'],
-      ];
-      paths.forEach(([tag, d]) => {
-        const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-        el.setAttribute('d', d);
-        viewToggleIcon.appendChild(el);
-      });
-      viewToggleBtn.classList.add('grid-active');
-    } else {
-      viewToggleIcon.innerHTML = '';
-      [[3,3],[14,3],[3,14],[14,14]].forEach(([x,y]) => {
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', x); rect.setAttribute('y', y);
-        rect.setAttribute('width', 7); rect.setAttribute('height', 7);
-        rect.setAttribute('rx', 1);
-        viewToggleIcon.appendChild(rect);
-      });
-      viewToggleBtn.classList.remove('grid-active');
-    }
-    if (isGridView) {
       bookmarksList.classList.add('grid-mode');
     } else {
       bookmarksList.classList.remove('grid-mode');
     }
+    renderSelectBtnIcon();
   }
+function renderSelectBtnIcon() {
+  viewToggleIcon.innerHTML = isSelectionMode
+    ? '<path d="M18 6l-12 12"/><path d="M6 6l12 12"/>'
+    : '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/>';
+
+  viewToggleBtn.classList.toggle('select-mode-on', isSelectionMode);
+}
   viewToggleBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    isGridView = !isGridView;
-    chrome.storage.local.set({ isGridView });
-    setToggleIcon();
-    const searchTerm = searchInput.value.toLowerCase();
-    if (searchTerm !== '') {
-      getAllBookmarks(currentFolderId, (allBookmarks) => {
-        const results = allBookmarks.filter(item =>
-          item.title.toLowerCase().includes(searchTerm) ||
-          (item.url && item.url.toLowerCase().includes(searchTerm))
-        );
-        updateItemsList(results);
-        !isMobile && searchInput.focus();
-      });
+    if (isSelectionMode) {
+      exitSelectionMode();
     } else {
-      listItems(currentFolderId);
+      enterSelectionMode();
     }
   });
+  function enterSelectionMode() {
+    isSelectionMode = true;
+    selectedItemIds.clear();
+    bookmarksList.classList.add('selection-mode');
+    renderSelectBtnIcon();
+    if (window.bookmarksSortable) {
+      window.bookmarksSortable.option('disabled', true);
+    }
+    document.querySelectorAll('#bookmarksList li a').forEach(a => {
+      a.draggable = false;
+    });
+  }
+  function exitSelectionMode() {
+    isSelectionMode = false;
+    selectedItemIds.clear();
+    bookmarksList.classList.remove('selection-mode');
+    renderSelectBtnIcon();
+    document.querySelectorAll('#bookmarksList li.selection-selected').forEach(el => el.classList.remove('selection-selected'));
+    closeBulkContextMenu();
+    if (window.bookmarksSortable) {
+      window.bookmarksSortable.option('disabled', false);
+    }
+    document.querySelectorAll('#bookmarksList li a').forEach(a => {
+      a.draggable = true;
+    });
+  }
+  function toggleItemSelection(listItem, id) {
+    if (selectedItemIds.has(id)) {
+      selectedItemIds.delete(id);
+      listItem.classList.remove('selection-selected');
+    } else {
+      selectedItemIds.add(id);
+      listItem.classList.add('selection-selected');
+    }
+  }
+function renderTrashSelectBtnIcon() {
+  const svg = trashSelectBtn.querySelector('svg');
+  if (!svg) return;
+
+  svg.innerHTML = isTrashSelectionMode
+    ? '<path d="M18 6l-12 12"/><path d="M6 6l12 12"/>'
+    : '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/>';
+}
+  function enterTrashSelectionMode() {
+    isTrashSelectionMode = true;
+    selectedTrashIds.clear();
+    trashList.classList.add('selection-mode');
+    trashSelectBtn.classList.add('select-mode-on');
+    renderTrashSelectBtnIcon();
+  }
+  function exitTrashSelectionMode() {
+    isTrashSelectionMode = false;
+    selectedTrashIds.clear();
+    trashList.classList.remove('selection-mode');
+    trashSelectBtn.classList.remove('select-mode-on');
+    renderTrashSelectBtnIcon();
+    document.querySelectorAll('#trashList .trash-item.selection-selected').forEach(el => el.classList.remove('selection-selected'));
+    closeBulkContextMenu();
+  }
+  function toggleTrashItemSelection(li, id) {
+    if (selectedTrashIds.has(id)) {
+      selectedTrashIds.delete(id);
+      li.classList.remove('selection-selected');
+    } else {
+      selectedTrashIds.add(id);
+      li.classList.add('selection-selected');
+    }
+  }
+  
+  function closeBulkContextMenu() {
+    const existing = document.getElementById('bulkContextMenu');
+    if (existing) existing.remove();
+    contextMenuOverlay.classList.remove('active');
+  }
+  function showBulkContextMenu(x, y, mode) {
+    closeBulkContextMenu();
+    const menu = document.createElement('div');
+    menu.classList.add('context-menu', 'bulk-context-menu');
+    menu.id = 'bulkContextMenu';
+    if (mode === 'bookmarks') {
+      const count = selectedItemIds.size;
+      if (count === 0) return;
+      const label = document.createElement('div');
+      label.classList.add('selection-count-label');
+      label.textContent = chrome.i18n.getMessage('selectionCount', [String(count)]);
+      menu.appendChild(label);
+      
+      const selectedNodes = allItems.filter(item => selectedItemIds.has(item.id));
+      const bookmarkNodes = selectedNodes.filter(n => n.url);
+      
+      if (bookmarkNodes.length > 0) {
+        const openBtn = document.createElement('button');
+        openBtn.classList.add('context-menu-item');
+        openBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg> ${chrome.i18n.getMessage('bulkOpenSelected', [String(bookmarkNodes.length)])}`;
+        openBtn.onclick = () => {
+          bookmarkNodes.forEach(n => chrome.tabs.create({ url: n.url, active: false }));
+          closeBulkContextMenu();
+          exitSelectionMode();
+        };
+        menu.appendChild(openBtn);
+      }
+      
+      const moveBtn2 = document.createElement('button');
+      moveBtn2.classList.add('context-menu-item');
+      moveBtn2.innerHTML = `${moveIcon} ${chrome.i18n.getMessage('bulkMoveToFolder')}`;
+      moveBtn2.onclick = () => {
+        closeBulkContextMenu();
+        selectionMoveMode = true;
+        itemToMoveId = null;
+        openMoveModal();
+      };
+      menu.appendChild(moveBtn2);
+      
+      const newFolderBtn = document.createElement('button');
+      newFolderBtn.classList.add('context-menu-item');
+      newFolderBtn.innerHTML = `${addFolderIcon} ${chrome.i18n.getMessage('bulkNewFolderAndMove')}`;
+      newFolderBtn.onclick = () => {
+        closeBulkContextMenu();
+        selectionFolderMode = true;
+        newFolderParentId = currentFolderId;
+        newFolderIndex = null;
+        openCreateFolderModal();
+      };
+      menu.appendChild(newFolderBtn);
+      
+      const deleteBtn2 = document.createElement('button');
+      deleteBtn2.classList.add('context-menu-item');
+      deleteBtn2.dataset.state = 'initial';
+      deleteBtn2.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('bulkDelete')}`;
+      deleteBtn2.style.color = 'var(--hover-color-remove)';
+      deleteBtn2.onclick = () => {
+        if (deleteBtn2.dataset.state === 'initial') {
+          deleteBtn2.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('bulkConfirmDelete')}`;
+          deleteBtn2.dataset.state = 'confirm';
+        } else {
+          closeBulkContextMenu();
+          deleteBulkSelectedItems();
+        }
+      };
+      menu.appendChild(deleteBtn2);
+    } else if (mode === 'trash') {
+      const count = selectedTrashIds.size;
+      if (count === 0) return;
+      const label = document.createElement('div');
+      label.classList.add('selection-count-label');
+      label.textContent = chrome.i18n.getMessage('selectionCount', [String(count)]);
+      menu.appendChild(label);
+      
+      const restoreBtn2 = document.createElement('button');
+      restoreBtn2.classList.add('context-menu-item');
+      restoreBtn2.innerHTML = `${restoreIcon} ${chrome.i18n.getMessage('bulkRestoreSelected')}`;
+      restoreBtn2.onclick = async () => {
+        closeBulkContextMenu();
+        await restoreBulkTrashItems();
+        exitTrashSelectionMode();
+      };
+      menu.appendChild(restoreBtn2);
+      
+      const permDeleteBtn = document.createElement('button');
+      permDeleteBtn.classList.add('context-menu-item');
+      permDeleteBtn.dataset.state = 'initial';
+      permDeleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('bulkDeletePermanently')}`;
+      permDeleteBtn.style.color = 'var(--hover-color-remove)';
+      permDeleteBtn.onclick = async () => {
+        if (permDeleteBtn.dataset.state === 'initial') {
+          permDeleteBtn.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('bulkConfirmDelete')}`;
+          permDeleteBtn.dataset.state = 'confirm';
+        } else {
+          closeBulkContextMenu();
+          await deleteBulkTrashItems();
+          exitTrashSelectionMode();
+        }
+      };
+      menu.appendChild(permDeleteBtn);
+    }
+    document.body.appendChild(menu);
+    menu.style.display = 'flex';
+    menu.style.visibility = 'hidden';
+    const mw = menu.offsetWidth;
+    const mh = menu.offsetHeight;
+    menu.style.visibility = '';
+    let left = x, top = y;
+    if (left + mw > window.innerWidth - 4) left = window.innerWidth - mw - 4;
+    if (top + mh > window.innerHeight - 4) top = window.innerHeight - mh - 4;
+    if (left < 4) left = 4;
+    if (top < 4) top = 4;
+    menu.style.left = left + 'px';
+    menu.style.top = top + 'px';
+    menu.style.right = 'auto';
+    menu.style.bottom = 'auto';
+    contextMenuOverlay.classList.add('active');
+  }
+  async function deleteBulkSelectedItems() {
+    const ids = Array.from(selectedItemIds);
+    for (const id of ids) {
+      const node = allItems.find(n => n.id === id);
+      if (!node) continue;
+      if (deleteMode === 'trash') {
+        const items = await getTrashItems();
+        const entry = {
+          id: 'trash_' + Date.now() + '_' + Math.random().toString(36).slice(2),
+          ts: Date.now(),
+          title: node.title,
+          url: node.url || null,
+          parentId: node.parentId || currentFolderId,
+          index: node.index !== undefined ? node.index : 0
+        };
+        
+        if (!node.url) {
+          entry.children = await getFolderTreeForTrash(node.id);
+        }
+        items.push(entry);
+        await saveTrashItems(items);
+      }
+      await new Promise(resolve => {
+        if (node.url) chrome.bookmarks.remove(id, resolve);
+        else chrome.bookmarks.removeTree(id, resolve);
+      });
+    }
+    exitSelectionMode();
+    listItems(currentFolderId);
+  }
+  async function restoreBulkTrashItems() {
+    const ids = Array.from(selectedTrashIds);
+    const all = await getTrashItems();
+    const toRestore = all.filter(i => ids.includes(i.id));
+    for (const entry of toRestore) {
+      await safeRestoreBookmark(entry);
+    }
+    await saveTrashItems(all.filter(i => !ids.includes(i.id)));
+    loadTrashPanel(trashSearchInput.value);
+    listItems(currentFolderId);
+  }
+  async function deleteBulkTrashItems() {
+    const ids = Array.from(selectedTrashIds);
+    const all = await getTrashItems();
+    await saveTrashItems(all.filter(i => !ids.includes(i.id)));
+    loadTrashPanel(trashSearchInput.value);
+  }
   function updateAddBookmarkButton(isBookmarked) {
     addBookmarkBtn.innerHTML = isBookmarked ? getXIcon(18) : plusIcon;
   }
@@ -154,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 150);
     }
   }
-  contextMenuOverlay.addEventListener('click', () => closeMenu());
+  contextMenuOverlay.addEventListener('click', () => { closeMenu(); closeBulkContextMenu(); });
 
   const tabBookmarks = document.getElementById('tabBookmarks');
   const tabTrash = document.getElementById('tabTrash');
@@ -167,13 +389,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyTrashModal = document.getElementById('emptyTrashModal');
   const cancelEmptyTrashBtn = document.getElementById('cancelEmptyTrashBtn');
   const confirmEmptyTrashBtn = document.getElementById('confirmEmptyTrashBtn');
+  const restoreAllTrashModal = document.getElementById('restoreAllTrashModal');
+  const cancelRestoreAllTrashBtn = document.getElementById('cancelRestoreAllTrashBtn');
+  const confirmRestoreAllTrashBtn = document.getElementById('confirmRestoreAllTrashBtn');
+  const restoreAllTrashBtn = document.getElementById('restoreAllTrashBtn');
+  const trashSelectBtn = document.getElementById('trashSelectBtn');
+  const importConfirmModal = document.getElementById('importConfirmModal');
+  const cancelImportBtn = document.getElementById('cancelImportBtn');
+  const confirmImportBtn = document.getElementById('confirmImportBtn');
   const mainSection = document.querySelector('section');
   const settingFolderBadgeToggle = document.getElementById('settingFolderBadge');
   let showFolderBadge = true;
   const themeButtons = document.querySelectorAll('.theme-btn[data-theme]');
   const settingButtons = document.querySelectorAll('.setting-btn');
-  let trashFolderId = '2';
   let deleteMode = 'trash';
+  let trashExpiryDays = 30;
+
+  
+  const TRASH_STORAGE_KEY = 'markleaf_trash';
+
+  async function getTrashItems() {
+    return new Promise(resolve => {
+      chrome.storage.local.get([TRASH_STORAGE_KEY], data => {
+        resolve(data[TRASH_STORAGE_KEY] || []);
+      });
+    });
+  }
+
+  async function saveTrashItems(items) {
+    return new Promise(resolve => {
+      chrome.storage.local.set({ [TRASH_STORAGE_KEY]: items }, resolve);
+    });
+  }
+
+  async function purgeExpiredTrashItems() {
+    const expiryMs = trashExpiryDays * 24 * 60 * 60 * 1000;
+    const now = Date.now();
+    const items = await getTrashItems();
+    const alive = items.filter(i => (now - i.ts) < expiryMs);
+    if (alive.length !== items.length) await saveTrashItems(alive);
+  }
+  
 
   settingButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -185,9 +441,25 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteMode = value;
         chrome.storage.local.set({ deleteMode });
         tabTrash.style.display = deleteMode === 'trash' ? '' : 'none';
+        const expiryRow = document.getElementById('trashExpiryRow');
+        if (expiryRow) expiryRow.classList.toggle('hidden', deleteMode !== 'trash');
+
+        const parentRow = expiryRow?.closest('.settings-row');
+        if (parentRow) {
+          const descriptionParagraph = parentRow.querySelector('p:not(.trash-expiry-row p)');
+          if (descriptionParagraph && descriptionParagraph.innerText.includes(chrome.i18n.getMessage('deleteModeText'))) {
+            descriptionParagraph.style.display = deleteMode === 'trash' ? '' : 'none';
+          }
+        }
+
         if (deleteMode !== 'trash' && tabTrash.classList.contains('active')) {
           showTab('bookmarks');
         }
+      } else if (setting === 'trashExpiry') {
+        trashExpiryDays = parseInt(value, 10);
+        chrome.storage.local.set({ trashExpiryDays });
+        
+        purgeExpiredTrashItems();
       } else if (setting === 'view') {
         isGridView = value === 'grid';
         chrome.storage.local.set({ isGridView });
@@ -208,48 +480,44 @@ document.addEventListener('DOMContentLoaded', () => {
     listItems(currentFolderId);
   });
 
-  const TRASH_PREFIX = '__TRASH__:';
-
-  function sendToTrash(node) {
-    const timestamp = Date.now();
-    const parentId = node.parentId || currentFolderId;
-    const index = node.index !== undefined ? node.index : 0;
-    const newTitle = TRASH_PREFIX + timestamp + ':' + parentId + ':' + index + ':' + node.title;
-    chrome.bookmarks.move(node.id, { parentId: trashFolderId }, () => {
-      chrome.bookmarks.update(node.id, { title: newTitle }, () => {
-        listItems(currentFolderId);
-      });
-    });
+  
+  async function getFolderTreeForTrash(nodeId) {
+    const children = await new Promise(resolve =>
+      chrome.bookmarks.getChildren(nodeId, r => { chrome.runtime.lastError; resolve(r || []); })
+    );
+    const result = [];
+    for (const child of children) {
+      if (child.url) {
+        result.push({ title: child.title, url: child.url });
+      } else {
+        const subChildren = await getFolderTreeForTrash(child.id);
+        result.push({ title: child.title, children: subChildren });
+      }
+    }
+    return result;
   }
 
-  function parseTrashTitle(title) {
-    if (!title || !title.startsWith(TRASH_PREFIX)) return null;
-    const rest = title.slice(TRASH_PREFIX.length);
-    const firstColon = rest.indexOf(':');
-    const ts = parseInt(rest.slice(0, firstColon), 10);
-    const rest2 = rest.slice(firstColon + 1);
-    const secondColon = rest2.indexOf(':');
-    const parentId = rest2.slice(0, secondColon);
-    const rest3 = rest2.slice(secondColon + 1);
-    const thirdColon = rest3.indexOf(':');
-    const index = parseInt(rest3.slice(0, thirdColon), 10);
-    const originalTitle = rest3.slice(thirdColon + 1);
-    return { ts, parentId, index, originalTitle };
-  }
-
-  function purgeExpiredTrashItems() {
-    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
-    chrome.bookmarks.getChildren(trashFolderId, (children) => {
-      if (!children) return;
-      const now = Date.now();
-      children.forEach(item => {
-        const parsed = parseTrashTitle(item.title);
-        if (parsed && (now - parsed.ts) > THIRTY_DAYS) {
-          if (item.url) chrome.bookmarks.remove(item.id);
-          else chrome.bookmarks.removeTree(item.id);
-        }
-      });
-    });
+  async function sendToTrash(node) {
+    const items = await getTrashItems();
+    const entry = {
+      id: 'trash_' + Date.now() + '_' + Math.random().toString(36).slice(2),
+      ts: Date.now(),
+      title: node.title,
+      url: node.url || null,
+      parentId: node.parentId || currentFolderId,
+      index: node.index !== undefined ? node.index : 0
+    };
+    
+    if (!node.url) {
+      entry.children = await getFolderTreeForTrash(node.id);
+    }
+    items.push(entry);
+    await saveTrashItems(items);
+    if (node.url) {
+      chrome.bookmarks.remove(node.id, () => listItems(currentFolderId));
+    } else {
+      chrome.bookmarks.removeTree(node.id, () => listItems(currentFolderId));
+    }
   }
 
   function showTab(tab) {
@@ -258,8 +526,13 @@ document.addEventListener('DOMContentLoaded', () => {
     tabSettings.classList.remove('active');
     bookmarksList.style.display = 'none';
     mainSection.style.display = 'none';
+    upButton.style.display = 'none';
     settingsPanel.classList.remove('active');
     trashPanel.classList.remove('active');
+    hideScrollToTop();
+    
+    if (isSelectionMode) exitSelectionMode();
+    if (isTrashSelectionMode) exitTrashSelectionMode();
     if (tab === 'bookmarks') {
       tabBookmarks.classList.add('active');
       bookmarksList.style.display = '';
@@ -286,39 +559,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteForeverIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>`;
 
   
-  function loadTrashPanel(filterTerm = '') {
-  trashList.innerHTML = '';
-  document.querySelectorAll('body > .trash-context-menu').forEach(el => el.remove());
-  
-  chrome.bookmarks.getChildren(trashFolderId, (children) => {
-    if (!children || children.length === 0) {
-      const empty = document.createElement('div');
-      empty.classList.add('empty-message');
-      empty.textContent = chrome.i18n.getMessage('trashIsEmpty');
-      empty.style.marginTop = '30px';
-      trashList.appendChild(empty);
-      return;
-    }
-    
+  async function loadTrashPanel(filterTerm = '') {
+    trashList.innerHTML = '';
+    document.querySelectorAll('body > .trash-context-menu').forEach(el => el.remove());
+
+    await purgeExpiredTrashItems();
+    let items = await getTrashItems();
+
     const now = Date.now();
-    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
-    let trashItems = children
-      .map(item => ({ item, parsed: parseTrashTitle(item.title) }))
-      .filter(({ parsed }) => parsed !== null)
-      .sort((a, b) => b.parsed.ts - a.parsed.ts);
+    const THIRTY_DAYS = trashExpiryDays * 24 * 60 * 60 * 1000;
+
+    
+    items = items.slice().sort((a, b) => b.ts - a.ts);
 
     if (filterTerm) {
       const lower = filterTerm.toLowerCase();
-      trashItems = trashItems.filter(({ parsed, item }) =>
-        parsed.originalTitle.toLowerCase().includes(lower) ||
-        (item.url && item.url.toLowerCase().includes(lower))
+      items = items.filter(i =>
+        i.title.toLowerCase().includes(lower) ||
+        (i.url && i.url.toLowerCase().includes(lower))
       );
     }
 
-    if (trashItems.length === 0) {
+    if (items.length === 0) {
       const empty = document.createElement('div');
       empty.classList.add('empty-message');
-      empty.textContent = filterTerm ? chrome.i18n.getMessage('trashNoResults') : chrome.i18n.getMessage('trashIsEmpty');
+      empty.textContent = filterTerm
+        ? chrome.i18n.getMessage('trashNoResults')
+        : chrome.i18n.getMessage('trashIsEmpty');
       empty.style.marginTop = '30px';
       trashList.appendChild(empty);
       return;
@@ -328,36 +595,35 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => trashSearchInput.focus(), 0);
     }
 
-    trashItems.forEach(({ item, parsed }) => {
-      const daysLeft = Math.max(0, Math.ceil((THIRTY_DAYS - (now - parsed.ts)) / (24 * 60 * 60 * 1000)));
+    items.forEach(trashEntry => {
+      const daysLeft = Math.max(0, Math.ceil((THIRTY_DAYS - (now - trashEntry.ts)) / (24 * 60 * 60 * 1000)));
       const li = document.createElement('li');
       li.classList.add('trash-item');
-      li.dataset.bookmarkId = item.id;
+      li.dataset.trashId = trashEntry.id;
 
       const a = document.createElement('a');
       a.href = '#';
-      
-      if (item.url) {
+
+      if (trashEntry.url) {
         a.addEventListener('click', (event) => {
           event.preventDefault();
           event.stopPropagation();
           if (event.ctrlKey || event.metaKey) {
-            chrome.tabs.create({ url: item.url, active: false });
+            chrome.tabs.create({ url: trashEntry.url, active: false });
             return false;
           }
           if (event.shiftKey) {
-            chrome.windows.create({ url: item.url });
+            chrome.windows.create({ url: trashEntry.url });
             return false;
           }
-          chrome.tabs.update({ url: item.url });
+          chrome.tabs.update({ url: trashEntry.url });
           return false;
         });
-        
         a.addEventListener('auxclick', (event) => {
           if (event.button === 1) {
             event.preventDefault();
             event.stopPropagation();
-            chrome.tabs.create({ url: item.url, active: false });
+            chrome.tabs.create({ url: trashEntry.url, active: false });
             return false;
           }
         });
@@ -367,9 +633,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const iconSpan = document.createElement('span');
       iconSpan.classList.add('item-icon');
-      if (item.url) {
+      if (trashEntry.url) {
         const img = document.createElement('img');
-        img.src = getFaviconUrl(item.url);
+        img.src = getFaviconUrl(trashEntry.url);
         img.alt = '';
         img.style.cssText = 'width:16px;height:16px;margin-right:8px;border-radius:100%;';
         iconSpan.appendChild(img);
@@ -384,12 +650,12 @@ document.addEventListener('DOMContentLoaded', () => {
       contentDiv.style.overflow = 'hidden';
       const titleSpan = document.createElement('span');
       titleSpan.classList.add('bookmark-title');
-      titleSpan.textContent = parsed.originalTitle;
+      titleSpan.textContent = trashEntry.title;
       contentDiv.appendChild(titleSpan);
-      if (item.url) {
+      if (trashEntry.url) {
         const urlSpan = document.createElement('span');
         urlSpan.classList.add('bookmark-url');
-        urlSpan.textContent = item.url;
+        urlSpan.textContent = trashEntry.url;
         contentDiv.appendChild(urlSpan);
       }
 
@@ -415,21 +681,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const restoreBtn = document.createElement('button');
       restoreBtn.classList.add('context-menu-item');
       restoreBtn.innerHTML = `${restoreIcon} ${chrome.i18n.getMessage('trashRestoreButton')}`;
-      
-      restoreBtn.onclick = (e) => {
+
+      restoreBtn.onclick = async (e) => {
         e.stopPropagation();
         closeMenu();
-        
         if (ctxMenu && ctxMenu.parentNode) ctxMenu.remove();
-        
-        chrome.bookmarks.move(item.id, { parentId: parsed.parentId, index: parsed.index }, () => {
-          chrome.bookmarks.update(item.id, { title: parsed.originalTitle }, () => {
-            loadTrashPanel(trashSearchInput.value);
-            if (tabBookmarks.classList.contains('active')) {
-              listItems(currentFolderId);
-            }
-          });
-        });
+
+        await safeRestoreBookmark(trashEntry);
+        const all = await getTrashItems();
+        await saveTrashItems(all.filter(i => i.id !== trashEntry.id));
+        loadTrashPanel(trashSearchInput.value);
+        listItems(currentFolderId);
       };
 
       const deleteBtn = document.createElement('button');
@@ -437,8 +699,8 @@ document.addEventListener('DOMContentLoaded', () => {
       deleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
       deleteBtn.style.color = 'var(--hover-color-remove)';
       deleteBtn.dataset.state = 'initial';
-      
-      deleteBtn.onclick = (e) => {
+
+      deleteBtn.onclick = async (e) => {
         e.stopPropagation();
         if (deleteBtn.dataset.state === 'initial') {
           deleteBtn.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('trashConfirmDelete')}`;
@@ -446,124 +708,130 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           closeMenu();
           if (ctxMenu && ctxMenu.parentNode) ctxMenu.remove();
-          if (item.url) chrome.bookmarks.remove(item.id, () => loadTrashPanel(trashSearchInput.value));
-          else chrome.bookmarks.removeTree(item.id, () => loadTrashPanel(trashSearchInput.value));
+          const all = await getTrashItems();
+          await saveTrashItems(all.filter(i => i.id !== trashEntry.id));
+          loadTrashPanel(trashSearchInput.value);
         }
       };
 
       const quickActionsContainer = document.createElement('div');
       quickActionsContainer.classList.add('quick-actions');
-      
+
       const copyLinkBtn = document.createElement('button');
       copyLinkBtn.classList.add('quick-action-btn');
       copyLinkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>`;
       copyLinkBtn.title = chrome.i18n.getMessage('copyLinkButton');
       copyLinkBtn.onclick = (e) => {
         e.stopPropagation();
-        if (item.url) {
-          navigator.clipboard.writeText(item.url);
-        }
+        if (trashEntry.url) navigator.clipboard.writeText(trashEntry.url);
         closeMenu();
       };
-      
+
       const openInCurrentTabBtn = document.createElement('button');
       openInCurrentTabBtn.classList.add('quick-action-btn');
       openInCurrentTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`;
       openInCurrentTabBtn.title = chrome.i18n.getMessage('openInCurrentTab');
       openInCurrentTabBtn.onclick = (e) => {
         e.stopPropagation();
-        if (item.url) {
-          chrome.tabs.update({ url: item.url });
-        }
+        if (trashEntry.url) chrome.tabs.update({ url: trashEntry.url });
         closeMenu();
       };
-      
+
       const openInNewTabBtn = document.createElement('button');
       openInNewTabBtn.classList.add('quick-action-btn');
       openInNewTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`;
       openInNewTabBtn.title = chrome.i18n.getMessage('openInNewTab');
       openInNewTabBtn.onclick = (e) => {
         e.stopPropagation();
-        if (item.url) {
-          chrome.tabs.create({ url: item.url, active: false });
-        }
+        if (trashEntry.url) chrome.tabs.create({ url: trashEntry.url, active: false });
         closeMenu();
       };
-      
+
       quickActionsContainer.appendChild(copyLinkBtn);
       quickActionsContainer.appendChild(openInCurrentTabBtn);
       quickActionsContainer.appendChild(openInNewTabBtn);
-      
-      if (!item.url) {
+
+      if (!trashEntry.url) {
         quickActionsContainer.style.display = 'none';
       }
 
       ctxMenu.appendChild(restoreBtn);
       ctxMenu.appendChild(deleteBtn);
       ctxMenu.appendChild(quickActionsContainer);
-      
+
       document.body.appendChild(ctxMenu);
 
       menuBtn.onclick = (e) => {
         e.stopPropagation();
         e.preventDefault();
-        
-        if (activeMenu && activeMenu !== ctxMenu) { 
-          closeMenu(); 
-        }
-        
-        if (activeMenu === ctxMenu && ctxMenu.style.display === 'flex') { 
-          closeMenu(); 
-          return; 
-        }
-        
+
+        if (activeMenu && activeMenu !== ctxMenu) closeMenu();
+        if (activeMenu === ctxMenu && ctxMenu.style.display === 'flex') { closeMenu(); return; }
+
         const btnRect = menuBtn.getBoundingClientRect();
         const availableSpaceBelow = window.innerHeight - btnRect.bottom;
-        
+
         ctxMenu.style.display = 'flex';
         ctxMenu.style.visibility = 'hidden';
-        
         const mw = ctxMenu.offsetWidth;
         const mh = ctxMenu.offsetHeight;
-        
         ctxMenu.style.visibility = '';
         ctxMenu.classList.remove('open-upwards');
-        
+
         let top = btnRect.bottom + 4;
         let left = btnRect.right - mw;
-        
-        if (availableSpaceBelow < mh && btnRect.top > mh) { 
-          top = btnRect.top - mh - 4; 
-          ctxMenu.classList.add('open-upwards'); 
+        if (availableSpaceBelow < mh && btnRect.top > mh) {
+          top = btnRect.top - mh - 4;
+          ctxMenu.classList.add('open-upwards');
         }
         if (left < 4) left = 4;
-        
+
         ctxMenu.style.top = top + 'px';
         ctxMenu.style.left = left + 'px';
         ctxMenu.style.right = 'auto';
         ctxMenu.style.bottom = 'auto';
         ctxMenu.style.display = 'flex';
-        
+
         bookmarkButtons.classList.add('is-visible');
         contextMenuOverlay.classList.add('active');
         document.activeElement.blur();
-        
+
         activeMenu = ctxMenu;
         activeBookmarkButtons = bookmarkButtons;
-        
+
         deleteBtn.dataset.state = 'initial';
         deleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
         deleteBtn.style.color = 'var(--hover-color-remove)';
       };
 
       bookmarkButtons.appendChild(menuBtn);
-      li.appendChild(bookmarkButtons);
       
+      const selCheck = document.createElement('div');
+      selCheck.classList.add('sel-check');
+      selCheck.innerHTML = checkSVG;
+      li.appendChild(selCheck);
+      li.appendChild(bookmarkButtons);
+
       li.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        if (isTrashSelectionMode) {
+          if (!selectedTrashIds.has(trashEntry.id)) toggleTrashItemSelection(li, trashEntry.id);
+          showBulkContextMenu(e.clientX, e.clientY, 'trash');
+          return;
+        }
         menuBtn.onclick(e);
       });
+
+      
+      a.addEventListener('click', (e) => {
+        if (isTrashSelectionMode) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleTrashItemSelection(li, trashEntry.id);
+          return false;
+        }
+      }, true); 
 
       li.draggable = false;
       a.draggable = false;
@@ -572,12 +840,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       trashList.appendChild(li);
     });
-  });
-}
-
+  }
 
   trashSearchInput.addEventListener('input', () => {
-    loadTrashPanel(trashSearchInput.value);
+    if (trashSearchDebounceTimer) clearTimeout(trashSearchDebounceTimer);
+    trashSearchDebounceTimer = setTimeout(() => {
+      loadTrashPanel(trashSearchInput.value);
+    }, 100);
+  });
+
+  trashSelectBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isTrashSelectionMode) {
+      exitTrashSelectionMode();
+    } else {
+      enterTrashSelectionMode();
+    }
   });
 
   emptyTrashBtn.addEventListener('click', () => {
@@ -589,23 +867,82 @@ document.addEventListener('DOMContentLoaded', () => {
     !isMobile && trashSearchInput.focus();
   });
 
-  confirmEmptyTrashBtn.addEventListener('click', () => {
+  confirmEmptyTrashBtn.addEventListener('click', async () => {
     emptyTrashModal.classList.remove('active');
-    chrome.bookmarks.getChildren(trashFolderId, (children) => {
-      if (!children) return;
-      children.forEach(item => {
-        const parsed = parseTrashTitle(item.title);
-        if (parsed) {
-          if (item.url) chrome.bookmarks.remove(item.id);
-          else chrome.bookmarks.removeTree(item.id);
-        }
+    await saveTrashItems([]);
+    trashSearchInput.value = '';
+    loadTrashPanel();
+    !isMobile && trashSearchInput.focus();
+  });
+
+  
+  async function safeRestoreBookmark(entry) {
+    const parentExists = await new Promise(resolve => {
+      chrome.bookmarks.get(entry.parentId, (results) => {
+        const err = chrome.runtime.lastError;
+        resolve(!err && results && results.length > 0);
       });
-      setTimeout(() => {
-        trashSearchInput.value = '';
-        loadTrashPanel();
-        !isMobile && trashSearchInput.focus();
-      }, 200);
     });
+    const parentId = parentExists ? entry.parentId : '1';
+
+    const siblings = await new Promise(resolve =>
+      chrome.bookmarks.getChildren(parentId, r => { chrome.runtime.lastError; resolve(r || []); })
+    );
+    const safeIndex = (entry.index !== undefined && entry.index !== null)
+      ? Math.min(entry.index, siblings.length)
+      : siblings.length;
+
+    if (entry.url) {
+      await new Promise(resolve =>
+        chrome.bookmarks.create({ parentId, title: entry.title, url: entry.url, index: safeIndex }, resolve)
+      );
+    } else {
+      const newFolder = await new Promise(resolve =>
+        chrome.bookmarks.create({ parentId, title: entry.title || 'Klasör', index: safeIndex }, resolve)
+      );
+      if (newFolder && Array.isArray(entry.children)) {
+        await restoreFolderChildren(entry.children, newFolder.id);
+      }
+    }
+  }
+
+  async function restoreFolderChildren(children, parentId) {
+    for (const child of children) {
+      if (child.url) {
+        await new Promise(resolve =>
+          chrome.bookmarks.create({ parentId, title: child.title || child.url, url: child.url }, resolve)
+        );
+      } else {
+        const newFolder = await new Promise(resolve =>
+          chrome.bookmarks.create({ parentId, title: child.title || 'Klasör' }, resolve)
+        );
+        if (newFolder && Array.isArray(child.children)) {
+          await restoreFolderChildren(child.children, newFolder.id);
+        }
+      }
+    }
+  }
+
+  restoreAllTrashBtn.addEventListener('click', () => {
+    restoreAllTrashModal.classList.add('active');
+  });
+
+  cancelRestoreAllTrashBtn.addEventListener('click', () => {
+    restoreAllTrashModal.classList.remove('active');
+    !isMobile && trashSearchInput.focus();
+  });
+
+  confirmRestoreAllTrashBtn.addEventListener('click', async () => {
+    restoreAllTrashModal.classList.remove('active');
+    const items = await getTrashItems();
+    for (const trashEntry of items) {
+      await safeRestoreBookmark(trashEntry);
+    }
+    await saveTrashItems([]);
+    trashSearchInput.value = '';
+    loadTrashPanel();
+    listItems(currentFolderId);
+    !isMobile && trashSearchInput.focus();
   });
 
   window.onclick = (event) => {
@@ -614,6 +951,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.target == editModal) closeEditModal();
     if (event.target == openAllModal) openAllModal.classList.remove('active');
     if (event.target == emptyTrashModal) { emptyTrashModal.classList.remove('active'); !isMobile && trashSearchInput.focus(); }
+    if (event.target == restoreAllTrashModal) { restoreAllTrashModal.classList.remove('active'); !isMobile && trashSearchInput.focus(); }
   };
 
   function updateSettingsUI() {
@@ -628,6 +966,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.setting-btn[data-setting="view"]').forEach(b => b.classList.toggle('active', b.dataset.value === viewVal));
     document.querySelectorAll('.setting-btn[data-setting="folderStyle"]').forEach(b => b.classList.toggle('active', b.dataset.value === folderStyleVal));
     document.querySelectorAll('.setting-btn[data-setting="deleteMode"]').forEach(b => b.classList.toggle('active', b.dataset.value === deleteMode));
+    document.querySelectorAll('.setting-btn[data-setting="trashExpiry"]').forEach(b => b.classList.toggle('active', parseInt(b.dataset.value, 10) === trashExpiryDays));
+    
+    const expiryRow = document.getElementById('trashExpiryRow');
+    const parentSettingsRow = expiryRow?.closest('.settings-row');
+    
+    if (expiryRow) {
+      expiryRow.classList.toggle('hidden', deleteMode !== 'trash');
+    }
+    
+    if (parentSettingsRow) {
+      const descriptionParagraph = parentSettingsRow.querySelector('p:not(.trash-expiry-row p)');
+      if (descriptionParagraph && descriptionParagraph.innerText.includes(chrome.i18n.getMessage('deleteModeText'))) {
+        descriptionParagraph.style.display = deleteMode === 'trash' ? '' : 'none';
+      }
+    }
   }
 
   function applyTheme(theme) {
@@ -732,7 +1085,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     return result;
   }
-  function listItems(folderId) {
+  function listItems(folderId, newlyAddedId) {
+    
+    if (isSelectionMode) {
+      isSelectionMode = false;
+      selectedItemIds.clear();
+      bookmarksList.classList.remove('selection-mode');
+      renderSelectBtnIcon();
+      closeBulkContextMenu();
+    }
     chrome.storage.local.set({ folderStack: folderStack });
     chrome.bookmarks.getSubTree(folderId, (bookmarkNodes) => {
       if (window.bookmarksSortable) {
@@ -755,6 +1116,9 @@ document.addEventListener('DOMContentLoaded', () => {
               precomputedData.faviconUrls = collectFaviconsFromTree(node, 4);
             }
             const listItem = createListItem(node, precomputedData);
+            if (newlyAddedId && node.id === newlyAddedId) {
+              listItem.classList.add('item-new');
+            }
             bookmarksList.appendChild(listItem);
           });
         } else {
@@ -786,6 +1150,8 @@ document.addEventListener('DOMContentLoaded', () => {
       updateUpButtonVisibility();
       clearKeyboardSelection();
       !isMobile && searchInput.focus();
+      
+      buildBookmarksCache();
     });
   }
   function appendEmptyMessage(text) {
@@ -801,6 +1167,11 @@ document.addEventListener('DOMContentLoaded', () => {
     listItem.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       event.stopPropagation();
+      if (isSelectionMode) {
+        if (!selectedItemIds.has(node.id)) toggleItemSelection(listItem, node.id);
+        showBulkContextMenu(event.clientX, event.clientY, 'bookmarks');
+        return false;
+      }
       const menuBtn = listItem.querySelector('.menu-button');
       if (menuBtn) menuBtn.click();
       return false;
@@ -815,6 +1186,11 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       event.stopPropagation();
+      if (isSelectionMode) {
+        if (!selectedItemIds.has(node.id)) toggleItemSelection(listItem, node.id);
+        showBulkContextMenu(event.clientX, event.clientY, 'bookmarks');
+        return false;
+      }
       const menuBtn = listItem.querySelector('.menu-button');
       if (menuBtn) menuBtn.click();
       return false;
@@ -822,6 +1198,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!node.url) {
       link.addEventListener('click', (event) => {
         event.preventDefault();
+        if (isSelectionMode) {
+          toggleItemSelection(listItem, node.id);
+          return;
+        }
         folderStack.push(node.id);
         currentFolderId = node.id;
         listItems(node.id);
@@ -847,6 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       link.addEventListener('click', (event) => {
         event.preventDefault(); event.stopPropagation();
+        if (isSelectionMode) { toggleItemSelection(listItem, node.id); return false; }
         if (event.ctrlKey || event.metaKey) { chrome.tabs.create({ url: node.url, active: false }); return false; }
         if (event.shiftKey) { chrome.windows.create({ url: node.url }); return false; }
         chrome.tabs.update({ url: node.url }); return false;
@@ -1112,6 +1493,11 @@ document.addEventListener('DOMContentLoaded', () => {
     link.appendChild(titleDiv);
     bookmarkButtons.appendChild(menuBtn);
     listItem.appendChild(link);
+    
+    const selCheck = document.createElement('div');
+    selCheck.classList.add('sel-check');
+    selCheck.innerHTML = checkSVG;
+    listItem.appendChild(selCheck);
     listItem.appendChild(bookmarkButtons);
     return listItem;
   }
@@ -1186,6 +1572,61 @@ document.addEventListener('DOMContentLoaded', () => {
       callback(allBookmarks);
     });
   }
+  
+  function buildBookmarksCache(callback) {
+    chrome.bookmarks.getSubTree('0', (treeNodes) => {
+      const flat = [];
+      function traverse(nodes) {
+        for (const node of nodes) {
+          if (node.url) flat.push(node);
+          if (node.children) traverse(node.children);
+        }
+      }
+      if (treeNodes && treeNodes.length > 0) traverse(treeNodes);
+      allBookmarksCache = flat;
+      if (callback) callback();
+    });
+  }
+
+  
+  function renderSearchResultsProgressive(results) {
+    const token = ++searchRenderToken;
+    bookmarksList.innerHTML = '';
+    clearKeyboardSelection();
+    if (isGridView) bookmarksList.classList.add('grid-mode');
+    else bookmarksList.classList.remove('grid-mode');
+
+    if (results.length === 0) {
+      appendEmptyMessage(chrome.i18n.getMessage('noSearchResultsMessage'));
+      return;
+    }
+
+    const BATCH_SIZE = 40;
+    let index = 0;
+
+    function renderBatch() {
+      if (token !== searchRenderToken) return; 
+      const fragment = document.createDocumentFragment();
+      const end = Math.min(index + BATCH_SIZE, results.length);
+      for (let i = index; i < end; i++) {
+        const item = results[i];
+        if (item.url) {
+          const li = createListItem(item);
+          fragment.appendChild(li);
+        }
+      }
+      bookmarksList.appendChild(fragment);
+      const isFirstBatch = index === 0;
+      index = end;
+      if (index < results.length) {
+        requestAnimationFrame(renderBatch); 
+      }
+      if (isFirstBatch) setKeyboardSelection(0);
+    }
+
+    requestAnimationFrame(renderBatch);
+  }
+
   addBookmarkBtn.addEventListener('click', () => {
     if (currentBookmarkId) {
       chrome.bookmarks.remove(currentBookmarkId, () => {
@@ -1204,7 +1645,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, (newBookmark) => {
           currentBookmarkId = newBookmark.id;
           updateAddBookmarkButton(true);
-          listItems(currentFolderId);
+          listItems(currentFolderId, newBookmark.id);
         });
       });
     }
@@ -1270,10 +1711,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function initScrollToTop() {
     const bList = document.getElementById('bookmarksList');
     bList.addEventListener('scroll', function () {
+      if (!tabBookmarks.classList.contains('active')) return;
       const scrollPosition = bList.scrollTop;
       if (scrollPosition > 100) showScrollToTop();
       else hideScrollToTop();
     }, { passive: true });
+
+    const tList = document.getElementById('trashList');
+    tList.addEventListener('scroll', function () {
+      if (!tabTrash.classList.contains('active')) return;
+      const scrollPosition = tList.scrollTop;
+      if (scrollPosition > 100) showScrollToTop();
+      else hideScrollToTop();
+    }, { passive: true });
+
     scrollToTopBtn.addEventListener('click', function () { smoothScrollToTop(); });
   }
   function showScrollToTop() {
@@ -1290,35 +1741,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   function smoothScrollToTop() {
-    const bList = document.getElementById('bookmarksList');
-    bList.scrollTo({ top: 0, behavior: 'smooth' });
+    if (tabTrash.classList.contains('active')) {
+      const tList = document.getElementById('trashList');
+      tList.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const bList = document.getElementById('bookmarksList');
+      bList.scrollTo({ top: 0, behavior: 'smooth' });
+      !isMobile && searchInput.focus();
+    }
     hideScrollToTop();
-    !isMobile && searchInput.focus();
   }
   searchInput.addEventListener('input', () => {
     clearKeyboardSelection();
-    const searchTerm = searchInput.value.toLowerCase();
+    const searchTerm = searchInput.value.trim().toLowerCase();
+
+    
+    if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+
     if (searchTerm === '') {
+      ++searchRenderToken; 
       listItems(currentFolderId);
       addBookmarkBtn.style.display = 'flex';
       createFolderBtn.style.display = 'flex';
       updateUpButtonVisibility();
       return;
     }
+
     addBookmarkBtn.style.display = 'none';
     upButton.style.display = 'none';
     createFolderBtn.style.display = 'none';
     header.style.justifyContent = 'center';
-    getAllBookmarks(currentFolderId, (allBookmarks) => {
-      const searchResults = allBookmarks.filter(item =>
-        item.title.toLowerCase().includes(searchTerm) ||
-        (item.url && item.url.toLowerCase().includes(searchTerm))
-      );
-      updateItemsList(searchResults);
-    });
+
+    
+    searchDebounceTimer = setTimeout(() => {
+      const doSearch = () => {
+        const results = allBookmarksCache.filter(item =>
+          item.title.toLowerCase().includes(searchTerm) ||
+          (item.url && item.url.toLowerCase().includes(searchTerm))
+        );
+        renderSearchResultsProgressive(results);
+      };
+
+      if (allBookmarksCache) {
+        doSearch();
+      } else {
+        buildBookmarksCache(doSearch);
+      }
+    }, 100);
   });
   
-  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'defaultFolderId', 'deleteMode', 'trashFolderId', 'showFolderBadge'], (data) => {
+  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge'], (data) => {
     if (data.folderStack && data.folderStack.length > 0) {
       folderStack = data.folderStack;
       currentFolderId = folderStack[folderStack.length - 1];
@@ -1332,7 +1804,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isFolderStackMode) bookmarksList.classList.add('folder-stack-mode');
     if (data.appTheme) applyTheme(data.appTheme);
     deleteMode = data.deleteMode || 'trash';
-    trashFolderId = data.trashFolderId || '2';
+    trashExpiryDays = data.trashExpiryDays || 30;
     showFolderBadge = data.showFolderBadge !== undefined ? !!data.showFolderBadge : true;
     tabTrash.style.display = deleteMode === 'trash' ? '' : 'none';
     setToggleIcon();
@@ -1347,14 +1819,19 @@ document.addEventListener('DOMContentLoaded', () => {
       editModal.classList.contains('active') ||
       openAllModal?.classList.contains('active');
     if (popupOpen) return;
+    const inBookmarksTab = tabBookmarks.classList.contains('active');
+    if (e.key === 'Escape') {
+      if (isSelectionMode) { exitSelectionMode(); return; }
+      if (isTrashSelectionMode) { exitTrashSelectionMode(); return; }
+    }
     if (e.key === 'Tab') {
       e.preventDefault();
-      document.getElementById('upButton').click();
+      if (inBookmarksTab) document.getElementById('upButton').click();
       return;
     }
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
-      document.getElementById('upButton').click();
+      if (inBookmarksTab) document.getElementById('upButton').click();
       return;
     }
     if (e.key === 'ArrowDown') {
@@ -1412,6 +1889,7 @@ document.addEventListener('DOMContentLoaded', () => {
     moveModal.classList.remove('active');
     folderList.innerHTML = '';
     folderSearchInput.value = '';
+    selectionMoveMode = false;
     !isMobile && searchInput.focus();
   }
   function closeEditModal() {
@@ -1425,11 +1903,23 @@ document.addEventListener('DOMContentLoaded', () => {
     newFolderNameInput.placeholder = chrome.i18n.getMessage('newFolderNamePlaceholder');
     newFolderNameInput.value = chrome.i18n.getMessage('newFolderName');
     createFolderInModalBtn.disabled = false;
+    
+    if (selectionFolderMode && selectedItemIds.size > 0) {
+      const firstSelectedId = Array.from(selectedItemIds)[0];
+      const selectedNode = allItems.find(item => item.id === firstSelectedId);
+      if (selectedNode && selectedNode.index !== undefined) {
+        newFolderIndex = selectedNode.index;
+      } else {
+        newFolderIndex = 0;
+      }
+    }
+    
     setTimeout(() => { newFolderNameInput.focus(); newFolderNameInput.select(); }, 300);
   }
   function closeCreateFolderModal() {
     createFolderModal.classList.remove('active');
     newFolderNameInput.value = '';
+    selectionFolderMode = false;
     !isMobile && searchInput.focus();
     newFolderParentId = null;
     newFolderIndex = null;
@@ -1438,16 +1928,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const folderName = newFolderNameInput.value.trim() || chrome.i18n.getMessage('newFolderName');
     if (folderName) {
       const parentId = newFolderParentId || currentFolderId;
-      const index = newFolderIndex !== null ? newFolderIndex : undefined;
+      let finalIndex = newFolderIndex !== null ? newFolderIndex : undefined;
+      
+      if (selectionFolderMode && finalIndex === undefined && selectedItemIds.size > 0) {
+        const firstSelectedId = Array.from(selectedItemIds)[0];
+        const selectedNode = allItems.find(item => item.id === firstSelectedId);
+        if (selectedNode && selectedNode.index !== undefined) {
+          finalIndex = selectedNode.index;
+        }
+      }
+      
       chrome.bookmarks.create({
         parentId: parentId,
         title: folderName,
-        index: index
-      }, () => { 
-        listItems(currentFolderId); 
-        closeCreateFolderModal(); 
-        newFolderParentId = null;
-        newFolderIndex = null;
+        index: finalIndex
+      }, (newFolder) => {
+        if (selectionFolderMode && newFolder) {
+          const ids = Array.from(selectedItemIds);
+          if (ids.length === 0) {
+            selectionFolderMode = false;
+            closeCreateFolderModal();
+            listItems(currentFolderId);
+            exitSelectionMode();
+            return;
+          }
+          let done = 0;
+          ids.forEach(id => {
+            chrome.bookmarks.move(id, { parentId: newFolder.id }, () => {
+              done++;
+              if (done === ids.length) {
+                selectionFolderMode = false;
+                newFolderParentId = null;
+                newFolderIndex = null;
+                closeCreateFolderModal();
+                exitSelectionMode();
+                listItems(currentFolderId);
+              }
+            });
+          });
+        } else {
+          const newId = (parentId === currentFolderId && newFolder) ? newFolder.id : null;
+          listItems(currentFolderId, newId);
+          closeCreateFolderModal();
+          newFolderParentId = null;
+          newFolderIndex = null;
+        }
       });
     }
   });
@@ -1481,17 +2006,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const rootNode = treeNodes[0];
       getAllFolders(rootNode.children, (allFolders) => {
         const excludedIds = new Set();
-        if (itemToMoveId) {
-          const movingNode = allFolders.find(f => f.id === itemToMoveId);
-          if (movingNode) {
-            function collectDescendantFolderIds(node) {
-              excludedIds.add(node.id);
-              if (node.children) {
-                node.children.forEach(child => { if (!child.url) collectDescendantFolderIds(child); });
-              }
-            }
-            collectDescendantFolderIds(movingNode);
+        function collectDescendantFolderIds(node) {
+          excludedIds.add(node.id);
+          if (node.children) {
+            node.children.forEach(child => { if (!child.url) collectDescendantFolderIds(child); });
           }
+        }
+        if (selectionMoveMode) {
+          selectedItemIds.forEach(id => {
+            const n = allFolders.find(f => f.id === id);
+            if (n) collectDescendantFolderIds(n);
+          });
+        } else if (itemToMoveId) {
+          const movingNode = allFolders.find(f => f.id === itemToMoveId);
+          if (movingNode) collectDescendantFolderIds(movingNode);
         }
         const filteredFolders = allFolders.filter(folder =>
           !excludedIds.has(folder.id) &&
@@ -1524,7 +2052,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   folderSearchInput.addEventListener('input', (event) => populateFolderList(event.target.value));
   moveBtn.addEventListener('click', () => {
-    if (itemToMoveId && selectedFolderId) {
+    if (selectionMoveMode && selectedFolderId) {
+      const ids = Array.from(selectedItemIds);
+      let done = 0;
+      if (ids.length === 0) { closeMoveModal(); selectionMoveMode = false; exitSelectionMode(); return; }
+      ids.forEach(id => {
+        chrome.bookmarks.move(id, { parentId: selectedFolderId }, () => {
+          done++;
+          if (done === ids.length) {
+            selectionMoveMode = false;
+            selectedFolderId = null;
+            closeMoveModal();
+            exitSelectionMode();
+            listItems(currentFolderId);
+          }
+        });
+      });
+    } else if (itemToMoveId && selectedFolderId) {
       chrome.bookmarks.move(itemToMoveId, { parentId: selectedFolderId }, () => {
         listItems(currentFolderId); closeMoveModal();
         itemToMoveId = null; selectedFolderId = null;
@@ -1534,6 +2078,170 @@ document.addEventListener('DOMContentLoaded', () => {
   closeMoveModalBtn.addEventListener('click', closeMoveModal);
   closeCreateFolderModalBtn.addEventListener('click', closeCreateFolderModal);
   closeEditModalBtn.addEventListener('click', closeEditModal);
+  
+  async function exportData() {
+    const storageData = await new Promise(resolve => {
+      chrome.storage.local.get(
+        ['deleteMode', 'trashExpiryDays', 'isGridView', 'isFolderStackMode', 'appTheme', 'showFolderBadge', TRASH_STORAGE_KEY],
+        resolve
+      );
+    });
+    const bookmarksTree = await new Promise(resolve => chrome.bookmarks.getTree(resolve));
+    const exportObj = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      settings: {
+        deleteMode: storageData.deleteMode || 'trash',
+        trashExpiryDays: storageData.trashExpiryDays || 30,
+        isGridView: storageData.isGridView || false,
+        isFolderStackMode: storageData.isFolderStackMode || false,
+        appTheme: storageData.appTheme || 'auto',
+        showFolderBadge: storageData.showFolderBadge !== undefined ? storageData.showFolderBadge : true
+      },
+      trash: storageData[TRASH_STORAGE_KEY] || [],
+      bookmarks: bookmarksTree
+    };
+    const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `markleaf-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  async function importData(file) {
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      if (!data.version || !data.settings) throw new Error('Invalid format');
+
+      const confirmed = await showImportConfirmModal();
+      if (!confirmed) return;
+
+      
+      const s = data.settings;
+      await new Promise(resolve => chrome.storage.local.set(s, resolve));
+      deleteMode = s.deleteMode || 'trash';
+      trashExpiryDays = s.trashExpiryDays || 30;
+      isGridView = !!s.isGridView;
+      isFolderStackMode = !!s.isFolderStackMode;
+      showFolderBadge = s.showFolderBadge !== undefined ? !!s.showFolderBadge : true;
+      if (s.appTheme) applyTheme(s.appTheme);
+
+      
+      if (Array.isArray(data.trash)) {
+        await saveTrashItems(data.trash);
+      }
+
+      
+      if (data.bookmarks && Array.isArray(data.bookmarks)) {
+        
+        
+        const root = data.bookmarks[0];
+        let sourceChildren = null;
+
+        
+        const findBookmarksBar = (node) => {
+          if (!node) return null;
+          if (node.id === '1' || node.title === 'Bookmarks bar' || node.title === 'Bookmarks Bar') return node;
+          if (Array.isArray(node.children)) {
+            for (const child of node.children) {
+              const found = findBookmarksBar(child);
+              if (found) return found;
+            }
+          }
+          return null;
+        };
+
+        const bookmarksBar = findBookmarksBar(root);
+        sourceChildren = bookmarksBar?.children || root?.children || [];
+
+        if (sourceChildren.length > 0) {
+          
+          const existingChildren = await new Promise(resolve =>
+            chrome.bookmarks.getChildren('1', r => { chrome.runtime.lastError; resolve(r || []); })
+          );
+          for (const child of existingChildren) {
+            await new Promise(resolve => {
+              if (!child.url) {
+                chrome.bookmarks.removeTree(child.id, () => { chrome.runtime.lastError; resolve(); });
+              } else {
+                chrome.bookmarks.remove(child.id, () => { chrome.runtime.lastError; resolve(); });
+              }
+            });
+          }
+
+          
+          async function createNodes(nodes, parentId) {
+            for (const node of nodes) {
+              if (!node.title && !node.url) continue;
+              if (node.url) {
+                await new Promise(resolve =>
+                  chrome.bookmarks.create({ parentId, title: node.title || node.url, url: node.url }, () => { chrome.runtime.lastError; resolve(); })
+                );
+              } else {
+                
+                const newFolder = await new Promise(resolve =>
+                  chrome.bookmarks.create({ parentId, title: node.title || 'Klasör' }, r => { chrome.runtime.lastError; resolve(r); })
+                );
+                if (newFolder && Array.isArray(node.children) && node.children.length > 0) {
+                  await createNodes(node.children, newFolder.id);
+                }
+              }
+            }
+          }
+          await createNodes(sourceChildren, '1');
+        }
+      }
+
+      
+      tabTrash.style.display = deleteMode === 'trash' ? '' : 'none';
+      setToggleIcon();
+      updateSettingsUI();
+      folderStack = ['1'];
+      currentFolderId = '1';
+      listItems(currentFolderId);
+    } catch (err) {
+      console.error('Import error:', err);
+    }
+  }
+
+  function showImportConfirmModal() {
+    return new Promise(resolve => {
+      importConfirmModal.classList.add('active');
+      const onConfirm = () => {
+        importConfirmModal.classList.remove('active');
+        confirmImportBtn.removeEventListener('click', onConfirm);
+        cancelImportBtn.removeEventListener('click', onCancel);
+        resolve(true);
+      };
+      const onCancel = () => {
+        importConfirmModal.classList.remove('active');
+        confirmImportBtn.removeEventListener('click', onConfirm);
+        cancelImportBtn.removeEventListener('click', onCancel);
+        resolve(false);
+      };
+      confirmImportBtn.addEventListener('click', onConfirm);
+      cancelImportBtn.addEventListener('click', onCancel);
+    });
+  }
+
+  const exportBtn = document.getElementById('exportBtn');
+  const importBtn = document.getElementById('importBtn');
+  const importFileInput = document.getElementById('importFileInput');
+
+  if (exportBtn) exportBtn.addEventListener('click', () => exportData());
+  if (importBtn) importBtn.addEventListener('click', () => importFileInput.click());
+  if (importFileInput) {
+    importFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) { importData(file); importFileInput.value = ''; }
+    });
+  }
+
   const setI18nTexts = () => {
     addBookmarkBtn.textContent = chrome.i18n.getMessage('addBookmark');
     searchInput.placeholder = chrome.i18n.getMessage('searchPlaceholder');

@@ -3,10 +3,10 @@
     "message": "Ara..."
   },
   "noBookmarksMessage": {
-    "message": "Yer imi bulunamadı."
+    "message": "Burada henüz yer işareti yok."
   },
   "noSearchResultsMessage": {
-    "message": "Aramanıza uygun sonuç bulunamadı."
+    "message": "Arama kriterlerinize uygun sonuç bulunamadı."
   },
   "saveButton": {
     "message": "Kaydet"
@@ -24,16 +24,16 @@
     "message": "Burada klasör oluştur"
   },
   "newFolderName": {
-    "message": "Yeni Klasör"
+    "message": "Yeni klasör"
   },
   "addCurrentSiteButton": {
-    "message": "Açık sekmeyi buraya ekle"
+    "message": "Mevcut sekmeyi buraya ekle"
   },
   "addCurrentSiteToFolderButton": {
     "message": "Sekmeyi klasöre ekle"
   },
   "confirmRemoval": {
-    "message": "Emin misin?"
+    "message": "Emin misiniz?"
   },
   "moveButton": {
     "message": "Klasöre taşı"
@@ -51,10 +51,10 @@
     "message": "Üst klasöre çık"
   },
   "addBookmark": {
-    "message": "Yer imi ekle"
+    "message": "Yer işareti ekle"
   },
   "newFolderTitle": {
-    "message": "Yeni klasör oluştur"
+    "message": "Yeni Klasör Oluştur"
   },
   "newFolderNamePlaceholder": {
     "message": "Klasör adı"
@@ -72,10 +72,10 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "Hepsini aç"
+    "message": "Tümünü Aç"
   },
   "confirmOpenAllMessage": {
-    "message": "<b>$1</b> klasöründeki <b>$2</b> yer imini açmak istiyor musun?"
+    "message": "<b>$1</b> klasöründeki <b>$2</b> yer işaretini açmak istiyor musunuz?"
   },
   "confirmOpenAllButton": {
     "message": "Evet"
@@ -84,7 +84,7 @@
     "message": "Bağlantıyı kopyala"
   },
   "openInCurrentTab": {
-    "message": "Açık sekmede aç"
+    "message": "Mevcut sekmede aç"
   },
   "openInNewTab": {
     "message": "Yeni sekmede aç"
@@ -101,20 +101,29 @@
   "trashRestoreButton": {
     "message": "Geri yükle"
   },
+  "restoreAllTrashButton": {
+    "message": "Tümünü geri yükle"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Çöp kutusundaki tüm yer işaretlerini geri yüklemek istediğinizden emin misiniz?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Evet"
+  },
   "trashDeletePermanently": {
     "message": "Kalıcı olarak sil"
   },
   "trashConfirmDelete": {
-    "message": "Emin misin?"
+    "message": "Emin misiniz?"
   },
   "emptyTrashTitle": {
-    "message": "Çöp kutusundaki tüm yer imlerini silmek istediğine emin misin? Bu işlem geri alınamaz!"
+    "message": "Çöp kutusundaki tüm yer işaretlerini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
   },
   "emptyTrashButton": {
     "message": "Evet"
   },
   "settingDeleteModeLabel": {
-    "message": "Silme biçimi"
+    "message": "Silme modu"
   },
   "settingDeleteModeTrash": {
     "message": "Çöp"
@@ -126,19 +135,19 @@
     "message": "Çöp kutusu klasörü"
   },
   "settingBookmarksLabel": {
-    "message": "Yer imleri"
+    "message": "Yer İşaretleri"
   },
   "settingFolderStyleLabel": {
-    "message": "Klasör biçimi"
+    "message": "Klasör stili"
   },
   "settingFolderStyleIcon": {
     "message": "Klasör"
   },
   "settingFolderStyleStack": {
-    "message": "Simgeli"
+    "message": "Yığın"
   },
   "settingFolderBadgeLabel": {
-    "message": "Klasör ayrıntıları"
+    "message": "Klasör rozeti"
   },
   "settingFolderBadgeYes": {
     "message": "Evet"
@@ -150,7 +159,7 @@
     "message": "Tema"
   },
   "settingViewLabel": {
-    "message": "Evet"
+    "message": "Yer İşaretleri"
   },
   "settingViewList": {
     "message": "Liste"
@@ -159,15 +168,87 @@
     "message": "Izgara"
   },
   "folderBadgeText": {
-    "message": "Klasördeki yer imi sayısını gösterir."
+    "message": "Klasörlerin içindeki toplam yer işareti sayısını gösterir."
   },
   "folderStyleText": {
-    "message": "Bu ayar yalnızca ızgara görünümüyle çalışır."
+    "message": "Bu ayar yalnızca ızgara görünümü için geçerlidir."
   },
   "deleteModeText": {
-    "message": "Çöp Kutusu özelliği etkinleştirildiğinde, silinen yer imleri 'Diğer Yer İmleri' klasörüne taşınır ve 30 gün sonra silinir."
+    "message": "Çöp kutusu etkinleştirildiğinde, silinen yer işaretleri buraya taşınır ve belirtilen süre sonunda kalıcı olarak silinir."
   },
-   "trashDaysLeft": {
+  "trashDaysLeft": {
     "message": "g"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Otomatik silme süresi"
+  },
+  "trashExpiry3Days": {
+    "message": "3 gün"
+  },
+  "trashExpiry7Days": {
+    "message": "7 gün"
+  },
+  "trashExpiry1Month": {
+    "message": "1 ay"
+  },
+  "settingImportExportLabel": {
+    "message": "Veri yönetimi"
+  },
+  "exportButton": {
+    "message": "Dışa aktar"
+  },
+  "importButton": {
+    "message": "İçe aktar"
+  },
+  "importError": {
+    "message": "İçe aktarma başarısız oldu. Dosya geçersiz veya bozulmuş olabilir."
+  },
+  "importConfirmMessage": {
+    "message": "Bu işlem yer işaretlerinizin, ayarlarınızın ve çöp kutusu verilerinizin üzerine yazacaktır. Emin misiniz?"
+  },
+  "importConfirmTitle": {
+    "message": "İçe Aktarmayı Onayla"
+  },
+  "importConfirmYes": {
+    "message": "Evet"
+  },
+  "viewToggleLabel": {
+    "message": "Görünümü değiştir"
+  },
+  "contextMenuLabel": {
+    "message": "Seçenekler"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Seç"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Seç"
+  },
+  "bulkOpenSelected": {
+    "message": "Seçilenleri aç ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Klasöre taşı"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Seçilenler ile klasör oluştur"
+  },
+  "bulkDelete": {
+    "message": "Seçilenleri sil"
+  },
+  "bulkConfirmDelete": {
+    "message": "Emin misiniz?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Seçilenleri geri yükle"
+  },
+  "bulkDeletePermanently": {
+    "message": "Kalıcı olarak sil"
+  },
+  "selectionCount": {
+    "message": "$1 nesne seçildi"
   }
 }

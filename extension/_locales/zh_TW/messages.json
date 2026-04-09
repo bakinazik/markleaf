@@ -3,7 +3,7 @@
     "message": "搜尋..."
   },
   "noBookmarksMessage": {
-    "message": "暫無書籤。"
+    "message": "此處暫無書籤。"
   },
   "noSearchResultsMessage": {
     "message": "未找到符合搜尋條件的結果。"
@@ -27,13 +27,13 @@
     "message": "新資料夾"
   },
   "addCurrentSiteButton": {
-    "message": "在此處加入目前分頁"
+    "message": "將目前分頁加入此處"
   },
   "addCurrentSiteToFolderButton": {
     "message": "將分頁加入資料夾"
   },
   "confirmRemoval": {
-    "message": "確定要移除嗎？"
+    "message": "您確定嗎？"
   },
   "moveButton": {
     "message": "移動到資料夾"
@@ -72,13 +72,13 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "全部開啟"
+    "message": "開啟全部"
   },
   "confirmOpenAllMessage": {
-    "message": "您確定要開啟 <b>$1</b> 資料夾中的 <b>$2</b> 個書籤嗎？"
+    "message": "您要開啟資料夾 <b>$1</b> 中的 <b>$2</b> 個書籤嗎？"
   },
   "confirmOpenAllButton": {
-    "message": "是"
+    "message": "確定"
   },
   "copyLinkButton": {
     "message": "複製連結"
@@ -93,7 +93,7 @@
     "message": "搜尋..."
   },
   "trashIsEmpty": {
-    "message": "回收站為空"
+    "message": "回收筒是空的"
   },
   "trashNoResults": {
     "message": "未找到結果"
@@ -101,14 +101,23 @@
   "trashRestoreButton": {
     "message": "還原"
   },
+  "restoreAllTrashButton": {
+    "message": "全部還原"
+  },
+  "restoreAllTrashTitle": {
+    "message": "您確定要還原回收筒中的所有書籤嗎？"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "確定"
+  },
   "trashDeletePermanently": {
     "message": "永久刪除"
   },
   "trashConfirmDelete": {
-    "message": "確定要刪除嗎？"
+    "message": "您確定嗎？"
   },
   "emptyTrashTitle": {
-    "message": "您確定要刪除回收站中的所有書籤嗎？此操作無法復原！"
+    "message": "您確定要刪除回收筒中的所有書籤嗎？此操作不可撤銷！"
   },
   "emptyTrashButton": {
     "message": "確定"
@@ -117,13 +126,13 @@
     "message": "刪除模式"
   },
   "settingDeleteModeTrash": {
-    "message": "回收站"
+    "message": "回收筒"
   },
   "settingDeleteModePermanent": {
     "message": "直接刪除"
   },
   "settingTrashFolderLabel": {
-    "message": "回收站資料夾"
+    "message": "回收筒資料夾"
   },
   "settingBookmarksLabel": {
     "message": "書籤"
@@ -135,7 +144,7 @@
     "message": "圖示"
   },
   "settingFolderStyleStack": {
-    "message": "層疊"
+    "message": "堆疊"
   },
   "settingFolderBadgeLabel": {
     "message": "資料夾角標"
@@ -159,15 +168,87 @@
     "message": "網格"
   },
   "folderBadgeText": {
-    "message": "顯示資料夾內包含的書籤總數。"
+    "message": "顯示資料夾內的書籤總數。"
   },
   "folderStyleText": {
     "message": "此設定僅適用於網格檢視。"
   },
   "deleteModeText": {
-    "message": "啟用回收站後，刪除的書籤將移至「其他書籤」資料夾，並於 30 天後自動刪除。"
+    "message": "啟用回收筒後，刪除的書籤將移至此處，並在指定時間後永久刪除。"
   },
   "trashDaysLeft": {
     "message": "天"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "自動刪除期限"
+  },
+  "trashExpiry3Days": {
+    "message": "3天"
+  },
+  "trashExpiry7Days": {
+    "message": "7天"
+  },
+  "trashExpiry1Month": {
+    "message": "1個月"
+  },
+  "settingImportExportLabel": {
+    "message": "資料管理"
+  },
+  "exportButton": {
+    "message": "匯出"
+  },
+  "importButton": {
+    "message": "匯入"
+  },
+  "importError": {
+    "message": "匯入失敗。檔案可能無效或已損壞。"
+  },
+  "importConfirmMessage": {
+    "message": "這將會覆蓋您的書籤、設定和回收筒資料。您確定嗎？"
+  },
+  "importConfirmTitle": {
+    "message": "確認匯入"
+  },
+  "importConfirmYes": {
+    "message": "確定"
+  },
+  "viewToggleLabel": {
+    "message": "切換檢視"
+  },
+  "contextMenuLabel": {
+    "message": "選項"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "選擇"
+  },
+  "selectionModeButtonTrash": {
+    "message": "選擇"
+  },
+  "bulkOpenSelected": {
+    "message": "開啟所選項目 ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "移動到資料夾"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "從所選項目建立資料夾"
+  },
+  "bulkDelete": {
+    "message": "刪除所選項目"
+  },
+  "bulkConfirmDelete": {
+    "message": "您確定嗎？"
+  },
+  "bulkRestoreSelected": {
+    "message": "還原所選項目"
+  },
+  "bulkDeletePermanently": {
+    "message": "永久刪除"
+  },
+  "selectionCount": {
+    "message": "已選擇 $1 項"
   }
 }

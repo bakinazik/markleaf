@@ -84,7 +84,7 @@
     "message": "Link kopieren"
   },
   "openInCurrentTab": {
-    "message": "Im aktuellen Tab öffnen"
+    "message": "In aktuellem Tab öffnen"
   },
   "openInNewTab": {
     "message": "In neuem Tab öffnen"
@@ -100,6 +100,15 @@
   },
   "trashRestoreButton": {
     "message": "Wiederherstellen"
+  },
+  "restoreAllTrashButton": {
+    "message": "Alle wiederherstellen"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Sind Sie sicher, dass Sie alle Lesezeichen aus dem Papierkorb wiederherstellen möchten?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Ja"
   },
   "trashDeletePermanently": {
     "message": "Endgültig löschen"
@@ -123,13 +132,13 @@
     "message": "Löschen"
   },
   "settingTrashFolderLabel": {
-    "message": "Papierkorb-Ordner"
+    "message": "Papierkorbordner"
   },
   "settingBookmarksLabel": {
     "message": "Lesezeichen"
   },
   "settingFolderStyleLabel": {
-    "message": "Ordner-Stil"
+    "message": "Ordnerstil"
   },
   "settingFolderStyleIcon": {
     "message": "Ordner"
@@ -165,9 +174,81 @@
     "message": "Diese Einstellung gilt nur für die Rasteransicht."
   },
   "deleteModeText": {
-    "message": "Wenn der Papierkorb aktiviert ist, werden gelöschte Lesezeichen in den Ordner 'Sonstige Lesezeichen' verschoben und nach 30 Tagen gelöscht."
+    "message": "Wenn der Papierkorb aktiviert ist, werden gelöschte Lesezeichen in den Papierkorb verschoben und nach der angegebenen Dauer gelöscht."
   },
   "trashDaysLeft": {
     "message": "T"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Automatisch löschen nach"
+  },
+  "trashExpiry3Days": {
+    "message": "3 Tagen"
+  },
+  "trashExpiry7Days": {
+    "message": "7 Tagen"
+  },
+  "trashExpiry1Month": {
+    "message": "1 Monat"
+  },
+  "settingImportExportLabel": {
+    "message": "Datenverwaltung"
+  },
+  "exportButton": {
+    "message": "Exportieren"
+  },
+  "importButton": {
+    "message": "Importieren"
+  },
+  "importError": {
+    "message": "Import fehlgeschlagen. Die Datei ist möglicherweise ungültig oder beschädigt."
+  },
+  "importConfirmMessage": {
+    "message": "Dies wird Ihre Lesezeichen, Einstellungen und Papierkorbdaten überschreiben. Sind Sie sicher?"
+  },
+  "importConfirmTitle": {
+    "message": "Import bestätigen"
+  },
+  "importConfirmYes": {
+    "message": "Ja"
+  },
+  "viewToggleLabel": {
+    "message": "Ansicht umschalten"
+  },
+  "contextMenuLabel": {
+    "message": "Optionen"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Auswählen"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Auswählen"
+  },
+  "bulkOpenSelected": {
+    "message": "Ausgewählte öffnen ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "In Ordner verschieben"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Ordner aus Auswahl erstellen"
+  },
+  "bulkDelete": {
+    "message": "Ausgewählte löschen"
+  },
+  "bulkConfirmDelete": {
+    "message": "Sind Sie sicher?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Ausgewählte wiederherstellen"
+  },
+  "bulkDeletePermanently": {
+    "message": "Endgültig löschen"
+  },
+  "selectionCount": {
+    "message": "$1 ausgewählt"
   }
 }

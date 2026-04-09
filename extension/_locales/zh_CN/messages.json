@@ -3,10 +3,10 @@
     "message": "搜索..."
   },
   "noBookmarksMessage": {
-    "message": "暂无书签。"
+    "message": "此处暂无书签。"
   },
   "noSearchResultsMessage": {
-    "message": "未找到符合搜索条件的搜索结果。"
+    "message": "未找到符合搜索条件的记录。"
   },
   "saveButton": {
     "message": "保存"
@@ -33,7 +33,7 @@
     "message": "将标签页添加到文件夹"
   },
   "confirmRemoval": {
-    "message": "确定要移除吗？"
+    "message": "您确定吗？"
   },
   "moveButton": {
     "message": "移动到文件夹"
@@ -72,13 +72,13 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "全部打开"
+    "message": "打开全部"
   },
   "confirmOpenAllMessage": {
-    "message": "您确定要打开 <b>$1</b> 文件夹中的 <b>$2</b> 个书签吗？"
+    "message": "您要打开文件夹 <b>$1</b> 中的 <b>$2</b> 个书签吗？"
   },
   "confirmOpenAllButton": {
-    "message": "是"
+    "message": "确定"
   },
   "copyLinkButton": {
     "message": "复制链接"
@@ -101,14 +101,23 @@
   "trashRestoreButton": {
     "message": "还原"
   },
+  "restoreAllTrashButton": {
+    "message": "全部还原"
+  },
+  "restoreAllTrashTitle": {
+    "message": "您确定要还原回收站中的所有书签吗？"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "确定"
+  },
   "trashDeletePermanently": {
     "message": "永久删除"
   },
   "trashConfirmDelete": {
-    "message": "确定要删除吗？"
+    "message": "您确定吗？"
   },
   "emptyTrashTitle": {
-    "message": "您确定要删除回收站中的所有书签吗？此操作无法撤销！"
+    "message": "您确定要删除回收站中的所有书签吗？此操作不可撤销！"
   },
   "emptyTrashButton": {
     "message": "确定"
@@ -135,7 +144,7 @@
     "message": "图标"
   },
   "settingFolderStyleStack": {
-    "message": "层叠"
+    "message": "堆叠"
   },
   "settingFolderBadgeLabel": {
     "message": "文件夹角标"
@@ -159,15 +168,87 @@
     "message": "网格"
   },
   "folderBadgeText": {
-    "message": "显示文件夹内包含的书签总数。"
+    "message": "显示文件夹内的书签总数。"
   },
   "folderStyleText": {
     "message": "此设置仅适用于网格视图。"
   },
   "deleteModeText": {
-    "message": "启用回收站后，删除的书签将移至“其他书签”文件夹，并于 30 天后自动删除。"
+    "message": "启用回收站后，删除的书签将移至此处，并在指定时间后永久删除。"
   },
   "trashDaysLeft": {
     "message": "天"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "自动删除期限"
+  },
+  "trashExpiry3Days": {
+    "message": "3天"
+  },
+  "trashExpiry7Days": {
+    "message": "7天"
+  },
+  "trashExpiry1Month": {
+    "message": "1个月"
+  },
+  "settingImportExportLabel": {
+    "message": "数据管理"
+  },
+  "exportButton": {
+    "message": "导出"
+  },
+  "importButton": {
+    "message": "导入"
+  },
+  "importError": {
+    "message": "导入失败。文件可能无效或已损坏。"
+  },
+  "importConfirmMessage": {
+    "message": "这将覆盖您的书签、设置和回收站数据。您确定吗？"
+  },
+  "importConfirmTitle": {
+    "message": "确认导入"
+  },
+  "importConfirmYes": {
+    "message": "确定"
+  },
+  "viewToggleLabel": {
+    "message": "切换视图"
+  },
+  "contextMenuLabel": {
+    "message": "选项"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "选择"
+  },
+  "selectionModeButtonTrash": {
+    "message": "选择"
+  },
+  "bulkOpenSelected": {
+    "message": "打开所选 ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "移动到文件夹"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "从所选创建文件夹"
+  },
+  "bulkDelete": {
+    "message": "删除所选"
+  },
+  "bulkConfirmDelete": {
+    "message": "您确定吗？"
+  },
+  "bulkRestoreSelected": {
+    "message": "还原所选"
+  },
+  "bulkDeletePermanently": {
+    "message": "永久删除"
+  },
+  "selectionCount": {
+    "message": "已选择 $1 项"
   }
 }

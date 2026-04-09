@@ -6,7 +6,7 @@
     "message": "Здесь нет закладок."
   },
   "noSearchResultsMessage": {
-    "message": "Результатов, соответствующих вашему запросу, не найдено."
+    "message": "Результатов, соответствующих вашему поиску, не найдено."
   },
   "saveButton": {
     "message": "Сохранить"
@@ -57,19 +57,19 @@
     "message": "Создать новую папку"
   },
   "newFolderNamePlaceholder": {
-    "message": "Название папки"
+    "message": "Имя папки"
   },
   "createFolderModalButton": {
     "message": "Создать"
   },
   "editTitle": {
-    "message": "Редактировать"
+    "message": "Изменить"
   },
   "editTitlePlaceholder": {
     "message": "Заголовок"
   },
   "editUrlPlaceholder": {
-    "message": "URL"
+    "message": "URL-адрес"
   },
   "confirmOpenAllTitle": {
     "message": "Открыть все"
@@ -101,6 +101,15 @@
   "trashRestoreButton": {
     "message": "Восстановить"
   },
+  "restoreAllTrashButton": {
+    "message": "Восстановить все"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Вы уверены, что хотите восстановить все закладки из корзины?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Да"
+  },
   "trashDeletePermanently": {
     "message": "Удалить навсегда"
   },
@@ -108,7 +117,7 @@
     "message": "Вы уверены?"
   },
   "emptyTrashTitle": {
-    "message": "Вы уверены, что хотите удалить все закладки из корзины? Это действие нельзя отменить!"
+    "message": "Вы уверены, что хотите удалить все закладки в корзине? Это действие нельзя отменить!"
   },
   "emptyTrashButton": {
     "message": "Да"
@@ -120,7 +129,7 @@
     "message": "Корзина"
   },
   "settingDeleteModePermanent": {
-    "message": "Удаление"
+    "message": "Удалить"
   },
   "settingTrashFolderLabel": {
     "message": "Папка корзины"
@@ -129,7 +138,7 @@
     "message": "Закладки"
   },
   "settingFolderStyleLabel": {
-    "message": "Стиль папок"
+    "message": "Стиль папки"
   },
   "settingFolderStyleIcon": {
     "message": "Папка"
@@ -138,7 +147,7 @@
     "message": "Стопка"
   },
   "settingFolderBadgeLabel": {
-    "message": "Счетчик в папках"
+    "message": "Счетчик папки"
   },
   "settingFolderBadgeYes": {
     "message": "Да"
@@ -162,12 +171,84 @@
     "message": "Отображает общее количество закладок внутри папок."
   },
   "folderStyleText": {
-    "message": "Этот параметр применяется только к виду «Сетка»."
+    "message": "Этот параметр применяется только к виду сетки."
   },
   "deleteModeText": {
-    "message": "Если корзина включена, удаленные закладки перемещаются в папку «Другие закладки» и окончательно удаляются через 30 дней."
+    "message": "Когда корзина включена, удаленные закладки перемещаются в нее и окончательно удаляются через указанное время."
   },
   "trashDaysLeft": {
     "message": "д"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Автоудаление через"
+  },
+  "trashExpiry3Days": {
+    "message": "3 дня"
+  },
+  "trashExpiry7Days": {
+    "message": "7 дней"
+  },
+  "trashExpiry1Month": {
+    "message": "1 месяц"
+  },
+  "settingImportExportLabel": {
+    "message": "Управление данными"
+  },
+  "exportButton": {
+    "message": "Экспорт"
+  },
+  "importButton": {
+    "message": "Импорт"
+  },
+  "importError": {
+    "message": "Ошибка импорта. Файл может быть недействительным или поврежденным."
+  },
+  "importConfirmMessage": {
+    "message": "Это перезапишет ваши закладки, настройки и данные корзины. Вы уверены?"
+  },
+  "importConfirmTitle": {
+    "message": "Подтверждение импорта"
+  },
+  "importConfirmYes": {
+    "message": "Да"
+  },
+  "viewToggleLabel": {
+    "message": "Переключить вид"
+  },
+  "contextMenuLabel": {
+    "message": "Опции"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Выбрать"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Выбрать"
+  },
+  "bulkOpenSelected": {
+    "message": "Открыть выбранные ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Переместить в папку"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Создать папку из выбранного"
+  },
+  "bulkDelete": {
+    "message": "Удалить выбранные"
+  },
+  "bulkConfirmDelete": {
+    "message": "Вы уверены?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Восстановить выбранные"
+  },
+  "bulkDeletePermanently": {
+    "message": "Удалить навсегда"
+  },
+  "selectionCount": {
+    "message": "Выбрано: $1"
   }
 }

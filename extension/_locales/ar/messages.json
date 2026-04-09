@@ -3,10 +3,10 @@
     "message": "بحث..."
   },
   "noBookmarksMessage": {
-    "message": "لا توجد علامات مرجعية هنا."
+    "message": "لا توجد إشارات مرجعية هنا."
   },
   "noSearchResultsMessage": {
-    "message": "لم يتم العثور على نتائج تطابق معايير بحثك."
+    "message": "لم يتم العثور على نتائج تطابق معايير البحث الخاصة بك."
   },
   "saveButton": {
     "message": "حفظ"
@@ -27,16 +27,16 @@
     "message": "مجلد جديد"
   },
   "addCurrentSiteButton": {
-    "message": "إضافة التبويب الحالي هنا"
+    "message": "إضافة علامة التبويب الحالية هنا"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "إضافة التبويب إلى المجلد"
+    "message": "إضافة علامة التبويب إلى المجلد"
   },
   "confirmRemoval": {
     "message": "هل أنت متأكد؟"
   },
   "moveButton": {
-    "message": "نقل إلى مجلد"
+    "message": "نقل إلى المجلد"
   },
   "searchFolderPlaceholder": {
     "message": "بحث في المجلدات..."
@@ -51,7 +51,7 @@
     "message": "الانتقال للمجلد الأعلى"
   },
   "addBookmark": {
-    "message": "إضافة علامة مرجعية"
+    "message": "إضافة إشارة مرجعية"
   },
   "newFolderTitle": {
     "message": "إنشاء مجلد جديد"
@@ -75,7 +75,7 @@
     "message": "فتح الكل"
   },
   "confirmOpenAllMessage": {
-    "message": "هل تريد فتح <b>$2</b> من العلامات المرجعية في مجلد <b>$1</b>؟"
+    "message": "هل تريد فتح <b>$2</b> من الإشارات المرجعية في مجلد <b>$1</b>؟"
   },
   "confirmOpenAllButton": {
     "message": "نعم"
@@ -84,10 +84,10 @@
     "message": "نسخ الرابط"
   },
   "openInCurrentTab": {
-    "message": "فتح في التبويب الحالي"
+    "message": "فتح في علامة التبويب الحالية"
   },
   "openInNewTab": {
-    "message": "فتح في تبويب جديد"
+    "message": "فتح في علامة تبويب جديدة"
   },
   "trashSearchPlaceholder": {
     "message": "بحث..."
@@ -96,10 +96,19 @@
     "message": "سلة المهملات فارغة"
   },
   "trashNoResults": {
-    "message": "لا توجد نتائج"
+    "message": "لم يتم العثور على نتائج"
   },
   "trashRestoreButton": {
     "message": "استعادة"
+  },
+  "restoreAllTrashButton": {
+    "message": "استعادة الكل"
+  },
+  "restoreAllTrashTitle": {
+    "message": "هل أنت متأكد أنك تريد استعادة جميع الإشارات المرجعية من سلة المهملات؟"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "نعم"
   },
   "trashDeletePermanently": {
     "message": "حذف نهائي"
@@ -108,7 +117,7 @@
     "message": "هل أنت متأكد؟"
   },
   "emptyTrashTitle": {
-    "message": "هل أنت متأكد أنك تريد حذف جميع العلامات المرجعية في سلة المهملات؟ لا يمكن التراجع عن هذا الإجراء!"
+    "message": "هل أنت متأكد أنك تريد حذف جميع الإشارات المرجعية في سلة المهملات؟ لا يمكن التراجع عن هذا الإجراء!"
   },
   "emptyTrashButton": {
     "message": "نعم"
@@ -126,16 +135,16 @@
     "message": "مجلد سلة المهملات"
   },
   "settingBookmarksLabel": {
-    "message": "العلامات المرجعية"
+    "message": "الإشارات المرجعية"
   },
   "settingFolderStyleLabel": {
     "message": "نمط المجلد"
   },
   "settingFolderStyleIcon": {
-    "message": "أيقونة"
+    "message": "مجلد"
   },
   "settingFolderStyleStack": {
-    "message": "تكديس"
+    "message": "مكدس"
   },
   "settingFolderBadgeLabel": {
     "message": "شارة المجلد"
@@ -150,7 +159,7 @@
     "message": "المظهر"
   },
   "settingViewLabel": {
-    "message": "العلامات المرجعية"
+    "message": "الإشارات المرجعية"
   },
   "settingViewList": {
     "message": "قائمة"
@@ -159,15 +168,87 @@
     "message": "شبكة"
   },
   "folderBadgeText": {
-    "message": "يعرض العدد الإجمالي للعلامات المرجعية داخل المجلدات."
+    "message": "يعرض العدد الإجمالي للإشارات المرجعية داخل المجلدات."
   },
   "folderStyleText": {
-    "message": "هذا الإعداد ينطبق فقط على عرض الشبكة."
+    "message": "ينطبق هذا الإعداد فقط على عرض الشبكة."
   },
   "deleteModeText": {
-    "message": "عند تفعيل سلة المهملات، يتم نقل العلامات المرجعية المحذوفة إلى مجلد العلامات المرجعية الأخرى ويتم حذفها نهائياً بعد 30 يوماً."
+    "message": "عند تفعيل سلة المهملات، يتم نقل الإشارات المرجعية المحذوفة إليها وتُحذف نهائياً بعد المدة المحددة."
   },
   "trashDaysLeft": {
-    "message": "يوم"
+    "message": "ي"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "حذف تلقائي بعد"
+  },
+  "trashExpiry3Days": {
+    "message": "3 أيام"
+  },
+  "trashExpiry7Days": {
+    "message": "7 أيام"
+  },
+  "trashExpiry1Month": {
+    "message": "شهر واحد"
+  },
+  "settingImportExportLabel": {
+    "message": "إدارة البيانات"
+  },
+  "exportButton": {
+    "message": "تصدير"
+  },
+  "importButton": {
+    "message": "استيراد"
+  },
+  "importError": {
+    "message": "فشل الاستيراد. قد يكون الملف غير صالح أو تالفاً."
+  },
+  "importConfirmMessage": {
+    "message": "سيؤدي هذا إلى الكتابة فوق الإشارات المرجعية والإعدادات وبيانات سلة المهملات. هل أنت متأكد؟"
+  },
+  "importConfirmTitle": {
+    "message": "تأكيد الاستيراد"
+  },
+  "importConfirmYes": {
+    "message": "نعم"
+  },
+  "viewToggleLabel": {
+    "message": "تبديل العرض"
+  },
+  "contextMenuLabel": {
+    "message": "خيارات"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "تحديد"
+  },
+  "selectionModeButtonTrash": {
+    "message": "تحديد"
+  },
+  "bulkOpenSelected": {
+    "message": "فتح المحدد ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "نقل إلى المجلد"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "إنشاء مجلد من التحديد"
+  },
+  "bulkDelete": {
+    "message": "حذف المحدد"
+  },
+  "bulkConfirmDelete": {
+    "message": "هل أنت متأكد؟"
+  },
+  "bulkRestoreSelected": {
+    "message": "استعادة المحدد"
+  },
+  "bulkDeletePermanently": {
+    "message": "حذف نهائي"
+  },
+  "selectionCount": {
+    "message": "$1 محدد"
   }
 }

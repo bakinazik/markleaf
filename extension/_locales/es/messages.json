@@ -48,7 +48,7 @@
     "message": "Mover"
   },
   "upFolderButton": {
-    "message": "Subir nivel de carpeta"
+    "message": "Subir de nivel"
   },
   "addBookmark": {
     "message": "Añadir marcador"
@@ -100,6 +100,15 @@
   },
   "trashRestoreButton": {
     "message": "Restaurar"
+  },
+  "restoreAllTrashButton": {
+    "message": "Restaurar todo"
+  },
+  "restoreAllTrashTitle": {
+    "message": "¿Estás seguro de que quieres restaurar todos los marcadores de la papelera?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Sí"
   },
   "trashDeletePermanently": {
     "message": "Eliminar permanentemente"
@@ -165,9 +174,81 @@
     "message": "Este ajuste solo se aplica a la vista de cuadrícula."
   },
   "deleteModeText": {
-    "message": "Cuando la papelera está activada, los marcadores eliminados se mueven a la carpeta de otros marcadores y se eliminan después de 30 días."
+    "message": "Cuando la papelera está activada, los marcadores eliminados se mueven a ella y se borran tras el tiempo especificado."
   },
   "trashDaysLeft": {
     "message": "d"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Auto-eliminar después de"
+  },
+  "trashExpiry3Days": {
+    "message": "3 días"
+  },
+  "trashExpiry7Days": {
+    "message": "7 días"
+  },
+  "trashExpiry1Month": {
+    "message": "1 mes"
+  },
+  "settingImportExportLabel": {
+    "message": "Gestión de datos"
+  },
+  "exportButton": {
+    "message": "Exportar"
+  },
+  "importButton": {
+    "message": "Importar"
+  },
+  "importError": {
+    "message": "Error al importar. El archivo puede ser inválido o estar dañado."
+  },
+  "importConfirmMessage": {
+    "message": "Esto sobrescribirá tus marcadores, ajustes y datos de la papelera. ¿Estás seguro?"
+  },
+  "importConfirmTitle": {
+    "message": "Confirmar importación"
+  },
+  "importConfirmYes": {
+    "message": "Sí"
+  },
+  "viewToggleLabel": {
+    "message": "Cambiar vista"
+  },
+  "contextMenuLabel": {
+    "message": "Opciones"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Seleccionar"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Seleccionar"
+  },
+  "bulkOpenSelected": {
+    "message": "Abrir seleccionados ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Mover a la carpeta"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Crear carpeta de la selección"
+  },
+  "bulkDelete": {
+    "message": "Eliminar seleccionados"
+  },
+  "bulkConfirmDelete": {
+    "message": "¿Estás seguro?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Restaurar seleccionados"
+  },
+  "bulkDeletePermanently": {
+    "message": "Eliminar permanentemente"
+  },
+  "selectionCount": {
+    "message": "$1 seleccionados"
   }
 }

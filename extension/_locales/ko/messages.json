@@ -6,7 +6,7 @@
     "message": "북마크가 없습니다."
   },
   "noSearchResultsMessage": {
-    "message": "검색 조건에 맞는 결과가 없습니다."
+    "message": "검색 결과가 없습니다."
   },
   "saveButton": {
     "message": "저장"
@@ -101,6 +101,15 @@
   "trashRestoreButton": {
     "message": "복원"
   },
+  "restoreAllTrashButton": {
+    "message": "모두 복원"
+  },
+  "restoreAllTrashTitle": {
+    "message": "휴지통의 모든 북마크를 복원하시겠습니까?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "예"
+  },
   "trashDeletePermanently": {
     "message": "영구 삭제"
   },
@@ -108,7 +117,7 @@
     "message": "정말 삭제하시겠습니까?"
   },
   "emptyTrashTitle": {
-    "message": "휴지통의 모든 북마크를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다!"
+    "message": "휴지통의 모든 북마크를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다!"
   },
   "emptyTrashButton": {
     "message": "예"
@@ -120,7 +129,7 @@
     "message": "휴지통"
   },
   "settingDeleteModePermanent": {
-    "message": "삭제"
+    "message": "즉시 삭제"
   },
   "settingTrashFolderLabel": {
     "message": "휴지통 폴더"
@@ -141,10 +150,10 @@
     "message": "폴더 배지"
   },
   "settingFolderBadgeYes": {
-    "message": "사용"
+    "message": "예"
   },
   "settingFolderBadgeNo": {
-    "message": "사용 안 함"
+    "message": "아니요"
   },
   "settingThemeLabel": {
     "message": "테마"
@@ -159,15 +168,87 @@
     "message": "그리드"
   },
   "folderBadgeText": {
-    "message": "폴더 내의 총 북마크 수를 표시합니다."
+    "message": "폴더 내 북마크의 총 개수를 표시합니다."
   },
   "folderStyleText": {
-    "message": "이 설정은 그리드 뷰에만 적용됩니다."
+    "message": "이 설정은 그리드 보기에서만 적용됩니다."
   },
   "deleteModeText": {
-    "message": "휴지통을 사용하면 삭제된 북마크가 기타 북마크 폴더로 이동되며 30일 후에 완전히 삭제됩니다."
+    "message": "휴지통 모드가 활성화되면 삭제된 북마크는 휴지통으로 이동하며 설정된 기간 후에 완전히 삭제됩니다."
   },
   "trashDaysLeft": {
     "message": "일"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "자동 삭제 기간"
+  },
+  "trashExpiry3Days": {
+    "message": "3일"
+  },
+  "trashExpiry7Days": {
+    "message": "7일"
+  },
+  "trashExpiry1Month": {
+    "message": "1개월"
+  },
+  "settingImportExportLabel": {
+    "message": "데이터 관리"
+  },
+  "exportButton": {
+    "message": "내보내기"
+  },
+  "importButton": {
+    "message": "가져오기"
+  },
+  "importError": {
+    "message": "가져오기에 실패했습니다. 파일이 잘못되었거나 손상되었을 수 있습니다."
+  },
+  "importConfirmMessage": {
+    "message": "북마크, 설정 및 휴지통 데이터가 덮어씌워집니다. 계속하시겠습니까?"
+  },
+  "importConfirmTitle": {
+    "message": "가져오기 확인"
+  },
+  "importConfirmYes": {
+    "message": "예"
+  },
+  "viewToggleLabel": {
+    "message": "보기 전환"
+  },
+  "contextMenuLabel": {
+    "message": "옵션"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "선택"
+  },
+  "selectionModeButtonTrash": {
+    "message": "선택"
+  },
+  "bulkOpenSelected": {
+    "message": "선택 항목 열기 ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "폴더로 이동"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "선택 항목으로 폴더 생성"
+  },
+  "bulkDelete": {
+    "message": "선택 항목 삭제"
+  },
+  "bulkConfirmDelete": {
+    "message": "정말 삭제하시겠습니까?"
+  },
+  "bulkRestoreSelected": {
+    "message": "선택 항목 복원"
+  },
+  "bulkDeletePermanently": {
+    "message": "영구 삭제"
+  },
+  "selectionCount": {
+    "message": "$1개 선택됨"
   }
 }

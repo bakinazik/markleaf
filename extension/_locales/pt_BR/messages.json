@@ -33,7 +33,7 @@
     "message": "Adicionar aba à pasta"
   },
   "confirmRemoval": {
-    "message": "Tem certeza?"
+    "message": "Você tem certeza?"
   },
   "moveButton": {
     "message": "Mover para pasta"
@@ -72,7 +72,7 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "Abrir Todos"
+    "message": "Abrir Tudo"
   },
   "confirmOpenAllMessage": {
     "message": "Deseja abrir <b>$2</b> favoritos na pasta <b>$1</b>?"
@@ -101,11 +101,20 @@
   "trashRestoreButton": {
     "message": "Restaurar"
   },
+  "restoreAllTrashButton": {
+    "message": "Restaurar tudo"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Tem certeza de que deseja restaurar todos os favoritos da lixeira?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Sim"
+  },
   "trashDeletePermanently": {
     "message": "Excluir permanentemente"
   },
   "trashConfirmDelete": {
-    "message": "Tem certeza?"
+    "message": "Você tem certeza?"
   },
   "emptyTrashTitle": {
     "message": "Tem certeza de que deseja excluir todos os favoritos da lixeira? Esta ação não pode ser desfeita!"
@@ -135,7 +144,7 @@
     "message": "Pasta"
   },
   "settingFolderStyleStack": {
-    "message": "Pilha"
+    "message": "Empilhado"
   },
   "settingFolderBadgeLabel": {
     "message": "Contador da pasta"
@@ -165,9 +174,81 @@
     "message": "Esta configuração aplica-se apenas à visualização em grade."
   },
   "deleteModeText": {
-    "message": "Quando a lixeira está ativada, os favoritos excluídos são movidos para a pasta 'Outros favoritos' e excluídos após 30 dias."
+    "message": "Quando a lixeira está ativada, os favoritos excluídos são movidos para ela e removidos definitivamente após o período especificado."
   },
   "trashDaysLeft": {
     "message": "d"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Exclusão automática após"
+  },
+  "trashExpiry3Days": {
+    "message": "3 dias"
+  },
+  "trashExpiry7Days": {
+    "message": "7 dias"
+  },
+  "trashExpiry1Month": {
+    "message": "1 mês"
+  },
+  "settingImportExportLabel": {
+    "message": "Gerenciamento de dados"
+  },
+  "exportButton": {
+    "message": "Exportar"
+  },
+  "importButton": {
+    "message": "Importar"
+  },
+  "importError": {
+    "message": "Falha na importação. O arquivo pode ser inválido ou estar corrompido."
+  },
+  "importConfirmMessage": {
+    "message": "Isso substituirá seus favoritos, configurações e dados da lixeira. Você tem certeza?"
+  },
+  "importConfirmTitle": {
+    "message": "Confirmar Importação"
+  },
+  "importConfirmYes": {
+    "message": "Sim"
+  },
+  "viewToggleLabel": {
+    "message": "Alternar visualização"
+  },
+  "contextMenuLabel": {
+    "message": "Opções"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Selecionar"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Selecionar"
+  },
+  "bulkOpenSelected": {
+    "message": "Abrir selecionados ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Mover para pasta"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Criar pasta da seleção"
+  },
+  "bulkDelete": {
+    "message": "Excluir selecionados"
+  },
+  "bulkConfirmDelete": {
+    "message": "Você tem certeza?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Restaurar selecionados"
+  },
+  "bulkDeletePermanently": {
+    "message": "Excluir permanentemente"
+  },
+  "selectionCount": {
+    "message": "$1 selecionado(s)"
   }
 }

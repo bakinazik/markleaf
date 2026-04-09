@@ -3,7 +3,7 @@
     "message": "Cari..."
   },
   "noBookmarksMessage": {
-    "message": "Tidak ada bookmark di sini."
+    "message": "Tidak ada penanda di sini."
   },
   "noSearchResultsMessage": {
     "message": "Tidak ada hasil yang cocok dengan kriteria pencarian Anda."
@@ -42,16 +42,16 @@
     "message": "Cari di folder..."
   },
   "noFoldersFoundMessage": {
-    "message": "Tidak ada folder yang ditemukan."
+    "message": "Folder tidak ditemukan."
   },
   "moveBtnText": {
-    "message": "Pindahkan"
+    "message": "Pindah"
   },
   "upFolderButton": {
     "message": "Naik ke folder atas"
   },
   "addBookmark": {
-    "message": "Tambah bookmark"
+    "message": "Tambah penanda"
   },
   "newFolderTitle": {
     "message": "Buat Folder Baru"
@@ -75,7 +75,7 @@
     "message": "Buka Semua"
   },
   "confirmOpenAllMessage": {
-    "message": "Apakah Anda ingin membuka <b>$2</b> bookmark di folder <b>$1</b>?"
+    "message": "Apakah Anda ingin membuka <b>$2</b> penanda di folder <b>$1</b>?"
   },
   "confirmOpenAllButton": {
     "message": "Ya"
@@ -93,13 +93,22 @@
     "message": "Cari..."
   },
   "trashIsEmpty": {
-    "message": "Tempat sampah kosong"
+    "message": "Sampah kosong"
   },
   "trashNoResults": {
-    "message": "Tidak ada hasil yang ditemukan"
+    "message": "Tidak ada hasil ditemukan"
   },
   "trashRestoreButton": {
     "message": "Pulihkan"
+  },
+  "restoreAllTrashButton": {
+    "message": "Pulihkan semua"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Apakah Anda yakin ingin memulihkan semua penanda dari sampah?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Ya"
   },
   "trashDeletePermanently": {
     "message": "Hapus permanen"
@@ -108,7 +117,7 @@
     "message": "Apakah Anda yakin?"
   },
   "emptyTrashTitle": {
-    "message": "Apakah Anda yakin ingin menghapus semua bookmark di tempat sampah? Tindakan ini tidak dapat dibatalkan!"
+    "message": "Apakah Anda yakin ingin menghapus semua penanda di sampah? Tindakan ini tidak dapat dibatalkan!"
   },
   "emptyTrashButton": {
     "message": "Ya"
@@ -117,16 +126,16 @@
     "message": "Mode hapus"
   },
   "settingDeleteModeTrash": {
-    "message": "Tempat sampah"
+    "message": "Sampah"
   },
   "settingDeleteModePermanent": {
     "message": "Hapus"
   },
   "settingTrashFolderLabel": {
-    "message": "Folder tempat sampah"
+    "message": "Folder sampah"
   },
   "settingBookmarksLabel": {
-    "message": "Bookmark"
+    "message": "Penanda"
   },
   "settingFolderStyleLabel": {
     "message": "Gaya folder"
@@ -138,7 +147,7 @@
     "message": "Tumpukan"
   },
   "settingFolderBadgeLabel": {
-    "message": "Lencana folder"
+    "message": "Badge folder"
   },
   "settingFolderBadgeYes": {
     "message": "Ya"
@@ -150,24 +159,96 @@
     "message": "Tema"
   },
   "settingViewLabel": {
-    "message": "Bookmark"
+    "message": "Penanda"
   },
   "settingViewList": {
     "message": "Daftar"
   },
   "settingViewGrid": {
-    "message": "Grid"
+    "message": "Kisi"
   },
   "folderBadgeText": {
-    "message": "Menampilkan jumlah total bookmark di dalam folder."
+    "message": "Menampilkan jumlah total penanda di dalam folder."
   },
   "folderStyleText": {
-    "message": "Pengaturan ini hanya berlaku untuk tampilan grid."
+    "message": "Pengaturan ini hanya berlaku untuk tampilan kisi."
   },
   "deleteModeText": {
-    "message": "Saat tempat sampah diaktifkan, bookmark yang dihapus akan dipindahkan ke folder bookmark lainnya dan akan dihapus setelah 30 hari."
+    "message": "Saat fitur sampah diaktifkan, penanda yang dihapus dipindahkan ke sampah dan akan dihapus setelah durasi yang ditentukan."
   },
   "trashDaysLeft": {
     "message": "h"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Hapus otomatis setelah"
+  },
+  "trashExpiry3Days": {
+    "message": "3 hari"
+  },
+  "trashExpiry7Days": {
+    "message": "7 hari"
+  },
+  "trashExpiry1Month": {
+    "message": "1 bulan"
+  },
+  "settingImportExportLabel": {
+    "message": "Manajemen data"
+  },
+  "exportButton": {
+    "message": "Ekspor"
+  },
+  "importButton": {
+    "message": "Impor"
+  },
+  "importError": {
+    "message": "Impor gagal. Berkas mungkin tidak valid atau rusak."
+  },
+  "importConfirmMessage": {
+    "message": "Ini akan menimpa penanda, pengaturan, dan data sampah Anda. Apakah Anda yakin?"
+  },
+  "importConfirmTitle": {
+    "message": "Konfirmasi Impor"
+  },
+  "importConfirmYes": {
+    "message": "Ya"
+  },
+  "viewToggleLabel": {
+    "message": "Ganti tampilan"
+  },
+  "contextMenuLabel": {
+    "message": "Opsi"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Pilih"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Pilih"
+  },
+  "bulkOpenSelected": {
+    "message": "Buka yang dipilih ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Pindahkan ke folder"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Buat folder dari pilihan"
+  },
+  "bulkDelete": {
+    "message": "Hapus yang dipilih"
+  },
+  "bulkConfirmDelete": {
+    "message": "Apakah Anda yakin?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Pulihkan yang dipilih"
+  },
+  "bulkDeletePermanently": {
+    "message": "Hapus permanen"
+  },
+  "selectionCount": {
+    "message": "$1 dipilih"
   }
 }

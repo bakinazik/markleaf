@@ -3,7 +3,7 @@
     "message": "検索..."
   },
   "noBookmarksMessage": {
-    "message": "ブックマークはありません。"
+    "message": "ブックマークがありません。"
   },
   "noSearchResultsMessage": {
     "message": "検索条件に一致する結果は見つかりませんでした。"
@@ -33,16 +33,16 @@
     "message": "タブをフォルダに追加"
   },
   "confirmRemoval": {
-    "message": "よろしいですか？"
+    "message": "本当によろしいですか？"
   },
   "moveButton": {
-    "message": "フォルダへ移動"
+    "message": "フォルダに移動"
   },
   "searchFolderPlaceholder": {
     "message": "フォルダ内を検索..."
   },
   "noFoldersFoundMessage": {
-    "message": "フォルダが見つかりません。"
+    "message": "フォルダが見つかりませんでした。"
   },
   "moveBtnText": {
     "message": "移動"
@@ -54,7 +54,7 @@
     "message": "ブックマークを追加"
   },
   "newFolderTitle": {
-    "message": "新しいフォルダを作成"
+    "message": "新規フォルダ作成"
   },
   "newFolderNamePlaceholder": {
     "message": "フォルダ名"
@@ -101,14 +101,23 @@
   "trashRestoreButton": {
     "message": "復元"
   },
+  "restoreAllTrashButton": {
+    "message": "すべて復元"
+  },
+  "restoreAllTrashTitle": {
+    "message": "ゴミ箱内のすべてのブックマークを復元してもよろしいですか？"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "はい"
+  },
   "trashDeletePermanently": {
     "message": "完全に削除"
   },
   "trashConfirmDelete": {
-    "message": "よろしいですか？"
+    "message": "本当によろしいですか？"
   },
   "emptyTrashTitle": {
-    "message": "ゴミ箱内のすべてのブックマークを削除してもよろしいですか？この操作は取り消せません。"
+    "message": "ゴミ箱内のすべてのブックマークを削除してもよろしいですか？この操作は取り消せません！"
   },
   "emptyTrashButton": {
     "message": "はい"
@@ -120,7 +129,7 @@
     "message": "ゴミ箱"
   },
   "settingDeleteModePermanent": {
-    "message": "削除"
+    "message": "直接削除"
   },
   "settingTrashFolderLabel": {
     "message": "ゴミ箱フォルダ"
@@ -129,16 +138,16 @@
     "message": "ブックマーク"
   },
   "settingFolderStyleLabel": {
-    "message": "フォルダースタイル"
+    "message": "フォルダスタイル"
   },
   "settingFolderStyleIcon": {
-    "message": "フォルダー"
+    "message": "フォルダ"
   },
   "settingFolderStyleStack": {
     "message": "スタック"
   },
   "settingFolderBadgeLabel": {
-    "message": "フォルダーバッジ"
+    "message": "フォルダバッジ"
   },
   "settingFolderBadgeYes": {
     "message": "はい"
@@ -165,9 +174,81 @@
     "message": "この設定はグリッド表示にのみ適用されます。"
   },
   "deleteModeText": {
-    "message": "ゴミ箱が有効な場合、削除されたブックマークは「その他のブックマーク」フォルダに移動され、30日後に削除されます。"
+    "message": "ゴミ箱が有効な場合、削除されたブックマークはゴミ箱に移動され、指定した期間の経過後に削除されます。"
   },
   "trashDaysLeft": {
     "message": "日"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "自動削除までの期間"
+  },
+  "trashExpiry3Days": {
+    "message": "3日間"
+  },
+  "trashExpiry7Days": {
+    "message": "7日間"
+  },
+  "trashExpiry1Month": {
+    "message": "1ヶ月間"
+  },
+  "settingImportExportLabel": {
+    "message": "データ管理"
+  },
+  "exportButton": {
+    "message": "エクスポート"
+  },
+  "importButton": {
+    "message": "インポート"
+  },
+  "importError": {
+    "message": "インポートに失敗しました。ファイルが無効か破損している可能性があります。"
+  },
+  "importConfirmMessage": {
+    "message": "ブックマーク、設定、ゴミ箱のデータが上書きされます。本当によろしいですか？"
+  },
+  "importConfirmTitle": {
+    "message": "インポートの確認"
+  },
+  "importConfirmYes": {
+    "message": "はい"
+  },
+  "viewToggleLabel": {
+    "message": "表示の切り替え"
+  },
+  "contextMenuLabel": {
+    "message": "オプション"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "選択"
+  },
+  "selectionModeButtonTrash": {
+    "message": "選択"
+  },
+  "bulkOpenSelected": {
+    "message": "選択した項目を開く ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "フォルダに移動"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "選択範囲からフォルダを作成"
+  },
+  "bulkDelete": {
+    "message": "選択した項目を削除"
+  },
+  "bulkConfirmDelete": {
+    "message": "本当によろしいですか？"
+  },
+  "bulkRestoreSelected": {
+    "message": "選択した項目を復元"
+  },
+  "bulkDeletePermanently": {
+    "message": "完全に削除"
+  },
+  "selectionCount": {
+    "message": "$1 個選択中"
   }
 }

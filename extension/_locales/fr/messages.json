@@ -6,7 +6,7 @@
     "message": "Aucun favori ici."
   },
   "noSearchResultsMessage": {
-    "message": "Aucun résultat ne correspond à votre recherche."
+    "message": "Aucun résultat ne correspond à vos critères de recherche."
   },
   "saveButton": {
     "message": "Enregistrer"
@@ -75,7 +75,7 @@
     "message": "Tout ouvrir"
   },
   "confirmOpenAllMessage": {
-    "message": "Voulez-vous ouvrir <b>$2</b> favoris dans le dossier <b>$1</b> ?"
+    "message": "Voulez-vous ouvrir les <b>$2</b> favoris du dossier <b>$1</b> ?"
   },
   "confirmOpenAllButton": {
     "message": "Oui"
@@ -101,6 +101,15 @@
   "trashRestoreButton": {
     "message": "Restaurer"
   },
+  "restoreAllTrashButton": {
+    "message": "Tout restaurer"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Êtes-vous sûr de vouloir restaurer tous les favoris de la corbeille ?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Oui"
+  },
   "trashDeletePermanently": {
     "message": "Supprimer définitivement"
   },
@@ -108,7 +117,7 @@
     "message": "Êtes-vous sûr ?"
   },
   "emptyTrashTitle": {
-    "message": "Voulez-vous vraiment supprimer tous les favoris de la corbeille ? Cette action est irréversible !"
+    "message": "Êtes-vous sûr de vouloir supprimer tous les favoris de la corbeille ? Cette action est irréversible !"
   },
   "emptyTrashButton": {
     "message": "Oui"
@@ -120,7 +129,7 @@
     "message": "Corbeille"
   },
   "settingDeleteModePermanent": {
-    "message": "Supprimer"
+    "message": "Suppression directe"
   },
   "settingTrashFolderLabel": {
     "message": "Dossier corbeille"
@@ -132,7 +141,7 @@
     "message": "Style de dossier"
   },
   "settingFolderStyleIcon": {
-    "message": "Dossier"
+    "message": "Icône"
   },
   "settingFolderStyleStack": {
     "message": "Pile"
@@ -165,9 +174,81 @@
     "message": "Ce paramètre s'applique uniquement à la vue en grille."
   },
   "deleteModeText": {
-    "message": "Lorsque la corbeille est activée, les favoris supprimés sont déplacés vers le dossier 'Autres favoris' et sont supprimés après 30 jours."
+    "message": "Lorsque la corbeille est activée, les favoris supprimés y sont déplacés et sont définitivement effacés après la durée spécifiée."
   },
   "trashDaysLeft": {
     "message": "j"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Auto-suppression après"
+  },
+  "trashExpiry3Days": {
+    "message": "3 jours"
+  },
+  "trashExpiry7Days": {
+    "message": "7 jours"
+  },
+  "trashExpiry1Month": {
+    "message": "1 mois"
+  },
+  "settingImportExportLabel": {
+    "message": "Gestion des données"
+  },
+  "exportButton": {
+    "message": "Exporter"
+  },
+  "importButton": {
+    "message": "Importer"
+  },
+  "importError": {
+    "message": "Échec de l'importation. Le fichier est peut-être invalide ou corrompu."
+  },
+  "importConfirmMessage": {
+    "message": "Cela écrasera vos favoris, paramètres et données de la corbeille. Êtes-vous sûr ?"
+  },
+  "importConfirmTitle": {
+    "message": "Confirmer l'importation"
+  },
+  "importConfirmYes": {
+    "message": "Oui"
+  },
+  "viewToggleLabel": {
+    "message": "Changer de vue"
+  },
+  "contextMenuLabel": {
+    "message": "Options"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Sélectionner"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Sélectionner"
+  },
+  "bulkOpenSelected": {
+    "message": "Ouvrir la sélection ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Déplacer vers le dossier"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Créer un dossier à partir de la sélection"
+  },
+  "bulkDelete": {
+    "message": "Supprimer la sélection"
+  },
+  "bulkConfirmDelete": {
+    "message": "Êtes-vous sûr ?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Restaurer la sélection"
+  },
+  "bulkDeletePermanently": {
+    "message": "Supprimer définitivement"
+  },
+  "selectionCount": {
+    "message": "$1 sélectionné(s)"
   }
 }

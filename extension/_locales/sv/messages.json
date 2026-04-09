@@ -48,7 +48,7 @@
     "message": "Flytta"
   },
   "upFolderButton": {
-    "message": "Gå upp en mapp"
+    "message": "Gå upp en mappnivå"
   },
   "addBookmark": {
     "message": "Lägg till bokmärke"
@@ -101,6 +101,15 @@
   "trashRestoreButton": {
     "message": "Återställ"
   },
+  "restoreAllTrashButton": {
+    "message": "Återställ alla"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Är du säker på att du vill återställa alla bokmärken från papperskorgen?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Ja"
+  },
   "trashDeletePermanently": {
     "message": "Ta bort permanent"
   },
@@ -123,7 +132,7 @@
     "message": "Ta bort"
   },
   "settingTrashFolderLabel": {
-    "message": "Papperskorgsmapp"
+    "message": "Mapp för papperskorg"
   },
   "settingBookmarksLabel": {
     "message": "Bokmärken"
@@ -138,7 +147,7 @@
     "message": "Stapel"
   },
   "settingFolderBadgeLabel": {
-    "message": "Mappräknare"
+    "message": "Mappbricka"
   },
   "settingFolderBadgeYes": {
     "message": "Ja"
@@ -159,15 +168,87 @@
     "message": "Rutnät"
   },
   "folderBadgeText": {
-    "message": "Visar det totala antalet bokmärken i mapparna."
+    "message": "Visar det totala antalet bokmärken i mappar."
   },
   "folderStyleText": {
     "message": "Denna inställning gäller endast för rutnätsvy."
   },
   "deleteModeText": {
-    "message": "När papperskorgen är aktiverad flyttas raderade bokmärken till mappen 'Övriga bokmärken' och tas bort efter 30 dagar."
+    "message": "När papperskorgen är aktiverad flyttas borttagna bokmärken dit och raderas permanent efter den angivna tiden."
   },
   "trashDaysLeft": {
     "message": "d"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Ta bort automatiskt efter"
+  },
+  "trashExpiry3Days": {
+    "message": "3 dagar"
+  },
+  "trashExpiry7Days": {
+    "message": "7 dagar"
+  },
+  "trashExpiry1Month": {
+    "message": "1 månad"
+  },
+  "settingImportExportLabel": {
+    "message": "Datahantering"
+  },
+  "exportButton": {
+    "message": "Exportera"
+  },
+  "importButton": {
+    "message": "Importera"
+  },
+  "importError": {
+    "message": "Importen misslyckades. Filen kan vara ogiltig eller skadad."
+  },
+  "importConfirmMessage": {
+    "message": "Detta kommer att skriva över dina bokmärken, inställningar och data i papperskorgen. Är du säker?"
+  },
+  "importConfirmTitle": {
+    "message": "Bekräfta import"
+  },
+  "importConfirmYes": {
+    "message": "Ja"
+  },
+  "viewToggleLabel": {
+    "message": "Växla vy"
+  },
+  "contextMenuLabel": {
+    "message": "Alternativ"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Markera"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Markera"
+  },
+  "bulkOpenSelected": {
+    "message": "Öppna markerade ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Flytta till mapp"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Skapa mapp från markering"
+  },
+  "bulkDelete": {
+    "message": "Ta bort markerade"
+  },
+  "bulkConfirmDelete": {
+    "message": "Är du säker?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Återställ markerade"
+  },
+  "bulkDeletePermanently": {
+    "message": "Ta bort permanent"
+  },
+  "selectionCount": {
+    "message": "$1 markerade"
   }
 }

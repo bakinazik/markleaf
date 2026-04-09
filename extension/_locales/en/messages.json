@@ -101,6 +101,15 @@
   "trashRestoreButton": {
     "message": "Restore"
   },
+  "restoreAllTrashButton": {
+    "message": "Restore all"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Are you sure you want to restore all bookmarks from the trash?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Yes"
+  },
   "trashDeletePermanently": {
     "message": "Delete permanently"
   },
@@ -165,9 +174,81 @@
     "message": "This setting applies only to the grid view."
   },
   "deleteModeText": {
-    "message": "When trash is enabled, deleted bookmarks are moved to the other bookmarks folder and are deleted after 30 days."
+    "message": "When trash is enabled, deleted bookmarks are moved to the trash and are deleted after the specified duration."
   },
   "trashDaysLeft": {
     "message": "d"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Auto-delete after"
+  },
+  "trashExpiry3Days": {
+    "message": "3 days"
+  },
+  "trashExpiry7Days": {
+    "message": "7 days"
+  },
+  "trashExpiry1Month": {
+    "message": "1 month"
+  },
+  "settingImportExportLabel": {
+    "message": "Data management"
+  },
+  "exportButton": {
+    "message": "Export"
+  },
+  "importButton": {
+    "message": "Import"
+  },
+  "importError": {
+    "message": "Import failed. The file may be invalid or corrupted."
+  },
+  "importConfirmMessage": {
+    "message": "This will overwrite your bookmarks, settings and trash data. Are you sure?"
+  },
+  "importConfirmTitle": {
+    "message": "Confirm Import"
+  },
+  "importConfirmYes": {
+    "message": "Yes"
+  },
+  "viewToggleLabel": {
+    "message": "Toggle view"
+  },
+  "contextMenuLabel": {
+    "message": "Options"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Select"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Select"
+  },
+  "bulkOpenSelected": {
+    "message": "Open selected ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Move to folder"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Create folder from selection"
+  },
+  "bulkDelete": {
+    "message": "Delete selected"
+  },
+  "bulkConfirmDelete": {
+    "message": "Are you sure?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Restore selected"
+  },
+  "bulkDeletePermanently": {
+    "message": "Delete permanently"
+  },
+  "selectionCount": {
+    "message": "$1 selected"
   }
 }

@@ -6,7 +6,7 @@
     "message": "यहाँ कोई बुकमार्क नहीं है।"
   },
   "noSearchResultsMessage": {
-    "message": "आपकी खोज के मानदंडों से मेल खाने वाला कोई परिणाम नहीं मिला।"
+    "message": "आपके खोज मानदंडों से मेल खाने वाला कोई परिणाम नहीं मिला।"
   },
   "saveButton": {
     "message": "सहेजें"
@@ -18,10 +18,10 @@
     "message": "संपादित करें"
   },
   "removeButton": {
-    "message": "हटाएँ"
+    "message": "हटाएं"
   },
   "createFolderButton": {
-    "message": "यहाँ फ़ोल्डर बनाएँ"
+    "message": "यहाँ फ़ोल्डर बनाएं"
   },
   "newFolderName": {
     "message": "नया फ़ोल्डर"
@@ -30,13 +30,13 @@
     "message": "वर्तमान टैब यहाँ जोड़ें"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "टैब को फ़ोल्डर में जोड़ें"
+    "message": "फ़ोल्डर में टैब जोड़ें"
   },
   "confirmRemoval": {
     "message": "क्या आप सुनिश्चित हैं?"
   },
   "moveButton": {
-    "message": "फ़ोल्डर में ले जाएँ"
+    "message": "फ़ोल्डर में ले जाएं"
   },
   "searchFolderPlaceholder": {
     "message": "फ़ोल्डरों में खोजें..."
@@ -45,22 +45,22 @@
     "message": "कोई फ़ोल्डर नहीं मिला।"
   },
   "moveBtnText": {
-    "message": "ले जाएँ"
+    "message": "ले जाएं"
   },
   "upFolderButton": {
-    "message": "ऊपर के फ़ोल्डर में जाएँ"
+    "message": "ऊपरी फ़ोल्डर पर जाएं"
   },
   "addBookmark": {
     "message": "बुकमार्क जोड़ें"
   },
   "newFolderTitle": {
-    "message": "नया फ़ोल्डर बनाएँ"
+    "message": "नया फ़ोल्डर बनाएं"
   },
   "newFolderNamePlaceholder": {
     "message": "फ़ोल्डर का नाम"
   },
   "createFolderModalButton": {
-    "message": "बनाएँ"
+    "message": "बनाएं"
   },
   "editTitle": {
     "message": "संपादित करें"
@@ -69,7 +69,7 @@
     "message": "शीर्षक"
   },
   "editUrlPlaceholder": {
-    "message": "यूआरएल"
+    "message": "URL"
   },
   "confirmOpenAllTitle": {
     "message": "सभी खोलें"
@@ -101,14 +101,23 @@
   "trashRestoreButton": {
     "message": "पुनर्स्थापित करें"
   },
+  "restoreAllTrashButton": {
+    "message": "सभी पुनर्स्थापित करें"
+  },
+  "restoreAllTrashTitle": {
+    "message": "क्या आप सुनिश्चित हैं कि आप रद्दी से सभी बुकमार्क पुनर्स्थापित करना चाहते हैं?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "हाँ"
+  },
   "trashDeletePermanently": {
-    "message": "स्थायी रूप से हटाएँ"
+    "message": "स्थायी रूप से हटाएं"
   },
   "trashConfirmDelete": {
     "message": "क्या आप सुनिश्चित हैं?"
   },
   "emptyTrashTitle": {
-    "message": "क्या आप रद्दी के सभी बुकमार्क हटाना चाहते हैं? यह क्रिया वापस नहीं ली जा सकती!"
+    "message": "क्या आप सुनिश्चित हैं कि आप रद्दी के सभी बुकमार्क हटाना चाहते हैं? यह क्रिया वापस नहीं ली जा सकती!"
   },
   "emptyTrashButton": {
     "message": "हाँ"
@@ -120,7 +129,7 @@
     "message": "रद्दी"
   },
   "settingDeleteModePermanent": {
-    "message": "हटाएँ"
+    "message": "हटाएं"
   },
   "settingTrashFolderLabel": {
     "message": "रद्दी फ़ोल्डर"
@@ -165,9 +174,81 @@
     "message": "यह सेटिंग केवल ग्रिड व्यू पर लागू होती है।"
   },
   "deleteModeText": {
-    "message": "जब रद्दी सक्षम होती है, तो हटाए गए बुकमार्क अन्य बुकमार्क फ़ोल्डर में चले जाते हैं और 30 दिनों के बाद हटा दिए जाते हैं।"
+    "message": "जब रद्दी सक्षम होती है, तो हटाए गए बुकमार्क रद्दी में चले जाते हैं और निर्दिष्ट अवधि के बाद हटा दिए जाते हैं।"
   },
   "trashDaysLeft": {
-    "message": "दि"
+    "message": "दिन"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "इसके बाद स्वतः हटाएं"
+  },
+  "trashExpiry3Days": {
+    "message": "3 दिन"
+  },
+  "trashExpiry7Days": {
+    "message": "7 दिन"
+  },
+  "trashExpiry1Month": {
+    "message": "1 महीना"
+  },
+  "settingImportExportLabel": {
+    "message": "डेटा प्रबंधन"
+  },
+  "exportButton": {
+    "message": "निर्यात करें"
+  },
+  "importButton": {
+    "message": "आयात करें"
+  },
+  "importError": {
+    "message": "आयात विफल रहा। फ़ाइल अमान्य या दूषित हो सकती है।"
+  },
+  "importConfirmMessage": {
+    "message": "यह आपके बुकमार्क, सेटिंग्स और रद्दी डेटा को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
+  },
+  "importConfirmTitle": {
+    "message": "आयात की पुष्टि करें"
+  },
+  "importConfirmYes": {
+    "message": "हाँ"
+  },
+  "viewToggleLabel": {
+    "message": "दृश्य बदलें"
+  },
+  "contextMenuLabel": {
+    "message": "विकल्प"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "चुनें"
+  },
+  "selectionModeButtonTrash": {
+    "message": "चुनें"
+  },
+  "bulkOpenSelected": {
+    "message": "चयनित खोलें ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "फ़ोल्डर में ले जाएं"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "चयन से फ़ोल्डर बनाएं"
+  },
+  "bulkDelete": {
+    "message": "चयनित हटाएं"
+  },
+  "bulkConfirmDelete": {
+    "message": "क्या आप सुनिश्चित हैं?"
+  },
+  "bulkRestoreSelected": {
+    "message": "चयनित पुनर्स्थापित करें"
+  },
+  "bulkDeletePermanently": {
+    "message": "स्थायी रूप से हटाएं"
+  },
+  "selectionCount": {
+    "message": "$1 चयनित"
   }
 }

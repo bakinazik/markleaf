@@ -3,7 +3,7 @@
     "message": "Cerca..."
   },
   "noBookmarksMessage": {
-    "message": "Nessun preferito qui."
+    "message": "Nessun segnalibro qui."
   },
   "noSearchResultsMessage": {
     "message": "Nessun risultato trovato per i criteri di ricerca."
@@ -48,10 +48,10 @@
     "message": "Sposta"
   },
   "upFolderButton": {
-    "message": "Torna su di una cartella"
+    "message": "Torna alla cartella superiore"
   },
   "addBookmark": {
-    "message": "Aggiungi preferito"
+    "message": "Aggiungi segnalibro"
   },
   "newFolderTitle": {
     "message": "Crea nuova cartella"
@@ -72,10 +72,10 @@
     "message": "URL"
   },
   "confirmOpenAllTitle": {
-    "message": "Apri tutti"
+    "message": "Apri tutto"
   },
   "confirmOpenAllMessage": {
-    "message": "Vuoi aprire <b>$2</b> preferiti nella cartella <b>$1</b>?"
+    "message": "Vuoi aprire <b>$2</b> segnalibri nella cartella <b>$1</b>?"
   },
   "confirmOpenAllButton": {
     "message": "Sì"
@@ -101,6 +101,15 @@
   "trashRestoreButton": {
     "message": "Ripristina"
   },
+  "restoreAllTrashButton": {
+    "message": "Ripristina tutto"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Sei sicuro di voler ripristinare tutti i segnalibri dal cestino?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Sì"
+  },
   "trashDeletePermanently": {
     "message": "Elimina definitivamente"
   },
@@ -108,7 +117,7 @@
     "message": "Sei sicuro?"
   },
   "emptyTrashTitle": {
-    "message": "Sei sicuro di voler eliminare tutti i preferiti nel cestino? L'azione è irreversibile!"
+    "message": "Sei sicuro di voler eliminare tutti i segnalibri nel cestino? Questa azione non può essere annullata!"
   },
   "emptyTrashButton": {
     "message": "Sì"
@@ -126,7 +135,7 @@
     "message": "Cartella cestino"
   },
   "settingBookmarksLabel": {
-    "message": "Preferiti"
+    "message": "Segnalibri"
   },
   "settingFolderStyleLabel": {
     "message": "Stile cartella"
@@ -150,7 +159,7 @@
     "message": "Tema"
   },
   "settingViewLabel": {
-    "message": "Preferiti"
+    "message": "Segnalibri"
   },
   "settingViewList": {
     "message": "Elenco"
@@ -159,15 +168,87 @@
     "message": "Griglia"
   },
   "folderBadgeText": {
-    "message": "Mostra il numero totale di preferiti all'interno delle cartelle."
+    "message": "Visualizza il numero totale di segnalibri all'interno delle cartelle."
   },
   "folderStyleText": {
     "message": "Questa impostazione si applica solo alla visualizzazione a griglia."
   },
   "deleteModeText": {
-    "message": "Quando il cestino è abilitato, i preferiti eliminati vengono spostati nella cartella 'Altri preferiti' e rimossi dopo 30 giorni."
+    "message": "Quando il cestino è abilitato, i segnalibri eliminati vengono spostati nel cestino e rimossi definitivamente dopo la durata specificata."
   },
   "trashDaysLeft": {
     "message": "g"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Elimina automaticamente dopo"
+  },
+  "trashExpiry3Days": {
+    "message": "3 giorni"
+  },
+  "trashExpiry7Days": {
+    "message": "7 giorni"
+  },
+  "trashExpiry1Month": {
+    "message": "1 mese"
+  },
+  "settingImportExportLabel": {
+    "message": "Gestione dati"
+  },
+  "exportButton": {
+    "message": "Esporta"
+  },
+  "importButton": {
+    "message": "Importa"
+  },
+  "importError": {
+    "message": "Importazione fallita. Il file potrebbe essere non valido o danneggiato."
+  },
+  "importConfirmMessage": {
+    "message": "Questo sovrascriverà i tuoi segnalibri, le impostazioni e i dati del cestino. Sei sicuro?"
+  },
+  "importConfirmTitle": {
+    "message": "Conferma importazione"
+  },
+  "importConfirmYes": {
+    "message": "Sì"
+  },
+  "viewToggleLabel": {
+    "message": "Cambia visualizzazione"
+  },
+  "contextMenuLabel": {
+    "message": "Opzioni"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Seleziona"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Seleziona"
+  },
+  "bulkOpenSelected": {
+    "message": "Apri selezionati ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Sposta nella cartella"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Crea cartella dalla selezione"
+  },
+  "bulkDelete": {
+    "message": "Elimina selezionati"
+  },
+  "bulkConfirmDelete": {
+    "message": "Sei sicuro?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Ripristina selezionati"
+  },
+  "bulkDeletePermanently": {
+    "message": "Elimina definitivamente"
+  },
+  "selectionCount": {
+    "message": "$1 selezionati"
   }
 }
