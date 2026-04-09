@@ -71,27 +71,31 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    ul {
+    ul, #settingsPanel {
         scrollbar-width: thin;
         scrollbar-color: var(--border-color) transparent;
     }
 
-    ul::-webkit-scrollbar {
+    ul::-webkit-scrollbar,
+    #settingsPanel::-webkit-scrollbar {
         width: 8px;
         height: 8px;
     }
 
-    ul::-webkit-scrollbar-thumb {
+    ul::-webkit-scrollbar-thumb,
+    #settingsPanel::-webkit-scrollbar-thumb {
         background-color: rgba(128,128,128, 0.2);
         border-radius: 10px;
         transition: background-color 0.3s;
     }
 
-    ul::-webkit-scrollbar-thumb:hover {
+    ul::-webkit-scrollbar-thumb:hover,
+    #settingsPanel::-webkit-scrollbar-thumb:hover {
         background-color: rgba(128,128,128, 0.4);
     }
 
-    ul::-webkit-scrollbar-track {
+    ul::-webkit-scrollbar-track,
+    #settingsPanel::-webkit-scrollbar-track {
         background: transparent;
     }
 
