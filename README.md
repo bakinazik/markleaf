@@ -15,15 +15,19 @@ Simple and practical bookmark manager.
 
 
 ## Features and Roadmap
-
 - [x] List and grid layout
 - [x] Create: Folder and bookmark/current page
 - [x] Edit: URL and name
 - [x] Draggable sorting for folders and bookmarks
-- [x] Dynamic search (all/in-folder)
-- [x] Dark/light theme follows browser preference
-- [x] Remember last bookmark page
+- [x] Dynamic search across all bookmarks with keyboard navigation
+- [x] Dark/light/system theme
+- [x] Remember last visited folder
 - [x] Supports 17 languages
+- [x] Trash: deleted items are recoverable, with configurable auto-expiry
+- [x] Multi-select with bulk open, move, and delete
+- [x] Folder style: classic icon or favicon collage preview
+- [x] Import and export all bookmarks and settings as JSON
+- [x] Scroll-to-top button
 - [ ] Looking for another feature? [Click here](https://github.com/bakinazik/markleaf/issues/new)
 
 ## Shortcuts
