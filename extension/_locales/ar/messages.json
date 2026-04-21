@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "إضافة علامة التبويب إلى المجلد"
   },
+  "addAllTabsButton": {
+    "message": "إضافة علامات التبويب النشطة هنا"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "إضافة علامات التبويب النشطة إلى المجلد"
+  },
   "confirmRemoval": {
     "message": "هل أنت متأكد؟"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 محدد"
+  },
+  "settingRootFolderLabel": {
+    "message": "المجلد الجذري"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "مجلد بدون اسم"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "التحقق قبل الإضافة"
+  },
+  "checkBeforeAddText": {
+    "message": "عند التفعيل، سيتم تخطي الإشارات المرجعية التي تحتوي على نفس الرابط الموجود بالفعل في الموقع المستهدف."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "المجلد الأصلي"
+  },
+  "settingShowUpButtonText": {
+    "message": "يعرض زراً للانتقال إلى المجلد الأصلي."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "مسار التنقل"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "يعرض مسار المجلد حتى تتمكن من الانتقال بسرعة إلى أي مجلد أصلي."
   }
 }

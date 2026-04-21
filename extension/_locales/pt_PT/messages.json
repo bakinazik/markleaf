@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Adicionar separador à pasta"
   },
+  "addAllTabsButton": {
+    "message": "Adicionar separadores ativos aqui"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Adicionar separadores ativos à pasta"
+  },
   "confirmRemoval": {
     "message": "Tem a certeza?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 selecionado(s)"
+  },
+  "settingRootFolderLabel": {
+    "message": "Pasta raiz"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Pasta sem nome"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Verificar antes de adicionar"
+  },
+  "checkBeforeAddText": {
+    "message": "Quando ativado, os marcadores com o mesmo URL já presentes na localização de destino serão ignorados."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Pasta principal"
+  },
+  "settingShowUpButtonText": {
+    "message": "Apresenta um botão para navegar para a pasta principal."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Navegação estrutural"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Apresenta o caminho da pasta para que possa aceder rapidamente a qualquer pasta principal."
   }
 }

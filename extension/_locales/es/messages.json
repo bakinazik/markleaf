@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Añadir pestaña a la carpeta"
   },
+  "addAllTabsButton": {
+    "message": "Añadir pestañas activas aquí"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Añadir pestañas activas a la carpeta"
+  },
   "confirmRemoval": {
     "message": "¿Estás seguro?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 seleccionados"
+  },
+  "settingRootFolderLabel": {
+    "message": "Carpeta raíz"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Carpeta sin nombre"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Verificar antes de añadir"
+  },
+  "checkBeforeAddText": {
+    "message": "Cuando está activado, se omitirán los marcadores con la misma URL que ya estén presentes en la ubicación de destino."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Carpeta superior"
+  },
+  "settingShowUpButtonText": {
+    "message": "Muestra un botón para navegar a la carpeta superior."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Ruta de navegación"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Muestra la ruta de carpetas para que puedas saltar rápidamente a cualquier carpeta superior."
   }
 }

@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "タブをフォルダに追加"
   },
+  "addAllTabsButton": {
+    "message": "アクティブなタブをここに追加"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "アクティブなタブをフォルダに追加"
+  },
   "confirmRemoval": {
     "message": "本当によろしいですか？"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 個選択中"
+  },
+  "settingRootFolderLabel": {
+    "message": "ルートフォルダー"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "名前なしフォルダー"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "追加前に確認"
+  },
+  "checkBeforeAddText": {
+    "message": "有効にすると、対象の場所に同じURLのブックマークがすでに存在する場合、スキップされます。"
+  },
+  "settingShowUpButtonLabel": {
+    "message": "親フォルダー"
+  },
+  "settingShowUpButtonText": {
+    "message": "親フォルダーに移動するためのボタンを表示します。"
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "パンくずリスト"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "フォルダーのパスを表示し、任意の親フォルダーにすばやくジャンプできます。"
   }
 }

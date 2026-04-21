@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Tab zum Ordner hinzufügen"
   },
+  "addAllTabsButton": {
+    "message": "Aktive Tabs hier hinzufügen"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Aktive Tabs zum Ordner hinzufügen"
+  },
   "confirmRemoval": {
     "message": "Sind Sie sicher?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 ausgewählt"
+  },
+  "settingRootFolderLabel": {
+    "message": "Stammordner"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Unbenannter Ordner"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Vor dem Hinzufügen prüfen"
+  },
+  "checkBeforeAddText": {
+    "message": "Wenn aktiviert, werden Lesezeichen mit derselben URL, die bereits am Zielort vorhanden sind, übersprungen."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Übergeordneter Ordner"
+  },
+  "settingShowUpButtonText": {
+    "message": "Zeigt eine Schaltfläche zum Navigieren zum übergeordneten Ordner an."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Brotkrümelpfad"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Zeigt den Ordnerpfad an, damit Sie schnell zu einem übergeordneten Ordner springen können."
   }
 }

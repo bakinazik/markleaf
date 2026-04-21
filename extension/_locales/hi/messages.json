@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "फ़ोल्डर में टैब जोड़ें"
   },
+  "addAllTabsButton": {
+    "message": "सक्रिय टैब यहां जोड़ें"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "सक्रिय टैब फ़ोल्डर में जोड़ें"
+  },
   "confirmRemoval": {
     "message": "क्या आप सुनिश्चित हैं?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 चयनित"
+  },
+  "settingRootFolderLabel": {
+    "message": "मूल फ़ोल्डर"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "अनाम फ़ोल्डर"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "जोड़ने से पहले जाँचें"
+  },
+  "checkBeforeAddText": {
+    "message": "सक्षम होने पर, लक्ष्य स्थान पर पहले से मौजूद समान URL वाले बुकमार्क को छोड़ दिया जाएगा।"
+  },
+  "settingShowUpButtonLabel": {
+    "message": "मूल फ़ोल्डर"
+  },
+  "settingShowUpButtonText": {
+    "message": "मूल फ़ोल्डर पर नेविगेट करने के लिए एक बटन दिखाता है।"
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "ब्रेडक्रम्ब"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "फ़ोल्डर पथ दिखाता है ताकि आप किसी भी मूल फ़ोल्डर पर जल्दी से जा सकें।"
   }
 }

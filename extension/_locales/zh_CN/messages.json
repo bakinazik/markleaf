@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "将标签页添加到文件夹"
   },
+  "addAllTabsButton": {
+    "message": "在此添加活动标签页"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "将活动标签页添加到文件夹"
+  },
   "confirmRemoval": {
     "message": "您确定吗？"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "已选择 $1 项"
+  },
+  "settingRootFolderLabel": {
+    "message": "根文件夹"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "未命名文件夹"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "添加前检查"
+  },
+  "checkBeforeAddText": {
+    "message": "启用后，目标位置中已存在相同 URL 的书签将被跳过。"
+  },
+  "settingShowUpButtonLabel": {
+    "message": "上级文件夹"
+  },
+  "settingShowUpButtonText": {
+    "message": "显示一个按钮以导航到上级文件夹。"
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "面包屑导航"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "显示文件夹路径，以便快速跳转到任意上级文件夹。"
   }
 }

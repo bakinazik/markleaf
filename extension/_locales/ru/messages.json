@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Добавить вкладку в папку"
   },
+  "addAllTabsButton": {
+    "message": "Добавить активные вкладки сюда"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Добавить активные вкладки в папку"
+  },
   "confirmRemoval": {
     "message": "Вы уверены?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "Выбрано: $1"
+  },
+  "settingRootFolderLabel": {
+    "message": "Корневая папка"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Папка без имени"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Проверять перед добавлением"
+  },
+  "checkBeforeAddText": {
+    "message": "При включении закладки с одинаковым URL, уже находящиеся в целевой папке, будут пропущены."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Родительская папка"
+  },
+  "settingShowUpButtonText": {
+    "message": "Показывает кнопку для перехода в родительскую папку."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Навигационная цепочка"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Отображает путь к папке, чтобы можно было быстро перейти в любую родительскую папку."
   }
 }

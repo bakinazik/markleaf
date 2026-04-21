@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Ajouter l'onglet au dossier"
   },
+  "addAllTabsButton": {
+    "message": "Ajouter les onglets actifs ici"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Ajouter les onglets actifs au dossier"
+  },
   "confirmRemoval": {
     "message": "Êtes-vous sûr ?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 sélectionné(s)"
+  },
+  "settingRootFolderLabel": {
+    "message": "Dossier racine"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Dossier sans nom"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Vérifier avant d'ajouter"
+  },
+  "checkBeforeAddText": {
+    "message": "Lorsqu'activé, les signets avec la même URL déjà présents à l'emplacement cible seront ignorés."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Dossier parent"
+  },
+  "settingShowUpButtonText": {
+    "message": "Affiche un bouton pour naviguer vers le dossier parent."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Fil d'Ariane"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Affiche le chemin du dossier pour accéder rapidement à n'importe quel dossier parent."
   }
 }

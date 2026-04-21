@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const addBookmarkBtn = document.getElementById('addBookmark');
   const createFolderBtn = document.getElementById('createFolder');
   const searchInput = document.getElementById('searchInput');
+  const clearSearchBtn = document.getElementById('clearSearchBtn');
   const upButton = document.getElementById('upButton');
   const header = document.querySelector('header');
   const moveModal = document.getElementById('moveModal');
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let searchDebounceTimer = null; 
   let trashSearchDebounceTimer = null; 
   const contextMenuOverlay = document.getElementById('contextMenuOverlay');
-  const plusIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>`;
+  const plusIcon = (size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>`;
   const getXIcon = (size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`;
   const editIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>`;
   const folderIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`;
@@ -63,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectionFolderMode = false;
   const selectModeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="16" height="16" rx="2"/><path d="M9 12l2 2 4-4"/></svg>`;
   const checkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>`;
+  const addAllTabsIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-library-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 5.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" /><path d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" /><path d="M11 10h6" /><path d="M14 7v6" /></svg>`;
   const i18nElements = document.querySelectorAll('[data-i18n]');
   i18nElements.forEach(element => {
     const messageKey = element.getAttribute('data-i18n');
@@ -84,9 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSelectBtnIcon();
   }
 function renderSelectBtnIcon() {
-  viewToggleIcon.innerHTML = isSelectionMode
-    ? '<path d="M18 6l-12 12"/><path d="M6 6l12 12"/>'
-    : '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/>';
+  viewToggleIcon.innerHTML = '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/>';
 
   viewToggleBtn.classList.toggle('select-mode-on', isSelectionMode);
 }
@@ -137,9 +137,7 @@ function renderTrashSelectBtnIcon() {
   const svg = trashSelectBtn.querySelector('svg');
   if (!svg) return;
 
-  svg.innerHTML = isTrashSelectionMode
-    ? '<path d="M18 6l-12 12"/><path d="M6 6l12 12"/>'
-    : '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/>';
+  svg.innerHTML = '<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/>';
 }
   function enterTrashSelectionMode() {
     isTrashSelectionMode = true;
@@ -227,7 +225,6 @@ function renderTrashSelectBtnIcon() {
       deleteBtn2.classList.add('context-menu-item');
       deleteBtn2.dataset.state = 'initial';
       deleteBtn2.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('bulkDelete')}`;
-      deleteBtn2.style.color = 'var(--hover-color-remove)';
       deleteBtn2.onclick = () => {
         if (deleteBtn2.dataset.state === 'initial') {
           deleteBtn2.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('bulkConfirmDelete')}`;
@@ -338,7 +335,7 @@ function renderTrashSelectBtnIcon() {
     loadTrashPanel(trashSearchInput.value);
   }
   function updateAddBookmarkButton(isBookmarked) {
-    addBookmarkBtn.innerHTML = isBookmarked ? getXIcon(18) : plusIcon;
+    addBookmarkBtn.innerHTML = isBookmarked ? getXIcon(18) : plusIcon(18);
   }
   function closeMenu() {
     if (activeMenu) {
@@ -376,7 +373,7 @@ function renderTrashSelectBtnIcon() {
       }, 150);
     }
   }
-  contextMenuOverlay.addEventListener('click', () => { closeMenu(); closeBulkContextMenu(); });
+  contextMenuOverlay.addEventListener('click', () => { closeMenu(); closeBulkContextMenu(); closeEmptyAreaMenu(); });
 
   const tabBookmarks = document.getElementById('tabBookmarks');
   const tabTrash = document.getElementById('tabTrash');
@@ -400,10 +397,17 @@ function renderTrashSelectBtnIcon() {
   const mainSection = document.querySelector('section');
   const settingFolderBadgeToggle = document.getElementById('settingFolderBadge');
   let showFolderBadge = true;
+  const settingShowUpButtonToggle = document.getElementById('settingShowUpButton');
+  let showUpButton = true;
+  const settingShowBreadcrumbToggle = document.getElementById('settingShowBreadcrumb');
+  let showBreadcrumb = false;
   const themeButtons = document.querySelectorAll('.theme-btn[data-theme]');
+  const rootFolderSelect = document.getElementById('rootFolderSelect');
   const settingButtons = document.querySelectorAll('.setting-btn');
+  const folderStyleSettingsRow = document.querySelector('[data-i18n="settingFolderStyleLabel"]')?.closest('.settings-row');
   let deleteMode = 'trash';
   let trashExpiryDays = 30;
+  let checkBeforeAdd = false;
 
   
   const TRASH_STORAGE_KEY = 'markleaf_trash';
@@ -428,6 +432,11 @@ function renderTrashSelectBtnIcon() {
     const items = await getTrashItems();
     const alive = items.filter(i => (now - i.ts) < expiryMs);
     if (alive.length !== items.length) await saveTrashItems(alive);
+  }
+
+  function syncFolderStyleVisibility() {
+    if (!folderStyleSettingsRow) return;
+    folderStyleSettingsRow.style.display = isGridView ? '' : 'none';
   }
   
 
@@ -463,6 +472,7 @@ function renderTrashSelectBtnIcon() {
       } else if (setting === 'view') {
         isGridView = value === 'grid';
         chrome.storage.local.set({ isGridView });
+        syncFolderStyleVisibility();
         setToggleIcon();
         listItems(currentFolderId);
       } else if (setting === 'folderStyle') {
@@ -480,7 +490,25 @@ function renderTrashSelectBtnIcon() {
     listItems(currentFolderId);
   });
 
-  
+  settingShowUpButtonToggle.addEventListener('change', () => {
+    showUpButton = settingShowUpButtonToggle.checked;
+    chrome.storage.local.set({ showUpButton });
+    updateUpButtonVisibility();
+  });
+
+  settingShowBreadcrumbToggle.addEventListener('change', () => {
+    showBreadcrumb = settingShowBreadcrumbToggle.checked;
+    chrome.storage.local.set({ showBreadcrumb });
+    updateUpButtonVisibility();
+  });
+
+  const settingCheckBeforeAddToggle = document.getElementById('settingCheckBeforeAdd');
+  settingCheckBeforeAddToggle.addEventListener('change', () => {
+    checkBeforeAdd = settingCheckBeforeAddToggle.checked;
+    chrome.storage.local.set({ checkBeforeAdd });
+  });
+
+
   async function getFolderTreeForTrash(nodeId) {
     const children = await new Promise(resolve =>
       chrome.bookmarks.getChildren(nodeId, r => { chrome.runtime.lastError; resolve(r || []); })
@@ -527,6 +555,7 @@ function renderTrashSelectBtnIcon() {
     bookmarksList.style.display = 'none';
     mainSection.style.display = 'none';
     upButton.style.display = 'none';
+    if (breadcrumbBar) breadcrumbBar.style.display = 'none';
     settingsPanel.classList.remove('active');
     trashPanel.classList.remove('active');
     hideScrollToTop();
@@ -537,6 +566,7 @@ function renderTrashSelectBtnIcon() {
       tabBookmarks.classList.add('active');
       bookmarksList.style.display = '';
       mainSection.style.display = '';
+      updateUpButtonVisibility();
       !isMobile && searchInput.focus();
     } else if (tab === 'trash') {
       tabTrash.classList.add('active');
@@ -844,9 +874,18 @@ function renderTrashSelectBtnIcon() {
 
   trashSearchInput.addEventListener('input', () => {
     if (trashSearchDebounceTimer) clearTimeout(trashSearchDebounceTimer);
+    clearTrashSearchBtn.style.display = trashSearchInput.value ? 'flex' : 'none';
     trashSearchDebounceTimer = setTimeout(() => {
       loadTrashPanel(trashSearchInput.value);
     }, 100);
+  });
+
+  const clearTrashSearchBtn = document.getElementById('clearTrashSearchBtn');
+  clearTrashSearchBtn.addEventListener('click', () => {
+    trashSearchInput.value = '';
+    clearTrashSearchBtn.style.display = 'none';
+    loadTrashPanel('');
+    !isMobile && trashSearchInput.focus();
   });
 
   trashSelectBtn.addEventListener('click', (e) => {
@@ -954,34 +993,40 @@ function renderTrashSelectBtnIcon() {
     if (event.target == restoreAllTrashModal) { restoreAllTrashModal.classList.remove('active'); !isMobile && trashSearchInput.focus(); }
   };
 
-  function updateSettingsUI() {
-    settingFolderBadgeToggle.checked = showFolderBadge;
-    const htmlCls = document.documentElement.classList;
-    let currentTheme = 'auto';
-    if (htmlCls.contains('theme-force-dark')) currentTheme = 'dark';
-    else if (htmlCls.contains('theme-force-light')) currentTheme = 'light';
-    themeButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.theme === currentTheme));
-    const viewVal = isGridView ? 'grid' : 'list';
-    const folderStyleVal = isFolderStackMode ? 'stack' : 'icon';
-    document.querySelectorAll('.setting-btn[data-setting="view"]').forEach(b => b.classList.toggle('active', b.dataset.value === viewVal));
-    document.querySelectorAll('.setting-btn[data-setting="folderStyle"]').forEach(b => b.classList.toggle('active', b.dataset.value === folderStyleVal));
-    document.querySelectorAll('.setting-btn[data-setting="deleteMode"]').forEach(b => b.classList.toggle('active', b.dataset.value === deleteMode));
-    document.querySelectorAll('.setting-btn[data-setting="trashExpiry"]').forEach(b => b.classList.toggle('active', parseInt(b.dataset.value, 10) === trashExpiryDays));
-    
-    const expiryRow = document.getElementById('trashExpiryRow');
-    const parentSettingsRow = expiryRow?.closest('.settings-row');
-    
-    if (expiryRow) {
-      expiryRow.classList.toggle('hidden', deleteMode !== 'trash');
-    }
-    
-    if (parentSettingsRow) {
-      const descriptionParagraph = parentSettingsRow.querySelector('p:not(.trash-expiry-row p)');
-      if (descriptionParagraph && descriptionParagraph.innerText.includes(chrome.i18n.getMessage('deleteModeText'))) {
-        descriptionParagraph.style.display = deleteMode === 'trash' ? '' : 'none';
-      }
+function updateSettingsUI() {
+  syncFolderStyleVisibility();
+  settingFolderBadgeToggle.checked = showFolderBadge;
+  settingCheckBeforeAddToggle.checked = checkBeforeAdd;
+  settingShowUpButtonToggle.checked = showUpButton;
+  settingShowBreadcrumbToggle.checked = showBreadcrumb;
+  populateRootFolderSelect(folderStack[0] || (isMobile ? '3' : '1'));
+  const htmlCls = document.documentElement.classList;
+  let currentTheme = 'auto';
+  if (htmlCls.contains('theme-force-dark')) currentTheme = 'dark';
+  else if (htmlCls.contains('theme-force-light')) currentTheme = 'light';
+  themeButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.theme === currentTheme));
+  const viewVal = isGridView ? 'grid' : 'list';
+  const folderStyleVal = isFolderStackMode ? 'stack' : 'icon';
+  document.querySelectorAll('.setting-btn[data-setting="view"]').forEach(b => b.classList.toggle('active', b.dataset.value === viewVal));
+  document.querySelectorAll('.setting-btn[data-setting="folderStyle"]').forEach(b => b.classList.toggle('active', b.dataset.value === folderStyleVal));
+  document.querySelectorAll('.setting-btn[data-setting="deleteMode"]').forEach(b => b.classList.toggle('active', b.dataset.value === deleteMode));
+  document.querySelectorAll('.setting-btn[data-setting="trashExpiry"]').forEach(b => b.classList.toggle('active', parseInt(b.dataset.value, 10) === trashExpiryDays));
+  
+  const expiryRow = document.getElementById('trashExpiryRow');
+  const parentSettingsRow = expiryRow?.closest('.settings-row');
+  
+  if (expiryRow) {
+    expiryRow.classList.toggle('hidden', deleteMode !== 'trash');
+  }
+  
+  if (parentSettingsRow) {
+    const descriptionParagraph = parentSettingsRow.querySelector('p:not(.trash-expiry-row p)');
+    if (descriptionParagraph && descriptionParagraph.innerText.includes(chrome.i18n.getMessage('deleteModeText'))) {
+      descriptionParagraph.style.display = deleteMode === 'trash' ? '' : 'none';
     }
   }
+
+}
 
   function applyTheme(theme) {
     document.documentElement.classList.remove('theme-force-dark', 'theme-force-light');
@@ -997,6 +1042,31 @@ function renderTrashSelectBtnIcon() {
       themeButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     });
+  });
+
+  function populateRootFolderSelect(selectedId) {
+    chrome.bookmarks.getTree((tree) => {
+      rootFolderSelect.innerHTML = '';
+      const root = tree[0];
+      if (!root || !root.children) return;
+      root.children.forEach(node => {
+        if (node.url) return; // skip non-folder
+        const opt = document.createElement('option');
+        opt.value = node.id;
+        opt.textContent = node.title || chrome.i18n.getMessage('settingRootFolderUnnamed');
+        opt.selected = node.id === String(selectedId);
+        rootFolderSelect.appendChild(opt);
+      });
+    });
+  }
+
+  rootFolderSelect.addEventListener('change', () => {
+    const newRootId = rootFolderSelect.value;
+    chrome.storage.local.set({ defaultFolderId: newRootId });
+    folderStack = [newRootId];
+    currentFolderId = newRootId;
+    chrome.storage.local.set({ folderStack });
+    listItems(currentFolderId);
   });
   function getVisibleItems() {
     return Array.from(bookmarksList.children).filter(
@@ -1116,9 +1186,6 @@ function renderTrashSelectBtnIcon() {
               precomputedData.faviconUrls = collectFaviconsFromTree(node, 4);
             }
             const listItem = createListItem(node, precomputedData);
-            if (newlyAddedId && node.id === newlyAddedId) {
-              listItem.classList.add('item-new');
-            }
             bookmarksList.appendChild(listItem);
           });
         } else {
@@ -1128,18 +1195,35 @@ function renderTrashSelectBtnIcon() {
         appendEmptyMessage(chrome.i18n.getMessage('noBookmarksMessage'));
       }
       if (allItems.length > 1 && searchInput.value === '') {
-        window.bookmarksSortable = new Sortable(bookmarksList, {
-          animation: 150,
-          onEnd: function (evt) {
-            const newOrder = Array.from(bookmarksList.children)
-              .filter(el => el.dataset.bookmarkId)
-              .map(item => item.dataset.bookmarkId);
-            newOrder.forEach((itemId, index) => {
-              chrome.bookmarks.move(itemId, { index: index });
-            });
-            allItems.sort((a, b) => newOrder.indexOf(a.id) - newOrder.indexOf(b.id));
+        const initSortable = () => {
+          if (window.bookmarksSortable) {
+            window.bookmarksSortable.destroy();
+            window.bookmarksSortable = null;
           }
-        });
+          window.bookmarksSortable = new Sortable(bookmarksList, {
+            animation: 150,
+            onEnd: function (evt) {
+              window.bookmarksSortable.option('disabled', true);
+              const newOrder = Array.from(bookmarksList.children)
+                .filter(el => el.dataset.bookmarkId)
+                .map(item => item.dataset.bookmarkId);
+              let pending = newOrder.length;
+              if (pending === 0) { window.bookmarksSortable.option('disabled', false); return; }
+              newOrder.forEach((itemId, index) => {
+                chrome.bookmarks.move(itemId, { index: index }, () => {
+                  pending--;
+                  if (pending === 0) {
+                    allItems.sort((a, b) => newOrder.indexOf(a.id) - newOrder.indexOf(b.id));
+                    if (window.bookmarksSortable) {
+                      window.bookmarksSortable.option('disabled', false);
+                    }
+                  }
+                });
+              });
+            }
+          });
+        };
+        initSortable();
       }
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
@@ -1160,6 +1244,94 @@ function renderTrashSelectBtnIcon() {
     div.textContent = text;
     bookmarksList.appendChild(div);
   }
+
+  function closeEmptyAreaMenu() {
+    const m = document.getElementById('emptyAreaContextMenu');
+    if (m) m.remove();
+    contextMenuOverlay.classList.remove('active');
+  }
+
+  async function urlExistsInFolder(url, folderId) {
+    const children = await new Promise(resolve =>
+      chrome.bookmarks.getChildren(folderId, r => { chrome.runtime.lastError; resolve(r || []); })
+    );
+    return children.some(c => c.url === url);
+  }
+
+async function showEmptyAreaContextMenu(x, y) {
+  closeMenu();
+  closeBulkContextMenu();
+  const menu = document.createElement('div');
+  menu.classList.add('context-menu');
+  menu.id = 'emptyAreaContextMenu';
+  menu.style.display = 'flex';
+
+  const addCurrentBtn = document.createElement('button');
+  addCurrentBtn.classList.add('context-menu-item');
+  addCurrentBtn.innerHTML = `${plusIcon(16)} ${chrome.i18n.getMessage('addCurrentSiteButton')}`;
+  addCurrentBtn.onclick = () => {
+    closeEmptyAreaMenu();
+    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+      const tab = tabs[0];
+      if (!tab || !tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) return;
+      if (checkBeforeAdd && await urlExistsInFolder(tab.url, currentFolderId)) return;
+      chrome.bookmarks.create({ parentId: currentFolderId, title: tab.title, url: tab.url }, () => listItems(currentFolderId));
+    });
+  };
+  menu.appendChild(addCurrentBtn);
+
+  const addAllBtn = document.createElement('button');
+  addAllBtn.classList.add('context-menu-item');
+  addAllBtn.innerHTML = `${addAllTabsIcon} ${chrome.i18n.getMessage('addAllTabsButton')}`;
+  addAllBtn.onclick = async () => {
+    closeEmptyAreaMenu();
+    const tabs = await new Promise(resolve => chrome.tabs.query({ currentWindow: true }, resolve));
+    for (const tab of tabs) {
+      if (!tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) continue;
+      if (checkBeforeAdd && await urlExistsInFolder(tab.url, currentFolderId)) continue;
+      await new Promise(resolve => chrome.bookmarks.create({ parentId: currentFolderId, title: tab.title, url: tab.url }, resolve));
+    }
+    listItems(currentFolderId);
+  };
+  menu.appendChild(addAllBtn);
+
+  const createFolderBtn2 = document.createElement('button');
+  createFolderBtn2.classList.add('context-menu-item');
+  createFolderBtn2.innerHTML = `${addFolderIcon} ${chrome.i18n.getMessage('createFolderButton')}`;
+  createFolderBtn2.onclick = () => {
+    closeEmptyAreaMenu();
+    newFolderParentId = currentFolderId;
+    newFolderIndex = null;
+    openCreateFolderModal();
+  };
+  menu.appendChild(createFolderBtn2);
+
+  document.body.appendChild(menu);
+
+  menu.style.visibility = 'hidden';
+  const mw = menu.offsetWidth;
+  const mh = menu.offsetHeight;
+  menu.style.visibility = '';
+  let left = x, top = y;
+  if (left + mw > window.innerWidth - 4) left = window.innerWidth - mw - 4;
+  if (top + mh > window.innerHeight - 4) top = window.innerHeight - mh - 4;
+  if (left < 4) left = 4;
+  if (top < 4) top = 4;
+  menu.style.left = left + 'px';
+  menu.style.top = top + 'px';
+  menu.style.right = 'auto';
+  menu.style.bottom = 'auto';
+  contextMenuOverlay.classList.add('active');
+}
+
+  bookmarksList.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('li[data-bookmark-id]')) return;
+    if (isSelectionMode) return;
+    if (searchInput.value !== '') return;
+    e.preventDefault();
+    e.stopPropagation();
+    showEmptyAreaContextMenu(e.clientX, e.clientY);
+  });
   function createListItem(node, precomputedData = {}) {
     const listItem = document.createElement('li');
     listItem.dataset.bookmarkId = node.id;
@@ -1177,6 +1349,17 @@ function renderTrashSelectBtnIcon() {
       return false;
     });
     const link = document.createElement('a');
+    const faviconTargets = [];
+    const scheduleFaviconRefresh = () => {
+      if (!node.url || faviconTargets.length === 0) return;
+      [1000, 2000, 3000].forEach((delay, idx) => {
+        setTimeout(() => {
+          faviconTargets.forEach(({ img, size }) => {
+            img.src = `${getFaviconUrl(node.url, size)}&retry=${Date.now()}_${idx}`;
+          });
+        }, delay);
+      });
+    };
     if (!node.url) {
       link.href = '#';
     } else {
@@ -1228,6 +1411,7 @@ function renderTrashSelectBtnIcon() {
       link.addEventListener('click', (event) => {
         event.preventDefault(); event.stopPropagation();
         if (isSelectionMode) { toggleItemSelection(listItem, node.id); return false; }
+        scheduleFaviconRefresh();
         if (event.ctrlKey || event.metaKey) { chrome.tabs.create({ url: node.url, active: false }); return false; }
         if (event.shiftKey) { chrome.windows.create({ url: node.url }); return false; }
         chrome.tabs.update({ url: node.url }); return false;
@@ -1235,6 +1419,7 @@ function renderTrashSelectBtnIcon() {
       link.addEventListener('auxclick', (event) => {
         if (event.button === 1) {
           event.preventDefault(); event.stopPropagation();
+          scheduleFaviconRefresh();
           chrome.tabs.create({ url: node.url, active: false }); return false;
         }
       });
@@ -1246,6 +1431,10 @@ function renderTrashSelectBtnIcon() {
       img.src = getFaviconUrl(node.url);
       img.alt = 'Favicon';
       img.style.cssText = 'width:16px;height:16px;margin-right:8px;border-radius:100%;';
+      img.dataset.faviconMissing = '0';
+      img.addEventListener('load', () => { img.dataset.faviconMissing = '0'; });
+      img.addEventListener('error', () => { img.dataset.faviconMissing = '1'; });
+      faviconTargets.push({ img, size: 16 });
       icon.appendChild(img);
     } else {
       icon.innerHTML = folderIconSVG;
@@ -1278,6 +1467,10 @@ function renderTrashSelectBtnIcon() {
       const gridImg = document.createElement('img');
       gridImg.src = getFaviconUrl(node.url, 32);
       gridImg.alt = '';
+      gridImg.dataset.faviconMissing = '0';
+      gridImg.addEventListener('load', () => { gridImg.dataset.faviconMissing = '0'; });
+      gridImg.addEventListener('error', () => { gridImg.dataset.faviconMissing = '1'; });
+      faviconTargets.push({ img: gridImg, size: 32 });
       gridIconWrap.appendChild(gridImg);
     } else {
       if (isFolderStackMode) {
@@ -1323,39 +1516,60 @@ function renderTrashSelectBtnIcon() {
     const editMenuItem = document.createElement('button');
     editMenuItem.classList.add('context-menu-item');
     editMenuItem.innerHTML = `${editIcon} ${chrome.i18n.getMessage('editButton')}`;
+
     const moveMenuItem = document.createElement('button');
     moveMenuItem.classList.add('context-menu-item');
     moveMenuItem.innerHTML = `${moveIcon} ${chrome.i18n.getMessage('moveButton')}`;
+
     const removeMenuItem = document.createElement('button');
     removeMenuItem.classList.add('context-menu-item');
     removeMenuItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
     removeMenuItem.dataset.state = 'initial';
+
     const createFolderMenuItem = document.createElement('button');
     createFolderMenuItem.classList.add('context-menu-item');
     createFolderMenuItem.innerHTML = `${addFolderIcon} ${chrome.i18n.getMessage('createFolderButton')}`;
-    contextMenu.appendChild(editMenuItem);
-    contextMenu.appendChild(moveMenuItem);
-    contextMenu.appendChild(removeMenuItem);
-    contextMenu.appendChild(createFolderMenuItem);
+
     const addCurrentSiteMenuItem = document.createElement('button');
     addCurrentSiteMenuItem.classList.add('context-menu-item');
     addCurrentSiteMenuItem.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg> ${chrome.i18n.getMessage(node.url ? 'addCurrentSiteButton' : 'addCurrentSiteToFolderButton')}`;
-    contextMenu.appendChild(addCurrentSiteMenuItem);
     addCurrentSiteMenuItem.onclick = (event) => {
       event.stopPropagation();
       closeMenu();
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const targetParentId = node.url ? node.parentId : node.id;
+      chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
         const tab = tabs[0];
+        if (!tab || !tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) return;
+        if (checkBeforeAdd && await urlExistsInFolder(tab.url, targetParentId)) return;
         chrome.bookmarks.create({
-          parentId: node.url ? node.parentId : node.id,
+          parentId: targetParentId,
           title: tab.title,
           url: tab.url,
           index: node.url ? node.index + 1 : undefined
         }, () => listItems(currentFolderId));
       });
     };
+
+  const addAllTabsMsgKey = node.url ? 'addAllTabsButton' : 'addAllTabsToFolderButton';
+  const addAllTabsMenuItem = document.createElement('button');
+  addAllTabsMenuItem.classList.add('context-menu-item');
+  addAllTabsMenuItem.innerHTML = `${addAllTabsIcon} ${chrome.i18n.getMessage(addAllTabsMsgKey)}`;
+  addAllTabsMenuItem.onclick = async (event) => {
+    event.stopPropagation();
+    closeMenu();
+    const targetParentId = node.url ? node.parentId : node.id;
+    const tabs = await new Promise(resolve => chrome.tabs.query({ currentWindow: true }, resolve));
+    for (const tab of tabs) {
+      if (!tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) continue;
+      if (checkBeforeAdd && await urlExistsInFolder(tab.url, targetParentId)) continue;
+      await new Promise(resolve => chrome.bookmarks.create({ parentId: targetParentId, title: tab.title, url: tab.url }, resolve));
+    }
+    listItems(currentFolderId);
+  };
+
+    let openAllMenuItem = null;
     if (!node.url) {
-      const openAllMenuItem = document.createElement('button');
+      openAllMenuItem = document.createElement('button');
       openAllMenuItem.classList.add('context-menu-item');
       openAllMenuItem.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg> ${chrome.i18n.getMessage('confirmOpenAllTitle')}`;
       openAllMenuItem.onclick = (event) => {
@@ -1363,31 +1577,43 @@ function renderTrashSelectBtnIcon() {
         closeMenu();
         confirmOpenAllBookmarks(node.title, node.id);
       };
-      contextMenu.appendChild(openAllMenuItem);
     }
+
+    let quickActionsContainer = null;
     if (node.url) {
-      const quickActionsContainer = document.createElement('div');
+      quickActionsContainer = document.createElement('div');
       quickActionsContainer.classList.add('quick-actions');
+      
       const copyLinkBtn = document.createElement('button');
       copyLinkBtn.classList.add('quick-action-btn');
       copyLinkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>`;
       copyLinkBtn.title = chrome.i18n.getMessage('copyLinkButton');
       copyLinkBtn.onclick = (event) => { event.stopPropagation(); closeMenu(); navigator.clipboard.writeText(node.url); };
+
       const openInCurrentTabBtn = document.createElement('button');
       openInCurrentTabBtn.classList.add('quick-action-btn');
       openInCurrentTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`;
       openInCurrentTabBtn.title = chrome.i18n.getMessage('openInCurrentTab');
       openInCurrentTabBtn.onclick = (event) => { event.stopPropagation(); closeMenu(); chrome.tabs.update({ url: node.url }); };
+
       const openInNewTabBtn = document.createElement('button');
       openInNewTabBtn.classList.add('quick-action-btn');
       openInNewTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`;
       openInNewTabBtn.title = chrome.i18n.getMessage('openInNewTab');
       openInNewTabBtn.onclick = (event) => { event.stopPropagation(); closeMenu(); chrome.tabs.create({ url: node.url, active: false }); };
+
       quickActionsContainer.appendChild(copyLinkBtn);
       quickActionsContainer.appendChild(openInCurrentTabBtn);
       quickActionsContainer.appendChild(openInNewTabBtn);
-      contextMenu.appendChild(quickActionsContainer);
     }
+    contextMenu.appendChild(editMenuItem);
+    contextMenu.appendChild(moveMenuItem);
+    contextMenu.appendChild(removeMenuItem);
+    contextMenu.appendChild(createFolderMenuItem);
+    contextMenu.appendChild(addCurrentSiteMenuItem);
+    contextMenu.appendChild(addAllTabsMenuItem);
+    if (openAllMenuItem) contextMenu.appendChild(openAllMenuItem);
+    if (quickActionsContainer) contextMenu.appendChild(quickActionsContainer);
     document.body.appendChild(contextMenu);
     menuBtn.onclick = (event) => {
       event.stopPropagation();
@@ -1683,7 +1909,8 @@ function renderTrashSelectBtnIcon() {
     window.scrollTo(0, 0);
   });
   function updateUpButtonVisibility() {
-    if (folderStack.length > 1) {
+    const inSubFolder = folderStack.length > 1;
+    if (inSubFolder && showUpButton) {
       upButton.style.display = 'flex';
       addBookmarkBtn.style.display = 'flex';
       header.style.justifyContent = 'space-between';
@@ -1692,6 +1919,60 @@ function renderTrashSelectBtnIcon() {
       addBookmarkBtn.style.display = 'flex';
       header.style.justifyContent = 'flex-end';
     }
+    updateBreadcrumb();
+  }
+
+  const breadcrumbBar = document.getElementById('breadcrumbBar');
+
+  function updateBreadcrumb() {
+    if (!breadcrumbBar) return;
+    if (folderStack.length <= 1 || !showBreadcrumb) {
+      breadcrumbBar.style.display = 'none';
+      breadcrumbBar.innerHTML = '';
+      return;
+    }
+    // folderStack'teki her klasörün adını chrome.bookmarks.get ile çek
+    const ids = folderStack.slice();
+    const getNames = ids.map(id => new Promise(resolve => {
+      chrome.bookmarks.get(id, (results) => {
+        const err = chrome.runtime.lastError;
+        if (err || !results || results.length === 0) {
+          resolve({ id, title: '…' });
+        } else {
+          resolve({ id, title: results[0].title || '…' });
+        }
+      });
+    }));
+    Promise.all(getNames).then(folders => {
+      breadcrumbBar.innerHTML = '';
+      folders.forEach((folder, idx) => {
+        const isLast = idx === folders.length - 1;
+        const btn = document.createElement('button');
+        btn.className = 'breadcrumb-item' + (isLast ? ' active' : '');
+        btn.title = folder.title;
+        btn.innerHTML = `<span>${folder.title}</span>`;
+        if (!isLast) {
+          btn.addEventListener('click', () => {
+            // folderStack'i bu klasöre kadar kes
+            folderStack = folderStack.slice(0, idx + 1);
+            currentFolderId = folder.id;
+            listItems(currentFolderId);
+          });
+        }
+        breadcrumbBar.appendChild(btn);
+        if (!isLast) {
+          const sep = document.createElement('span');
+          sep.className = 'breadcrumb-sep';
+          sep.textContent = '›';
+          breadcrumbBar.appendChild(sep);
+        }
+      });
+      breadcrumbBar.style.display = 'flex';
+      // En sona kaydır ki aktif klasör görünsün
+      requestAnimationFrame(() => {
+        breadcrumbBar.scrollLeft = breadcrumbBar.scrollWidth;
+      });
+    });
   }
   function updateItemsList(itemsToDisplay) {
     bookmarksList.innerHTML = '';
@@ -1754,6 +2035,7 @@ function renderTrashSelectBtnIcon() {
   searchInput.addEventListener('input', () => {
     clearKeyboardSelection();
     const searchTerm = searchInput.value.trim().toLowerCase();
+    clearSearchBtn.style.display = searchInput.value ? 'flex' : 'none';
 
     
     if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
@@ -1769,6 +2051,7 @@ function renderTrashSelectBtnIcon() {
 
     addBookmarkBtn.style.display = 'none';
     upButton.style.display = 'none';
+    if (breadcrumbBar) breadcrumbBar.style.display = 'none';
     createFolderBtn.style.display = 'none';
     header.style.justifyContent = 'center';
 
@@ -1789,8 +2072,19 @@ function renderTrashSelectBtnIcon() {
       }
     }, 100);
   });
-  
-  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge'], (data) => {
+
+  clearSearchBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    clearSearchBtn.style.display = 'none';
+    ++searchRenderToken;
+    listItems(currentFolderId);
+    addBookmarkBtn.style.display = 'flex';
+    createFolderBtn.style.display = 'flex';
+    updateUpButtonVisibility();
+    !isMobile && searchInput.focus();
+  });
+
+  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showBreadcrumb'], (data) => {
     if (data.folderStack && data.folderStack.length > 0) {
       folderStack = data.folderStack;
       currentFolderId = folderStack[folderStack.length - 1];
@@ -1806,8 +2100,13 @@ function renderTrashSelectBtnIcon() {
     deleteMode = data.deleteMode || 'trash';
     trashExpiryDays = data.trashExpiryDays || 30;
     showFolderBadge = data.showFolderBadge !== undefined ? !!data.showFolderBadge : true;
+    checkBeforeAdd = !!data.checkBeforeAdd;
+    showUpButton = data.showUpButton !== undefined ? !!data.showUpButton : true;
+    showBreadcrumb = data.showBreadcrumb !== undefined ? !!data.showBreadcrumb : false;
     tabTrash.style.display = deleteMode === 'trash' ? '' : 'none';
     setToggleIcon();
+    const resolvedDefaultId = data.defaultFolderId || (isMobile ? '3' : '1');
+    populateRootFolderSelect(resolvedDefaultId);
     listItems(currentFolderId);
     purgeExpiredTrashItems();
   });
@@ -2082,7 +2381,7 @@ function renderTrashSelectBtnIcon() {
   async function exportData() {
     const storageData = await new Promise(resolve => {
       chrome.storage.local.get(
-        ['deleteMode', 'trashExpiryDays', 'isGridView', 'isFolderStackMode', 'appTheme', 'showFolderBadge', TRASH_STORAGE_KEY],
+        ['deleteMode', 'trashExpiryDays', 'isGridView', 'isFolderStackMode', 'appTheme', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showBreadcrumb', TRASH_STORAGE_KEY],
         resolve
       );
     });
@@ -2096,7 +2395,11 @@ function renderTrashSelectBtnIcon() {
         isGridView: storageData.isGridView || false,
         isFolderStackMode: storageData.isFolderStackMode || false,
         appTheme: storageData.appTheme || 'auto',
-        showFolderBadge: storageData.showFolderBadge !== undefined ? storageData.showFolderBadge : true
+        showFolderBadge: storageData.showFolderBadge !== undefined ? storageData.showFolderBadge : true,
+        checkBeforeAdd: !!storageData.checkBeforeAdd,
+        showUpButton: storageData.showUpButton !== undefined ? storageData.showUpButton : true,
+        showBreadcrumb: !!storageData.showBreadcrumb,
+        defaultFolderId: storageData.defaultFolderId || null
       },
       trash: storageData[TRASH_STORAGE_KEY] || [],
       bookmarks: bookmarksTree
@@ -2129,6 +2432,14 @@ function renderTrashSelectBtnIcon() {
       isGridView = !!s.isGridView;
       isFolderStackMode = !!s.isFolderStackMode;
       showFolderBadge = s.showFolderBadge !== undefined ? !!s.showFolderBadge : true;
+      checkBeforeAdd = !!s.checkBeforeAdd;
+      showUpButton = s.showUpButton !== undefined ? !!s.showUpButton : true;
+      showBreadcrumb = !!s.showBreadcrumb;
+      if (s.defaultFolderId) {
+        folderStack = [s.defaultFolderId];
+        currentFolderId = s.defaultFolderId;
+        chrome.storage.local.set({ folderStack });
+      }
       if (s.appTheme) applyTheme(s.appTheme);
 
       

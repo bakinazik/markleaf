@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Tambahkan tab ke folder"
   },
+  "addAllTabsButton": {
+    "message": "Tambahkan tab aktif di sini"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Tambahkan tab aktif ke folder"
+  },
   "confirmRemoval": {
     "message": "Apakah Anda yakin?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 dipilih"
+  },
+  "settingRootFolderLabel": {
+    "message": "Folder utama"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Folder tanpa nama"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Periksa sebelum menambahkan"
+  },
+  "checkBeforeAddText": {
+    "message": "Saat diaktifkan, bookmark dengan URL yang sama yang sudah ada di lokasi target akan dilewati."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Folder induk"
+  },
+  "settingShowUpButtonText": {
+    "message": "Menampilkan tombol untuk menavigasi ke folder induk."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Breadcrumb"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Menampilkan jalur folder agar Anda dapat langsung berpindah ke folder induk mana pun."
   }
 }

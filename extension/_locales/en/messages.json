@@ -30,7 +30,13 @@
     "message": "Add current tab here"
   },
   "addCurrentSiteToFolderButton": {
-    "message": "Add tab to folder"
+    "message": "Add current tab to folder"
+  },
+  "addAllTabsButton": {
+    "message": "Add active tabs here"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Add active tabs to folder"
   },
   "confirmRemoval": {
     "message": "Are you sure?"
@@ -215,9 +221,6 @@
   "viewToggleLabel": {
     "message": "Toggle view"
   },
-  "contextMenuLabel": {
-    "message": "Options"
-  },
   "keyboardShortcutLabel": {
     "message": "TAB"
   },
@@ -250,5 +253,29 @@
   },
   "selectionCount": {
     "message": "$1 selected"
+  },
+  "settingRootFolderLabel": {
+    "message": "Root folder"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Unnamed folder"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Check before adding"
+  },
+  "checkBeforeAddText": {
+    "message": "When enabled, bookmarks with the same URL already present in the target location will be skipped."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Parent folder"
+  },
+  "settingShowUpButtonText": {
+    "message": "Shows a button to navigate to the parent folder."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Breadcrumb"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Shows the folder path so you can quickly jump to any parent folder."
   }
 }

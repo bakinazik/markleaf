@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Adicionar aba à pasta"
   },
+  "addAllTabsButton": {
+    "message": "Adicionar abas ativas aqui"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Adicionar abas ativas à pasta"
+  },
   "confirmRemoval": {
     "message": "Você tem certeza?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 selecionado(s)"
+  },
+  "settingRootFolderLabel": {
+    "message": "Pasta raiz"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Pasta sem nome"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Verificar antes de adicionar"
+  },
+  "checkBeforeAddText": {
+    "message": "Quando ativado, favoritos com a mesma URL já presentes no local de destino serão ignorados."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Pasta pai"
+  },
+  "settingShowUpButtonText": {
+    "message": "Exibe um botão para navegar até a pasta pai."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Caminho de navegação"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Exibe o caminho da pasta para que você possa ir rapidamente para qualquer pasta pai."
   }
 }

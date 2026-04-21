@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Aggiungi scheda alla cartella"
   },
+  "addAllTabsButton": {
+    "message": "Aggiungi schede attive qui"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Aggiungi schede attive alla cartella"
+  },
   "confirmRemoval": {
     "message": "Sei sicuro?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 selezionati"
+  },
+  "settingRootFolderLabel": {
+    "message": "Cartella radice"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Cartella senza nome"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Controlla prima di aggiungere"
+  },
+  "checkBeforeAddText": {
+    "message": "Se abilitato, i segnalibri con lo stesso URL già presenti nella posizione di destinazione verranno ignorati."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Cartella principale"
+  },
+  "settingShowUpButtonText": {
+    "message": "Mostra un pulsante per navigare alla cartella principale."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Percorso di navigazione"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Mostra il percorso della cartella per poter accedere rapidamente a qualsiasi cartella principale."
   }
 }

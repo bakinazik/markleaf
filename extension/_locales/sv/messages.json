@@ -32,6 +32,12 @@
   "addCurrentSiteToFolderButton": {
     "message": "Lägg till flik i mapp"
   },
+  "addAllTabsButton": {
+    "message": "Lägg till aktiva flikar här"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Lägg till aktiva flikar i mapp"
+  },
   "confirmRemoval": {
     "message": "Är du säker?"
   },
@@ -250,5 +256,29 @@
   },
   "selectionCount": {
     "message": "$1 markerade"
+  },
+  "settingRootFolderLabel": {
+    "message": "Rotmapp"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Namnlös mapp"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Kontrollera innan tillägg"
+  },
+  "checkBeforeAddText": {
+    "message": "När aktiverat hoppas bokmärken med samma URL som redan finns på målplatsen över."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Överordnad mapp"
+  },
+  "settingShowUpButtonText": {
+    "message": "Visar en knapp för att navigera till den överordnade mappen."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Brödsmulor"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Visar mappsökvägen så att du snabbt kan hoppa till valfri överordnad mapp."
   }
 }
