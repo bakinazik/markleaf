@@ -21,6 +21,7 @@ Simple and practical bookmark manager.
 - [x] Draggable sorting for folders and bookmarks
 - [x] Dynamic search across all bookmarks with keyboard navigation
 - [x] Dark/light/system theme
+- [x] Root folder selection (Bookmarks Bar / Other Bookmarks).
 - [x] Remember last visited folder
 - [x] Supports 17 languages
 - [x] Trash: deleted items are recoverable, with configurable auto-expiry
