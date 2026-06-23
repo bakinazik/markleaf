@@ -19,7 +19,7 @@ Simple and practical bookmark manager.
 - [x] Create: Folder and bookmark/current page
 - [x] Edit: URL and name
 - [x] Draggable sorting for folders and bookmarks
-- [x] Dynamic search across all bookmarks with keyboard navigation
+- [x] Dynamic search across all bookmarks or only within a folder, with keyboard navigation
 - [x] Theme support: light / dark / black / system, plus custom (fully adjustable colors)
 - [x] Custom extension icon (4 predefined styles: colorful / black / white / gray, or upload your own)
 - [x] Root folder selection (Bookmarks Bar / Other Bookmarks)
