@@ -49,6 +49,7 @@ body {
   background: var(--light);
   color: var(--text);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 .container {
@@ -65,6 +66,23 @@ section {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  position: relative;
+}
+
+section::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(
+	ellipse,
+	rgba(1, 190, 26, 0.08) 0%,
+	rgba(1, 190, 26, 0.04) 35%,
+	transparent 70%
+	);
+	transform: scale(1.2);
+	filter: blur(30px);
+	pointer-events: none;
+	overflow: hidden;
 }
 
 .logo-section {
