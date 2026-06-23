@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "يعرض مسار المجلد حتى تتمكن من الانتقال بسرعة إلى أي مجلد أصلي."
+  },
+  "settingExtensionIconLabel": {
+    "message": "أيقونة الامتداد"
+  },
+  "settingIconColorful": {
+    "message": "ملون"
+  },
+  "settingIconBlack": {
+    "message": "أسود"
+  },
+  "settingIconWhite": {
+    "message": "أبيض"
+  },
+  "settingIconGray": {
+    "message": "رمادي"
+  },
+  "settingIconCustom": {
+    "message": "مخصص"
+  },
+  "settingIconChooseFile": {
+    "message": "اختر ملفاً"
+  },
+  "settingIconPreviewLabel": {
+    "message": "معاينة"
+  },
+  "settingIconRemove": {
+    "message": "إزالة"
+  },
+  "settingIconCustomHint": {
+    "message": "يقبل PNG وJPG وSVG وWebP. سيتم اقتصاص الصورة تلقائياً."
+  },
+  "settingIconInvalidFile": {
+    "message": "يرجى تحديد ملف صورة صالح (PNG أو JPG أو SVG أو WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "المتصفح"
+  },
+  "settingThemeLight": {
+    "message": "فاتح"
+  },
+  "settingThemeSepia": {
+    "message": "بني داكن"
+  },
+  "settingThemeDark": {
+    "message": "داكن"
+  },
+  "settingThemeBlack": {
+    "message": "أسود"
+  },
+  "settingThemeCustom": {
+    "message": "مخصص"
+  },
+  "settingThemeBgColor": {
+    "message": "الخلفية"
+  },
+  "settingThemeTextColor": {
+    "message": "النص"
+  },
+  "settingThemeAccentColor": {
+    "message": "اللون المميز"
+  },
+  "settingThemeBorderColor": {
+    "message": "الحدود"
+  },
+  "settingThemeCardColor": {
+    "message": "البطاقة"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "مزود الفيكون"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "المتصفح"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

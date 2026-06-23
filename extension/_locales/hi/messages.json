@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "फ़ोल्डर पथ दिखाता है ताकि आप किसी भी मूल फ़ोल्डर पर जल्दी से जा सकें।"
+  },
+  "settingExtensionIconLabel": {
+    "message": "एक्सटेंशन आइकन"
+  },
+  "settingIconColorful": {
+    "message": "रंगीन"
+  },
+  "settingIconBlack": {
+    "message": "काला"
+  },
+  "settingIconWhite": {
+    "message": "सफेद"
+  },
+  "settingIconGray": {
+    "message": "ग्रे"
+  },
+  "settingIconCustom": {
+    "message": "कस्टम"
+  },
+  "settingIconChooseFile": {
+    "message": "फ़ाइल चुनें"
+  },
+  "settingIconPreviewLabel": {
+    "message": "पूर्वावलोकन"
+  },
+  "settingIconRemove": {
+    "message": "हटाएं"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP स्वीकार्य है। छवि स्वचालित रूप से काटी जाएगी।"
+  },
+  "settingIconInvalidFile": {
+    "message": "कृपया एक वैध छवि फ़ाइल चुनें (PNG, JPG, SVG, WebP)।"
+  },
+  "settingThemeBrowser": {
+    "message": "ब्राउज़र"
+  },
+  "settingThemeLight": {
+    "message": "हल्का"
+  },
+  "settingThemeSepia": {
+    "message": "सेपिया"
+  },
+  "settingThemeDark": {
+    "message": "गहरा"
+  },
+  "settingThemeBlack": {
+    "message": "काला"
+  },
+  "settingThemeCustom": {
+    "message": "कस्टम"
+  },
+  "settingThemeBgColor": {
+    "message": "पृष्ठभूमि"
+  },
+  "settingThemeTextColor": {
+    "message": "पाठ"
+  },
+  "settingThemeAccentColor": {
+    "message": "एक्सेंट"
+  },
+  "settingThemeBorderColor": {
+    "message": "बॉर्डर"
+  },
+  "settingThemeCardColor": {
+    "message": "कार्ड"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "फ़ेविकॉन प्रदाता"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "ब्राउज़र"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

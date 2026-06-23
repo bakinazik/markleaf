@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Affiche le chemin du dossier pour accéder rapidement à n'importe quel dossier parent."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Icône d'extension"
+  },
+  "settingIconColorful": {
+    "message": "Coloré"
+  },
+  "settingIconBlack": {
+    "message": "Noir"
+  },
+  "settingIconWhite": {
+    "message": "Blanc"
+  },
+  "settingIconGray": {
+    "message": "Gris"
+  },
+  "settingIconCustom": {
+    "message": "Personnalisé"
+  },
+  "settingIconChooseFile": {
+    "message": "Choisir un fichier"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Aperçu"
+  },
+  "settingIconRemove": {
+    "message": "Supprimer"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP acceptés. L'image sera recadrée automatiquement."
+  },
+  "settingIconInvalidFile": {
+    "message": "Veuillez sélectionner une image valide (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Navigateur"
+  },
+  "settingThemeLight": {
+    "message": "Clair"
+  },
+  "settingThemeSepia": {
+    "message": "Sépia"
+  },
+  "settingThemeDark": {
+    "message": "Sombre"
+  },
+  "settingThemeBlack": {
+    "message": "Noir"
+  },
+  "settingThemeCustom": {
+    "message": "Personnalisé"
+  },
+  "settingThemeBgColor": {
+    "message": "Arrière-plan"
+  },
+  "settingThemeTextColor": {
+    "message": "Texte"
+  },
+  "settingThemeAccentColor": {
+    "message": "Accent"
+  },
+  "settingThemeBorderColor": {
+    "message": "Bordure"
+  },
+  "settingThemeCardColor": {
+    "message": "Carte"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Fournisseur de favicons"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Navigateur"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

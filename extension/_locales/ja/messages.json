@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "フォルダーのパスを表示し、任意の親フォルダーにすばやくジャンプできます。"
+  },
+  "settingExtensionIconLabel": {
+    "message": "拡張機能アイコン"
+  },
+  "settingIconColorful": {
+    "message": "カラフル"
+  },
+  "settingIconBlack": {
+    "message": "黒"
+  },
+  "settingIconWhite": {
+    "message": "白"
+  },
+  "settingIconGray": {
+    "message": "グレー"
+  },
+  "settingIconCustom": {
+    "message": "カスタム"
+  },
+  "settingIconChooseFile": {
+    "message": "ファイルを選択"
+  },
+  "settingIconPreviewLabel": {
+    "message": "プレビュー"
+  },
+  "settingIconRemove": {
+    "message": "削除"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG、JPG、SVG、WebP に対応しています。画像は自動的にトリミングされます。"
+  },
+  "settingIconInvalidFile": {
+    "message": "有効な画像ファイル（PNG、JPG、SVG、WebP）を選択してください。"
+  },
+  "settingThemeBrowser": {
+    "message": "ブラウザ"
+  },
+  "settingThemeLight": {
+    "message": "ライト"
+  },
+  "settingThemeSepia": {
+    "message": "セピア"
+  },
+  "settingThemeDark": {
+    "message": "ダーク"
+  },
+  "settingThemeBlack": {
+    "message": "ブラック"
+  },
+  "settingThemeCustom": {
+    "message": "カスタム"
+  },
+  "settingThemeBgColor": {
+    "message": "背景"
+  },
+  "settingThemeTextColor": {
+    "message": "テキスト"
+  },
+  "settingThemeAccentColor": {
+    "message": "アクセント"
+  },
+  "settingThemeBorderColor": {
+    "message": "ボーダー"
+  },
+  "settingThemeCardColor": {
+    "message": "カード"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "ファビコンプロバイダー"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "ブラウザ"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

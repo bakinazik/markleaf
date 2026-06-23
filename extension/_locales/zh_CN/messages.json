@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "显示文件夹路径，以便快速跳转到任意上级文件夹。"
+  },
+  "settingExtensionIconLabel": {
+    "message": "扩展图标"
+  },
+  "settingIconColorful": {
+    "message": "彩色"
+  },
+  "settingIconBlack": {
+    "message": "黑色"
+  },
+  "settingIconWhite": {
+    "message": "白色"
+  },
+  "settingIconGray": {
+    "message": "灰色"
+  },
+  "settingIconCustom": {
+    "message": "自定义"
+  },
+  "settingIconChooseFile": {
+    "message": "选择文件"
+  },
+  "settingIconPreviewLabel": {
+    "message": "预览"
+  },
+  "settingIconRemove": {
+    "message": "移除"
+  },
+  "settingIconCustomHint": {
+    "message": "支持 PNG、JPG、SVG、WebP。图片将自动裁剪为正方形。"
+  },
+  "settingIconInvalidFile": {
+    "message": "请选择有效的图片文件（PNG、JPG、SVG、WebP）。"
+  },
+  "settingThemeBrowser": {
+    "message": "浏览器"
+  },
+  "settingThemeLight": {
+    "message": "浅色"
+  },
+  "settingThemeSepia": {
+    "message": "棕褐色"
+  },
+  "settingThemeDark": {
+    "message": "深色"
+  },
+  "settingThemeBlack": {
+    "message": "纯黑"
+  },
+  "settingThemeCustom": {
+    "message": "自定义"
+  },
+  "settingThemeBgColor": {
+    "message": "背景"
+  },
+  "settingThemeTextColor": {
+    "message": "文字"
+  },
+  "settingThemeAccentColor": {
+    "message": "强调色"
+  },
+  "settingThemeBorderColor": {
+    "message": "边框"
+  },
+  "settingThemeCardColor": {
+    "message": "卡片"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "网站图标来源"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "浏览器"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

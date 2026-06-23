@@ -277,5 +277,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Klasör yolunu göstererek herhangi bir üst klasöre hızlıca geçiş yapabilirsiniz."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Eklenti simgesi"
+  },
+  "settingIconColorful": {
+    "message": "Renkli"
+  },
+  "settingIconBlack": {
+    "message": "Siyah"
+  },
+  "settingIconWhite": {
+    "message": "Beyaz"
+  },
+  "settingIconGray": {
+    "message": "Gri"
+  },
+  "settingIconCustom": {
+    "message": "Özel"
+  },
+  "settingIconChooseFile": {
+    "message": "Dosya seç"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Önizleme"
+  },
+  "settingIconRemove": {
+    "message": "Kaldır"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP desteklenir. Resim otomatik olarak kare biçimine kırpılır ve yeniden boyutlandırılır."
+  },
+  "settingIconInvalidFile": {
+    "message": "Lütfen geçerli bir resim dosyası seçin (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Tarayıcı"
+  },
+  "settingThemeLight": {
+    "message": "Açık"
+  },
+  "settingThemeSepia": {
+    "message": "Sepya"
+  },
+  "settingThemeDark": {
+    "message": "Koyu"
+  },
+  "settingThemeBlack": {
+    "message": "Siyah"
+  },
+  "settingThemeCustom": {
+    "message": "Özel"
+  },
+  "settingThemeBgColor": {
+    "message": "Arkaplan"
+  },
+  "settingThemeTextColor": {
+    "message": "Metin"
+  },
+  "settingThemeAccentColor": {
+    "message": "Vurgu"
+  },
+  "settingThemeBorderColor": {
+    "message": "Kenarlık"
+  },
+  "settingThemeCardColor": {
+    "message": "Kart"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Favicon sağlayıcısı"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Tarayıcı"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

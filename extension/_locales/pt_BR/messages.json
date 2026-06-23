@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Exibe o caminho da pasta para que você possa ir rapidamente para qualquer pasta pai."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Ícone da extensão"
+  },
+  "settingIconColorful": {
+    "message": "Colorido"
+  },
+  "settingIconBlack": {
+    "message": "Preto"
+  },
+  "settingIconWhite": {
+    "message": "Branco"
+  },
+  "settingIconGray": {
+    "message": "Cinza"
+  },
+  "settingIconCustom": {
+    "message": "Personalizado"
+  },
+  "settingIconChooseFile": {
+    "message": "Escolher arquivo"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Visualização"
+  },
+  "settingIconRemove": {
+    "message": "Remover"
+  },
+  "settingIconCustomHint": {
+    "message": "Aceita PNG, JPG, SVG, WebP. A imagem será cortada automaticamente."
+  },
+  "settingIconInvalidFile": {
+    "message": "Selecione um arquivo de imagem válido (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Navegador"
+  },
+  "settingThemeLight": {
+    "message": "Claro"
+  },
+  "settingThemeSepia": {
+    "message": "Sépia"
+  },
+  "settingThemeDark": {
+    "message": "Escuro"
+  },
+  "settingThemeBlack": {
+    "message": "Preto"
+  },
+  "settingThemeCustom": {
+    "message": "Personalizado"
+  },
+  "settingThemeBgColor": {
+    "message": "Fundo"
+  },
+  "settingThemeTextColor": {
+    "message": "Texto"
+  },
+  "settingThemeAccentColor": {
+    "message": "Destaque"
+  },
+  "settingThemeBorderColor": {
+    "message": "Borda"
+  },
+  "settingThemeCardColor": {
+    "message": "Cartão"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Provedor de favicon"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Navegador"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

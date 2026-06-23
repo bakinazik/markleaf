@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Отображает путь к папке, чтобы можно было быстро перейти в любую родительскую папку."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Иконка расширения"
+  },
+  "settingIconColorful": {
+    "message": "Цветная"
+  },
+  "settingIconBlack": {
+    "message": "Чёрная"
+  },
+  "settingIconWhite": {
+    "message": "Белая"
+  },
+  "settingIconGray": {
+    "message": "Серая"
+  },
+  "settingIconCustom": {
+    "message": "Своя"
+  },
+  "settingIconChooseFile": {
+    "message": "Выбрать файл"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Предпросмотр"
+  },
+  "settingIconRemove": {
+    "message": "Удалить"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP. Изображение будет обрезано автоматически."
+  },
+  "settingIconInvalidFile": {
+    "message": "Выберите корректный файл изображения (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Браузер"
+  },
+  "settingThemeLight": {
+    "message": "Светлая"
+  },
+  "settingThemeSepia": {
+    "message": "Сепия"
+  },
+  "settingThemeDark": {
+    "message": "Тёмная"
+  },
+  "settingThemeBlack": {
+    "message": "Чёрная"
+  },
+  "settingThemeCustom": {
+    "message": "Своя"
+  },
+  "settingThemeBgColor": {
+    "message": "Фон"
+  },
+  "settingThemeTextColor": {
+    "message": "Текст"
+  },
+  "settingThemeAccentColor": {
+    "message": "Акцент"
+  },
+  "settingThemeBorderColor": {
+    "message": "Граница"
+  },
+  "settingThemeCardColor": {
+    "message": "Карточка"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Поставщик favicon"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Браузер"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

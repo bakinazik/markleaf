@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Mostra il percorso della cartella per poter accedere rapidamente a qualsiasi cartella principale."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Icona estensione"
+  },
+  "settingIconColorful": {
+    "message": "Colorato"
+  },
+  "settingIconBlack": {
+    "message": "Nero"
+  },
+  "settingIconWhite": {
+    "message": "Bianco"
+  },
+  "settingIconGray": {
+    "message": "Grigio"
+  },
+  "settingIconCustom": {
+    "message": "Personalizzato"
+  },
+  "settingIconChooseFile": {
+    "message": "Scegli file"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Anteprima"
+  },
+  "settingIconRemove": {
+    "message": "Rimuovi"
+  },
+  "settingIconCustomHint": {
+    "message": "Accetta PNG, JPG, SVG, WebP. L'immagine verrà ritagliata automaticamente."
+  },
+  "settingIconInvalidFile": {
+    "message": "Seleziona un file immagine valido (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Browser"
+  },
+  "settingThemeLight": {
+    "message": "Chiaro"
+  },
+  "settingThemeSepia": {
+    "message": "Seppia"
+  },
+  "settingThemeDark": {
+    "message": "Scuro"
+  },
+  "settingThemeBlack": {
+    "message": "Nero"
+  },
+  "settingThemeCustom": {
+    "message": "Personalizzato"
+  },
+  "settingThemeBgColor": {
+    "message": "Sfondo"
+  },
+  "settingThemeTextColor": {
+    "message": "Testo"
+  },
+  "settingThemeAccentColor": {
+    "message": "Accento"
+  },
+  "settingThemeBorderColor": {
+    "message": "Bordo"
+  },
+  "settingThemeCardColor": {
+    "message": "Scheda"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Provider favicon"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Browser"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

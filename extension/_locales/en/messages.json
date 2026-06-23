@@ -277,5 +277,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Shows the folder path so you can quickly jump to any parent folder."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Extension icon"
+  },
+  "settingIconColorful": {
+    "message": "Colorful"
+  },
+  "settingIconBlack": {
+    "message": "Black"
+  },
+  "settingIconWhite": {
+    "message": "White"
+  },
+  "settingIconGray": {
+    "message": "Gray"
+  },
+  "settingIconCustom": {
+    "message": "Custom"
+  },
+  "settingIconChooseFile": {
+    "message": "Choose file"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Preview"
+  },
+  "settingIconRemove": {
+    "message": "Remove"
+  },
+  "settingIconCustomHint": {
+    "message": "Accepts PNG, JPG, SVG, WebP. The image will be cropped to a square and resized automatically."
+  },
+  "settingIconInvalidFile": {
+    "message": "Please select a valid image file (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Browser"
+  },
+  "settingThemeLight": {
+    "message": "Light"
+  },
+  "settingThemeSepia": {
+    "message": "Sepia"
+  },
+  "settingThemeDark": {
+    "message": "Dark"
+  },
+  "settingThemeBlack": {
+    "message": "Black"
+  },
+  "settingThemeCustom": {
+    "message": "Custom"
+  },
+  "settingThemeBgColor": {
+    "message": "Background"
+  },
+  "settingThemeTextColor": {
+    "message": "Text"
+  },
+  "settingThemeAccentColor": {
+    "message": "Accent"
+  },
+  "settingThemeBorderColor": {
+    "message": "Border"
+  },
+  "settingThemeCardColor": {
+    "message": "Card"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Favicon provider"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Browser"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

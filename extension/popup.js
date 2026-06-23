@@ -401,7 +401,6 @@ function renderTrashSelectBtnIcon() {
   let showUpButton = true;
   const settingShowBreadcrumbToggle = document.getElementById('settingShowBreadcrumb');
   let showBreadcrumb = false;
-  const themeButtons = document.querySelectorAll('.theme-btn[data-theme]');
   const rootFolderSelect = document.getElementById('rootFolderSelect');
   const settingButtons = document.querySelectorAll('.setting-btn');
   const folderStyleSettingsRow = document.querySelector('[data-i18n="settingFolderStyleLabel"]')?.closest('.settings-row');
@@ -506,6 +505,132 @@ function renderTrashSelectBtnIcon() {
   settingCheckBeforeAddToggle.addEventListener('change', () => {
     checkBeforeAdd = settingCheckBeforeAddToggle.checked;
     chrome.storage.local.set({ checkBeforeAdd });
+  });
+
+  const extensionIconSelect = document.getElementById('extensionIconSelect');
+  const customIconArea = document.getElementById('customIconArea');
+  const chooseCustomIconBtn = document.getElementById('chooseCustomIconBtn');
+  const customIconFileInput = document.getElementById('customIconFileInput');
+  const customIconPreview = document.getElementById('customIconPreview');
+  const customIconPreviewImg = document.getElementById('customIconPreviewImg');
+  const removeCustomIconBtn = document.getElementById('removeCustomIconBtn');
+  const iconCropCanvas = document.getElementById('iconCropCanvas');
+
+  const ICON_SIZES = [16, 32, 48, 128];
+
+  function processImageToIcons(dataUrl) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const icons = {};
+        ICON_SIZES.forEach(size => {
+          iconCropCanvas.width = size;
+          iconCropCanvas.height = size;
+          const ctx = iconCropCanvas.getContext('2d');
+          ctx.clearRect(0, 0, size, size);
+          const side = Math.min(img.width, img.height);
+          const sx = (img.width - side) / 2;
+          const sy = (img.height - side) / 2;
+          ctx.drawImage(img, sx, sy, side, side, 0, 0, size, size);
+          icons[size] = iconCropCanvas.toDataURL('image/png');
+        });
+        resolve(icons);
+      };
+      img.onerror = () => reject(new Error('Invalid image'));
+      img.src = dataUrl;
+    });
+  }
+
+  function applyExtensionIcon(iconStyle, customIconData) {
+    chrome.runtime.sendMessage({
+      type: 'SET_EXTENSION_ICON',
+      style: iconStyle,
+      customData: iconStyle === 'custom' ? customIconData : null
+    });
+  }
+
+  function updateCustomIconUI(customIconData) {
+    if (customIconData && customIconData[32]) {
+      customIconPreviewImg.src = customIconData[32];
+      customIconPreview.style.display = 'flex';
+    } else {
+      customIconPreview.style.display = 'none';
+    }
+  }
+
+  extensionIconSelect.addEventListener('change', () => {
+    const val = extensionIconSelect.value;
+    customIconArea.style.display = val === 'custom' ? 'flex' : 'none';
+    if (val !== 'custom') {
+      chrome.storage.local.remove('customIconData');
+      customIconPreview.style.display = 'none';
+      chrome.storage.local.set({ extensionIconStyle: val });
+      applyExtensionIcon(val, null);
+    } else {
+      chrome.storage.local.set({ extensionIconStyle: val });
+    }
+  });
+
+  chooseCustomIconBtn.addEventListener('click', () => customIconFileInput.click());
+
+  customIconFileInput.addEventListener('change', () => {
+    const file = customIconFileInput.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      alert(chrome.i18n.getMessage('settingIconInvalidFile') || 'Please select a valid image file.');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const icons = await processImageToIcons(e.target.result);
+        chrome.storage.local.set({ customIconData: icons, extensionIconStyle: 'custom' }, () => {
+          extensionIconSelect.value = 'custom';
+          customIconArea.style.display = 'flex';
+          updateCustomIconUI(icons);
+          applyExtensionIcon('custom', icons);
+        });
+      } catch (err) {
+        alert(chrome.i18n.getMessage('settingIconInvalidFile') || 'Could not process image. Please try another file.');
+      }
+    };
+    reader.readAsDataURL(file);
+    customIconFileInput.value = '';
+  });
+
+  removeCustomIconBtn.addEventListener('click', () => {
+    chrome.storage.local.remove(['customIconData'], () => {
+      customIconPreview.style.display = 'none';
+      extensionIconSelect.value = 'colorful';
+      customIconArea.style.display = 'none';
+      chrome.storage.local.set({ extensionIconStyle: 'colorful' });
+      applyExtensionIcon('colorful', null);
+    });
+  });
+
+  chrome.storage.local.get(['extensionIconStyle', 'customIconData'], (d) => {
+    const style = d.extensionIconStyle || 'colorful';
+    extensionIconSelect.value = style;
+    if (style === 'custom') {
+      customIconArea.style.display = 'flex';
+      updateCustomIconUI(d.customIconData);
+    }
+    applyExtensionIcon(style, d.customIconData);
+  });
+
+  const faviconProviderSelect = document.getElementById('faviconProviderSelect');
+
+  faviconProviderSelect.addEventListener('change', () => {
+    const val = faviconProviderSelect.value;
+    window._faviconProvider = val;
+    chrome.storage.local.set({ faviconProvider: val });
+    listItems(currentFolderId);
+  });
+
+  chrome.storage.local.get(['faviconProvider'], (d) => {
+    const provider = d.faviconProvider || 'browser';
+    faviconProviderSelect.value = provider;
+    window._faviconProvider = provider;
   });
 
 
@@ -1004,7 +1129,6 @@ function updateSettingsUI() {
   let currentTheme = 'auto';
   if (htmlCls.contains('theme-force-dark')) currentTheme = 'dark';
   else if (htmlCls.contains('theme-force-light')) currentTheme = 'light';
-  themeButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.theme === currentTheme));
   const viewVal = isGridView ? 'grid' : 'list';
   const folderStyleVal = isFolderStackMode ? 'stack' : 'icon';
   document.querySelectorAll('.setting-btn[data-setting="view"]').forEach(b => b.classList.toggle('active', b.dataset.value === viewVal));
@@ -1028,19 +1152,78 @@ function updateSettingsUI() {
 
 }
 
-  function applyTheme(theme) {
-    document.documentElement.classList.remove('theme-force-dark', 'theme-force-light');
-    if (theme === 'dark') document.documentElement.classList.add('theme-force-dark');
-    else if (theme === 'light') document.documentElement.classList.add('theme-force-light');
+  function applyTheme(theme, customColors) {
+    const html = document.documentElement;
+    html.classList.remove('theme-force-dark', 'theme-force-light', 'theme-force-sepia', 'theme-force-black', 'theme-force-custom');
+    html.removeAttribute('style');
+    if (theme === 'dark')   html.classList.add('theme-force-dark');
+    else if (theme === 'light')  html.classList.add('theme-force-light');
+    else if (theme === 'sepia')  html.classList.add('theme-force-sepia');
+    else if (theme === 'black')  html.classList.add('theme-force-black');
+    else if (theme === 'custom' && customColors) {
+      const c = customColors;
+      html.style.setProperty('--background-color', c.bg);
+      html.style.setProperty('--text-color', c.text);
+      html.style.setProperty('--accent', c.accent);
+      html.style.setProperty('--border-color', c.border);
+      html.style.setProperty('--card-bg', c.card);
+      html.style.setProperty('--card-hover-bg', c.card);
+      html.style.setProperty('--primary-button-background', c.card);
+      html.style.setProperty('--primary-button-text', c.text);
+      html.style.setProperty('--secondary-button-background', c.border);
+      html.style.setProperty('--secondary-button-text', c.text);
+      html.style.setProperty('--link-background', c.card);
+      html.style.setProperty('--link-color', c.text);
+      html.style.setProperty('--form-background', c.card);
+      html.style.setProperty('--input-background', 'transparent');
+      html.style.setProperty('--input-border-color', c.border);
+      html.style.setProperty('--input-text-color', c.text);
+      html.style.setProperty('--placeholder-color', c.border);
+      html.style.setProperty('--context-menu-background', c.card);
+      html.style.setProperty('--context-menu-item-hover', c.border);
+    }
   }
 
-  themeButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const theme = btn.dataset.theme;
-      applyTheme(theme);
-      chrome.storage.local.set({ appTheme: theme });
-      themeButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  const themeSelect = document.getElementById('themeSelect');
+  const customThemeArea = document.getElementById('customThemeArea');
+  const customThemeBg = document.getElementById('customThemeBg');
+  const customThemeText = document.getElementById('customThemeText');
+  const customThemeAccent = document.getElementById('customThemeAccent');
+  const customThemeBorder = document.getElementById('customThemeBorder');
+  const customThemeCard = document.getElementById('customThemeCard');
+
+  function getCustomColors() {
+    return {
+      bg:     customThemeBg.value,
+      text:   customThemeText.value,
+      accent: customThemeAccent.value,
+      border: customThemeBorder.value,
+      card:   customThemeCard.value,
+    };
+  }
+
+  function loadCustomColorInputs(c) {
+    if (!c) return;
+    customThemeBg.value     = c.bg     || '#ffffff';
+    customThemeText.value   = c.text   || '#111111';
+    customThemeAccent.value = c.accent || '#00b017';
+    customThemeBorder.value = c.border || '#dddddd';
+    customThemeCard.value   = c.card   || '#f0f0f5';
+  }
+
+  themeSelect.addEventListener('change', () => {
+    const val = themeSelect.value;
+    customThemeArea.style.display = val === 'custom' ? 'flex' : 'none';
+    const colors = val === 'custom' ? getCustomColors() : null;
+    applyTheme(val, colors);
+    chrome.storage.local.set({ appTheme: val });
+  });
+
+  [customThemeBg, customThemeText, customThemeAccent, customThemeBorder, customThemeCard].forEach(input => {
+    input.addEventListener('input', () => {
+      const colors = getCustomColors();
+      applyTheme('custom', colors);
+      chrome.storage.local.set({ appTheme: 'custom', customThemeColors: colors });
     });
   });
 
@@ -1772,17 +1955,23 @@ async function showEmptyAreaContextMenu(x, y) {
     openBookmarksRecursive(folderId);
   }
   function getFaviconUrl(url, size = 16) {
+    const provider = window._faviconProvider || 'browser';
     const isOpera = navigator.userAgent.includes('OPR') || navigator.userAgent.includes('Opera');
-    if (!isOpera) {
-      const faviconUrl = new URL(`chrome-extension://${chrome.runtime.id}/_favicon/`);
-      faviconUrl.searchParams.set('pageUrl', url);
-      faviconUrl.searchParams.set('size', String(size));
-      return faviconUrl.href;
-    } else {
+    if (provider === 'google' || (provider === 'browser' && isOpera)) {
       try {
         const domain = new URL(url).hostname;
         return `https://www.google.com/s2/favicons?domain=${domain}&sz=${size}`;
       } catch { return `https://www.google.com/s2/favicons?domain=google.com&sz=${size}`; }
+    } else if (provider === 'duckduckgo') {
+      try {
+        const domain = new URL(url).hostname;
+        return `https://icons.duckduckgo.com/ip3/${domain}.ico`;
+      } catch { return `https://icons.duckduckgo.com/ip3/duckduckgo.com.ico`; }
+    } else {
+      const faviconUrl = new URL(`chrome-extension://${chrome.runtime.id}/_favicon/`);
+      faviconUrl.searchParams.set('pageUrl', url);
+      faviconUrl.searchParams.set('size', String(size));
+      return faviconUrl.href;
     }
   }
   function getAllBookmarks(nodeId, callback) {
@@ -1931,7 +2120,6 @@ async function showEmptyAreaContextMenu(x, y) {
       breadcrumbBar.innerHTML = '';
       return;
     }
-    // folderStack'teki her klasörün adını chrome.bookmarks.get ile çek
     const ids = folderStack.slice();
     const getNames = ids.map(id => new Promise(resolve => {
       chrome.bookmarks.get(id, (results) => {
@@ -1953,7 +2141,6 @@ async function showEmptyAreaContextMenu(x, y) {
         btn.innerHTML = `<span>${folder.title}</span>`;
         if (!isLast) {
           btn.addEventListener('click', () => {
-            // folderStack'i bu klasöre kadar kes
             folderStack = folderStack.slice(0, idx + 1);
             currentFolderId = folder.id;
             listItems(currentFolderId);
@@ -1968,7 +2155,6 @@ async function showEmptyAreaContextMenu(x, y) {
         }
       });
       breadcrumbBar.style.display = 'flex';
-      // En sona kaydır ki aktif klasör görünsün
       requestAnimationFrame(() => {
         breadcrumbBar.scrollLeft = breadcrumbBar.scrollWidth;
       });
@@ -2084,7 +2270,7 @@ async function showEmptyAreaContextMenu(x, y) {
     !isMobile && searchInput.focus();
   });
 
-  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showBreadcrumb'], (data) => {
+  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showBreadcrumb'], (data) => {
     if (data.folderStack && data.folderStack.length > 0) {
       folderStack = data.folderStack;
       currentFolderId = folderStack[folderStack.length - 1];
@@ -2096,7 +2282,15 @@ async function showEmptyAreaContextMenu(x, y) {
     isGridView = !!data.isGridView;
     isFolderStackMode = !!data.isFolderStackMode;
     if (isFolderStackMode) bookmarksList.classList.add('folder-stack-mode');
-    if (data.appTheme) applyTheme(data.appTheme);
+    const theme = data.appTheme || 'auto';
+    themeSelect.value = theme;
+    if (theme === 'custom') {
+      customThemeArea.style.display = 'flex';
+      loadCustomColorInputs(data.customThemeColors);
+      applyTheme('custom', data.customThemeColors);
+    } else {
+      applyTheme(theme);
+    }
     deleteMode = data.deleteMode || 'trash';
     trashExpiryDays = data.trashExpiryDays || 30;
     showFolderBadge = data.showFolderBadge !== undefined ? !!data.showFolderBadge : true;
@@ -2381,13 +2575,13 @@ async function showEmptyAreaContextMenu(x, y) {
   async function exportData() {
     const storageData = await new Promise(resolve => {
       chrome.storage.local.get(
-        ['deleteMode', 'trashExpiryDays', 'isGridView', 'isFolderStackMode', 'appTheme', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showBreadcrumb', TRASH_STORAGE_KEY],
+        ['deleteMode', 'trashExpiryDays', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showBreadcrumb', 'extensionIconStyle', 'customIconData', 'faviconProvider', TRASH_STORAGE_KEY],
         resolve
       );
     });
     const bookmarksTree = await new Promise(resolve => chrome.bookmarks.getTree(resolve));
     const exportObj = {
-      version: 1,
+      version: chrome.runtime.getManifest().version,
       exportedAt: new Date().toISOString(),
       settings: {
         deleteMode: storageData.deleteMode || 'trash',
@@ -2395,11 +2589,15 @@ async function showEmptyAreaContextMenu(x, y) {
         isGridView: storageData.isGridView || false,
         isFolderStackMode: storageData.isFolderStackMode || false,
         appTheme: storageData.appTheme || 'auto',
+        customThemeColors: (storageData.appTheme === 'custom') ? (storageData.customThemeColors || null) : null,
         showFolderBadge: storageData.showFolderBadge !== undefined ? storageData.showFolderBadge : true,
         checkBeforeAdd: !!storageData.checkBeforeAdd,
         showUpButton: storageData.showUpButton !== undefined ? storageData.showUpButton : true,
         showBreadcrumb: !!storageData.showBreadcrumb,
-        defaultFolderId: storageData.defaultFolderId || null
+        defaultFolderId: storageData.defaultFolderId || null,
+        extensionIconStyle: storageData.extensionIconStyle || 'colorful',
+        customIconData: (storageData.extensionIconStyle === 'custom') ? (storageData.customIconData || null) : null,
+        faviconProvider: storageData.faviconProvider || 'browser'
       },
       trash: storageData[TRASH_STORAGE_KEY] || [],
       bookmarks: bookmarksTree
@@ -2440,7 +2638,32 @@ async function showEmptyAreaContextMenu(x, y) {
         currentFolderId = s.defaultFolderId;
         chrome.storage.local.set({ folderStack });
       }
-      if (s.appTheme) applyTheme(s.appTheme);
+      if (s.appTheme) {
+        themeSelect.value = s.appTheme;
+        if (s.appTheme === 'custom' && s.customThemeColors) {
+          customThemeArea.style.display = 'flex';
+          loadCustomColorInputs(s.customThemeColors);
+          applyTheme('custom', s.customThemeColors);
+          chrome.storage.local.set({ customThemeColors: s.customThemeColors });
+        } else {
+          customThemeArea.style.display = 'none';
+          applyTheme(s.appTheme);
+        }
+      }
+
+      if (s.extensionIconStyle) {
+        extensionIconSelect.value = s.extensionIconStyle;
+        const isCustom = s.extensionIconStyle === 'custom';
+        customIconArea.style.display = isCustom ? 'flex' : 'none';
+        if (isCustom && s.customIconData) updateCustomIconUI(s.customIconData);
+        chrome.runtime.sendMessage({ type: 'SET_EXTENSION_ICON', style: s.extensionIconStyle, customData: s.customIconData || null });
+      }
+
+      if (s.faviconProvider) {
+        faviconProviderSelect.value = s.faviconProvider;
+        window._faviconProvider = s.faviconProvider;
+        chrome.storage.local.set({ faviconProvider: s.faviconProvider });
+      }
 
       
       if (Array.isArray(data.trash)) {

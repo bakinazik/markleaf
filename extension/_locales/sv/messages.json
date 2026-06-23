@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Visar mappsökvägen så att du snabbt kan hoppa till valfri överordnad mapp."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Tilläggsikon"
+  },
+  "settingIconColorful": {
+    "message": "Färgglad"
+  },
+  "settingIconBlack": {
+    "message": "Svart"
+  },
+  "settingIconWhite": {
+    "message": "Vit"
+  },
+  "settingIconGray": {
+    "message": "Grå"
+  },
+  "settingIconCustom": {
+    "message": "Anpassad"
+  },
+  "settingIconChooseFile": {
+    "message": "Välj fil"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Förhandsvisning"
+  },
+  "settingIconRemove": {
+    "message": "Ta bort"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP stöds. Bilden beskärs automatiskt."
+  },
+  "settingIconInvalidFile": {
+    "message": "Välj en giltig bildfil (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Webbläsare"
+  },
+  "settingThemeLight": {
+    "message": "Ljus"
+  },
+  "settingThemeSepia": {
+    "message": "Sepia"
+  },
+  "settingThemeDark": {
+    "message": "Mörk"
+  },
+  "settingThemeBlack": {
+    "message": "Svart"
+  },
+  "settingThemeCustom": {
+    "message": "Anpassad"
+  },
+  "settingThemeBgColor": {
+    "message": "Bakgrund"
+  },
+  "settingThemeTextColor": {
+    "message": "Text"
+  },
+  "settingThemeAccentColor": {
+    "message": "Accent"
+  },
+  "settingThemeBorderColor": {
+    "message": "Ram"
+  },
+  "settingThemeCardColor": {
+    "message": "Kort"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Favikonleverantör"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Webbläsare"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

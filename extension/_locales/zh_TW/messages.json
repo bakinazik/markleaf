@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "顯示資料夾路徑，讓您可以快速跳轉至任意上層資料夾。"
+  },
+  "settingExtensionIconLabel": {
+    "message": "擴充功能圖示"
+  },
+  "settingIconColorful": {
+    "message": "彩色"
+  },
+  "settingIconBlack": {
+    "message": "黑色"
+  },
+  "settingIconWhite": {
+    "message": "白色"
+  },
+  "settingIconGray": {
+    "message": "灰色"
+  },
+  "settingIconCustom": {
+    "message": "自訂"
+  },
+  "settingIconChooseFile": {
+    "message": "選擇檔案"
+  },
+  "settingIconPreviewLabel": {
+    "message": "預覽"
+  },
+  "settingIconRemove": {
+    "message": "移除"
+  },
+  "settingIconCustomHint": {
+    "message": "支援 PNG、JPG、SVG、WebP。圖片將自動裁剪為正方形。"
+  },
+  "settingIconInvalidFile": {
+    "message": "請選擇有效的圖片檔案（PNG、JPG、SVG、WebP）。"
+  },
+  "settingThemeBrowser": {
+    "message": "瀏覽器"
+  },
+  "settingThemeLight": {
+    "message": "淺色"
+  },
+  "settingThemeSepia": {
+    "message": "棕褐色"
+  },
+  "settingThemeDark": {
+    "message": "深色"
+  },
+  "settingThemeBlack": {
+    "message": "純黑"
+  },
+  "settingThemeCustom": {
+    "message": "自訂"
+  },
+  "settingThemeBgColor": {
+    "message": "背景"
+  },
+  "settingThemeTextColor": {
+    "message": "文字"
+  },
+  "settingThemeAccentColor": {
+    "message": "強調色"
+  },
+  "settingThemeBorderColor": {
+    "message": "邊框"
+  },
+  "settingThemeCardColor": {
+    "message": "卡片"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "網站圖標來源"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "瀏覽器"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

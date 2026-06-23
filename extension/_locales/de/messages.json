@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Zeigt den Ordnerpfad an, damit Sie schnell zu einem übergeordneten Ordner springen können."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Erweiterungssymbol"
+  },
+  "settingIconColorful": {
+    "message": "Bunt"
+  },
+  "settingIconBlack": {
+    "message": "Schwarz"
+  },
+  "settingIconWhite": {
+    "message": "Weiß"
+  },
+  "settingIconGray": {
+    "message": "Grau"
+  },
+  "settingIconCustom": {
+    "message": "Benutzerdefiniert"
+  },
+  "settingIconChooseFile": {
+    "message": "Datei auswählen"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Vorschau"
+  },
+  "settingIconRemove": {
+    "message": "Entfernen"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP unterstützt. Das Bild wird automatisch quadratisch zugeschnitten."
+  },
+  "settingIconInvalidFile": {
+    "message": "Bitte wählen Sie eine gültige Bilddatei (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Browser"
+  },
+  "settingThemeLight": {
+    "message": "Hell"
+  },
+  "settingThemeSepia": {
+    "message": "Sepia"
+  },
+  "settingThemeDark": {
+    "message": "Dunkel"
+  },
+  "settingThemeBlack": {
+    "message": "Schwarz"
+  },
+  "settingThemeCustom": {
+    "message": "Benutzerdefiniert"
+  },
+  "settingThemeBgColor": {
+    "message": "Hintergrund"
+  },
+  "settingThemeTextColor": {
+    "message": "Text"
+  },
+  "settingThemeAccentColor": {
+    "message": "Akzent"
+  },
+  "settingThemeBorderColor": {
+    "message": "Rahmen"
+  },
+  "settingThemeCardColor": {
+    "message": "Karte"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Favicon-Anbieter"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Browser"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

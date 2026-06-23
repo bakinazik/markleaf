@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Menampilkan jalur folder agar Anda dapat langsung berpindah ke folder induk mana pun."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Ikon ekstensi"
+  },
+  "settingIconColorful": {
+    "message": "Warna-warni"
+  },
+  "settingIconBlack": {
+    "message": "Hitam"
+  },
+  "settingIconWhite": {
+    "message": "Putih"
+  },
+  "settingIconGray": {
+    "message": "Abu-abu"
+  },
+  "settingIconCustom": {
+    "message": "Kustom"
+  },
+  "settingIconChooseFile": {
+    "message": "Pilih file"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Pratinjau"
+  },
+  "settingIconRemove": {
+    "message": "Hapus"
+  },
+  "settingIconCustomHint": {
+    "message": "Menerima PNG, JPG, SVG, WebP. Gambar akan dipotong otomatis."
+  },
+  "settingIconInvalidFile": {
+    "message": "Pilih file gambar yang valid (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Peramban"
+  },
+  "settingThemeLight": {
+    "message": "Terang"
+  },
+  "settingThemeSepia": {
+    "message": "Sepia"
+  },
+  "settingThemeDark": {
+    "message": "Gelap"
+  },
+  "settingThemeBlack": {
+    "message": "Hitam"
+  },
+  "settingThemeCustom": {
+    "message": "Kustom"
+  },
+  "settingThemeBgColor": {
+    "message": "Latar belakang"
+  },
+  "settingThemeTextColor": {
+    "message": "Teks"
+  },
+  "settingThemeAccentColor": {
+    "message": "Aksen"
+  },
+  "settingThemeBorderColor": {
+    "message": "Batas"
+  },
+  "settingThemeCardColor": {
+    "message": "Kartu"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Penyedia favicon"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Browser"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }

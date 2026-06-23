@@ -280,5 +280,83 @@
   },
   "settingShowBreadcrumbText": {
     "message": "폴더 경로를 표시하여 상위 폴더로 빠르게 이동할 수 있습니다."
+  },
+  "settingExtensionIconLabel": {
+    "message": "확장 프로그램 아이콘"
+  },
+  "settingIconColorful": {
+    "message": "컬러풀"
+  },
+  "settingIconBlack": {
+    "message": "검정"
+  },
+  "settingIconWhite": {
+    "message": "흰색"
+  },
+  "settingIconGray": {
+    "message": "회색"
+  },
+  "settingIconCustom": {
+    "message": "사용자 정의"
+  },
+  "settingIconChooseFile": {
+    "message": "파일 선택"
+  },
+  "settingIconPreviewLabel": {
+    "message": "미리보기"
+  },
+  "settingIconRemove": {
+    "message": "제거"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP를 지원합니다. 이미지가 자동으로 잘립니다."
+  },
+  "settingIconInvalidFile": {
+    "message": "유효한 이미지 파일을 선택해 주세요 (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "브라우저"
+  },
+  "settingThemeLight": {
+    "message": "밝게"
+  },
+  "settingThemeSepia": {
+    "message": "세피아"
+  },
+  "settingThemeDark": {
+    "message": "어둡게"
+  },
+  "settingThemeBlack": {
+    "message": "블랙"
+  },
+  "settingThemeCustom": {
+    "message": "사용자 정의"
+  },
+  "settingThemeBgColor": {
+    "message": "배경"
+  },
+  "settingThemeTextColor": {
+    "message": "텍스트"
+  },
+  "settingThemeAccentColor": {
+    "message": "강조색"
+  },
+  "settingThemeBorderColor": {
+    "message": "테두리"
+  },
+  "settingThemeCardColor": {
+    "message": "카드"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "파비콘 제공자"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "브라우저"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
   }
 }
