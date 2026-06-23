@@ -1154,11 +1154,10 @@ function updateSettingsUI() {
 
   function applyTheme(theme, customColors) {
     const html = document.documentElement;
-    html.classList.remove('theme-force-dark', 'theme-force-light', 'theme-force-sepia', 'theme-force-black', 'theme-force-custom');
+    html.classList.remove('theme-force-dark', 'theme-force-light', 'theme-force-black', 'theme-force-custom');
     html.removeAttribute('style');
     if (theme === 'dark')   html.classList.add('theme-force-dark');
     else if (theme === 'light')  html.classList.add('theme-force-light');
-    else if (theme === 'sepia')  html.classList.add('theme-force-sepia');
     else if (theme === 'black')  html.classList.add('theme-force-black');
     else if (theme === 'custom' && customColors) {
       const c = customColors;
