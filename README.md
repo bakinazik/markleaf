@@ -20,15 +20,19 @@ Simple and practical bookmark manager.
 - [x] Edit: URL and name
 - [x] Draggable sorting for folders and bookmarks
 - [x] Dynamic search across all bookmarks with keyboard navigation
-- [x] Dark/light/system theme
-- [x] Root folder selection (Bookmarks Bar / Other Bookmarks).
+- [x] Theme support: light / dark / black / system, plus custom (fully adjustable colors)
+- [x] Custom extension icon (4 predefined styles: colorful / black / white / gray, or upload your own)
+- [x] Root folder selection (Bookmarks Bar / Other Bookmarks)
 - [x] Remember last visited folder
 - [x] Supports 17 languages
 - [x] Trash: deleted items are recoverable, with configurable auto-expiry
 - [x] Multi-select with bulk open, move, and delete
 - [x] Folder style: classic icon or favicon collage preview
+- [x] Folder badge: shows bookmark count on folder
 - [x] Import and export all bookmarks and settings as JSON
 - [x] Scroll-to-top button
+- [x] Breadcrumb navigation with up button and drag-to-move support
+- [x] Favicon provider selection (Browser / Google / DuckDuckGo)
 - [ ] Looking for another feature? [Click here](https://github.com/bakinazik/markleaf/issues/new)
 
 ## Shortcuts
