@@ -1153,25 +1153,26 @@
     }
 
     html.theme-force-black {
-      --background-color: #000;
-      --text-color: #e0e0e0;
-      --primary-button-background: #333;
-      --primary-button-text: #ccc;
-      --secondary-button-background: #444;
-      --secondary-button-text: #ccc;
-      --link-background: #222;
-      --link-color: #ccc;
+      --background-color: #000000;
+      --text-color: #ddd;
+      --accent: #00b017;
       --border-color: #333;
-      --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
-      --form-background: #111;
-      --input-background: transparent;
-      --input-border-color: #333;
-      --input-text-color: #e0e0e0;
-      --placeholder-color: #555;
-      --context-menu-background: #111;
-      --context-menu-item-hover: #1a1a1a;
       --card-bg: #222;
-      --card-hover-bg: #161616;
+      --card-hover-bg: #333;
+      --primary-button-background: var(--card-bg);
+      --primary-button-text: var(--text-color);
+      --secondary-button-background: var(--card-hover-bg);
+      --secondary-button-text: var(--text-color);
+      --link-background: var(--card-bg);
+      --link-color: var(--text-color);
+      --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+      --form-background: var(--card-bg);
+      --input-background: transparent;
+      --input-border-color: var(--border-color);
+      --input-text-color: var(--text-color);
+      --placeholder-color: #444;
+      --context-menu-background: var(--card-bg);
+      --context-menu-item-hover: var(--card-hover-bg);
       color-scheme: dark;
     }
 
