@@ -1221,9 +1221,21 @@ function updateSettingsUI() {
   themeSelect.addEventListener('change', () => {
     const val = themeSelect.value;
     customThemeArea.style.display = val === 'custom' ? 'flex' : 'none';
-    const colors = val === 'custom' ? getCustomColors() : null;
-    applyTheme(val, colors);
-    chrome.storage.local.set({ appTheme: val });
+    if (val === 'custom') {
+      chrome.storage.local.get(['customThemeColors'], (d) => {
+        if (d.customThemeColors) {
+          loadCustomColorInputs(d.customThemeColors);
+          applyTheme('custom', d.customThemeColors);
+        } else {
+          const colors = getCustomColors();
+          applyTheme('custom', colors);
+        }
+        chrome.storage.local.set({ appTheme: val });
+      });
+    } else {
+      applyTheme(val, null);
+      chrome.storage.local.set({ appTheme: val });
+    }
   });
 
   [customThemeBg, customThemeText, customThemeAccent, customThemeBorder, customThemeCard].forEach(input => {
@@ -2617,7 +2629,7 @@ async function showEmptyAreaContextMenu(x, y) {
         isGridView: storageData.isGridView || false,
         isFolderStackMode: storageData.isFolderStackMode || false,
         appTheme: storageData.appTheme || 'auto',
-        customThemeColors: (storageData.appTheme === 'custom') ? (storageData.customThemeColors || null) : null,
+        customThemeColors: storageData.customThemeColors || null,
         showFolderBadge: storageData.showFolderBadge !== undefined ? storageData.showFolderBadge : true,
         checkBeforeAdd: !!storageData.checkBeforeAdd,
         showUpButton: storageData.showUpButton !== undefined ? storageData.showUpButton : true,
