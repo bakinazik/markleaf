@@ -70,6 +70,7 @@
       outline: none;
       border: none;
       -webkit-tap-highlight-color: transparent;
+      user-select: auto;
     }
 
     ul, #settingsPanel {
@@ -261,7 +262,6 @@
 	    background: var(--background-color);
 	}
 
-    /* ── Breadcrumb navigasyon ─────────────────────────────── */
     .breadcrumb-bar {
         display: flex;
         align-items: center;
@@ -1155,9 +1155,9 @@
     html.theme-force-black {
       --background-color: #000;
       --text-color: #e0e0e0;
-      --primary-button-background: #222;
+      --primary-button-background: #333;
       --primary-button-text: #ccc;
-      --secondary-button-background: #333;
+      --secondary-button-background: #444;
       --secondary-button-text: #ccc;
       --link-background: #222;
       --link-color: #ccc;
@@ -1165,7 +1165,7 @@
       --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
       --form-background: #111;
       --input-background: transparent;
-      --input-border-color: #222;
+      --input-border-color: #333;
       --input-text-color: #e0e0e0;
       --placeholder-color: #555;
       --context-menu-background: #111;
@@ -1322,7 +1322,7 @@
 	    justify-content: space-between;
 	    gap: 10px;
 	    padding: 10px 12px;
-	    background: var(--primary-button-background);
+	    background: var(--card-bg);
 	    border-radius: var(--border-radius);
 	    flex-direction: column;
 	}
