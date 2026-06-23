@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Im Ordner suchen"
+  },
+  "searchInFolderText": {
+    "message": "Wenn aktiviert, wird die Suche nur im aktuellen Ordner und seinen Unterordnern durchgeführt."
+  },
+  "settingAboutLabel": {
+    "message": "Über"
+  },
+  "aboutWebsiteButton": {
+    "message": "Webseite"
+  },
+  "aboutSourceButton": {
+    "message": "Quellcode"
+  },
+  "aboutVersion": {
+    "message": "Version"
   }
 }

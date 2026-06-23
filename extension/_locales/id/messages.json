@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Cari dalam folder"
+  },
+  "searchInFolderText": {
+    "message": "Jika diaktifkan, pencarian hanya dilakukan di folder saat ini dan subfolder-nya."
+  },
+  "settingAboutLabel": {
+    "message": "Tentang"
+  },
+  "aboutWebsiteButton": {
+    "message": "Situs web"
+  },
+  "aboutSourceButton": {
+    "message": "Kode sumber"
+  },
+  "aboutVersion": {
+    "message": "Versi"
   }
 }

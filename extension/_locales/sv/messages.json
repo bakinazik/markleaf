@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Sök i mapp"
+  },
+  "searchInFolderText": {
+    "message": "När aktiverat söks det bara i den aktuella mappen och dess undermappar."
+  },
+  "settingAboutLabel": {
+    "message": "Om"
+  },
+  "aboutWebsiteButton": {
+    "message": "Webbplats"
+  },
+  "aboutSourceButton": {
+    "message": "Källkod"
+  },
+  "aboutVersion": {
+    "message": "Version"
   }
 }

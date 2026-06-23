@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Pesquisar na pasta"
+  },
+  "searchInFolderText": {
+    "message": "Quando ativado, a pesquisa abrange apenas a pasta atual e suas subpastas."
+  },
+  "settingAboutLabel": {
+    "message": "Sobre"
+  },
+  "aboutWebsiteButton": {
+    "message": "Site"
+  },
+  "aboutSourceButton": {
+    "message": "Código-fonte"
+  },
+  "aboutVersion": {
+    "message": "Versão"
   }
 }

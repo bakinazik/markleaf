@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "フォルダー内を検索"
+  },
+  "searchInFolderText": {
+    "message": "有効にすると、現在のフォルダーとそのサブフォルダー内のみを検索します。"
+  },
+  "settingAboutLabel": {
+    "message": "このアプリについて"
+  },
+  "aboutWebsiteButton": {
+    "message": "ウェブサイト"
+  },
+  "aboutSourceButton": {
+    "message": "ソースコード"
+  },
+  "aboutVersion": {
+    "message": "バージョン"
   }
 }

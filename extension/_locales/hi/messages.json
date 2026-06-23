@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "फ़ोल्डर में खोजें"
+  },
+  "searchInFolderText": {
+    "message": "सक्षम होने पर, खोज केवल वर्तमान फ़ोल्डर और उसके उपफ़ोल्डर में की जाती है।"
+  },
+  "settingAboutLabel": {
+    "message": "के बारे में"
+  },
+  "aboutWebsiteButton": {
+    "message": "वेबसाइट"
+  },
+  "aboutSourceButton": {
+    "message": "स्रोत कोड"
+  },
+  "aboutVersion": {
+    "message": "संस्करण"
   }
 }

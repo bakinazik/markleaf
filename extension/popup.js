@@ -407,6 +407,7 @@ function renderTrashSelectBtnIcon() {
   let deleteMode = 'trash';
   let trashExpiryDays = 30;
   let checkBeforeAdd = false;
+  let searchInFolder = false;
 
   
   const TRASH_STORAGE_KEY = 'markleaf_trash';
@@ -505,6 +506,12 @@ function renderTrashSelectBtnIcon() {
   settingCheckBeforeAddToggle.addEventListener('change', () => {
     checkBeforeAdd = settingCheckBeforeAddToggle.checked;
     chrome.storage.local.set({ checkBeforeAdd });
+  });
+
+  const settingSearchInFolderToggle = document.getElementById('settingSearchInFolder');
+  settingSearchInFolderToggle.addEventListener('change', () => {
+    searchInFolder = settingSearchInFolderToggle.checked;
+    chrome.storage.local.set({ searchInFolder });
   });
 
   const extensionIconSelect = document.getElementById('extensionIconSelect');
@@ -1124,6 +1131,7 @@ function updateSettingsUI() {
   settingCheckBeforeAddToggle.checked = checkBeforeAdd;
   settingShowUpButtonToggle.checked = showUpButton;
   settingShowBreadcrumbToggle.checked = showBreadcrumb;
+  settingSearchInFolderToggle.checked = searchInFolder;
   populateRootFolderSelect(folderStack[0] || (isMobile ? '3' : '1'));
   const htmlCls = document.documentElement.classList;
   let currentTheme = 'auto';
@@ -1232,7 +1240,7 @@ function updateSettingsUI() {
       const root = tree[0];
       if (!root || !root.children) return;
       root.children.forEach(node => {
-        if (node.url) return; // skip non-folder
+        if (node.url) return;
         const opt = document.createElement('option');
         opt.value = node.id;
         opt.textContent = node.title || chrome.i18n.getMessage('settingRootFolderUnnamed');
@@ -2243,14 +2251,34 @@ async function showEmptyAreaContextMenu(x, y) {
     
     searchDebounceTimer = setTimeout(() => {
       const doSearch = () => {
-        const results = allBookmarksCache.filter(item =>
-          item.title.toLowerCase().includes(searchTerm) ||
-          (item.url && item.url.toLowerCase().includes(searchTerm))
-        );
-        renderSearchResultsProgressive(results);
+        if (searchInFolder) {
+          chrome.bookmarks.getSubTree(currentFolderId, (treeNodes) => {
+            const folderFlat = [];
+            function traverseFolder(nodes) {
+              for (const node of nodes) {
+                if (node.url) folderFlat.push(node);
+                if (node.children) traverseFolder(node.children);
+              }
+            }
+            if (treeNodes && treeNodes.length > 0) traverseFolder(treeNodes);
+            const results = folderFlat.filter(item =>
+              item.title.toLowerCase().includes(searchTerm) ||
+              (item.url && item.url.toLowerCase().includes(searchTerm))
+            );
+            renderSearchResultsProgressive(results);
+          });
+        } else {
+          const results = allBookmarksCache.filter(item =>
+            item.title.toLowerCase().includes(searchTerm) ||
+            (item.url && item.url.toLowerCase().includes(searchTerm))
+          );
+          renderSearchResultsProgressive(results);
+        }
       };
 
-      if (allBookmarksCache) {
+      if (searchInFolder) {
+        doSearch();
+      } else if (allBookmarksCache) {
         doSearch();
       } else {
         buildBookmarksCache(doSearch);
@@ -2269,7 +2297,7 @@ async function showEmptyAreaContextMenu(x, y) {
     !isMobile && searchInput.focus();
   });
 
-  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showBreadcrumb'], (data) => {
+  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showBreadcrumb', 'searchInFolder'], (data) => {
     if (data.folderStack && data.folderStack.length > 0) {
       folderStack = data.folderStack;
       currentFolderId = folderStack[folderStack.length - 1];
@@ -2296,6 +2324,7 @@ async function showEmptyAreaContextMenu(x, y) {
     checkBeforeAdd = !!data.checkBeforeAdd;
     showUpButton = data.showUpButton !== undefined ? !!data.showUpButton : true;
     showBreadcrumb = data.showBreadcrumb !== undefined ? !!data.showBreadcrumb : false;
+    searchInFolder = !!data.searchInFolder;
     tabTrash.style.display = deleteMode === 'trash' ? '' : 'none';
     setToggleIcon();
     const resolvedDefaultId = data.defaultFolderId || (isMobile ? '3' : '1');
@@ -2574,7 +2603,7 @@ async function showEmptyAreaContextMenu(x, y) {
   async function exportData() {
     const storageData = await new Promise(resolve => {
       chrome.storage.local.get(
-        ['deleteMode', 'trashExpiryDays', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showBreadcrumb', 'extensionIconStyle', 'customIconData', 'faviconProvider', TRASH_STORAGE_KEY],
+        ['deleteMode', 'trashExpiryDays', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showBreadcrumb', 'searchInFolder', 'extensionIconStyle', 'customIconData', 'faviconProvider', TRASH_STORAGE_KEY],
         resolve
       );
     });
@@ -2593,6 +2622,7 @@ async function showEmptyAreaContextMenu(x, y) {
         checkBeforeAdd: !!storageData.checkBeforeAdd,
         showUpButton: storageData.showUpButton !== undefined ? storageData.showUpButton : true,
         showBreadcrumb: !!storageData.showBreadcrumb,
+        searchInFolder: !!storageData.searchInFolder,
         defaultFolderId: storageData.defaultFolderId || null,
         extensionIconStyle: storageData.extensionIconStyle || 'colorful',
         customIconData: (storageData.extensionIconStyle === 'custom') ? (storageData.customIconData || null) : null,
@@ -2632,6 +2662,7 @@ async function showEmptyAreaContextMenu(x, y) {
       checkBeforeAdd = !!s.checkBeforeAdd;
       showUpButton = s.showUpButton !== undefined ? !!s.showUpButton : true;
       showBreadcrumb = !!s.showBreadcrumb;
+      searchInFolder = !!s.searchInFolder;
       if (s.defaultFolderId) {
         folderStack = [s.defaultFolderId];
         currentFolderId = s.defaultFolderId;
@@ -2774,6 +2805,13 @@ async function showEmptyAreaContextMenu(x, y) {
       if (file) { importData(file); importFileInput.value = ''; }
     });
   }
+
+  const aboutWebsiteBtn = document.getElementById('aboutWebsiteBtn');
+  const aboutGithubBtn = document.getElementById('aboutGithubBtn');
+  if (aboutWebsiteBtn) aboutWebsiteBtn.addEventListener('click', () => chrome.tabs.create({ url: 'https://bakinazik.github.io/markleaf/' }));
+  if (aboutGithubBtn) aboutGithubBtn.addEventListener('click', () => chrome.tabs.create({ url: 'https://github.com/bakinazik/markleaf' }));
+  const aboutVersionNumber = document.getElementById('aboutVersionNumber');
+  if (aboutVersionNumber) aboutVersionNumber.textContent = chrome.runtime.getManifest().version;
 
   const setI18nTexts = () => {
     addBookmarkBtn.textContent = chrome.i18n.getMessage('addBookmark');

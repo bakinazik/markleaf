@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "폴더 내 검색"
+  },
+  "searchInFolderText": {
+    "message": "활성화하면 현재 폴더와 하위 폴더 안에서만 검색합니다."
+  },
+  "settingAboutLabel": {
+    "message": "정보"
+  },
+  "aboutWebsiteButton": {
+    "message": "웹사이트"
+  },
+  "aboutSourceButton": {
+    "message": "소스 코드"
+  },
+  "aboutVersion": {
+    "message": "버전"
   }
 }

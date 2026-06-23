@@ -352,5 +352,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Klasör içinde ara"
+  },
+  "searchInFolderText": {
+    "message": "Etkinleştirildiğinde, arama yalnızca bulunduğunuz klasör ve alt klasörleri kapsar."
+  },
+  "settingAboutLabel": {
+    "message": "Hakkında"
+  },
+  "aboutWebsiteButton": {
+    "message": "Web sitesi"
+  },
+  "aboutSourceButton": {
+    "message": "Kaynak kodu"
+  },
+  "aboutVersion": {
+    "message": "Sürüm"
   }
 }

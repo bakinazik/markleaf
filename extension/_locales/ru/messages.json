@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Искать в папке"
+  },
+  "searchInFolderText": {
+    "message": "При включении поиск выполняется только в текущей папке и её подпапках."
+  },
+  "settingAboutLabel": {
+    "message": "О приложении"
+  },
+  "aboutWebsiteButton": {
+    "message": "Сайт"
+  },
+  "aboutSourceButton": {
+    "message": "Исходный код"
+  },
+  "aboutVersion": {
+    "message": "Версия"
   }
 }

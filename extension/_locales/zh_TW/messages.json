@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "在資料夾中搜尋"
+  },
+  "searchInFolderText": {
+    "message": "啟用後，僅在目前資料夾及其子資料夾中搜尋。"
+  },
+  "settingAboutLabel": {
+    "message": "關於"
+  },
+  "aboutWebsiteButton": {
+    "message": "網站"
+  },
+  "aboutSourceButton": {
+    "message": "原始碼"
+  },
+  "aboutVersion": {
+    "message": "版本"
   }
 }

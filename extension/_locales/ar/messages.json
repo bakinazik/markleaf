@@ -355,5 +355,23 @@
   },
   "settingFaviconProviderDuckDuckGo": {
     "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "البحث في المجلد"
+  },
+  "searchInFolderText": {
+    "message": "عند التفعيل، يتم البحث فقط داخل المجلد الحالي والمجلدات الفرعية."
+  },
+  "settingAboutLabel": {
+    "message": "حول"
+  },
+  "aboutWebsiteButton": {
+    "message": "الموقع"
+  },
+  "aboutSourceButton": {
+    "message": "الكود المصدري"
+  },
+  "aboutVersion": {
+    "message": "الإصدار"
   }
 }
