@@ -10,8 +10,22 @@ Simple and practical bookmark manager.
 
 ## Screenshots
 
-| ![Dark](https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/dark.webp) | ![Light](https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/light.webp) |
-|---|---|
+<details>
+<summary>View Screenshots</summary>
+
+### Dark Theme
+
+| | | |
+|---|---|---|
+| ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-1.webp) | ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-2.webp) | ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-3.webp) |
+
+### Light Theme
+
+| | | |
+|---|---|---|
+| ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/light-1.webp) | ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/light-2.webp) | ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/light-3.webp) |
+
+</details>
 
 
 ## Features and Roadmap
