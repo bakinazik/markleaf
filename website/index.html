@@ -182,6 +182,7 @@ header {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: transform 0.3s ease, opacity 0.3s ease;
+  overflow: visible;
 }
 
 header.hidden {
@@ -290,24 +291,40 @@ header.hidden {
   justify-content: center;
 }
 
-.menu-toggle:hover { background: var(--secondary); }
 .menu-toggle svg { width: 24px; height: 24px; }
+.menu-toggle .icon-close { display: none; }
+.menu-toggle.active .icon-open { display: none; }
+.menu-toggle.active .icon-close { display: block; }
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 997;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.menu-backdrop.active {
+  pointer-events: auto;
+  opacity: 1;
+}
 
 .mobile-menu-overlay {
-  position: fixed;
-  top: 56px;
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  background: var(--overlay-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 998;
+  background: var(--header-bg);
+  z-index: 999;
   max-height: 0;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   overflow: hidden;
-  border-bottom: 1px solid var(--gray);
   display: flex;
   flex-direction: column;
   padding: 0 1.5rem;
@@ -343,9 +360,25 @@ header.hidden {
 
 .mobile-menu-overlay .header-nav a {
   width: 100%;
-  text-align: center;
-  padding: 12px;
+  text-align: left;
+  padding: 13px 4px;
   font-size: 1rem;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--gray);
+}
+
+.mobile-menu-overlay .header-nav a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu-overlay .header-nav a svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--text-light);
 }
 
 .logo-section {
@@ -625,21 +658,30 @@ footer {
     <div class="header-right">
       <button id="theme-toggle" aria-label="Toggle theme"></button>
       <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <svg class="icon-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
     </div>
   </div>
+  <div class="mobile-menu-overlay" id="mobile-menu">
+    <nav class="header-nav">
+      <a href="#screenshots">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg>
+        Screenshots
+      </a>
+      <a href="#qa">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h8" /><path d="M8 13h6" /><path d="M14 18h-1l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5" /><path d="M19 22v.01" /><path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" /></svg>
+        Q&A
+      </a>
+      <a href="#changelog">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
+        Changelog
+      </a>
+    </nav>
+  </div>
 </header>
 
-<div class="mobile-menu-overlay" id="mobile-menu">
-  <nav class="header-nav">
-    <a href="#screenshots">Screenshots</a>
-    <a href="#qa">Q&A</a>
-    <a href="#changelog">Changelog</a>
-  </nav>
-</div>
+<div class="menu-backdrop" id="menu-backdrop"></div>
 
 <section id="home">
   <div class="logo-section"><img class="logo" src="logo.webp" alt="Markleaf"><h1>Markleaf</h1></div>
@@ -827,27 +869,24 @@ footer {
 
 <script>
 const ICONS = {
-  system: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
-  dark:   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
-  light:  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`
+  dark:  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
+  light: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`
 };
-const ORDER = ['system','dark','light'];
-let themeIdx = ORDER.indexOf(localStorage.getItem('theme') || 'system');
+const ORDER = ['dark', 'light'];
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const saved = localStorage.getItem('theme');
+let themeIdx = ORDER.indexOf(saved !== null ? saved : (prefersDark ? 'dark' : 'light'));
+if (themeIdx === -1) themeIdx = prefersDark ? 0 : 1;
 
 function applyTheme() {
   const t = ORDER[themeIdx];
   const btn = document.getElementById('theme-toggle');
-  const LABELS = { system: 'System', dark: 'Dark', light: 'Light' };
+  const LABELS = { dark: 'Dark', light: 'Light' };
   btn.innerHTML = ICONS[t] + `<span>${LABELS[t]}</span>`;
-  btn.title = t.charAt(0).toUpperCase() + t.slice(1);
-  if (t === 'system') {
-    document.documentElement.removeAttribute('data-theme');
-  } else {
-    document.documentElement.setAttribute('data-theme', t);
-  }
+  btn.title = LABELS[t];
+  document.documentElement.setAttribute('data-theme', t);
   localStorage.setItem('theme', t);
-  const isDark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  const prefix = isDark ? 'dark' : 'light';
+  const prefix = t === 'dark' ? 'dark' : 'light';
   document.querySelectorAll('.ss-img').forEach((img, i) => {
     img.src = `screenshots/${prefix}-${i + 1}.webp`;
     img.alt = `${prefix.charAt(0).toUpperCase() + prefix.slice(1)} ${i + 1}`;
@@ -855,9 +894,6 @@ function applyTheme() {
 }
 
 applyTheme();
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (ORDER[themeIdx] === 'system') applyTheme();
-});
 document.getElementById('theme-toggle').addEventListener('click', () => {
   themeIdx = (themeIdx + 1) % ORDER.length;
   applyTheme();
@@ -871,7 +907,7 @@ window.addEventListener('scroll', () => {
   const y = window.scrollY;
   if (y > lastScrollY && y > 80) {
     siteHeader.classList.add('hidden');
-    mobileMenu.classList.remove('active');
+    closeMobileMenu();
   } else {
     siteHeader.classList.remove('hidden');
   }
@@ -895,15 +931,30 @@ document.querySelectorAll('.accordion-header').forEach(button => {
 });
 
 const menuToggle = document.getElementById('menu-toggle');
+const menuBackdrop = document.getElementById('menu-backdrop');
+
+function openMobileMenu() {
+  mobileMenu.classList.add('active');
+  menuBackdrop.classList.add('active');
+  menuToggle.classList.add('active');
+}
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('active');
+  menuBackdrop.classList.remove('active');
+  menuToggle.classList.remove('active');
+}
 
 menuToggle.addEventListener('click', () => {
-  mobileMenu.classList.toggle('active');
+  mobileMenu.classList.contains('active') ? closeMobileMenu() : openMobileMenu();
 });
+
+menuBackdrop.addEventListener('click', closeMobileMenu);
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
-    mobileMenu.classList.remove('active');
+    closeMobileMenu();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
