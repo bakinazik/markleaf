@@ -33,18 +33,25 @@ Simple and practical bookmark manager.
 - [x] Create: Folder and bookmark/current page
 - [x] Edit: URL and name
 - [x] Draggable sorting for folders and bookmarks
+- [x] Pin bookmarks and folders to keep them grouped at the top
 - [x] Dynamic search across all bookmarks or only within a folder, with keyboard navigation
+- [x] Settings search with quick filtering
 - [x] Theme support: light / dark / black / system, plus custom (fully adjustable colors)
 - [x] Custom extension icon (4 predefined styles: colorful / black / white / gray, or upload your own)
 - [x] Root folder selection (Bookmarks Bar / Other Bookmarks)
 - [x] Remember last visited folder
+- [x] New item position: add new bookmarks to the start or end of a folder
 - [x] Supports 17 languages
 - [x] Trash: deleted items are recoverable, with configurable auto-expiry
 - [x] Multi-select with bulk open, move, and delete
 - [x] Folder style: classic icon or favicon collage preview
 - [x] Folder badge: shows bookmark count on folder
-- [x] Import and export all bookmarks and settings as JSON
-- [x] Scroll-to-top button
+- [x] Grid view customization: column count, item width, and title visibility
+- [x] Customizable context menu with drag and drop reordering
+- [x] Import and export bookmarks and settings as JSON or Netscape HTML, with selectable scope
+- [x] Scroll-to-top button, with toggle to show/hide
+- [x] Toggle to show/hide quick actions
+- [x] Toggle to show/hide the scrollbar
 - [x] Breadcrumb navigation with up button and drag-to-move support
 - [x] Favicon provider selection (Browser / Google / DuckDuckGo)
 - [ ] Looking for another feature? [Click here](https://github.com/bakinazik/markleaf/issues/new)
