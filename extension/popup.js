@@ -40,31 +40,41 @@ document.addEventListener('DOMContentLoaded', () => {
   let keyboardSelectedIndex = -1;
   let scrollToTopBtn = document.getElementById('scrollToTop');
   
+  let pinnedBookmarks = new Set();
   let allBookmarksCache = null;   
   let searchRenderToken = 0;      
   let searchDebounceTimer = null; 
   let trashSearchDebounceTimer = null; 
   const contextMenuOverlay = document.getElementById('contextMenuOverlay');
-  const plusIcon = (size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>`;
-  const getXIcon = (size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`;
-  const editIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>`;
-  const folderIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`;
-  const folderIconLargeSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`;
-  const menuIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>`;
-  const addFolderIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v4" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>`;
-  const questionIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 8a3.5 3.5 0 0 1 3.5 -3h1a3.5 3.5 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><path d="M12 19l0 .01" /></svg>`;
-  const moveIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 4l3 3l-3 3" /><path d="M18 7h-14l3 3" /><path d="M7 20l-3 -3l3 -3" /><path d="M7 17h14l-3 -3" /></svg>`;
-  const gridIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`;
-  const listIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>`;
+  
+  const ICONS = {
+    plus: (size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>`,
+    close: (size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>`,
+    openExternal: (size = 16) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`,
+    dragHandle: (accent = false) => `<svg class="ctx-drag-handle"${accent ? ' style="color: var(--accent);"' : ''} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h.01M8 12h.01M8 18h.01M16 6h.01M16 12h.01M16 18h.01"/></svg>`,
+    edit: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>`,
+    folder: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`,
+    folderLarge: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`,
+    folderAdd: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v4" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>`,
+    menu: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>`,
+    question: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 8a3.5 3.5 0 0 1 3.5 -3h1a3.5 3.5 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" /><path d="M12 19l0 .01" /></svg>`,
+    move: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 4l3 3l-3 3" /><path d="M18 7h-14l3 3" /><path d="M7 20l-3 -3l3 -3" /><path d="M7 17h14l-3 -3" /></svg>`,
+    moveToFolder: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`,
+    check: `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>`,
+    libraryPlus: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-library-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 5.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" /><path d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" /><path d="M11 10h6" /><path d="M14 7v6" /></svg>`,
+    libraryPlusSmall: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>`,
+    restore: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 14l-4 -4l4 -4"/><path d="M5 10h11a4 4 0 1 1 0 8h-1"/></svg>`,
+    deleteForever: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>`,
+    pin: (size = 16) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4h6l-.5 6.5l2.5 4v1.5h-10v-1.5l2.5 -4z"/><path d="M12 16l0 5"/></svg>`,
+    pinFilled: (size = 16) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4h6l-.5 6.5l2.5 4v1.5h-10v-1.5l2.5 -4z"/><path d="M12 16l0 5" fill="none"/></svg>`,
+  };
+
   let isSelectionMode = false;
   let selectedItemIds = new Set();
   let isTrashSelectionMode = false;
   let selectedTrashIds = new Set();
   let selectionMoveMode = false;
   let selectionFolderMode = false;
-  const selectModeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="16" height="16" rx="2"/><path d="M9 12l2 2 4-4"/></svg>`;
-  const checkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>`;
-  const addAllTabsIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-library-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 5.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" /><path d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" /><path d="M11 10h6" /><path d="M14 7v6" /></svg>`;
   const i18nElements = document.querySelectorAll('[data-i18n]');
   i18nElements.forEach(element => {
     const messageKey = element.getAttribute('data-i18n');
@@ -189,7 +199,7 @@ function renderTrashSelectBtnIcon() {
       if (bookmarkNodes.length > 0) {
         const openBtn = document.createElement('button');
         openBtn.classList.add('context-menu-item');
-        openBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg> ${chrome.i18n.getMessage('bulkOpenSelected', [String(bookmarkNodes.length)])}`;
+        openBtn.innerHTML = `${ICONS.openExternal()} ${chrome.i18n.getMessage('bulkOpenSelected', [String(bookmarkNodes.length)])}`;
         openBtn.onclick = () => {
           bookmarkNodes.forEach(n => chrome.tabs.create({ url: n.url, active: false }));
           closeBulkContextMenu();
@@ -200,7 +210,7 @@ function renderTrashSelectBtnIcon() {
       
       const moveBtn2 = document.createElement('button');
       moveBtn2.classList.add('context-menu-item');
-      moveBtn2.innerHTML = `${moveIcon} ${chrome.i18n.getMessage('bulkMoveToFolder')}`;
+      moveBtn2.innerHTML = `${ICONS.move} ${chrome.i18n.getMessage('bulkMoveToFolder')}`;
       moveBtn2.onclick = () => {
         closeBulkContextMenu();
         selectionMoveMode = true;
@@ -211,7 +221,7 @@ function renderTrashSelectBtnIcon() {
       
       const newFolderBtn = document.createElement('button');
       newFolderBtn.classList.add('context-menu-item');
-      newFolderBtn.innerHTML = `${addFolderIcon} ${chrome.i18n.getMessage('bulkNewFolderAndMove')}`;
+      newFolderBtn.innerHTML = `${ICONS.folderAdd} ${chrome.i18n.getMessage('bulkNewFolderAndMove')}`;
       newFolderBtn.onclick = () => {
         closeBulkContextMenu();
         selectionFolderMode = true;
@@ -224,10 +234,10 @@ function renderTrashSelectBtnIcon() {
       const deleteBtn2 = document.createElement('button');
       deleteBtn2.classList.add('context-menu-item');
       deleteBtn2.dataset.state = 'initial';
-      deleteBtn2.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('bulkDelete')}`;
+      deleteBtn2.innerHTML = `${ICONS.close(16)} ${chrome.i18n.getMessage('bulkDelete')}`;
       deleteBtn2.onclick = () => {
         if (deleteBtn2.dataset.state === 'initial') {
-          deleteBtn2.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('bulkConfirmDelete')}`;
+          deleteBtn2.innerHTML = `${ICONS.question} ${chrome.i18n.getMessage('bulkConfirmDelete')}`;
           deleteBtn2.dataset.state = 'confirm';
         } else {
           closeBulkContextMenu();
@@ -245,7 +255,7 @@ function renderTrashSelectBtnIcon() {
       
       const restoreBtn2 = document.createElement('button');
       restoreBtn2.classList.add('context-menu-item');
-      restoreBtn2.innerHTML = `${restoreIcon} ${chrome.i18n.getMessage('bulkRestoreSelected')}`;
+      restoreBtn2.innerHTML = `${ICONS.restore} ${chrome.i18n.getMessage('bulkRestoreSelected')}`;
       restoreBtn2.onclick = async () => {
         closeBulkContextMenu();
         await restoreBulkTrashItems();
@@ -256,11 +266,11 @@ function renderTrashSelectBtnIcon() {
       const permDeleteBtn = document.createElement('button');
       permDeleteBtn.classList.add('context-menu-item');
       permDeleteBtn.dataset.state = 'initial';
-      permDeleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('bulkDeletePermanently')}`;
+      permDeleteBtn.innerHTML = `${ICONS.deleteForever} ${chrome.i18n.getMessage('bulkDeletePermanently')}`;
       permDeleteBtn.style.color = 'var(--hover-color-remove)';
       permDeleteBtn.onclick = async () => {
         if (permDeleteBtn.dataset.state === 'initial') {
-          permDeleteBtn.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('bulkConfirmDelete')}`;
+          permDeleteBtn.innerHTML = `${ICONS.question} ${chrome.i18n.getMessage('bulkConfirmDelete')}`;
           permDeleteBtn.dataset.state = 'confirm';
         } else {
           closeBulkContextMenu();
@@ -335,7 +345,7 @@ function renderTrashSelectBtnIcon() {
     loadTrashPanel(trashSearchInput.value);
   }
   function updateAddBookmarkButton(isBookmarked) {
-    addBookmarkBtn.innerHTML = isBookmarked ? getXIcon(18) : plusIcon(18);
+    addBookmarkBtn.innerHTML = isBookmarked ? ICONS.close(18) : ICONS.plus(18);
   }
   function closeMenu() {
     if (activeMenu) {
@@ -356,16 +366,22 @@ function renderTrashSelectBtnIcon() {
         menuToClose.style.transform = '';
         if (bbToClose) bbToClose.classList.remove('is-visible');
         menuToClose.classList.remove('open-upwards');
-        const removeItem = menuToClose.querySelector('.context-menu-item[data-state]');
-        if (removeItem) {
-          removeItem.dataset.state = 'initial';
-          if (!menuToClose.classList.contains('trash-context-menu')) {
-            removeItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
+        const removeItems = menuToClose.querySelectorAll('[data-state]');
+        removeItems.forEach(item => {
+          item.dataset.state = 'initial';
+          const isQuick = item.classList.contains('quick-action-btn');
+          if (isQuick) {
+            item.innerHTML = ICONS.close(16);
+            item.title = chrome.i18n.getMessage('removeButton');
           } else {
-            removeItem.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
-            removeItem.style.color = 'var(--hover-color-remove)';
+            if (!menuToClose.classList.contains('trash-context-menu')) {
+              item.innerHTML = `${ICONS.close(16)} ${chrome.i18n.getMessage('removeButton')}`;
+            } else {
+              item.innerHTML = `${ICONS.deleteForever} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
+              item.style.color = 'var(--hover-color-remove)';
+            }
           }
-        }
+        });
         if (!isMobile) {
           if (tabTrash.classList.contains('active')) trashSearchInput.focus();
           else if (tabBookmarks.classList.contains('active')) searchInput.focus();
@@ -399,16 +415,53 @@ function renderTrashSelectBtnIcon() {
   let showFolderBadge = true;
   const settingShowUpButtonToggle = document.getElementById('settingShowUpButton');
   let showUpButton = true;
+  const settingShowScrollTopToggle = document.getElementById('settingShowScrollTop');
+  let showScrollTopButton = true;
   const settingShowBreadcrumbToggle = document.getElementById('settingShowBreadcrumb');
   let showBreadcrumb = false;
+  const settingShowScrollbarToggle = document.getElementById('settingShowScrollbar');
+  let showScrollbar = true;
+  const settingShowQuickActionsToggle = document.getElementById('settingShowQuickActions');
   const rootFolderSelect = document.getElementById('rootFolderSelect');
   const settingButtons = document.querySelectorAll('.setting-btn');
   const folderStyleSettingsRow = document.querySelector('[data-i18n="settingFolderStyleLabel"]')?.closest('.settings-row');
+  const gridColumnsSettingsRow = document.getElementById('gridColumnsSettingsRow');
+  let gridColumns = 3;
+  const gridWidthSettingsRow = document.getElementById('gridWidthSettingsRow');
+  let gridWidth = 300;
+  const gridShowTitlesSettingsRow = document.getElementById('gridShowTitlesSettingsRow');
+  const settingShowGridTitlesToggle = document.getElementById('settingShowGridTitles');
+  let showGridTitles = true;
+
+  function snapToNearest(value, options, fallback) {
+    const num = parseInt(value, 10);
+    if (isNaN(num)) return fallback;
+    return options.reduce((closest, opt) => Math.abs(opt - num) < Math.abs(closest - num) ? opt : closest, options[0]);
+  }
+
+  const GRID_WIDTH_OPTIONS = [300, 400, 500];
+  const GRID_COLUMNS_OPTIONS = [2, 3, 4];
   let deleteMode = 'trash';
   let trashExpiryDays = 30;
   let checkBeforeAdd = false;
   let searchInFolder = false;
+  let newItemPosition = 'end';
 
+  const DEFAULT_CTX_ITEMS = [
+    { id: 'edit', labelKey: 'editButton', enabled: true },
+    { id: 'move', labelKey: 'moveButton', enabled: true },
+    { id: 'remove', labelKey: 'removeButton', enabled: true },
+    { id: 'createFolder', labelKey: 'createFolderButton', enabled: true },
+    { id: 'addCurrentSite', labelKey: 'addCurrentSiteButton', enabled: true },
+    { id: 'addAllTabs', labelKey: 'addAllTabsButton', enabled: true },
+    { id: 'openAll', labelKey: 'confirmOpenAllTitle', enabled: true },
+    { id: 'pin', labelKey: 'pinButton', enabled: true },
+    { id: 'copyLink', labelKey: 'copyLinkButton', enabled: true },
+    { id: 'openInCurrentTab', labelKey: 'openInCurrentTab', enabled: true },
+    { id: 'openInNewTab', labelKey: 'openInNewTab', enabled: true }
+  ];
+  let ctxMenuItems = DEFAULT_CTX_ITEMS.map(i => ({ ...i }));
+  let showQuickActions = true;
   
   const TRASH_STORAGE_KEY = 'markleaf_trash';
 
@@ -435,10 +488,21 @@ function renderTrashSelectBtnIcon() {
   }
 
   function syncFolderStyleVisibility() {
-    if (!folderStyleSettingsRow) return;
-    folderStyleSettingsRow.style.display = isGridView ? '' : 'none';
+    if (folderStyleSettingsRow) folderStyleSettingsRow.style.display = isGridView ? '' : 'none';
+    if (gridColumnsSettingsRow) gridColumnsSettingsRow.style.display = isGridView ? '' : 'none';
+    if (gridWidthSettingsRow) gridWidthSettingsRow.style.display = isGridView ? '' : 'none';
+    if (gridShowTitlesSettingsRow) gridShowTitlesSettingsRow.style.display = isGridView ? '' : 'none';
   }
-  
+
+  function applyGridColumns() {
+    bookmarksList.style.setProperty('--grid-cols', gridColumns);
+    if (isGridView) {
+      document.body.style.width = gridWidth + 'px';
+    } else {
+      document.body.style.width = '300px';
+    }
+    bookmarksList.classList.toggle('hide-grid-titles', !showGridTitles);
+  }
 
   settingButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -473,6 +537,7 @@ function renderTrashSelectBtnIcon() {
         isGridView = value === 'grid';
         chrome.storage.local.set({ isGridView });
         syncFolderStyleVisibility();
+        applyGridColumns();
         setToggleIcon();
         listItems(currentFolderId);
       } else if (setting === 'folderStyle') {
@@ -480,6 +545,18 @@ function renderTrashSelectBtnIcon() {
         bookmarksList.classList.toggle('folder-stack-mode', isFolderStackMode);
         chrome.storage.local.set({ isFolderStackMode });
         listItems(currentFolderId);
+      } else if (setting === 'gridColumns') {
+        gridColumns = parseInt(value, 10) || 3;
+        chrome.storage.local.set({ gridColumns });
+        applyGridColumns();
+        listItems(currentFolderId);
+      } else if (setting === 'gridWidth') {
+        gridWidth = parseInt(value, 10) || 300;
+        chrome.storage.local.set({ gridWidth });
+        applyGridColumns();
+      } else if (setting === 'newItemPosition') {
+        newItemPosition = value;
+        chrome.storage.local.set({ newItemPosition });
       }
     });
   });
@@ -500,6 +577,29 @@ function renderTrashSelectBtnIcon() {
     showBreadcrumb = settingShowBreadcrumbToggle.checked;
     chrome.storage.local.set({ showBreadcrumb });
     updateUpButtonVisibility();
+  });
+
+  function applyScrollbarVisibility() {
+    document.documentElement.classList.toggle('scrollbar-hidden', !showScrollbar);
+  }
+
+  settingShowScrollbarToggle.addEventListener('change', () => {
+    showScrollbar = settingShowScrollbarToggle.checked;
+    chrome.storage.local.set({ showScrollbar });
+    applyScrollbarVisibility();
+  });
+
+  settingShowScrollTopToggle.addEventListener('change', () => {
+    showScrollTopButton = settingShowScrollTopToggle.checked;
+    chrome.storage.local.set({ showScrollTopButton });
+    if (!showScrollTopButton) hideScrollToTop();
+  });
+
+  settingShowQuickActionsToggle.addEventListener('change', () => {
+    showQuickActions = settingShowQuickActionsToggle.checked;
+    chrome.storage.local.set({ showQuickActions });
+    renderCtxMenuSettings();
+    listItems(currentFolderId);
   });
 
   const settingCheckBeforeAddToggle = document.getElementById('settingCheckBeforeAdd');
@@ -640,6 +740,25 @@ function renderTrashSelectBtnIcon() {
     window._faviconProvider = provider;
   });
 
+  function syncGridColumnsButtons() {
+    document.querySelectorAll('.setting-btn[data-setting="gridColumns"]').forEach(b => {
+      b.classList.toggle('active', b.dataset.value === String(gridColumns));
+    });
+  }
+
+  function syncGridWidthButtons() {
+    document.querySelectorAll('.setting-btn[data-setting="gridWidth"]').forEach(b => {
+      b.classList.toggle('active', b.dataset.value === String(gridWidth));
+    });
+  }
+
+  if (settingShowGridTitlesToggle) {
+    settingShowGridTitlesToggle.addEventListener('change', () => {
+      showGridTitles = settingShowGridTitlesToggle.checked;
+      chrome.storage.local.set({ showGridTitles });
+      applyGridColumns();
+    });
+  }
 
   async function getFolderTreeForTrash(nodeId) {
     const children = await new Promise(resolve =>
@@ -680,6 +799,103 @@ function renderTrashSelectBtnIcon() {
     }
   }
 
+  function sortItemsByPin(items) {
+    if (pinnedBookmarks.size === 0) return items;
+    const pinned = items.filter(n => pinnedBookmarks.has(n.id));
+    const unpinned = items.filter(n => !pinnedBookmarks.has(n.id));
+    return pinned.concat(unpinned);
+  }
+  
+  async function resolveNewItemIndex(parentId) {
+    if (newItemPosition !== 'start') return undefined;
+    const siblings = await new Promise(resolve => chrome.bookmarks.getChildren(parentId, resolve));
+    if (!siblings) return 0;
+    return siblings.filter(s => pinnedBookmarks.has(s.id)).length;
+  }
+
+  async function togglePin(node) {
+    const wasPinned = pinnedBookmarks.has(node.id);
+    if (wasPinned) {
+      pinnedBookmarks.delete(node.id);
+    } else {
+      pinnedBookmarks.add(node.id);
+    }
+    await new Promise(resolve => chrome.storage.local.set({ pinnedBookmarks: Array.from(pinnedBookmarks) }, resolve));
+    await new Promise(resolve => {
+      chrome.bookmarks.getChildren(node.parentId, (siblings) => {
+        if (!siblings) { resolve(); return; }
+        const pinnedSiblings = siblings.filter(s => pinnedBookmarks.has(s.id));
+        const newIndex = wasPinned ? pinnedSiblings.length : 0;
+        chrome.bookmarks.move(node.id, { index: newIndex }, () => resolve());
+      });
+    });
+    listItems(currentFolderId);
+  }
+
+  function renderCtxMenuSettings() {
+    const list = document.getElementById('ctxMenuItemList');
+    if (!list) return;
+    
+    list.innerHTML = '';
+
+    const enabledItems = ctxMenuItems.filter(item => item.enabled);
+    const actionIds = showQuickActions ? enabledItems.slice(-3).map(i => i.id) : [];
+
+    ctxMenuItems.forEach((item) => {
+      const li = document.createElement('li');
+      li.className = 'ctx-menu-sort-item';
+      li.dataset.id = item.id;
+      const label = chrome.i18n.getMessage(item.labelKey) || item.id;
+      
+      const isAction = actionIds.includes(item.id);
+      const dragSvg = ICONS.dragHandle(isAction);
+
+      li.innerHTML = `${dragSvg}<span class="ctx-item-label">${label}</span><label class="ctx-item-toggle"><input type="checkbox" ${item.enabled ? 'checked' : ''}><span class="ctx-toggle-slider"></span></label>`;
+      
+      const checkbox = li.querySelector('input');
+      li.addEventListener('click', (e) => {
+        
+        if (!e.target.closest('.ctx-item-toggle')) {
+          e.preventDefault();
+          checkbox.checked = !checkbox.checked;
+          checkbox.dispatchEvent(new Event('change'));
+        }
+      });
+      
+      li.querySelector('.ctx-drag-handle').addEventListener('mousedown', (e) => e.stopPropagation());
+      li.querySelector('.ctx-drag-handle').addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+      
+      li.querySelector('.ctx-item-toggle').addEventListener('mousedown', (e) => e.stopPropagation());
+      li.querySelector('.ctx-item-toggle').addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+      
+      checkbox.addEventListener('change', (e) => {
+        e.stopPropagation();
+        const it = ctxMenuItems.find(x => x.id === item.id);
+        if (it) it.enabled = e.target.checked;
+        chrome.storage.local.set({ ctxMenuItems });
+        const track = li.querySelector('.ctx-toggle-slider');
+        track.addEventListener('transitionend', () => {
+          renderCtxMenuSettings();
+          listItems(currentFolderId);
+        }, { once: true });
+      });
+      list.appendChild(li);
+    });
+    
+    if (window.ctxMenuSortable) { window.ctxMenuSortable.destroy(); window.ctxMenuSortable = null; }
+    window.ctxMenuSortable = new Sortable(list, {
+      animation: 150,
+      handle: '.ctx-drag-handle',
+      onEnd: () => {
+        const newOrder = Array.from(list.children).map(li => li.dataset.id);
+        ctxMenuItems.sort((a, b) => newOrder.indexOf(a.id) - newOrder.indexOf(b.id));
+        chrome.storage.local.set({ ctxMenuItems });
+        renderCtxMenuSettings();
+        listItems(currentFolderId);
+      }
+    });
+  }
+
   function showTab(tab) {
     tabBookmarks.classList.remove('active');
     tabTrash.classList.remove('active');
@@ -710,16 +926,92 @@ function renderTrashSelectBtnIcon() {
       tabSettings.classList.add('active');
       settingsPanel.classList.add('active');
       updateSettingsUI();
+      !isMobile && settingsSearchInput && settingsSearchInput.focus();
     }
   }
 
-  tabBookmarks.addEventListener('click', () => showTab('bookmarks'));
-  tabTrash.addEventListener('click', () => showTab('trash'));
-  tabSettings.addEventListener('click', () => showTab('settings'));
+  let previousTab = 'bookmarks';
+  let currentTab = 'bookmarks';
 
-  const restoreIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 14l-4 -4l4 -4"/><path d="M5 10h11a4 4 0 1 1 0 8h-1"/></svg>`;
-  const deleteForeverIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>`;
+  tabBookmarks.addEventListener('click', () => { previousTab = currentTab; currentTab = 'bookmarks'; showTab('bookmarks'); });
+  tabTrash.addEventListener('click', () => { previousTab = currentTab; currentTab = 'trash'; showTab('trash'); });
+  tabSettings.addEventListener('click', () => { previousTab = currentTab; currentTab = 'settings'; showTab('settings'); });
+  
+  const settingsBackBtn = document.getElementById('settingsBackBtn');
+  if (settingsBackBtn) {
+    settingsBackBtn.addEventListener('click', () => {
+      const dest = (previousTab && previousTab !== 'settings') ? previousTab : 'bookmarks';
+      currentTab = dest;
+      showTab(dest);
+    });
+  }
+  
+  const settingsSearchInput = document.getElementById('settingsSearchInput');
+  const clearSettingsSearchBtn = document.getElementById('clearSettingsSearchBtn');
 
+  function filterSettingsRows(term) {
+    const rows = settingsPanel.querySelectorAll('.settings-row');
+    const q = term.trim().toLowerCase();
+    let visibleCount = 0;
+    rows.forEach(row => {
+      if (!q) {
+        row.classList.remove('settings-hidden');
+        visibleCount++;
+      } else {
+        const text = row.innerText.toLowerCase();
+        const visible = text.includes(q);
+        row.classList.toggle('settings-hidden', !visible);
+        if (visible) visibleCount++;
+      }
+    });
+    
+    let noResultsEl = settingsPanel.querySelector('.settings-no-results');
+    if (!q || visibleCount > 0) {
+      if (noResultsEl) noResultsEl.remove();
+    } else {
+      if (!noResultsEl) {
+        noResultsEl = document.createElement('div');
+        noResultsEl.className = 'settings-no-results empty-message';
+        settingsPanel.appendChild(noResultsEl);
+      }
+      noResultsEl.textContent = chrome.i18n.getMessage('settingsNoResults');
+    }
+  }
+
+  if (settingsSearchInput) {
+    settingsSearchInput.addEventListener('input', () => {
+      const val = settingsSearchInput.value;
+      clearSettingsSearchBtn.style.display = val ? '' : 'none';
+      filterSettingsRows(val);
+    });
+  }
+
+  if (clearSettingsSearchBtn) {
+    clearSettingsSearchBtn.addEventListener('click', () => {
+      settingsSearchInput.value = '';
+      clearSettingsSearchBtn.style.display = 'none';
+      filterSettingsRows('');
+      settingsSearchInput.focus();
+    });
+  }
+
+  function refocusSettingsSearch() {
+    if (currentTab === 'settings' && !isMobile && settingsSearchInput) {
+      settingsSearchInput.focus();
+    }
+  }
+
+  if (settingsPanel) {
+    settingsPanel.addEventListener('change', () => {
+      setTimeout(refocusSettingsSearch, 0);
+    });
+
+    settingsPanel.addEventListener('click', (e) => {
+      if (e.target === settingsSearchInput || e.target === clearSettingsSearchBtn) return;
+      if (e.target.closest('select, input[type="file"]')) return;
+      setTimeout(refocusSettingsSearch, 0);
+    });
+  }
   
   async function loadTrashPanel(filterTerm = '') {
     trashList.innerHTML = '';
@@ -730,7 +1022,6 @@ function renderTrashSelectBtnIcon() {
 
     const now = Date.now();
     const THIRTY_DAYS = trashExpiryDays * 24 * 60 * 60 * 1000;
-
     
     items = items.slice().sort((a, b) => b.ts - a.ts);
 
@@ -802,7 +1093,7 @@ function renderTrashSelectBtnIcon() {
         img.style.cssText = 'width:16px;height:16px;margin-right:8px;border-radius:100%;';
         iconSpan.appendChild(img);
       } else {
-        iconSpan.innerHTML = folderIconSVG;
+        iconSpan.innerHTML = ICONS.folder;
         iconSpan.style.marginRight = '8px';
       }
 
@@ -835,14 +1126,14 @@ function renderTrashSelectBtnIcon() {
 
       const menuBtn = document.createElement('button');
       menuBtn.classList.add('menu-button');
-      menuBtn.innerHTML = menuIcon;
+      menuBtn.innerHTML = ICONS.menu;
 
       const ctxMenu = document.createElement('div');
       ctxMenu.classList.add('context-menu', 'trash-context-menu');
 
       const restoreBtn = document.createElement('button');
       restoreBtn.classList.add('context-menu-item');
-      restoreBtn.innerHTML = `${restoreIcon} ${chrome.i18n.getMessage('trashRestoreButton')}`;
+      restoreBtn.innerHTML = `${ICONS.restore} ${chrome.i18n.getMessage('trashRestoreButton')}`;
 
       restoreBtn.onclick = async (e) => {
         e.stopPropagation();
@@ -858,14 +1149,14 @@ function renderTrashSelectBtnIcon() {
 
       const deleteBtn = document.createElement('button');
       deleteBtn.classList.add('context-menu-item');
-      deleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
+      deleteBtn.innerHTML = `${ICONS.deleteForever} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
       deleteBtn.style.color = 'var(--hover-color-remove)';
       deleteBtn.dataset.state = 'initial';
 
       deleteBtn.onclick = async (e) => {
         e.stopPropagation();
         if (deleteBtn.dataset.state === 'initial') {
-          deleteBtn.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('trashConfirmDelete')}`;
+          deleteBtn.innerHTML = `${ICONS.question} ${chrome.i18n.getMessage('trashConfirmDelete')}`;
           deleteBtn.dataset.state = 'confirm';
         } else {
           closeMenu();
@@ -876,50 +1167,65 @@ function renderTrashSelectBtnIcon() {
         }
       };
 
-      const quickActionsContainer = document.createElement('div');
-      quickActionsContainer.classList.add('quick-actions');
-
-      const copyLinkBtn = document.createElement('button');
-      copyLinkBtn.classList.add('quick-action-btn');
-      copyLinkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>`;
-      copyLinkBtn.title = chrome.i18n.getMessage('copyLinkButton');
-      copyLinkBtn.onclick = (e) => {
-        e.stopPropagation();
-        if (trashEntry.url) navigator.clipboard.writeText(trashEntry.url);
-        closeMenu();
+      const TRASH_QUICK_ACTIONS = {
+        copyLink: {
+          icon: ICONS.libraryPlusSmall,
+          label: chrome.i18n.getMessage('copyLinkButton'),
+          onClick: (e) => {
+            e.stopPropagation();
+            if (trashEntry.url) navigator.clipboard.writeText(trashEntry.url);
+            closeMenu();
+          }
+        },
+        openInCurrentTab: {
+          icon: ICONS.moveToFolder,
+          label: chrome.i18n.getMessage('openInCurrentTab'),
+          onClick: (e) => {
+            e.stopPropagation();
+            if (trashEntry.url) chrome.tabs.update({ url: trashEntry.url });
+            closeMenu();
+          }
+        },
+        openInNewTab: {
+          icon: ICONS.openExternal(14),
+          label: chrome.i18n.getMessage('openInNewTab'),
+          onClick: (e) => {
+            e.stopPropagation();
+            if (trashEntry.url) chrome.tabs.create({ url: trashEntry.url, active: false });
+            closeMenu();
+          }
+        }
       };
-
-      const openInCurrentTabBtn = document.createElement('button');
-      openInCurrentTabBtn.classList.add('quick-action-btn');
-      openInCurrentTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`;
-      openInCurrentTabBtn.title = chrome.i18n.getMessage('openInCurrentTab');
-      openInCurrentTabBtn.onclick = (e) => {
-        e.stopPropagation();
-        if (trashEntry.url) chrome.tabs.update({ url: trashEntry.url });
-        closeMenu();
-      };
-
-      const openInNewTabBtn = document.createElement('button');
-      openInNewTabBtn.classList.add('quick-action-btn');
-      openInNewTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`;
-      openInNewTabBtn.title = chrome.i18n.getMessage('openInNewTab');
-      openInNewTabBtn.onclick = (e) => {
-        e.stopPropagation();
-        if (trashEntry.url) chrome.tabs.create({ url: trashEntry.url, active: false });
-        closeMenu();
-      };
-
-      quickActionsContainer.appendChild(copyLinkBtn);
-      quickActionsContainer.appendChild(openInCurrentTabBtn);
-      quickActionsContainer.appendChild(openInNewTabBtn);
-
-      if (!trashEntry.url) {
-        quickActionsContainer.style.display = 'none';
-      }
 
       ctxMenu.appendChild(restoreBtn);
       ctxMenu.appendChild(deleteBtn);
-      ctxMenu.appendChild(quickActionsContainer);
+
+      if (trashEntry.url && showQuickActions) {
+        const enabledAndApplicable = ctxMenuItems.filter(cfg => {
+          if (!cfg.enabled) return false;
+          if (cfg.id === 'openAll') return false;
+          return true;
+        });
+        const qaCount = Math.min(3, enabledAndApplicable.length);
+        const qaIds = enabledAndApplicable.slice(enabledAndApplicable.length - qaCount).map(i => i.id);
+
+        const filteredQa = document.createElement('div');
+        filteredQa.classList.add('quick-actions');
+
+        qaIds.forEach(id => {
+          const actionDef = TRASH_QUICK_ACTIONS[id];
+          if (actionDef) {
+            const btn = document.createElement('button');
+            btn.classList.add('quick-action-btn');
+            btn.innerHTML = actionDef.icon;
+            btn.title = actionDef.label;
+            btn.onclick = actionDef.onClick;
+            filteredQa.appendChild(btn);
+          }
+        });
+
+        if (filteredQa.childElementCount > 0) ctxMenu.appendChild(filteredQa);
+      }
 
       document.body.appendChild(ctxMenu);
 
@@ -962,7 +1268,7 @@ function renderTrashSelectBtnIcon() {
         activeBookmarkButtons = bookmarkButtons;
 
         deleteBtn.dataset.state = 'initial';
-        deleteBtn.innerHTML = `${deleteForeverIcon} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
+        deleteBtn.innerHTML = `${ICONS.deleteForever} ${chrome.i18n.getMessage('trashDeletePermanently')}`;
         deleteBtn.style.color = 'var(--hover-color-remove)';
       };
 
@@ -970,7 +1276,7 @@ function renderTrashSelectBtnIcon() {
       
       const selCheck = document.createElement('div');
       selCheck.classList.add('sel-check');
-      selCheck.innerHTML = checkSVG;
+      selCheck.innerHTML = ICONS.check;
       li.appendChild(selCheck);
       li.appendChild(bookmarkButtons);
 
@@ -984,7 +1290,6 @@ function renderTrashSelectBtnIcon() {
         }
         menuBtn.onclick(e);
       });
-
       
       a.addEventListener('click', (e) => {
         if (isTrashSelectionMode) {
@@ -1045,7 +1350,6 @@ function renderTrashSelectBtnIcon() {
     loadTrashPanel();
     !isMobile && trashSearchInput.focus();
   });
-
   
   async function safeRestoreBookmark(entry) {
     const parentExists = await new Promise(resolve => {
@@ -1123,6 +1427,10 @@ function renderTrashSelectBtnIcon() {
     if (event.target == openAllModal) openAllModal.classList.remove('active');
     if (event.target == emptyTrashModal) { emptyTrashModal.classList.remove('active'); !isMobile && trashSearchInput.focus(); }
     if (event.target == restoreAllTrashModal) { restoreAllTrashModal.classList.remove('active'); !isMobile && trashSearchInput.focus(); }
+    if (event.target == aboutModal) { aboutModal.classList.remove('active'); refocusSettingsSearch(); }
+    if (event.target == exportOptionsModal) cancelExportOptionsBtn.click();
+    if (event.target == importOptionsModal) cancelImportOptionsBtn.click();
+    if (event.target == importConfirmModal) cancelImportBtn.click();
   };
 
 function updateSettingsUI() {
@@ -1130,8 +1438,12 @@ function updateSettingsUI() {
   settingFolderBadgeToggle.checked = showFolderBadge;
   settingCheckBeforeAddToggle.checked = checkBeforeAdd;
   settingShowUpButtonToggle.checked = showUpButton;
+  settingShowScrollTopToggle.checked = showScrollTopButton;
   settingShowBreadcrumbToggle.checked = showBreadcrumb;
+  settingShowScrollbarToggle.checked = showScrollbar;
+  applyScrollbarVisibility();
   settingSearchInFolderToggle.checked = searchInFolder;
+  settingShowQuickActionsToggle.checked = showQuickActions;
   populateRootFolderSelect(folderStack[0] || (isMobile ? '3' : '1'));
   const htmlCls = document.documentElement.classList;
   let currentTheme = 'auto';
@@ -1143,6 +1455,7 @@ function updateSettingsUI() {
   document.querySelectorAll('.setting-btn[data-setting="folderStyle"]').forEach(b => b.classList.toggle('active', b.dataset.value === folderStyleVal));
   document.querySelectorAll('.setting-btn[data-setting="deleteMode"]').forEach(b => b.classList.toggle('active', b.dataset.value === deleteMode));
   document.querySelectorAll('.setting-btn[data-setting="trashExpiry"]').forEach(b => b.classList.toggle('active', parseInt(b.dataset.value, 10) === trashExpiryDays));
+  document.querySelectorAll('.setting-btn[data-setting="newItemPosition"]').forEach(b => b.classList.toggle('active', b.dataset.value === newItemPosition));
   
   const expiryRow = document.getElementById('trashExpiryRow');
   const parentSettingsRow = expiryRow?.closest('.settings-row');
@@ -1159,6 +1472,16 @@ function updateSettingsUI() {
   }
 
 }
+
+  function autoSecondaryColor(cardHex) {
+    const hex = (cardHex || '#f0f0f5').replace('#', '');
+    const norm = hex.length === 3 ? hex.split('').map(ch => ch + ch).join('') : hex;
+    const f = parseInt(norm, 16);
+    const r = (f >> 16) & 0xff, g = (f >> 8) & 0xff, b = f & 0xff;
+    const toHex = v => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0');
+    const p = 0.10; 
+    return '#' + toHex(r + (255 - r) * p) + toHex(g + (255 - g) * p) + toHex(b + (255 - b) * p);
+  }
 
   function applyTheme(theme, customColors) {
     const html = document.documentElement;
@@ -1177,7 +1500,7 @@ function updateSettingsUI() {
       html.style.setProperty('--card-hover-bg', c.card);
       html.style.setProperty('--primary-button-background', c.card);
       html.style.setProperty('--primary-button-text', c.text);
-      html.style.setProperty('--secondary-button-background', c.border);
+      html.style.setProperty('--secondary-button-background', autoSecondaryColor(c.card));
       html.style.setProperty('--secondary-button-text', c.text);
       html.style.setProperty('--link-background', c.card);
       html.style.setProperty('--link-color', c.text);
@@ -1188,6 +1511,7 @@ function updateSettingsUI() {
       html.style.setProperty('--placeholder-color', c.border);
       html.style.setProperty('--context-menu-background', c.card);
       html.style.setProperty('--context-menu-item-hover', c.border);
+      html.style.setProperty('--icon-chip-bg', c.border);
     }
   }
 
@@ -1379,7 +1703,7 @@ function updateSettingsUI() {
       else bookmarksList.classList.remove('grid-mode');
       if (bookmarkNodes && bookmarkNodes.length > 0 && bookmarkNodes[0].children) {
         const children = bookmarkNodes[0].children;
-        allItems = children;
+        allItems = sortItemsByPin(children);
         if (allItems.length > 0) {
           allItems.forEach((node) => {
             let precomputedData = {};
@@ -1404,7 +1728,22 @@ function updateSettingsUI() {
           }
           window.bookmarksSortable = new Sortable(bookmarksList, {
             animation: 150,
+            onStart: function () {
+              bookmarksList.classList.add('sortable-active');
+            },
+            onMove: function (evt) {
+              if (pinnedBookmarks.size === 0) return true;
+              const draggedId = evt.dragged.dataset.bookmarkId;
+              if (!draggedId) return true;
+              const children = Array.from(bookmarksList.children).filter(el => el.dataset.bookmarkId);
+              const pinnedCount = children.filter(el => pinnedBookmarks.has(el.dataset.bookmarkId)).length;
+              const isDraggedPinned = pinnedBookmarks.has(draggedId);
+              const relatedIndex = children.indexOf(evt.related);
+              if (isDraggedPinned) return relatedIndex > -1 && relatedIndex < pinnedCount;
+              return relatedIndex === -1 || relatedIndex >= pinnedCount;
+            },
             onEnd: function (evt) {
+              bookmarksList.classList.remove('sortable-active');
               window.bookmarksSortable.option('disabled', true);
               const newOrder = Array.from(bookmarksList.children)
                 .filter(el => el.dataset.bookmarkId)
@@ -1470,28 +1809,31 @@ async function showEmptyAreaContextMenu(x, y) {
 
   const addCurrentBtn = document.createElement('button');
   addCurrentBtn.classList.add('context-menu-item');
-  addCurrentBtn.innerHTML = `${plusIcon(16)} ${chrome.i18n.getMessage('addCurrentSiteButton')}`;
+  addCurrentBtn.innerHTML = `${ICONS.plus(16)} ${chrome.i18n.getMessage('addCurrentSiteButton')}`;
   addCurrentBtn.onclick = () => {
     closeEmptyAreaMenu();
     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
       const tab = tabs[0];
       if (!tab || !tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) return;
       if (checkBeforeAdd && await urlExistsInFolder(tab.url, currentFolderId)) return;
-      chrome.bookmarks.create({ parentId: currentFolderId, title: tab.title, url: tab.url }, () => listItems(currentFolderId));
+      const idx = await resolveNewItemIndex(currentFolderId);
+      chrome.bookmarks.create({ parentId: currentFolderId, title: tab.title, url: tab.url, index: idx }, () => listItems(currentFolderId));
     });
   };
   menu.appendChild(addCurrentBtn);
 
   const addAllBtn = document.createElement('button');
   addAllBtn.classList.add('context-menu-item');
-  addAllBtn.innerHTML = `${addAllTabsIcon} ${chrome.i18n.getMessage('addAllTabsButton')}`;
+  addAllBtn.innerHTML = `${ICONS.libraryPlus} ${chrome.i18n.getMessage('addAllTabsButton')}`;
   addAllBtn.onclick = async () => {
     closeEmptyAreaMenu();
     const tabs = await new Promise(resolve => chrome.tabs.query({ currentWindow: true }, resolve));
+    let nextIndex = await resolveNewItemIndex(currentFolderId);
     for (const tab of tabs) {
       if (!tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) continue;
       if (checkBeforeAdd && await urlExistsInFolder(tab.url, currentFolderId)) continue;
-      await new Promise(resolve => chrome.bookmarks.create({ parentId: currentFolderId, title: tab.title, url: tab.url }, resolve));
+      await new Promise(resolve => chrome.bookmarks.create({ parentId: currentFolderId, title: tab.title, url: tab.url, index: nextIndex }, resolve));
+      if (nextIndex !== undefined) nextIndex++;
     }
     listItems(currentFolderId);
   };
@@ -1499,11 +1841,11 @@ async function showEmptyAreaContextMenu(x, y) {
 
   const createFolderBtn2 = document.createElement('button');
   createFolderBtn2.classList.add('context-menu-item');
-  createFolderBtn2.innerHTML = `${addFolderIcon} ${chrome.i18n.getMessage('createFolderButton')}`;
-  createFolderBtn2.onclick = () => {
+  createFolderBtn2.innerHTML = `${ICONS.folderAdd} ${chrome.i18n.getMessage('createFolderButton')}`;
+  createFolderBtn2.onclick = async () => {
     closeEmptyAreaMenu();
     newFolderParentId = currentFolderId;
-    newFolderIndex = null;
+    newFolderIndex = await resolveNewItemIndex(currentFolderId);
     openCreateFolderModal();
   };
   menu.appendChild(createFolderBtn2);
@@ -1538,6 +1880,14 @@ async function showEmptyAreaContextMenu(x, y) {
     const listItem = document.createElement('li');
     listItem.dataset.bookmarkId = node.id;
     listItem.classList.add(node.url ? 'bookmark-item' : 'folder-item');
+    if (pinnedBookmarks.has(node.id)) {
+      listItem.classList.add('is-pinned');
+      const pinBadge = document.createElement('span');
+      pinBadge.classList.add('pin-indicator');
+      pinBadge.innerHTML = ICONS.pinFilled(12);
+      pinBadge.title = chrome.i18n.getMessage('unpinButton');
+      listItem.appendChild(pinBadge);
+    }
     listItem.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -1639,7 +1989,7 @@ async function showEmptyAreaContextMenu(x, y) {
       faviconTargets.push({ img, size: 16 });
       icon.appendChild(img);
     } else {
-      icon.innerHTML = folderIconSVG;
+      icon.innerHTML = ICONS.folder;
       icon.style.marginRight = '8px';
     }
     const titleDiv = document.createElement('div');
@@ -1695,7 +2045,7 @@ async function showEmptyAreaContextMenu(x, y) {
         if (!showFolderBadge) gridBadge.style.display = 'none';
         gridIconWrap.appendChild(gridBadge);
       } else {
-        gridIconWrap.innerHTML = folderIconLargeSVG;
+        gridIconWrap.innerHTML = ICONS.folderLarge;
         const gridBadge = document.createElement('span');
         gridBadge.classList.add('grid-folder-badge');
         gridBadge.textContent = precomputedData.count !== undefined ? precomputedData.count : '';
@@ -1712,110 +2062,156 @@ async function showEmptyAreaContextMenu(x, y) {
     bookmarkButtons.classList.add('bookmark-buttons');
     const menuBtn = document.createElement('button');
     menuBtn.classList.add('menu-button');
-    menuBtn.innerHTML = menuIcon;
+    menuBtn.innerHTML = ICONS.menu;
     const contextMenu = document.createElement('div');
     contextMenu.classList.add('context-menu');
-    const editMenuItem = document.createElement('button');
-    editMenuItem.classList.add('context-menu-item');
-    editMenuItem.innerHTML = `${editIcon} ${chrome.i18n.getMessage('editButton')}`;
 
-    const moveMenuItem = document.createElement('button');
-    moveMenuItem.classList.add('context-menu-item');
-    moveMenuItem.innerHTML = `${moveIcon} ${chrome.i18n.getMessage('moveButton')}`;
-
-    const removeMenuItem = document.createElement('button');
-    removeMenuItem.classList.add('context-menu-item');
-    removeMenuItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
-    removeMenuItem.dataset.state = 'initial';
-
-    const createFolderMenuItem = document.createElement('button');
-    createFolderMenuItem.classList.add('context-menu-item');
-    createFolderMenuItem.innerHTML = `${addFolderIcon} ${chrome.i18n.getMessage('createFolderButton')}`;
-
-    const addCurrentSiteMenuItem = document.createElement('button');
-    addCurrentSiteMenuItem.classList.add('context-menu-item');
-    addCurrentSiteMenuItem.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg> ${chrome.i18n.getMessage(node.url ? 'addCurrentSiteButton' : 'addCurrentSiteToFolderButton')}`;
-    addCurrentSiteMenuItem.onclick = (event) => {
-      event.stopPropagation();
-      closeMenu();
-      const targetParentId = node.url ? node.parentId : node.id;
-      chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-        const tab = tabs[0];
-        if (!tab || !tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) return;
-        if (checkBeforeAdd && await urlExistsInFolder(tab.url, targetParentId)) return;
-        chrome.bookmarks.create({
-          parentId: targetParentId,
-          title: tab.title,
-          url: tab.url,
-          index: node.url ? node.index + 1 : undefined
-        }, () => listItems(currentFolderId));
-      });
+    const ITEM_DEFINITIONS = {
+      pin: {
+        icon: pinnedBookmarks.has(node.id) ? ICONS.pinFilled(16) : ICONS.pin(16),
+        label: chrome.i18n.getMessage(pinnedBookmarks.has(node.id) ? 'unpinButton' : 'pinButton'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation(); closeMenu();
+          togglePin(node);
+        }
+      },
+      edit: {
+        icon: ICONS.edit,
+        label: chrome.i18n.getMessage('editButton'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation(); closeMenu();
+          itemToEditId = node.id;
+          openEditModal(node);
+        }
+      },
+      move: {
+        icon: ICONS.move,
+        label: chrome.i18n.getMessage('moveButton'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation(); closeMenu();
+          itemToMoveId = node.id;
+          openMoveModal();
+        }
+      },
+      remove: {
+        icon: ICONS.close(16),
+        label: chrome.i18n.getMessage('removeButton'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation();
+          const state = btn.dataset.state || 'initial';
+          if (state === 'initial') {
+            btn.dataset.state = 'confirm';
+            if (isQuick) {
+              btn.innerHTML = ICONS.question;
+              btn.title = chrome.i18n.getMessage('confirmRemoval');
+            } else {
+              btn.innerHTML = `${ICONS.question} ${chrome.i18n.getMessage('confirmRemoval')}`;
+            }
+          } else if (state === 'confirm') {
+            closeMenu();
+            if (deleteMode === 'trash') {
+              sendToTrash(node);
+            } else {
+              if (node.url) {
+                chrome.bookmarks.remove(node.id, () => listItems(currentFolderId));
+              } else {
+                chrome.bookmarks.removeTree(node.id, () => listItems(currentFolderId));
+              }
+            }
+          }
+        }
+      },
+      createFolder: {
+        icon: ICONS.folderAdd,
+        label: chrome.i18n.getMessage('createFolderButton'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation();
+          closeMenu();
+          newFolderParentId = currentFolderId;
+          if (!node.url) {
+            newFolderParentId = node.id;
+            newFolderIndex = 0;
+          } else {
+            const children = Array.from(bookmarksList.children).filter(el => el.dataset.bookmarkId);
+            newFolderIndex = children.indexOf(listItem) + 1;
+          }
+          openCreateFolderModal();
+        }
+      },
+      addCurrentSite: {
+        icon: ICONS.plus(16),
+        label: chrome.i18n.getMessage(node.url ? 'addCurrentSiteButton' : 'addCurrentSiteToFolderButton'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation();
+          closeMenu();
+          const targetParentId = node.url ? node.parentId : node.id;
+          chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+            const tab = tabs[0];
+            if (!tab || !tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) return;
+            if (checkBeforeAdd && await urlExistsInFolder(tab.url, targetParentId)) return;
+            const idx = node.url ? node.index + 1 : await resolveNewItemIndex(targetParentId);
+            chrome.bookmarks.create({
+              parentId: targetParentId,
+              title: tab.title,
+              url: tab.url,
+              index: idx
+            }, () => listItems(currentFolderId));
+          });
+        }
+      },
+      addAllTabs: {
+        icon: ICONS.libraryPlus,
+        label: chrome.i18n.getMessage(node.url ? 'addAllTabsButton' : 'addAllTabsToFolderButton'),
+        onClick: async (event, btn, isQuick) => {
+          event.stopPropagation();
+          closeMenu();
+          const targetParentId = node.url ? node.parentId : node.id;
+          const tabs = await new Promise(resolve => chrome.tabs.query({ currentWindow: true }, resolve));
+          let nextIndex = await resolveNewItemIndex(targetParentId);
+          for (const tab of tabs) {
+            if (!tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) continue;
+            if (checkBeforeAdd && await urlExistsInFolder(tab.url, targetParentId)) continue;
+            await new Promise(resolve => chrome.bookmarks.create({ parentId: targetParentId, title: tab.title, url: tab.url, index: nextIndex }, resolve));
+            if (nextIndex !== undefined) nextIndex++;
+          }
+          listItems(currentFolderId);
+        }
+      },
+      openAll: {
+        icon: ICONS.openExternal(16),
+        label: chrome.i18n.getMessage('confirmOpenAllTitle'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation();
+          closeMenu();
+          confirmOpenAllBookmarks(node.title, node.id);
+        }
+      },
+      copyLink: {
+        icon: ICONS.libraryPlusSmall,
+        label: chrome.i18n.getMessage('copyLinkButton'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation(); closeMenu();
+          navigator.clipboard.writeText(node.url);
+        }
+      },
+      openInCurrentTab: {
+        icon: ICONS.moveToFolder,
+        label: chrome.i18n.getMessage('openInCurrentTab'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation(); closeMenu();
+          chrome.tabs.update({ url: node.url });
+        }
+      },
+      openInNewTab: {
+        icon: ICONS.openExternal(14),
+        label: chrome.i18n.getMessage('openInNewTab'),
+        onClick: (event, btn, isQuick) => {
+          event.stopPropagation(); closeMenu();
+          chrome.tabs.create({ url: node.url, active: false });
+        }
+      }
     };
 
-  const addAllTabsMsgKey = node.url ? 'addAllTabsButton' : 'addAllTabsToFolderButton';
-  const addAllTabsMenuItem = document.createElement('button');
-  addAllTabsMenuItem.classList.add('context-menu-item');
-  addAllTabsMenuItem.innerHTML = `${addAllTabsIcon} ${chrome.i18n.getMessage(addAllTabsMsgKey)}`;
-  addAllTabsMenuItem.onclick = async (event) => {
-    event.stopPropagation();
-    closeMenu();
-    const targetParentId = node.url ? node.parentId : node.id;
-    const tabs = await new Promise(resolve => chrome.tabs.query({ currentWindow: true }, resolve));
-    for (const tab of tabs) {
-      if (!tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) continue;
-      if (checkBeforeAdd && await urlExistsInFolder(tab.url, targetParentId)) continue;
-      await new Promise(resolve => chrome.bookmarks.create({ parentId: targetParentId, title: tab.title, url: tab.url }, resolve));
-    }
-    listItems(currentFolderId);
-  };
-
-    let openAllMenuItem = null;
-    if (!node.url) {
-      openAllMenuItem = document.createElement('button');
-      openAllMenuItem.classList.add('context-menu-item');
-      openAllMenuItem.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg> ${chrome.i18n.getMessage('confirmOpenAllTitle')}`;
-      openAllMenuItem.onclick = (event) => {
-        event.stopPropagation();
-        closeMenu();
-        confirmOpenAllBookmarks(node.title, node.id);
-      };
-    }
-
-    let quickActionsContainer = null;
-    if (node.url) {
-      quickActionsContainer = document.createElement('div');
-      quickActionsContainer.classList.add('quick-actions');
-      
-      const copyLinkBtn = document.createElement('button');
-      copyLinkBtn.classList.add('quick-action-btn');
-      copyLinkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>`;
-      copyLinkBtn.title = chrome.i18n.getMessage('copyLinkButton');
-      copyLinkBtn.onclick = (event) => { event.stopPropagation(); closeMenu(); navigator.clipboard.writeText(node.url); };
-
-      const openInCurrentTabBtn = document.createElement('button');
-      openInCurrentTabBtn.classList.add('quick-action-btn');
-      openInCurrentTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-4a3 3 0 0 1 3 -3h5" /><path d="M9 17l3 -3l-3 -3" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 11v-6a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-9.5" /></svg>`;
-      openInCurrentTabBtn.title = chrome.i18n.getMessage('openInCurrentTab');
-      openInCurrentTabBtn.onclick = (event) => { event.stopPropagation(); closeMenu(); chrome.tabs.update({ url: node.url }); };
-
-      const openInNewTabBtn = document.createElement('button');
-      openInNewTabBtn.classList.add('quick-action-btn');
-      openInNewTabBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>`;
-      openInNewTabBtn.title = chrome.i18n.getMessage('openInNewTab');
-      openInNewTabBtn.onclick = (event) => { event.stopPropagation(); closeMenu(); chrome.tabs.create({ url: node.url, active: false }); };
-
-      quickActionsContainer.appendChild(copyLinkBtn);
-      quickActionsContainer.appendChild(openInCurrentTabBtn);
-      quickActionsContainer.appendChild(openInNewTabBtn);
-    }
-    contextMenu.appendChild(editMenuItem);
-    contextMenu.appendChild(moveMenuItem);
-    contextMenu.appendChild(removeMenuItem);
-    contextMenu.appendChild(createFolderMenuItem);
-    contextMenu.appendChild(addCurrentSiteMenuItem);
-    contextMenu.appendChild(addAllTabsMenuItem);
-    if (openAllMenuItem) contextMenu.appendChild(openAllMenuItem);
-    if (quickActionsContainer) contextMenu.appendChild(quickActionsContainer);
     document.body.appendChild(contextMenu);
     menuBtn.onclick = (event) => {
       event.stopPropagation();
@@ -1826,6 +2222,58 @@ async function showEmptyAreaContextMenu(x, y) {
       if (activeMenu && activeMenu !== contextMenu) {
         closeMenu();
       }
+
+      contextMenu.innerHTML = '';
+
+      const enabledAndApplicable = ctxMenuItems.filter(cfg => {
+        if (!cfg.enabled) return false;
+        if (cfg.id === 'openAll' && node.url) return false;
+        if (['copyLink', 'openInCurrentTab', 'openInNewTab'].includes(cfg.id) && !node.url) return false;
+        return true;
+      });
+
+      let qaIds = [];
+      let verticalIds = [];
+
+      if (showQuickActions) {
+        const qaCount = Math.min(3, enabledAndApplicable.length);
+        const qas = enabledAndApplicable.slice(enabledAndApplicable.length - qaCount);
+        qaIds = qas.map(i => i.id);
+        verticalIds = enabledAndApplicable.slice(0, enabledAndApplicable.length - qaCount).map(i => i.id);
+      } else {
+        verticalIds = enabledAndApplicable.map(i => i.id);
+      }
+
+      verticalIds.forEach(id => {
+        const def = ITEM_DEFINITIONS[id];
+        if (def) {
+          const btn = document.createElement('button');
+          btn.classList.add('context-menu-item');
+          if (id === 'remove') btn.dataset.state = 'initial';
+          btn.innerHTML = `${def.icon} ${def.label}`;
+          btn.onclick = (e) => def.onClick(e, btn, false);
+          contextMenu.appendChild(btn);
+        }
+      });
+
+      if (qaIds.length > 0) {
+        const qaContainer = document.createElement('div');
+        qaContainer.classList.add('quick-actions');
+        qaIds.forEach(id => {
+          const def = ITEM_DEFINITIONS[id];
+          if (def) {
+            const btn = document.createElement('button');
+            btn.classList.add('quick-action-btn');
+            if (id === 'remove') btn.dataset.state = 'initial';
+            btn.innerHTML = def.icon;
+            btn.title = def.label;
+            btn.onclick = (e) => def.onClick(e, btn, true);
+            qaContainer.appendChild(btn);
+          }
+        });
+        contextMenu.appendChild(qaContainer);
+      }
+
       const menuBtnRect = menuBtn.getBoundingClientRect();
       const availableSpaceBelow = window.innerHeight - menuBtnRect.bottom;
       contextMenu.style.display = 'flex';
@@ -1870,53 +2318,17 @@ async function showEmptyAreaContextMenu(x, y) {
       document.activeElement.blur();
       activeMenu = contextMenu;
       activeBookmarkButtons = bookmarkButtons;
-      const thisRemoveItem = contextMenu.querySelector('.context-menu-item[data-state]');
+      const thisRemoveItem = contextMenu.querySelector('.context-menu-item[data-state], .quick-action-btn[data-state]');
       if (thisRemoveItem) {
         thisRemoveItem.dataset.state = 'initial';
-        thisRemoveItem.innerHTML = `${getXIcon(16)} ${chrome.i18n.getMessage('removeButton')}`;
-      }
-    };
-    editMenuItem.onclick = (event) => {
-      event.stopPropagation(); closeMenu();
-      itemToEditId = node.id;
-      openEditModal(node);
-    };
-    moveMenuItem.onclick = (event) => {
-      event.stopPropagation(); closeMenu();
-      itemToMoveId = node.id;
-      openMoveModal();
-    };
-    removeMenuItem.onclick = (event) => {
-      event.stopPropagation();
-      if (removeMenuItem.dataset.state === 'initial') {
-        removeMenuItem.innerHTML = `${questionIcon} ${chrome.i18n.getMessage('confirmRemoval')}`;
-        removeMenuItem.dataset.state = 'confirm';
-      } else if (removeMenuItem.dataset.state === 'confirm') {
-        closeMenu();
-        if (deleteMode === 'trash') {
-          sendToTrash(node);
+        if (thisRemoveItem.classList.contains('quick-action-btn')) {
+          thisRemoveItem.innerHTML = ITEM_DEFINITIONS.remove.icon;
+          thisRemoveItem.title = ITEM_DEFINITIONS.remove.label;
         } else {
-          if (node.url) {
-            chrome.bookmarks.remove(node.id, () => listItems(currentFolderId));
-          } else {
-            chrome.bookmarks.removeTree(node.id, () => listItems(currentFolderId));
-          }
+          thisRemoveItem.innerHTML = `${ITEM_DEFINITIONS.remove.icon} ${ITEM_DEFINITIONS.remove.label}`;
         }
       }
     };
-  createFolderMenuItem.onclick = (event) => {
-    event.stopPropagation();
-    closeMenu();
-    newFolderParentId = currentFolderId;
-    if (!node.url) {
-      newFolderParentId = node.id;
-      newFolderIndex = 0;
-    } else {
-      const children = Array.from(bookmarksList.children).filter(el => el.dataset.bookmarkId);
-      newFolderIndex = children.indexOf(listItem) + 1;
-    }
-    openCreateFolderModal();
-  };
     link.appendChild(icon);
     link.appendChild(titleDiv);
     bookmarkButtons.appendChild(menuBtn);
@@ -1924,7 +2336,7 @@ async function showEmptyAreaContextMenu(x, y) {
     
     const selCheck = document.createElement('div');
     selCheck.classList.add('sel-check');
-    selCheck.innerHTML = checkSVG;
+    selCheck.innerHTML = ICONS.check;
     listItem.appendChild(selCheck);
     listItem.appendChild(bookmarkButtons);
     return listItem;
@@ -2021,7 +2433,6 @@ async function showEmptyAreaContextMenu(x, y) {
       if (callback) callback();
     });
   }
-
   
   function renderSearchResultsProgressive(results) {
     const token = ++searchRenderToken;
@@ -2069,13 +2480,14 @@ async function showEmptyAreaContextMenu(x, y) {
         listItems(currentFolderId);
       });
     } else {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
         const tab = tabs[0];
+        const idx = await resolveNewItemIndex(currentFolderId);
         chrome.bookmarks.create({
           parentId: currentFolderId,
           title: tab.title,
           url: tab.url,
-          index: allItems.length
+          index: idx
         }, (newBookmark) => {
           currentBookmarkId = newBookmark.id;
           updateAddBookmarkButton(true);
@@ -2084,9 +2496,9 @@ async function showEmptyAreaContextMenu(x, y) {
       });
     }
   });
-  createFolderBtn.addEventListener('click', () => {
+  createFolderBtn.addEventListener('click', async () => {
     newFolderParentId = currentFolderId;
-    newFolderIndex = allItems.length;
+    newFolderIndex = await resolveNewItemIndex(currentFolderId);
     openCreateFolderModal();
   });
   const originalUpText = upButton.innerHTML;
@@ -2214,6 +2626,7 @@ async function showEmptyAreaContextMenu(x, y) {
     scrollToTopBtn.addEventListener('click', function () { smoothScrollToTop(); });
   }
   function showScrollToTop() {
+    if (!showScrollTopButton) return;
     if (!scrollToTopBtn.classList.contains('active')) {
       scrollToTopBtn.classList.remove('hiding');
       scrollToTopBtn.classList.add('active');
@@ -2241,7 +2654,6 @@ async function showEmptyAreaContextMenu(x, y) {
     clearKeyboardSelection();
     const searchTerm = searchInput.value.trim().toLowerCase();
     clearSearchBtn.style.display = searchInput.value ? 'flex' : 'none';
-
     
     if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
 
@@ -2259,7 +2671,6 @@ async function showEmptyAreaContextMenu(x, y) {
     if (breadcrumbBar) breadcrumbBar.style.display = 'none';
     createFolderBtn.style.display = 'none';
     header.style.justifyContent = 'center';
-
     
     searchDebounceTimer = setTimeout(() => {
       const doSearch = () => {
@@ -2309,7 +2720,9 @@ async function showEmptyAreaContextMenu(x, y) {
     !isMobile && searchInput.focus();
   });
 
-  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showBreadcrumb', 'searchInFolder'], (data) => {
+  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showScrollbar', 'searchInFolder', 'ctxMenuItems', 'showQuickActions', 'gridColumns', 'gridWidth', 'showGridTitles', 'pinnedBookmarks', 'newItemPosition'], (data) => {
+    pinnedBookmarks = new Set(Array.isArray(data.pinnedBookmarks) ? data.pinnedBookmarks : []);
+    newItemPosition = data.newItemPosition === 'start' ? 'start' : 'end';
     if (data.folderStack && data.folderStack.length > 0) {
       folderStack = data.folderStack;
       currentFolderId = folderStack[folderStack.length - 1];
@@ -2320,6 +2733,14 @@ async function showEmptyAreaContextMenu(x, y) {
     }
     isGridView = !!data.isGridView;
     isFolderStackMode = !!data.isFolderStackMode;
+    gridColumns = snapToNearest(data.gridColumns, GRID_COLUMNS_OPTIONS, 3);
+    gridWidth = snapToNearest(data.gridWidth, GRID_WIDTH_OPTIONS, 300);
+    showGridTitles = data.showGridTitles !== false;
+    if (settingShowGridTitlesToggle) settingShowGridTitlesToggle.checked = showGridTitles;
+    syncGridColumnsButtons();
+    syncGridWidthButtons();
+    syncFolderStyleVisibility();
+    applyGridColumns();
     if (isFolderStackMode) bookmarksList.classList.add('folder-stack-mode');
     const theme = data.appTheme || 'auto';
     themeSelect.value = theme;
@@ -2335,8 +2756,22 @@ async function showEmptyAreaContextMenu(x, y) {
     showFolderBadge = data.showFolderBadge !== undefined ? !!data.showFolderBadge : true;
     checkBeforeAdd = !!data.checkBeforeAdd;
     showUpButton = data.showUpButton !== undefined ? !!data.showUpButton : true;
+    showScrollTopButton = data.showScrollTopButton !== undefined ? !!data.showScrollTopButton : true;
     showBreadcrumb = data.showBreadcrumb !== undefined ? !!data.showBreadcrumb : false;
+    showScrollbar = data.showScrollbar !== undefined ? !!data.showScrollbar : true;
+    if (settingShowScrollbarToggle) settingShowScrollbarToggle.checked = showScrollbar;
+    applyScrollbarVisibility();
     searchInFolder = !!data.searchInFolder;
+    showQuickActions = data.showQuickActions !== undefined ? !!data.showQuickActions : true;
+    if (data.ctxMenuItems) {
+      
+      const savedMap = new Map(data.ctxMenuItems.map(i => [i.id, i]));
+      ctxMenuItems = data.ctxMenuItems.map(i => ({ ...i }));
+      DEFAULT_CTX_ITEMS.forEach(def => {
+        if (!savedMap.has(def.id)) ctxMenuItems.push({ ...def });
+      });
+    }
+    renderCtxMenuSettings();
     tabTrash.style.display = deleteMode === 'trash' ? '' : 'none';
     setToggleIcon();
     const resolvedDefaultId = data.defaultFolderId || (isMobile ? '3' : '1');
@@ -2562,7 +2997,7 @@ async function showEmptyAreaContextMenu(x, y) {
           filteredFolders.forEach(node => {
             const li = document.createElement('li');
             li.dataset.folderId = node.id;
-            li.innerHTML = `${folderIconSVG} ${node.title}`;
+            li.innerHTML = `${ICONS.folder} ${node.title}`;
             li.addEventListener('click', () => {
               if (selectedFolderId) {
                 const prev = document.querySelector(`[data-folder-id="${selectedFolderId}"]`);
@@ -2612,36 +3047,229 @@ async function showEmptyAreaContextMenu(x, y) {
   closeCreateFolderModalBtn.addEventListener('click', closeCreateFolderModal);
   closeEditModalBtn.addEventListener('click', closeEditModal);
   
-  async function exportData() {
+  async function replaceBookmarksBarWith(sourceChildren) {
+    if (!Array.isArray(sourceChildren) || sourceChildren.length === 0) return;
+
+    const existingChildren = await new Promise(resolve =>
+      chrome.bookmarks.getChildren('1', r => { chrome.runtime.lastError; resolve(r || []); })
+    );
+    for (const child of existingChildren) {
+      await new Promise(resolve => {
+        if (!child.url) {
+          chrome.bookmarks.removeTree(child.id, () => { chrome.runtime.lastError; resolve(); });
+        } else {
+          chrome.bookmarks.remove(child.id, () => { chrome.runtime.lastError; resolve(); });
+        }
+      });
+    }
+
+    async function createNodes(nodes, parentId) {
+      for (const node of nodes) {
+        if (!node.title && !node.url) continue;
+        if (node.url) {
+          await new Promise(resolve =>
+            chrome.bookmarks.create({ parentId, title: node.title || node.url, url: node.url }, () => { chrome.runtime.lastError; resolve(); })
+          );
+        } else {
+          const newFolder = await new Promise(resolve =>
+            chrome.bookmarks.create({ parentId, title: node.title || 'Klasör' }, r => { chrome.runtime.lastError; resolve(r); })
+          );
+          if (newFolder && Array.isArray(node.children) && node.children.length > 0) {
+            await createNodes(node.children, newFolder.id);
+          }
+        }
+      }
+    }
+    await createNodes(sourceChildren, '1');
+  }
+
+  function finishBookmarksImportUI() {
+    tabTrash.style.display = deleteMode === 'trash' ? '' : 'none';
+    setToggleIcon();
+    updateSettingsUI();
+    folderStack = ['1'];
+    currentFolderId = '1';
+    listItems(currentFolderId);
+  }
+  
+  function escapeNetscapeHtml(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function decodeHtmlEntities(str) {
+    const el = document.createElement('textarea');
+    el.innerHTML = str;
+    return el.value;
+  }
+
+  function bookmarkNodeToNetscape(node, indent) {
+    const pad = '    '.repeat(indent);
+    if (node.url) {
+      const addDate = node.dateAdded ? Math.floor(node.dateAdded / 1000) : Math.floor(Date.now() / 1000);
+      return `${pad}<DT><A HREF="${escapeNetscapeHtml(node.url)}" ADD_DATE="${addDate}">${escapeNetscapeHtml(node.title || node.url)}</A>\n`;
+    }
+    const addDate = node.dateAdded ? Math.floor(node.dateAdded / 1000) : Math.floor(Date.now() / 1000);
+    const isBar = node.id === '1';
+    const toolbarAttr = isBar ? ' PERSONAL_TOOLBAR_FOLDER="true"' : '';
+    let out = `${pad}<DT><H3 ADD_DATE="${addDate}" LAST_MODIFIED="${addDate}"${toolbarAttr}>${escapeNetscapeHtml(node.title || 'Klasör')}</H3>\n`;
+    out += `${pad}<DL><p>\n`;
+    if (Array.isArray(node.children)) {
+      for (const child of node.children) out += bookmarkNodeToNetscape(child, indent + 1);
+    }
+    out += `${pad}</DL><p>\n`;
+    return out;
+  }
+  
+  async function exportBookmarksAsHtml() {
+    const tree = await new Promise(resolve => chrome.bookmarks.getTree(resolve));
+    const root = tree[0];
+    const topFolders = root.children || [];
+    let body = '';
+    for (const folder of topFolders) {
+      body += bookmarkNodeToNetscape(folder, 1);
+    }
+    const html = `<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<!-- This is an automatically generated file.
+     It will be read and overwritten.
+     Do Not Edit! -->
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<TITLE>Bookmarks</TITLE>
+<H1>Bookmarks</H1>
+<DL><p>
+${body}</DL><p>
+`;
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const d = new Date();
+    const dateStr = `${String(d.getMonth() + 1).padStart(2, '0')}_${String(d.getDate()).padStart(2, '0')}_${d.getFullYear()}`;
+    a.download = `bookmarks_${dateStr}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+  
+  function parseNetscapeBookmarksHtml(html) {
+    const cleaned = html.replace(/<p>/gi, '');
+    const tokenRegex = /<DL>|<\/DL>|<DT>\s*<H3([^>]*)>([\s\S]*?)<\/H3>|<DT>\s*<A\s+([^>]*)>([\s\S]*?)<\/A>/gi;
+    const root = { title: 'root', children: [] };
+    const stack = [root];
+    let pendingFolder = null;
+    let match;
+    while ((match = tokenRegex.exec(cleaned)) !== null) {
+      const [full, h3Attrs, h3Text, aAttrs, aText] = match;
+      if (full === '<DL>') {
+        if (pendingFolder) {
+          stack.push(pendingFolder);
+          pendingFolder = null;
+        }
+        continue;
+      }
+      if (full === '</DL>') {
+        if (stack.length > 1) stack.pop();
+        continue;
+      }
+      if (h3Text !== undefined) {
+        const attrs = h3Attrs || '';
+        const isToolbar = /PERSONAL_TOOLBAR_FOLDER\s*=\s*["']?true["']?/i.test(attrs);
+        const folder = { title: decodeHtmlEntities(h3Text.trim()), children: [], isPersonalToolbar: isToolbar };
+        stack[stack.length - 1].children.push(folder);
+        pendingFolder = folder;
+        continue;
+      }
+      if (aText !== undefined) {
+        const attrs = aAttrs || '';
+        const hrefMatch = attrs.match(/HREF\s*=\s*"([^"]*)"/i) || attrs.match(/HREF\s*=\s*'([^']*)'/i);
+        const url = hrefMatch ? decodeHtmlEntities(hrefMatch[1]) : '';
+        stack[stack.length - 1].children.push({ title: decodeHtmlEntities(aText.trim()), url });
+        pendingFolder = null;
+        continue;
+      }
+    }
+    return root.children;
+  }
+
+  function findPersonalToolbarFolder(nodes) {
+    for (const node of nodes) {
+      if (node.isPersonalToolbar) return node;
+      if (Array.isArray(node.children)) {
+        const found = findPersonalToolbarFolder(node.children);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+  
+  async function importBookmarksFromHtml(file) {
+    try {
+      const text = await file.text();
+      const confirmed = await showImportConfirmModal('bookmarksOnly');
+      if (!confirmed) return;
+
+      const parsedTopNodes = parseNetscapeBookmarksHtml(text);
+      const toolbarFolder = findPersonalToolbarFolder(parsedTopNodes);
+      const sourceChildren = toolbarFolder ? toolbarFolder.children : parsedTopNodes;
+
+      await replaceBookmarksBarWith(sourceChildren);
+      finishBookmarksImportUI();
+    } catch (err) {
+      console.error('Bookmark HTML import error:', err);
+    }
+  }
+
+  async function exportData(options) {
+    const includeSettings = !options || options.includeSettings !== false;
+    const includeBookmarks = !options || options.includeBookmarks !== false;
+
     const storageData = await new Promise(resolve => {
       chrome.storage.local.get(
-        ['deleteMode', 'trashExpiryDays', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showBreadcrumb', 'searchInFolder', 'extensionIconStyle', 'customIconData', 'faviconProvider', TRASH_STORAGE_KEY],
+        ['deleteMode', 'trashExpiryDays', 'isGridView', 'gridColumns', 'gridWidth', 'showGridTitles', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showScrollbar', 'searchInFolder', 'extensionIconStyle', 'customIconData', 'faviconProvider', 'ctxMenuItems', 'showQuickActions', 'exportIncludeSettings', 'exportIncludeBookmarks', 'importIncludeSettings', 'importIncludeBookmarks', 'pinnedBookmarks', 'newItemPosition', TRASH_STORAGE_KEY],
         resolve
       );
     });
-    const bookmarksTree = await new Promise(resolve => chrome.bookmarks.getTree(resolve));
+
     const exportObj = {
       version: chrome.runtime.getManifest().version,
       exportedAt: new Date().toISOString(),
-      settings: {
+      settings: includeSettings ? {
         deleteMode: storageData.deleteMode || 'trash',
         trashExpiryDays: storageData.trashExpiryDays || 30,
         isGridView: storageData.isGridView || false,
+        gridColumns: storageData.gridColumns || 3,
+        gridWidth: storageData.gridWidth || 300,
+        showGridTitles: storageData.showGridTitles !== undefined ? storageData.showGridTitles : true,
         isFolderStackMode: storageData.isFolderStackMode || false,
         appTheme: storageData.appTheme || 'auto',
         customThemeColors: storageData.customThemeColors || null,
         showFolderBadge: storageData.showFolderBadge !== undefined ? storageData.showFolderBadge : true,
         checkBeforeAdd: !!storageData.checkBeforeAdd,
         showUpButton: storageData.showUpButton !== undefined ? storageData.showUpButton : true,
+        showScrollTopButton: storageData.showScrollTopButton !== undefined ? storageData.showScrollTopButton : true,
         showBreadcrumb: !!storageData.showBreadcrumb,
+        showScrollbar: storageData.showScrollbar !== undefined ? storageData.showScrollbar : true,
         searchInFolder: !!storageData.searchInFolder,
+        newItemPosition: storageData.newItemPosition === 'start' ? 'start' : 'end',
         defaultFolderId: storageData.defaultFolderId || null,
         extensionIconStyle: storageData.extensionIconStyle || 'colorful',
         customIconData: (storageData.extensionIconStyle === 'custom') ? (storageData.customIconData || null) : null,
-        faviconProvider: storageData.faviconProvider || 'browser'
-      },
-      trash: storageData[TRASH_STORAGE_KEY] || [],
-      bookmarks: bookmarksTree
+        faviconProvider: storageData.faviconProvider || 'browser',
+        ctxMenuItems: storageData.ctxMenuItems || null,
+        showQuickActions: storageData.showQuickActions !== undefined ? storageData.showQuickActions : true,
+        
+        exportIncludeSettings: storageData.exportIncludeSettings !== undefined ? storageData.exportIncludeSettings : true,
+        exportIncludeBookmarks: storageData.exportIncludeBookmarks !== undefined ? storageData.exportIncludeBookmarks : true,
+        importIncludeSettings: storageData.importIncludeSettings !== undefined ? storageData.importIncludeSettings : true,
+        importIncludeBookmarks: storageData.importIncludeBookmarks !== undefined ? storageData.importIncludeBookmarks : true
+      } : null,
+      trash: includeBookmarks ? (storageData[TRASH_STORAGE_KEY] || []) : [],
+      pinnedBookmarks: includeBookmarks ? (storageData.pinnedBookmarks || []) : [],
+      bookmarks: includeBookmarks ? await new Promise(resolve => chrome.bookmarks.getTree(resolve)) : null
     };
     const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -2654,27 +3282,51 @@ async function showEmptyAreaContextMenu(x, y) {
     URL.revokeObjectURL(url);
   }
 
-  async function importData(file) {
+  async function importData(file, options) {
     try {
+      const includeSettings = !options || options.includeSettings !== false;
+      const includeBookmarks = !options || options.includeBookmarks !== false;
+
       const text = await file.text();
       const data = JSON.parse(text);
-      if (!data.version || !data.settings) throw new Error('Invalid format');
+      if (!data.version) throw new Error('Invalid format');
 
-      const confirmed = await showImportConfirmModal();
+      const importScope = includeSettings && includeBookmarks ? 'all'
+        : includeBookmarks ? 'bookmarksAndTrash'
+        : includeSettings ? 'settingsOnly'
+        : 'all';
+      const confirmed = await showImportConfirmModal(importScope);
       if (!confirmed) return;
-
       
-      const s = data.settings;
+      const s = (includeSettings && data.settings) ? data.settings : null;
+      if (s) {
       await new Promise(resolve => chrome.storage.local.set(s, resolve));
       deleteMode = s.deleteMode || 'trash';
       trashExpiryDays = s.trashExpiryDays || 30;
       isGridView = !!s.isGridView;
+      gridColumns = snapToNearest(s.gridColumns, GRID_COLUMNS_OPTIONS, 3);
+      gridWidth = snapToNearest(s.gridWidth, GRID_WIDTH_OPTIONS, 300);
+      chrome.storage.local.set({ gridColumns, gridWidth });
+      showGridTitles = s.showGridTitles !== undefined ? s.showGridTitles : true;
+      if (settingShowGridTitlesToggle) settingShowGridTitlesToggle.checked = showGridTitles;
+      syncGridColumnsButtons();
+      syncGridWidthButtons();
+      syncFolderStyleVisibility();
+      applyGridColumns();
       isFolderStackMode = !!s.isFolderStackMode;
       showFolderBadge = s.showFolderBadge !== undefined ? !!s.showFolderBadge : true;
       checkBeforeAdd = !!s.checkBeforeAdd;
       showUpButton = s.showUpButton !== undefined ? !!s.showUpButton : true;
+      showScrollTopButton = s.showScrollTopButton !== undefined ? !!s.showScrollTopButton : true;
+      if (settingShowScrollTopToggle) settingShowScrollTopToggle.checked = showScrollTopButton;
+      if (!showScrollTopButton) hideScrollToTop();
       showBreadcrumb = !!s.showBreadcrumb;
+      showScrollbar = s.showScrollbar !== undefined ? !!s.showScrollbar : true;
+      if (settingShowScrollbarToggle) settingShowScrollbarToggle.checked = showScrollbar;
+      applyScrollbarVisibility();
       searchInFolder = !!s.searchInFolder;
+      newItemPosition = s.newItemPosition === 'start' ? 'start' : 'end';
+      document.querySelectorAll('.setting-btn[data-setting="newItemPosition"]').forEach(b => b.classList.toggle('active', b.dataset.value === newItemPosition));
       if (s.defaultFolderId) {
         folderStack = [s.defaultFolderId];
         currentFolderId = s.defaultFolderId;
@@ -2707,19 +3359,35 @@ async function showEmptyAreaContextMenu(x, y) {
         chrome.storage.local.set({ faviconProvider: s.faviconProvider });
       }
 
+      if (Array.isArray(s.ctxMenuItems) && s.ctxMenuItems.length > 0) {
+        const savedMap = new Map(s.ctxMenuItems.map(i => [i.id, i]));
+        ctxMenuItems = s.ctxMenuItems.map(i => ({ ...i }));
+        DEFAULT_CTX_ITEMS.forEach(def => {
+          if (!savedMap.has(def.id)) ctxMenuItems.push({ ...def });
+        });
+        chrome.storage.local.set({ ctxMenuItems });
+        renderCtxMenuSettings();
+      }
+
+      if (s.showQuickActions !== undefined) {
+        showQuickActions = !!s.showQuickActions;
+        if (settingShowQuickActionsToggle) settingShowQuickActionsToggle.checked = showQuickActions;
+        chrome.storage.local.set({ showQuickActions });
+      }
+      }
       
-      if (Array.isArray(data.trash)) {
+      if (includeBookmarks && Array.isArray(data.trash)) {
         await saveTrashItems(data.trash);
       }
 
+      if (includeBookmarks && Array.isArray(data.pinnedBookmarks)) {
+        pinnedBookmarks = new Set(data.pinnedBookmarks);
+        await new Promise(resolve => chrome.storage.local.set({ pinnedBookmarks: Array.from(pinnedBookmarks) }, resolve));
+      }
       
-      if (data.bookmarks && Array.isArray(data.bookmarks)) {
-        
-        
+      if (includeBookmarks && data.bookmarks && Array.isArray(data.bookmarks)) {
         const root = data.bookmarks[0];
-        let sourceChildren = null;
 
-        
         const findBookmarksBar = (node) => {
           if (!node) return null;
           if (node.id === '1' || node.title === 'Bookmarks bar' || node.title === 'Bookmarks Bar') return node;
@@ -2733,60 +3401,27 @@ async function showEmptyAreaContextMenu(x, y) {
         };
 
         const bookmarksBar = findBookmarksBar(root);
-        sourceChildren = bookmarksBar?.children || root?.children || [];
-
-        if (sourceChildren.length > 0) {
-          
-          const existingChildren = await new Promise(resolve =>
-            chrome.bookmarks.getChildren('1', r => { chrome.runtime.lastError; resolve(r || []); })
-          );
-          for (const child of existingChildren) {
-            await new Promise(resolve => {
-              if (!child.url) {
-                chrome.bookmarks.removeTree(child.id, () => { chrome.runtime.lastError; resolve(); });
-              } else {
-                chrome.bookmarks.remove(child.id, () => { chrome.runtime.lastError; resolve(); });
-              }
-            });
-          }
-
-          
-          async function createNodes(nodes, parentId) {
-            for (const node of nodes) {
-              if (!node.title && !node.url) continue;
-              if (node.url) {
-                await new Promise(resolve =>
-                  chrome.bookmarks.create({ parentId, title: node.title || node.url, url: node.url }, () => { chrome.runtime.lastError; resolve(); })
-                );
-              } else {
-                
-                const newFolder = await new Promise(resolve =>
-                  chrome.bookmarks.create({ parentId, title: node.title || 'Klasör' }, r => { chrome.runtime.lastError; resolve(r); })
-                );
-                if (newFolder && Array.isArray(node.children) && node.children.length > 0) {
-                  await createNodes(node.children, newFolder.id);
-                }
-              }
-            }
-          }
-          await createNodes(sourceChildren, '1');
-        }
+        const sourceChildren = bookmarksBar?.children || root?.children || [];
+        await replaceBookmarksBarWith(sourceChildren);
       }
 
-      
-      tabTrash.style.display = deleteMode === 'trash' ? '' : 'none';
-      setToggleIcon();
-      updateSettingsUI();
-      folderStack = ['1'];
-      currentFolderId = '1';
-      listItems(currentFolderId);
+      finishBookmarksImportUI();
     } catch (err) {
       console.error('Import error:', err);
     }
   }
 
-  function showImportConfirmModal() {
+  function showImportConfirmModal(scope) {
     return new Promise(resolve => {
+      const messageKeyByScope = {
+        all: 'importConfirmMessage',
+        bookmarksAndTrash: 'importConfirmMessageBookmarksTrash',
+        settingsOnly: 'importConfirmMessageSettingsOnly',
+        bookmarksOnly: 'importConfirmMessageBookmarksOnly'
+      };
+      const messageKey = messageKeyByScope[scope] || messageKeyByScope.all;
+      const messageEl = importConfirmModal.querySelector('[data-i18n="importConfirmMessage"]');
+      if (messageEl) messageEl.textContent = chrome.i18n.getMessage(messageKey);
       importConfirmModal.classList.add('active');
       const onConfirm = () => {
         importConfirmModal.classList.remove('active');
@@ -2809,21 +3444,147 @@ async function showEmptyAreaContextMenu(x, y) {
   const importBtn = document.getElementById('importBtn');
   const importFileInput = document.getElementById('importFileInput');
 
-  if (exportBtn) exportBtn.addEventListener('click', () => exportData());
-  if (importBtn) importBtn.addEventListener('click', () => importFileInput.click());
+  const exportOptionsModal = document.getElementById('exportOptionsModal');
+  const exportIncludeSettingsToggle = document.getElementById('exportIncludeSettingsToggle');
+  const exportIncludeBookmarksToggle = document.getElementById('exportIncludeBookmarksToggle');
+  const cancelExportOptionsBtn = document.getElementById('cancelExportOptionsBtn');
+  const confirmExportOptionsBtn = document.getElementById('confirmExportOptionsBtn');
+
+  const importOptionsModal = document.getElementById('importOptionsModal');
+  const importIncludeSettingsToggle = document.getElementById('importIncludeSettingsToggle');
+  const importIncludeBookmarksToggle = document.getElementById('importIncludeBookmarksToggle');
+  const cancelImportOptionsBtn = document.getElementById('cancelImportOptionsBtn');
+  const confirmImportOptionsBtn = document.getElementById('confirmImportOptionsBtn');
+
+  let pendingImportOptions = null;
+
+  function syncIeConfirmBtnState(settingsToggle, bookmarksToggle, confirmBtn) {
+    confirmBtn.disabled = !settingsToggle.checked && !bookmarksToggle.checked;
+  }
+
+  function showExportOptionsModal() {
+    return new Promise(resolve => {
+      chrome.storage.local.get(['exportIncludeSettings', 'exportIncludeBookmarks'], (res) => {
+        exportIncludeSettingsToggle.checked = res.exportIncludeSettings !== undefined ? res.exportIncludeSettings : true;
+        exportIncludeBookmarksToggle.checked = res.exportIncludeBookmarks !== undefined ? res.exportIncludeBookmarks : true;
+        syncIeConfirmBtnState(exportIncludeSettingsToggle, exportIncludeBookmarksToggle, confirmExportOptionsBtn);
+        exportOptionsModal.classList.add('active');
+      });
+
+      const onToggleChange = () => syncIeConfirmBtnState(exportIncludeSettingsToggle, exportIncludeBookmarksToggle, confirmExportOptionsBtn);
+      exportIncludeSettingsToggle.addEventListener('change', onToggleChange);
+      exportIncludeBookmarksToggle.addEventListener('change', onToggleChange);
+
+      const cleanup = () => {
+        exportOptionsModal.classList.remove('active');
+        confirmExportOptionsBtn.removeEventListener('click', onConfirm);
+        cancelExportOptionsBtn.removeEventListener('click', onCancel);
+        exportIncludeSettingsToggle.removeEventListener('change', onToggleChange);
+        exportIncludeBookmarksToggle.removeEventListener('change', onToggleChange);
+      };
+      const onConfirm = () => {
+        const options = {
+          includeSettings: exportIncludeSettingsToggle.checked,
+          includeBookmarks: exportIncludeBookmarksToggle.checked
+        };
+        chrome.storage.local.set({ exportIncludeSettings: options.includeSettings, exportIncludeBookmarks: options.includeBookmarks });
+        cleanup();
+        resolve(options);
+      };
+      const onCancel = () => { cleanup(); resolve(null); };
+      confirmExportOptionsBtn.addEventListener('click', onConfirm);
+      cancelExportOptionsBtn.addEventListener('click', onCancel);
+    });
+  }
+
+  function showImportOptionsModal() {
+    return new Promise(resolve => {
+      chrome.storage.local.get(['importIncludeSettings', 'importIncludeBookmarks'], (res) => {
+        importIncludeSettingsToggle.checked = res.importIncludeSettings !== undefined ? res.importIncludeSettings : true;
+        importIncludeBookmarksToggle.checked = res.importIncludeBookmarks !== undefined ? res.importIncludeBookmarks : true;
+        syncIeConfirmBtnState(importIncludeSettingsToggle, importIncludeBookmarksToggle, confirmImportOptionsBtn);
+        importOptionsModal.classList.add('active');
+      });
+
+      const onToggleChange = () => syncIeConfirmBtnState(importIncludeSettingsToggle, importIncludeBookmarksToggle, confirmImportOptionsBtn);
+      importIncludeSettingsToggle.addEventListener('change', onToggleChange);
+      importIncludeBookmarksToggle.addEventListener('change', onToggleChange);
+
+      const cleanup = () => {
+        importOptionsModal.classList.remove('active');
+        confirmImportOptionsBtn.removeEventListener('click', onConfirm);
+        cancelImportOptionsBtn.removeEventListener('click', onCancel);
+        importIncludeSettingsToggle.removeEventListener('change', onToggleChange);
+        importIncludeBookmarksToggle.removeEventListener('change', onToggleChange);
+      };
+      const onConfirm = () => {
+        const options = {
+          includeSettings: importIncludeSettingsToggle.checked,
+          includeBookmarks: importIncludeBookmarksToggle.checked
+        };
+        chrome.storage.local.set({ importIncludeSettings: options.includeSettings, importIncludeBookmarks: options.includeBookmarks });
+        cleanup();
+        resolve(options);
+      };
+      const onCancel = () => { cleanup(); resolve(null); };
+      confirmImportOptionsBtn.addEventListener('click', onConfirm);
+      cancelImportOptionsBtn.addEventListener('click', onCancel);
+    });
+  }
+
+  function isBookmarksOnly(options) {
+    return !!options && options.includeBookmarks && !options.includeSettings;
+  }
+
+  if (exportBtn) exportBtn.addEventListener('click', async () => {
+    const options = await showExportOptionsModal();
+    if (!options) return;
+    if (isBookmarksOnly(options)) {
+      exportBookmarksAsHtml();
+    } else {
+      exportData(options);
+    }
+  });
+  if (importBtn) importBtn.addEventListener('click', async () => {
+    const options = await showImportOptionsModal();
+    if (options) {
+      pendingImportOptions = options;
+      importFileInput.accept = isBookmarksOnly(options) ? '.html,.htm' : '.json';
+      importFileInput.click();
+    }
+  });
   if (importFileInput) {
     importFileInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
-      if (file) { importData(file); importFileInput.value = ''; }
+      if (file) {
+        if (isBookmarksOnly(pendingImportOptions)) {
+          importBookmarksFromHtml(file);
+        } else {
+          importData(file, pendingImportOptions);
+        }
+        importFileInput.value = '';
+      }
     });
   }
 
   const aboutWebsiteBtn = document.getElementById('aboutWebsiteBtn');
   const aboutGithubBtn = document.getElementById('aboutGithubBtn');
+  const aboutStoreBtn = document.getElementById('aboutStoreBtn');
   if (aboutWebsiteBtn) aboutWebsiteBtn.addEventListener('click', () => chrome.tabs.create({ url: 'https://bakinazik.github.io/markleaf/' }));
   if (aboutGithubBtn) aboutGithubBtn.addEventListener('click', () => chrome.tabs.create({ url: 'https://github.com/bakinazik/markleaf' }));
+  if (aboutStoreBtn) aboutStoreBtn.addEventListener('click', () => chrome.tabs.create({ url: 'https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg' }));
   const aboutVersionNumber = document.getElementById('aboutVersionNumber');
   if (aboutVersionNumber) aboutVersionNumber.textContent = chrome.runtime.getManifest().version;
+
+  const aboutModal = document.getElementById('aboutModal');
+  const settingsInfoBtn = document.getElementById('settingsInfoBtn');
+  const closeAboutModal = document.getElementById('closeAboutModal');
+  if (settingsInfoBtn && aboutModal) {
+    settingsInfoBtn.addEventListener('click', () => aboutModal.classList.add('active'));
+  }
+  if (closeAboutModal && aboutModal) {
+    closeAboutModal.addEventListener('click', () => { aboutModal.classList.remove('active'); refocusSettingsSearch(); });
+  }
 
   const setI18nTexts = () => {
     addBookmarkBtn.textContent = chrome.i18n.getMessage('addBookmark');

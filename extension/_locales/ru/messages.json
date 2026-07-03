@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Изменить"
   },
+  "pinButton": {
+    "message": "Закрепить"
+  },
+  "unpinButton": {
+    "message": "Открепить"
+  },
   "removeButton": {
     "message": "Удалить"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "Тема"
   },
+  "settingNewItemPositionLabel": {
+    "message": "Новый элемент"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Добавлять в начало"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Добавлять в конец"
+  },
   "settingViewLabel": {
     "message": "Закладки"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "Импорт"
   },
+  "exportOptionsTitle": {
+    "message": "Экспорт"
+  },
+  "importOptionsTitle": {
+    "message": "Импорт"
+  },
+  "exportOptionsDescription": {
+    "message": "Выберите, что вы хотите экспортировать."
+  },
+  "importOptionsDescription": {
+    "message": "Выберите, что вы хотите импортировать."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Настройки"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Закладки"
+  },
+  "importContinueButton": {
+    "message": "Продолжить"
+  },
   "importError": {
     "message": "Ошибка импорта. Файл может быть недействительным или поврежденным."
   },
   "importConfirmMessage": {
     "message": "Это перезапишет ваши закладки, настройки и данные корзины. Вы уверены?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Это перезапишет ваши закладки и данные корзины. Вы уверены?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Это перезапишет ваши настройки. Вы уверены?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Это перезапишет ваши закладки. Вы уверены?"
   },
   "importConfirmTitle": {
     "message": "Подтверждение импорта"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Отображает путь к папке, чтобы можно было быстро перейти в любую родительскую папку."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Кнопка «наверх»"
+  },
+  "settingShowScrollTopText": {
+    "message": "Показывает плавающую кнопку для быстрого возврата к началу списка."
   },
   "settingExtensionIconLabel": {
     "message": "Иконка расширения"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "Исходный код"
   },
+  "aboutStoreButton": {
+    "message": "Интернет-магазин Chrome"
+  },
   "aboutVersion": {
     "message": "Версия"
+  },
+  "settingContextMenuLabel": {
+    "message": "Контекстное меню"
+  },
+  "contextMenuItemsText": {
+    "message": "Перетаскивайте для изменения порядка, нажимайте для переключения видимости."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Быстрые действия"
+  },
+  "settingShowQuickActionsText": {
+    "message": "При включении последние три активные опции превращаются в кнопки действий."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Поиск..."
+  },
+  "settingsNoResults": {
+    "message": "Результатов не найдено"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Столбцы сетки"
+  },
+  "settingGridColumns2": {
+    "message": "2 столбца"
+  },
+  "settingGridColumns3": {
+    "message": "3 столбца"
+  },
+  "settingGridColumns4": {
+    "message": "4 столбца"
+  },
+  "settingGridWidthLabel": {
+    "message": "Ширина сетки"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Показывать заголовки"
+  },
+  "showGridTitlesText": {
+    "message": "Показывает или скрывает заголовки под закладками в виде сетки."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf — это бесплатный менеджер закладок с открытым исходным кодом, ориентированный на скорость и простоту. Исходный код доступен публично, поэтому каждый может изучить его, предложить улучшения или внести новые функции."
+  },
+  "settingScrollbarLabel": {
+    "message": "Полоса прокрутки"
+  },
+  "scrollbarText": {
+    "message": "При отключении полоса прокрутки скрывается во всём расширении."
   }
 }

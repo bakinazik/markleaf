@@ -17,6 +17,12 @@
   "editButton": {
     "message": "編集"
   },
+  "pinButton": {
+    "message": "ピン留め"
+  },
+  "unpinButton": {
+    "message": "ピン留め解除"
+  },
   "removeButton": {
     "message": "削除"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "テーマ"
   },
+  "settingNewItemPositionLabel": {
+    "message": "新規作成アイテム"
+  },
+  "settingNewItemPositionStart": {
+    "message": "先頭に追加"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "末尾に追加"
+  },
   "settingViewLabel": {
     "message": "ブックマーク"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "インポート"
   },
+  "exportOptionsTitle": {
+    "message": "エクスポート"
+  },
+  "importOptionsTitle": {
+    "message": "インポート"
+  },
+  "exportOptionsDescription": {
+    "message": "エクスポートする項目を選択してください。"
+  },
+  "importOptionsDescription": {
+    "message": "インポートする項目を選択してください。"
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "設定"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "ブックマーク"
+  },
+  "importContinueButton": {
+    "message": "続ける"
+  },
   "importError": {
     "message": "インポートに失敗しました。ファイルが無効か破損している可能性があります。"
   },
   "importConfirmMessage": {
     "message": "ブックマーク、設定、ゴミ箱のデータが上書きされます。本当によろしいですか？"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "ブックマークとゴミ箱のデータが上書きされます。本当によろしいですか？"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "設定が上書きされます。本当によろしいですか？"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "ブックマークが上書きされます。本当によろしいですか？"
   },
   "importConfirmTitle": {
     "message": "インポートの確認"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "フォルダーのパスを表示し、任意の親フォルダーにすばやくジャンプできます。"
+  },
+  "settingShowScrollTopLabel": {
+    "message": "上へ戻るボタン"
+  },
+  "settingShowScrollTopText": {
+    "message": "リストの先頭にすばやく戻るためのボタンを表示します。"
   },
   "settingExtensionIconLabel": {
     "message": "拡張機能アイコン"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "ソースコード"
   },
+  "aboutStoreButton": {
+    "message": "Chrome ウェブストア"
+  },
   "aboutVersion": {
     "message": "バージョン"
+  },
+  "settingContextMenuLabel": {
+    "message": "コンテキストメニュー"
+  },
+  "contextMenuItemsText": {
+    "message": "ドラッグで並び替え、クリックで表示/非表示を切り替えられます。"
+  },
+  "contextMenuActionsLabel": {
+    "message": "クイックアクション"
+  },
+  "settingShowQuickActionsText": {
+    "message": "有効にすると、最後の3つのアクティブな選択肢がアクションボタンになります。"
+  },
+  "settingsSearchPlaceholder": {
+    "message": "検索..."
+  },
+  "settingsNoResults": {
+    "message": "結果が見つかりませんでした"
+  },
+  "settingGridColumnsLabel": {
+    "message": "グリッド列数"
+  },
+  "settingGridColumns2": {
+    "message": "2列"
+  },
+  "settingGridColumns3": {
+    "message": "3列"
+  },
+  "settingGridColumns4": {
+    "message": "4列"
+  },
+  "settingGridWidthLabel": {
+    "message": "グリッドの幅"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "タイトルを表示"
+  },
+  "showGridTitlesText": {
+    "message": "グリッド表示でブックマークの下にタイトルを表示または非表示にします。"
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleafは、スピードとシンプルさを重視した無料のオープンソースブックマークマネージャーです。ソースコードは公開されており、誰でも確認したり、改善を提案したり、機能を追加したりできます。"
+  },
+  "settingScrollbarLabel": {
+    "message": "スクロールバー"
+  },
+  "scrollbarText": {
+    "message": "オフにすると、拡張機能全体でスクロールバーが非表示になります。"
   }
 }

@@ -17,6 +17,12 @@
   "editButton": {
     "message": "수정"
   },
+  "pinButton": {
+    "message": "고정"
+  },
+  "unpinButton": {
+    "message": "고정 해제"
+  },
   "removeButton": {
     "message": "삭제"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "테마"
   },
+  "settingNewItemPositionLabel": {
+    "message": "새로 만든 항목"
+  },
+  "settingNewItemPositionStart": {
+    "message": "맨 앞에 추가"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "맨 뒤에 추가"
+  },
   "settingViewLabel": {
     "message": "북마크"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "가져오기"
   },
+  "exportOptionsTitle": {
+    "message": "내보내기"
+  },
+  "importOptionsTitle": {
+    "message": "가져오기"
+  },
+  "exportOptionsDescription": {
+    "message": "내보낼 항목을 선택하세요."
+  },
+  "importOptionsDescription": {
+    "message": "가져올 항목을 선택하세요."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "설정"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "북마크"
+  },
+  "importContinueButton": {
+    "message": "계속"
+  },
   "importError": {
     "message": "가져오기에 실패했습니다. 파일이 잘못되었거나 손상되었을 수 있습니다."
   },
   "importConfirmMessage": {
     "message": "북마크, 설정 및 휴지통 데이터가 덮어씌워집니다. 계속하시겠습니까?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "북마크 및 휴지통 데이터가 덮어씌워집니다. 계속하시겠습니까?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "설정이 덮어씌워집니다. 계속하시겠습니까?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "북마크가 덮어씌워집니다. 계속하시겠습니까?"
   },
   "importConfirmTitle": {
     "message": "가져오기 확인"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "폴더 경로를 표시하여 상위 폴더로 빠르게 이동할 수 있습니다."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "맨 위로 이동 버튼"
+  },
+  "settingShowScrollTopText": {
+    "message": "목록 맨 위로 빠르게 이동할 수 있는 버튼을 표시합니다."
   },
   "settingExtensionIconLabel": {
     "message": "확장 프로그램 아이콘"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "소스 코드"
   },
+  "aboutStoreButton": {
+    "message": "Chrome 웹 스토어"
+  },
   "aboutVersion": {
     "message": "버전"
+  },
+  "settingContextMenuLabel": {
+    "message": "컨텍스트 메뉴"
+  },
+  "contextMenuItemsText": {
+    "message": "드래그하여 순서를 변경하고 클릭하여 표시 여부를 전환할 수 있습니다."
+  },
+  "contextMenuActionsLabel": {
+    "message": "빠른 작업"
+  },
+  "settingShowQuickActionsText": {
+    "message": "활성화하면 마지막 세 개의 활성 옵션이 작업 버튼으로 바뀝니다."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "검색..."
+  },
+  "settingsNoResults": {
+    "message": "결과가 없습니다"
+  },
+  "settingGridColumnsLabel": {
+    "message": "그리드 열"
+  },
+  "settingGridColumns2": {
+    "message": "2열"
+  },
+  "settingGridColumns3": {
+    "message": "3열"
+  },
+  "settingGridColumns4": {
+    "message": "4열"
+  },
+  "settingGridWidthLabel": {
+    "message": "그리드 너비"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "제목 표시"
+  },
+  "showGridTitlesText": {
+    "message": "그리드 보기에서 북마크 아래 제목을 표시하거나 숨깁니다."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf는 속도와 단순함에 중점을 둔 무료 오픈소스 북마크 관리자입니다. 소스 코드가 공개되어 있어 누구나 살펴보고 개선을 제안하거나 새로운 기능을 기여할 수 있습니다."
+  },
+  "settingScrollbarLabel": {
+    "message": "스크롤바"
+  },
+  "scrollbarText": {
+    "message": "끄면 확장 프로그램 전체에서 스크롤바가 숨겨집니다."
   }
 }

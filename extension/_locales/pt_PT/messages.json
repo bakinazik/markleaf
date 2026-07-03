@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Editar"
   },
+  "pinButton": {
+    "message": "Fixar"
+  },
+  "unpinButton": {
+    "message": "Desafixar"
+  },
   "removeButton": {
     "message": "Remover"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "Tema"
   },
+  "settingNewItemPositionLabel": {
+    "message": "Item recém-criado"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Adicionar ao início"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Adicionar ao fim"
+  },
   "settingViewLabel": {
     "message": "Marcadores"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "Importar"
   },
+  "exportOptionsTitle": {
+    "message": "Exportar"
+  },
+  "importOptionsTitle": {
+    "message": "Importar"
+  },
+  "exportOptionsDescription": {
+    "message": "Escolha o que pretende exportar."
+  },
+  "importOptionsDescription": {
+    "message": "Escolha o que pretende importar."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Definições"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Marcadores"
+  },
+  "importContinueButton": {
+    "message": "Continuar"
+  },
   "importError": {
     "message": "Falha na importação. O ficheiro pode ser inválido ou estar corrompido."
   },
   "importConfirmMessage": {
     "message": "Isto irá substituir os seus marcadores, definições e dados da reciclagem. Tem a certeza?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Isto irá substituir os seus marcadores e os dados da reciclagem. Tem a certeza?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Isto irá substituir as suas definições. Tem a certeza?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Isto irá substituir os seus marcadores. Tem a certeza?"
   },
   "importConfirmTitle": {
     "message": "Confirmar Importação"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Apresenta o caminho da pasta para que possa aceder rapidamente a qualquer pasta principal."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Botão de voltar ao topo"
+  },
+  "settingShowScrollTopText": {
+    "message": "Mostra um botão flutuante para voltar rapidamente ao topo da lista."
   },
   "settingExtensionIconLabel": {
     "message": "Ícone da extensão"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "Código-fonte"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
   "aboutVersion": {
     "message": "Versão"
+  },
+  "settingContextMenuLabel": {
+    "message": "Menu de contexto"
+  },
+  "contextMenuItemsText": {
+    "message": "Pode reordenar arrastando e alternar a visibilidade clicando."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Ações rápidas"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Quando ativado, as últimas três opções ativas tornam-se botões de ação."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Pesquisar..."
+  },
+  "settingsNoResults": {
+    "message": "Nenhum resultado encontrado"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Colunas da grelha"
+  },
+  "settingGridColumns2": {
+    "message": "2 Colunas"
+  },
+  "settingGridColumns3": {
+    "message": "3 Colunas"
+  },
+  "settingGridColumns4": {
+    "message": "4 Colunas"
+  },
+  "settingGridWidthLabel": {
+    "message": "Largura da grelha"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Mostrar títulos"
+  },
+  "showGridTitlesText": {
+    "message": "Mostra ou oculta os títulos abaixo dos marcadores na vista de grelha."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "O Markleaf é um gestor de marcadores gratuito e de código aberto, focado na velocidade e na simplicidade. O seu código-fonte é público, para que qualquer pessoa possa analisá-lo, sugerir melhorias ou contribuir com novas funcionalidades."
+  },
+  "settingScrollbarLabel": {
+    "message": "Barra de deslocamento"
+  },
+  "scrollbarText": {
+    "message": "Quando desativada, a barra de deslocamento fica oculta em toda a extensão."
   }
 }

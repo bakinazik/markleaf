@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Modifica"
   },
+  "pinButton": {
+    "message": "Fissa"
+  },
+  "unpinButton": {
+    "message": "Rimuovi fissaggio"
+  },
   "removeButton": {
     "message": "Rimuovi"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "Tema"
   },
+  "settingNewItemPositionLabel": {
+    "message": "Elemento appena creato"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Aggiungi all’inizio"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Aggiungi alla fine"
+  },
   "settingViewLabel": {
     "message": "Segnalibri"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "Importa"
   },
+  "exportOptionsTitle": {
+    "message": "Esporta"
+  },
+  "importOptionsTitle": {
+    "message": "Importa"
+  },
+  "exportOptionsDescription": {
+    "message": "Scegli cosa vuoi esportare."
+  },
+  "importOptionsDescription": {
+    "message": "Scegli cosa vuoi importare."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Impostazioni"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Preferiti"
+  },
+  "importContinueButton": {
+    "message": "Continua"
+  },
   "importError": {
     "message": "Importazione fallita. Il file potrebbe essere non valido o danneggiato."
   },
   "importConfirmMessage": {
     "message": "Questo sovrascriverà i tuoi segnalibri, le impostazioni e i dati del cestino. Sei sicuro?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Questo sovrascriverà i tuoi segnalibri e i dati del cestino. Sei sicuro?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Questo sovrascriverà le tue impostazioni. Sei sicuro?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Questo sovrascriverà i tuoi segnalibri. Sei sicuro?"
   },
   "importConfirmTitle": {
     "message": "Conferma importazione"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Mostra il percorso della cartella per poter accedere rapidamente a qualsiasi cartella principale."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Pulsante torna su"
+  },
+  "settingShowScrollTopText": {
+    "message": "Mostra un pulsante flottante per tornare rapidamente all'inizio dell'elenco."
   },
   "settingExtensionIconLabel": {
     "message": "Icona estensione"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "Codice sorgente"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
   "aboutVersion": {
     "message": "Versione"
+  },
+  "settingContextMenuLabel": {
+    "message": "Menu contestuale"
+  },
+  "contextMenuItemsText": {
+    "message": "Puoi riordinare trascinando e attivare/disattivare cliccando."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Azioni rapide"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Se abilitato, le ultime tre opzioni attive diventano pulsanti di azione."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Cerca..."
+  },
+  "settingsNoResults": {
+    "message": "Nessun risultato trovato"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Colonne griglia"
+  },
+  "settingGridColumns2": {
+    "message": "2 Colonne"
+  },
+  "settingGridColumns3": {
+    "message": "3 Colonne"
+  },
+  "settingGridColumns4": {
+    "message": "4 Colonne"
+  },
+  "settingGridWidthLabel": {
+    "message": "Larghezza griglia"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Mostra titoli"
+  },
+  "showGridTitlesText": {
+    "message": "Mostra o nasconde i titoli sotto i segnalibri nella vista griglia."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf è un gestore di segnalibri gratuito e open source, pensato per velocità e semplicità. Il codice sorgente è pubblico, così chiunque può esaminarlo, proporre miglioramenti o contribuire con nuove funzionalità."
+  },
+  "settingScrollbarLabel": {
+    "message": "Barra di scorrimento"
+  },
+  "scrollbarText": {
+    "message": "Se disattivata, la barra di scorrimento viene nascosta in tutta l'estensione."
   }
 }

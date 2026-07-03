@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Edit"
   },
+  "pinButton": {
+    "message": "Sematkan"
+  },
+  "unpinButton": {
+    "message": "Lepas Sematan"
+  },
   "removeButton": {
     "message": "Hapus"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "Tema"
   },
+  "settingNewItemPositionLabel": {
+    "message": "Item yang baru dibuat"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Tambahkan di awal"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Tambahkan di akhir"
+  },
   "settingViewLabel": {
     "message": "Penanda"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "Impor"
   },
+  "exportOptionsTitle": {
+    "message": "Ekspor"
+  },
+  "importOptionsTitle": {
+    "message": "Impor"
+  },
+  "exportOptionsDescription": {
+    "message": "Pilih apa yang ingin Anda ekspor."
+  },
+  "importOptionsDescription": {
+    "message": "Pilih apa yang ingin Anda impor."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Pengaturan"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Bookmark"
+  },
+  "importContinueButton": {
+    "message": "Lanjutkan"
+  },
   "importError": {
     "message": "Impor gagal. Berkas mungkin tidak valid atau rusak."
   },
   "importConfirmMessage": {
     "message": "Ini akan menimpa penanda, pengaturan, dan data sampah Anda. Apakah Anda yakin?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Ini akan menimpa penanda dan data sampah Anda. Apakah Anda yakin?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Ini akan menimpa pengaturan Anda. Apakah Anda yakin?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Ini akan menimpa penanda Anda. Apakah Anda yakin?"
   },
   "importConfirmTitle": {
     "message": "Konfirmasi Impor"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Menampilkan jalur folder agar Anda dapat langsung berpindah ke folder induk mana pun."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Tombol kembali ke atas"
+  },
+  "settingShowScrollTopText": {
+    "message": "Menampilkan tombol mengambang untuk kembali dengan cepat ke bagian atas daftar."
   },
   "settingExtensionIconLabel": {
     "message": "Ikon ekstensi"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "Kode sumber"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
   "aboutVersion": {
     "message": "Versi"
+  },
+  "settingContextMenuLabel": {
+    "message": "Menu konteks"
+  },
+  "contextMenuItemsText": {
+    "message": "Anda dapat mengurutkan ulang dengan menyeret, dan mengaktifkan/menonaktifkan dengan mengklik."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Tindakan cepat"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Saat diaktifkan, tiga opsi aktif terakhir menjadi tombol aksi."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Cari..."
+  },
+  "settingsNoResults": {
+    "message": "Tidak ada hasil ditemukan"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Kolom kisi"
+  },
+  "settingGridColumns2": {
+    "message": "2 Kolom"
+  },
+  "settingGridColumns3": {
+    "message": "3 Kolom"
+  },
+  "settingGridColumns4": {
+    "message": "4 Kolom"
+  },
+  "settingGridWidthLabel": {
+    "message": "Lebar kisi"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Tampilkan judul"
+  },
+  "showGridTitlesText": {
+    "message": "Menampilkan atau menyembunyikan judul di bawah bookmark pada tampilan kisi."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf adalah pengelola bookmark gratis dan open-source yang mengutamakan kecepatan dan kesederhanaan. Kode sumbernya bersifat publik, sehingga siapa pun dapat memeriksanya, mengusulkan perbaikan, atau berkontribusi fitur baru."
+  },
+  "settingScrollbarLabel": {
+    "message": "Bilah gulir"
+  },
+  "scrollbarText": {
+    "message": "Jika dimatikan, bilah gulir akan disembunyikan di seluruh ekstensi."
   }
 }

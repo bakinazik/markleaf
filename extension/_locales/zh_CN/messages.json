@@ -17,6 +17,12 @@
   "editButton": {
     "message": "编辑"
   },
+  "pinButton": {
+    "message": "置顶"
+  },
+  "unpinButton": {
+    "message": "取消置顶"
+  },
   "removeButton": {
     "message": "移除"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "主题"
   },
+  "settingNewItemPositionLabel": {
+    "message": "新建的项目"
+  },
+  "settingNewItemPositionStart": {
+    "message": "添加到开头"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "添加到末尾"
+  },
   "settingViewLabel": {
     "message": "书签视图"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "导入"
   },
+  "exportOptionsTitle": {
+    "message": "导出"
+  },
+  "importOptionsTitle": {
+    "message": "导入"
+  },
+  "exportOptionsDescription": {
+    "message": "选择您要导出的内容。"
+  },
+  "importOptionsDescription": {
+    "message": "选择您要导入的内容。"
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "设置"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "书签"
+  },
+  "importContinueButton": {
+    "message": "继续"
+  },
   "importError": {
     "message": "导入失败。文件可能无效或已损坏。"
   },
   "importConfirmMessage": {
     "message": "这将覆盖您的书签、设置和回收站数据。您确定吗？"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "这将覆盖您的书签和回收站数据。您确定吗？"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "这将覆盖您的设置。您确定吗？"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "这将覆盖您的书签。您确定吗？"
   },
   "importConfirmTitle": {
     "message": "确认导入"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "显示文件夹路径，以便快速跳转到任意上级文件夹。"
+  },
+  "settingShowScrollTopLabel": {
+    "message": "返回顶部按钮"
+  },
+  "settingShowScrollTopText": {
+    "message": "显示一个悬浮按钮，可快速返回列表顶部。"
   },
   "settingExtensionIconLabel": {
     "message": "扩展图标"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "源代码"
   },
+  "aboutStoreButton": {
+    "message": "Chrome 应用商店"
+  },
   "aboutVersion": {
     "message": "版本"
+  },
+  "settingContextMenuLabel": {
+    "message": "右键菜单"
+  },
+  "contextMenuItemsText": {
+    "message": "可拖拽排序，点击切换显示状态。"
+  },
+  "contextMenuActionsLabel": {
+    "message": "快速操作"
+  },
+  "settingShowQuickActionsText": {
+    "message": "启用后，最后三个激活的选项将变为操作按钮。"
+  },
+  "settingsSearchPlaceholder": {
+    "message": "搜索..."
+  },
+  "settingsNoResults": {
+    "message": "未找到结果"
+  },
+  "settingGridColumnsLabel": {
+    "message": "网格列数"
+  },
+  "settingGridColumns2": {
+    "message": "2列"
+  },
+  "settingGridColumns3": {
+    "message": "3列"
+  },
+  "settingGridColumns4": {
+    "message": "4列"
+  },
+  "settingGridWidthLabel": {
+    "message": "网格宽度"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "显示标题"
+  },
+  "showGridTitlesText": {
+    "message": "在网格视图中显示或隐藏书签下方的标题。"
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf 是一款专注于速度与简洁的免费开源书签管理工具。其源代码完全公开,任何人都可以查看、提出改进建议或贡献新功能。"
+  },
+  "settingScrollbarLabel": {
+    "message": "滚动条"
+  },
+  "scrollbarText": {
+    "message": "关闭后，滚动条将在整个扩展程序中隐藏。"
   }
 }

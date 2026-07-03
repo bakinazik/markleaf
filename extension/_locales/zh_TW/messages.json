@@ -17,6 +17,12 @@
   "editButton": {
     "message": "編輯"
   },
+  "pinButton": {
+    "message": "釘選"
+  },
+  "unpinButton": {
+    "message": "取消釘選"
+  },
   "removeButton": {
     "message": "移除"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "主題"
   },
+  "settingNewItemPositionLabel": {
+    "message": "新建立的項目"
+  },
+  "settingNewItemPositionStart": {
+    "message": "新增至開頭"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "新增至結尾"
+  },
   "settingViewLabel": {
     "message": "書籤檢視"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "匯入"
   },
+  "exportOptionsTitle": {
+    "message": "匯出"
+  },
+  "importOptionsTitle": {
+    "message": "匯入"
+  },
+  "exportOptionsDescription": {
+    "message": "選擇您要匯出的內容。"
+  },
+  "importOptionsDescription": {
+    "message": "選擇您要匯入的內容。"
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "設定"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "書籤"
+  },
+  "importContinueButton": {
+    "message": "繼續"
+  },
   "importError": {
     "message": "匯入失敗。檔案可能無效或已損壞。"
   },
   "importConfirmMessage": {
     "message": "這將會覆蓋您的書籤、設定和回收筒資料。您確定嗎？"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "這將會覆蓋您的書籤和回收筒資料。您確定嗎？"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "這將會覆蓋您的設定。您確定嗎？"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "這將會覆蓋您的書籤。您確定嗎？"
   },
   "importConfirmTitle": {
     "message": "確認匯入"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "顯示資料夾路徑，讓您可以快速跳轉至任意上層資料夾。"
+  },
+  "settingShowScrollTopLabel": {
+    "message": "回到頂端按鈕"
+  },
+  "settingShowScrollTopText": {
+    "message": "顯示一個浮動按鈕，可快速回到清單頂端。"
   },
   "settingExtensionIconLabel": {
     "message": "擴充功能圖示"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "原始碼"
   },
+  "aboutStoreButton": {
+    "message": "Chrome 線上應用程式商店"
+  },
   "aboutVersion": {
     "message": "版本"
+  },
+  "settingContextMenuLabel": {
+    "message": "右鍵選單"
+  },
+  "contextMenuItemsText": {
+    "message": "可拖曳排序，點擊切換顯示狀態。"
+  },
+  "contextMenuActionsLabel": {
+    "message": "快速操作"
+  },
+  "settingShowQuickActionsText": {
+    "message": "啟用後，最後三個啟用的選項將變為操作按鈕。"
+  },
+  "settingsSearchPlaceholder": {
+    "message": "搜尋..."
+  },
+  "settingsNoResults": {
+    "message": "未找到結果"
+  },
+  "settingGridColumnsLabel": {
+    "message": "網格欄數"
+  },
+  "settingGridColumns2": {
+    "message": "2欄"
+  },
+  "settingGridColumns3": {
+    "message": "3欄"
+  },
+  "settingGridColumns4": {
+    "message": "4欄"
+  },
+  "settingGridWidthLabel": {
+    "message": "網格寬度"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "顯示標題"
+  },
+  "showGridTitlesText": {
+    "message": "在網格視圖中顯示或隱藏書籤下方的標題。"
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf 是一款專注於速度與簡潔的免費開源書籤管理工具。其原始碼公開,任何人都可以查閱、提出改進建議或貢獻新功能。"
+  },
+  "settingScrollbarLabel": {
+    "message": "捲軸"
+  },
+  "scrollbarText": {
+    "message": "關閉後，捲軸會在整個擴充功能中隱藏。"
   }
 }

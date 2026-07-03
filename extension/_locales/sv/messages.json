@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Redigera"
   },
+  "pinButton": {
+    "message": "Fäst"
+  },
+  "unpinButton": {
+    "message": "Lossa"
+  },
   "removeButton": {
     "message": "Ta bort"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "Tema"
   },
+  "settingNewItemPositionLabel": {
+    "message": "Nyskapat objekt"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Lägg till i början"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Lägg till i slutet"
+  },
   "settingViewLabel": {
     "message": "Bokmärken"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "Importera"
   },
+  "exportOptionsTitle": {
+    "message": "Exportera"
+  },
+  "importOptionsTitle": {
+    "message": "Importera"
+  },
+  "exportOptionsDescription": {
+    "message": "Välj vad du vill exportera."
+  },
+  "importOptionsDescription": {
+    "message": "Välj vad du vill importera."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Inställningar"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Bokmärken"
+  },
+  "importContinueButton": {
+    "message": "Fortsätt"
+  },
   "importError": {
     "message": "Importen misslyckades. Filen kan vara ogiltig eller skadad."
   },
   "importConfirmMessage": {
     "message": "Detta kommer att skriva över dina bokmärken, inställningar och data i papperskorgen. Är du säker?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Detta kommer att skriva över dina bokmärken och data i papperskorgen. Är du säker?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Detta kommer att skriva över dina inställningar. Är du säker?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Detta kommer att skriva över dina bokmärken. Är du säker?"
   },
   "importConfirmTitle": {
     "message": "Bekräfta import"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Visar mappsökvägen så att du snabbt kan hoppa till valfri överordnad mapp."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Knapp för att scrolla upp"
+  },
+  "settingShowScrollTopText": {
+    "message": "Visar en flytande knapp för att snabbt scrolla tillbaka till toppen av listan."
   },
   "settingExtensionIconLabel": {
     "message": "Tilläggsikon"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "Källkod"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
   "aboutVersion": {
     "message": "Version"
+  },
+  "settingContextMenuLabel": {
+    "message": "Snabbmeny"
+  },
+  "contextMenuItemsText": {
+    "message": "Du kan ändra ordning genom att dra och växla synlighet genom att klicka."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Snabbåtgärder"
+  },
+  "settingShowQuickActionsText": {
+    "message": "När aktiverat blir de tre sista aktiva alternativen åtgärdsknappar."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Sök..."
+  },
+  "settingsNoResults": {
+    "message": "Inga resultat hittades"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Rutnätskolumner"
+  },
+  "settingGridColumns2": {
+    "message": "2 Kolumner"
+  },
+  "settingGridColumns3": {
+    "message": "3 Kolumner"
+  },
+  "settingGridColumns4": {
+    "message": "4 Kolumner"
+  },
+  "settingGridWidthLabel": {
+    "message": "Rutnätsbredd"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Visa titlar"
+  },
+  "showGridTitlesText": {
+    "message": "Visar eller döljer titlar under bokmärken i rutnätsvyn."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf är en gratis bokmärkeshanterare med öppen källkod, fokuserad på snabbhet och enkelhet. Källkoden är offentlig, så vem som helst kan granska den, föreslå förbättringar eller bidra med nya funktioner."
+  },
+  "settingScrollbarLabel": {
+    "message": "Rullningslist"
+  },
+  "scrollbarText": {
+    "message": "När den är avstängd döljs rullningslisten i hela tillägget."
   }
 }

@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Edit"
   },
+  "pinButton": {
+    "message": "Pin"
+  },
+  "unpinButton": {
+    "message": "Unpin"
+  },
   "removeButton": {
     "message": "Remove"
   },
@@ -143,6 +149,18 @@
   "settingBookmarksLabel": {
     "message": "Bookmarks"
   },
+  "settingGridColumnsLabel": {
+    "message": "Grid columns"
+  },
+  "settingGridColumns2": {
+    "message": "2 Columns"
+  },
+  "settingGridColumns3": {
+    "message": "3 Columns"
+  },
+  "settingGridColumns4": {
+    "message": "4 Columns"
+  },
   "settingFolderStyleLabel": {
     "message": "Folder style"
   },
@@ -163,6 +181,15 @@
   },
   "settingThemeLabel": {
     "message": "Theme"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "Newly created item"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Add to beginning"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Add to end"
   },
   "settingViewLabel": {
     "message": "Bookmarks"
@@ -206,11 +233,41 @@
   "importButton": {
     "message": "Import"
   },
+  "exportOptionsTitle": {
+    "message": "Export"
+  },
+  "importOptionsTitle": {
+    "message": "Import"
+  },
+  "exportOptionsDescription": {
+    "message": "Choose what you'd like to export."
+  },
+  "importOptionsDescription": {
+    "message": "Choose what you'd like to import."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Settings"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Bookmarks"
+  },
+  "importContinueButton": {
+    "message": "Continue"
+  },
   "importError": {
     "message": "Import failed. The file may be invalid or corrupted."
   },
   "importConfirmMessage": {
     "message": "This will overwrite your bookmarks, settings and trash data. Are you sure?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "This will overwrite your bookmarks and trash data. Are you sure?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "This will overwrite your settings. Are you sure?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "This will overwrite your bookmarks. Are you sure?"
   },
   "importConfirmTitle": {
     "message": "Confirm Import"
@@ -277,6 +334,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Shows the folder path so you can quickly jump to any parent folder."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Scroll to top button"
+  },
+  "settingShowScrollTopText": {
+    "message": "Shows a floating button that quickly scrolls back to the top of the list."
   },
   "settingExtensionIconLabel": {
     "message": "Extension icon"
@@ -368,7 +431,55 @@
   "aboutSourceButton": {
     "message": "Source code"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
   "aboutVersion": {
     "message": "Version"
+  },
+  "settingContextMenuLabel": {
+    "message": "Context menu"
+  },
+  "contextMenuItemsText": {
+    "message": "You can reorder by dragging, and toggle visibility by clicking."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Quick actions"
+  },
+  "settingShowQuickActionsText": {
+    "message": "When enabled, the last three active options become action buttons."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Search..."
+  },
+  "settingsNoResults": {
+    "message": "No results found"
+  },
+  "settingGridWidthLabel": {
+    "message": "Grid width"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Show titles"
+  },
+  "showGridTitlesText": {
+    "message": "Shows or hides titles under bookmarks in grid view."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf is a free, open-source bookmark manager focused on speed and simplicity. Its source code is public, so anyone can inspect it, suggest improvements, or contribute new features."
+  },
+  "settingScrollbarLabel": {
+    "message": "Scrollbar"
+  },
+  "scrollbarText": {
+    "message": "When turned off, the scrollbar is hidden throughout the extension."
   }
 }

@@ -17,6 +17,12 @@
   "editButton": {
     "message": "संपादित करें"
   },
+  "pinButton": {
+    "message": "पिन करें"
+  },
+  "unpinButton": {
+    "message": "अनपिन करें"
+  },
   "removeButton": {
     "message": "हटाएं"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "थीम"
   },
+  "settingNewItemPositionLabel": {
+    "message": "नई बनाई गई वस्तु"
+  },
+  "settingNewItemPositionStart": {
+    "message": "शुरुआत में जोड़ें"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "अंत में जोड़ें"
+  },
   "settingViewLabel": {
     "message": "बुकमार्क"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "आयात करें"
   },
+  "exportOptionsTitle": {
+    "message": "निर्यात करें"
+  },
+  "importOptionsTitle": {
+    "message": "आयात करें"
+  },
+  "exportOptionsDescription": {
+    "message": "चुनें कि आप क्या निर्यात करना चाहते हैं।"
+  },
+  "importOptionsDescription": {
+    "message": "चुनें कि आप क्या आयात करना चाहते हैं।"
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "सेटिंग्स"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "बुकमार्क"
+  },
+  "importContinueButton": {
+    "message": "जारी रखें"
+  },
   "importError": {
     "message": "आयात विफल रहा। फ़ाइल अमान्य या दूषित हो सकती है।"
   },
   "importConfirmMessage": {
     "message": "यह आपके बुकमार्क, सेटिंग्स और रद्दी डेटा को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "यह आपके बुकमार्क और रद्दी डेटा को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "यह आपकी सेटिंग्स को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "यह आपके बुकमार्क को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
   },
   "importConfirmTitle": {
     "message": "आयात की पुष्टि करें"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "फ़ोल्डर पथ दिखाता है ताकि आप किसी भी मूल फ़ोल्डर पर जल्दी से जा सकें।"
+  },
+  "settingShowScrollTopLabel": {
+    "message": "ऊपर जाएं बटन"
+  },
+  "settingShowScrollTopText": {
+    "message": "सूची के शीर्ष पर तेज़ी से वापस जाने के लिए एक फ़्लोटिंग बटन दिखाता है।"
   },
   "settingExtensionIconLabel": {
     "message": "एक्सटेंशन आइकन"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "स्रोत कोड"
   },
+  "aboutStoreButton": {
+    "message": "Chrome वेब स्टोर"
+  },
   "aboutVersion": {
     "message": "संस्करण"
+  },
+  "settingContextMenuLabel": {
+    "message": "संदर्भ मेनू"
+  },
+  "contextMenuItemsText": {
+    "message": "खींचकर क्रम बदलें, क्लिक करके दृश्यता बदलें।"
+  },
+  "contextMenuActionsLabel": {
+    "message": "त्वरित क्रियाएँ"
+  },
+  "settingShowQuickActionsText": {
+    "message": "सक्षम होने पर, अंतिम तीन सक्रिय विकल्प क्रिया बटन बन जाते हैं।"
+  },
+  "settingsSearchPlaceholder": {
+    "message": "खोजें..."
+  },
+  "settingsNoResults": {
+    "message": "कोई परिणाम नहीं मिला"
+  },
+  "settingGridColumnsLabel": {
+    "message": "ग्रिड स्तंभ"
+  },
+  "settingGridColumns2": {
+    "message": "2 स्तंभ"
+  },
+  "settingGridColumns3": {
+    "message": "3 स्तंभ"
+  },
+  "settingGridColumns4": {
+    "message": "4 स्तंभ"
+  },
+  "settingGridWidthLabel": {
+    "message": "ग्रिड चौड़ाई"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "शीर्षक दिखाएं"
+  },
+  "showGridTitlesText": {
+    "message": "ग्रिड दृश्य में बुकमार्क के नीचे शीर्षक दिखाता या छिपाता है।"
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf एक मुफ़्त, ओपन-सोर्स बुकमार्क मैनेजर है जो गति और सरलता पर केंद्रित है। इसका सोर्स कोड सार्वजनिक है, ताकि कोई भी इसे देख सके, सुधार सुझा सके या नए फीचर्स में योगदान दे सके।"
+  },
+  "settingScrollbarLabel": {
+    "message": "स्क्रॉलबार"
+  },
+  "scrollbarText": {
+    "message": "बंद करने पर, स्क्रॉलबार पूरे एक्सटेंशन में छिप जाता है।"
   }
 }

@@ -17,6 +17,12 @@
   "editButton": {
     "message": "تعديل"
   },
+  "pinButton": {
+    "message": "تثبيت"
+  },
+  "unpinButton": {
+    "message": "إلغاء التثبيت"
+  },
   "removeButton": {
     "message": "إزالة"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "المظهر"
   },
+  "settingNewItemPositionLabel": {
+    "message": "العنصر المنشأ حديثًا"
+  },
+  "settingNewItemPositionStart": {
+    "message": "الإضافة في البداية"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "الإضافة في النهاية"
+  },
   "settingViewLabel": {
     "message": "الإشارات المرجعية"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "استيراد"
   },
+  "exportOptionsTitle": {
+    "message": "تصدير"
+  },
+  "importOptionsTitle": {
+    "message": "استيراد"
+  },
+  "exportOptionsDescription": {
+    "message": "اختر ما تريد تصديره."
+  },
+  "importOptionsDescription": {
+    "message": "اختر ما تريد استيراده."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "الإعدادات"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "الإشارات المرجعية"
+  },
+  "importContinueButton": {
+    "message": "متابعة"
+  },
   "importError": {
     "message": "فشل الاستيراد. قد يكون الملف غير صالح أو تالفاً."
   },
   "importConfirmMessage": {
     "message": "سيؤدي هذا إلى الكتابة فوق الإشارات المرجعية والإعدادات وبيانات سلة المهملات. هل أنت متأكد؟"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "سيؤدي هذا إلى الكتابة فوق الإشارات المرجعية وبيانات سلة المهملات. هل أنت متأكد؟"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "سيؤدي هذا إلى الكتابة فوق الإعدادات. هل أنت متأكد؟"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "سيؤدي هذا إلى الكتابة فوق الإشارات المرجعية. هل أنت متأكد؟"
   },
   "importConfirmTitle": {
     "message": "تأكيد الاستيراد"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "يعرض مسار المجلد حتى تتمكن من الانتقال بسرعة إلى أي مجلد أصلي."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "زر العودة للأعلى"
+  },
+  "settingShowScrollTopText": {
+    "message": "يعرض زرًا عائمًا للعودة بسرعة إلى أعلى القائمة."
   },
   "settingExtensionIconLabel": {
     "message": "أيقونة الامتداد"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "الكود المصدري"
   },
+  "aboutStoreButton": {
+    "message": "سوق Chrome الإلكتروني"
+  },
   "aboutVersion": {
     "message": "الإصدار"
+  },
+  "settingContextMenuLabel": {
+    "message": "قائمة السياق"
+  },
+  "contextMenuItemsText": {
+    "message": "يمكنك إعادة الترتيب بالسحب، وتبديل الظهور بالنقر."
+  },
+  "contextMenuActionsLabel": {
+    "message": "الإجراءات السريعة"
+  },
+  "settingShowQuickActionsText": {
+    "message": "عند التفعيل، تتحول آخر ثلاثة خيارات نشطة إلى أزرار إجراء."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "بحث..."
+  },
+  "settingsNoResults": {
+    "message": "لم يتم العثور على نتائج"
+  },
+  "settingGridColumnsLabel": {
+    "message": "أعمدة الشبكة"
+  },
+  "settingGridColumns2": {
+    "message": "عمودان"
+  },
+  "settingGridColumns3": {
+    "message": "3 أعمدة"
+  },
+  "settingGridColumns4": {
+    "message": "4 أعمدة"
+  },
+  "settingGridWidthLabel": {
+    "message": "عرض الشبكة"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "إظهار العناوين"
+  },
+  "showGridTitlesText": {
+    "message": "إظهار أو إخفاء العناوين أسفل الإشارات المرجعية في عرض الشبكة."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf هو مدير إشارات مرجعية مجاني ومفتوح المصدر يركز على السرعة والبساطة. الكود المصدري متاح للجميع، بحيث يمكن لأي شخص فحصه أو اقتراح تحسينات أو المساهمة بميزات جديدة."
+  },
+  "settingScrollbarLabel": {
+    "message": "شريط التمرير"
+  },
+  "scrollbarText": {
+    "message": "عند إيقافه، يتم إخفاء شريط التمرير في جميع أنحاء الإضافة."
   }
 }

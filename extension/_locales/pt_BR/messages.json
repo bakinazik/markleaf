@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Editar"
   },
+  "pinButton": {
+    "message": "Fixar"
+  },
+  "unpinButton": {
+    "message": "Desafixar"
+  },
   "removeButton": {
     "message": "Remover"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "Tema"
   },
+  "settingNewItemPositionLabel": {
+    "message": "Item recém-criado"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Adicionar ao início"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Adicionar ao final"
+  },
   "settingViewLabel": {
     "message": "Favoritos"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "Importar"
   },
+  "exportOptionsTitle": {
+    "message": "Exportar"
+  },
+  "importOptionsTitle": {
+    "message": "Importar"
+  },
+  "exportOptionsDescription": {
+    "message": "Escolha o que deseja exportar."
+  },
+  "importOptionsDescription": {
+    "message": "Escolha o que deseja importar."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Configurações"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Favoritos"
+  },
+  "importContinueButton": {
+    "message": "Continuar"
+  },
   "importError": {
     "message": "Falha na importação. O arquivo pode ser inválido ou estar corrompido."
   },
   "importConfirmMessage": {
     "message": "Isso substituirá seus favoritos, configurações e dados da lixeira. Você tem certeza?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Isso substituirá seus favoritos e os dados da lixeira. Você tem certeza?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Isso substituirá suas configurações. Você tem certeza?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Isso substituirá seus favoritos. Você tem certeza?"
   },
   "importConfirmTitle": {
     "message": "Confirmar Importação"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Exibe o caminho da pasta para que você possa ir rapidamente para qualquer pasta pai."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Botão de voltar ao topo"
+  },
+  "settingShowScrollTopText": {
+    "message": "Mostra um botão flutuante para voltar rapidamente ao topo da lista."
   },
   "settingExtensionIconLabel": {
     "message": "Ícone da extensão"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "Código-fonte"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
   "aboutVersion": {
     "message": "Versão"
+  },
+  "settingContextMenuLabel": {
+    "message": "Menu de contexto"
+  },
+  "contextMenuItemsText": {
+    "message": "Você pode reordenar arrastando e alternar a visibilidade clicando."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Ações rápidas"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Quando ativado, as últimas três opções ativas se tornam botões de ação."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Pesquisar..."
+  },
+  "settingsNoResults": {
+    "message": "Nenhum resultado encontrado"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Colunas da grade"
+  },
+  "settingGridColumns2": {
+    "message": "2 Colunas"
+  },
+  "settingGridColumns3": {
+    "message": "3 Colunas"
+  },
+  "settingGridColumns4": {
+    "message": "4 Colunas"
+  },
+  "settingGridWidthLabel": {
+    "message": "Largura da grade"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Mostrar títulos"
+  },
+  "showGridTitlesText": {
+    "message": "Mostra ou oculta os títulos abaixo dos favoritos na visualização em grade."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "O Markleaf é um gerenciador de favoritos gratuito e de código aberto, focado em velocidade e simplicidade. Seu código-fonte é público, para que qualquer pessoa possa analisá-lo, sugerir melhorias ou contribuir com novos recursos."
+  },
+  "settingScrollbarLabel": {
+    "message": "Barra de rolagem"
+  },
+  "scrollbarText": {
+    "message": "Quando desativada, a barra de rolagem fica oculta em toda a extensão."
   }
 }

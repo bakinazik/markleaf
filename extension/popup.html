@@ -11,7 +11,7 @@
       --text-color: #111;
       --primary-button-background: #ededf2;
       --primary-button-text: #111;
-      --secondary-button-background: #ddd;
+      --secondary-button-background: #dddde2;
       --secondary-button-text: #111;
       --link-background: #ededf2;
       --link-color: #111;
@@ -36,6 +36,7 @@
       --icon-size-button: 30px;
       --card-bg: #f0f0f5;
       --card-hover-bg: #e4e4ec;
+      --icon-chip-bg: #cdcdd2;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -44,7 +45,7 @@
             --text-color: #ffffff;
             --primary-button-background: #333;
             --primary-button-text: #ccc;
-            --secondary-button-background: #444;
+            --secondary-button-background: #3f3f3f;
             --secondary-button-text: #ccc;
             --link-background: #333;
             --link-color: #ccc;
@@ -59,6 +60,7 @@
             --context-menu-item-hover: #444;
             --card-bg: #2e2e2e;
             --card-hover-bg: #383838;
+            --icon-chip-bg: #444;
         }
     }
 
@@ -131,6 +133,22 @@
     ul::-webkit-scrollbar-track,
     #settingsPanel::-webkit-scrollbar-track {
         background: transparent;
+    }
+
+    html.scrollbar-hidden ul,
+    html.scrollbar-hidden #settingsPanel,
+    html.scrollbar-hidden .modal,
+    html.scrollbar-hidden .modal-list {
+        scrollbar-width: none;
+    }
+
+    html.scrollbar-hidden ul::-webkit-scrollbar,
+    html.scrollbar-hidden #settingsPanel::-webkit-scrollbar,
+    html.scrollbar-hidden .modal::-webkit-scrollbar,
+    html.scrollbar-hidden .modal-list::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
     }
     
     header {
@@ -581,6 +599,35 @@
       background: var(--context-menu-item-hover);
     }
 
+    .pin-indicator {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        width: 11px;
+        height: 11px;
+        color: var(--accent);
+        pointer-events: none;
+        z-index: 3;
+        display: flex;
+    }
+
+    .pin-indicator svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    li.folder-item .pin-indicator {
+        right: 44px;
+    }
+
+    ul.grid-mode li .pin-indicator {
+        top: 6px;
+        left: 6px;
+        right: auto;
+        transform: none;
+    }
+
     .folder-count {
         font-size: 12px;
         color: var(--link-color);
@@ -672,6 +719,7 @@
       height: 100%;
       overflow: auto;
       background-color: rgb(25 25 25 / 60%);
+      background-color: color-mix(in srgb, var(--background-color) 20%, rgba(0, 0, 0, 0.65) 80%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -713,7 +761,7 @@
       gap: 10px;
     }
 
-    #closeCreateFolderModal, #closeMoveModal, #cancelOpenAllBtn, #cancelEmptyTrashBtn, #cancelImportBtn, #cancelRestoreAllTrashBtn {
+    #closeCreateFolderModal, #closeMoveModal, #cancelOpenAllBtn, #cancelEmptyTrashBtn, #cancelImportBtn, #cancelRestoreAllTrashBtn, #cancelExportOptionsBtn, #cancelImportOptionsBtn {
       background: transparent;
       color: #eee;
       border: 1px solid var(--border-color);
@@ -793,7 +841,7 @@
       margin-top: 10px;
     }
 
-	#confirmEmptyTrashBtn, #confirmImportBtn, #confirmRestoreAllTrashBtn {
+	#confirmEmptyTrashBtn, #confirmImportBtn, #confirmRestoreAllTrashBtn, #confirmExportOptionsBtn, #confirmImportOptionsBtn {
 	    width: 100%;
 	    text-align: center;
 	    display: flex;
@@ -801,6 +849,10 @@
 	    justify-content: center;
 	    background: var(--card-bg);
 	    color: var(--input-text-color);
+	}
+
+	#confirmExportOptionsBtn:hover, #confirmImportOptionsBtn:hover {
+	    opacity: 0.8;
 	}
 
     #folderList {
@@ -838,7 +890,7 @@
         font-size: 15px;
     }
 
-    #moveBtn:disabled, #createFolderInModalBtn:disabled, #saveEditBtn:disabled {
+    #moveBtn:disabled, #createFolderInModalBtn:disabled, #saveEditBtn:disabled, #confirmExportOptionsBtn:disabled, #confirmImportOptionsBtn:disabled {
         opacity: 0.5;
         cursor: not-allowed;
     }
@@ -858,7 +910,7 @@
         justify-content: center;
     }
 
-    .modal-close-btn:hover, #closeCreateFolderModal:hover, #moveBtn:hover, #cancelOpenAllBtn:hover, #closeMoveModal:hover, #createFolderInModalBtn:hover, #saveEditBtn:hover, #cancelEditBtn:hover, #cancelEmptyTrashBtn:hover, #cancelImportBtn:hover {
+    .modal-close-btn:hover, #closeCreateFolderModal:hover, #moveBtn:hover, #cancelOpenAllBtn:hover, #closeMoveModal:hover, #createFolderInModalBtn:hover, #saveEditBtn:hover, #cancelEditBtn:hover, #cancelEmptyTrashBtn:hover, #cancelImportBtn:hover, #cancelExportOptionsBtn:hover, #cancelImportOptionsBtn:hover {
       background: var(--secondary-button-background);
       color: var(--input-text-color);
     }
@@ -918,7 +970,8 @@
 
 	ul.grid-mode {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		--grid-cols: 3;
+		grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
 		gap: 8px;
 		align-content: start;
 		overflow-y: auto;
@@ -948,7 +1001,7 @@
 
 
     ul.grid-mode li > a:hover {
-      background: var(--card-hover-bg) !important;
+      background: var(--secondary-button-background) !important;
     }
 
     ul.grid-mode li .bookmark-url,
@@ -975,11 +1028,20 @@
       display: block !important;
     }
 
+    ul.grid-mode.hide-grid-titles li .grid-label {
+      display: none !important;
+    }
+
+    ul.grid-mode.hide-grid-titles li > a {
+      min-height: 0 !important;
+      gap: 0 !important;
+    }
+
 	ul.grid-mode li .grid-icon-wrap {
 	    width: 40px;
 	    height: 40px;
 	    border-radius: 12px;
-	    background: var(--border-color);
+	    background: var(--icon-chip-bg, var(--border-color));
 	    display: flex;
 	    align-items: center;
 	    justify-content: center;
@@ -1000,7 +1062,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--border-color);
+      background: var(--icon-chip-bg, var(--border-color));
       border-radius: 3px;
       overflow: hidden;
     }
@@ -1108,7 +1170,7 @@
       --text-color: #ffffff;
       --primary-button-background: #333;
       --primary-button-text: #ccc;
-      --secondary-button-background: #444;
+      --secondary-button-background: #3f3f3f;
       --secondary-button-text: #ccc;
       --link-background: #333;
       --link-color: #ccc;
@@ -1123,6 +1185,7 @@
       --context-menu-item-hover: #444;
       --card-bg: #2e2e2e;
       --card-hover-bg: #383838;
+      --icon-chip-bg: #444;
       color-scheme: dark;
     }
 
@@ -1131,7 +1194,7 @@
       --text-color: #111;
       --primary-button-background: #ededf2;
       --primary-button-text: #111;
-      --secondary-button-background: #ddd;
+      --secondary-button-background: #dddde2;
       --secondary-button-text: #111;
       --link-background: #ededf2;
       --link-color: #111;
@@ -1146,6 +1209,7 @@
       --context-menu-item-hover: #f0f0f0;
       --card-bg: #f0f0f5;
       --card-hover-bg: #e4e4ec;
+      --icon-chip-bg: #cdcdd2;
       color-scheme: light;
     }
 
@@ -1158,7 +1222,7 @@
       --card-hover-bg: #333;
       --primary-button-background: var(--card-bg);
       --primary-button-text: var(--text-color);
-      --secondary-button-background: var(--card-hover-bg);
+      --secondary-button-background: #444444;
       --secondary-button-text: var(--text-color);
       --link-background: var(--card-bg);
       --link-color: var(--text-color);
@@ -1170,6 +1234,7 @@
       --placeholder-color: #444;
       --context-menu-background: var(--card-bg);
       --context-menu-item-hover: var(--card-hover-bg);
+      --icon-chip-bg: var(--border-color);
       color-scheme: dark;
     }
 
@@ -1306,14 +1371,13 @@
 	    background: var(--card-bg);
 	}
 
-    #settingsPanel {
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-      overflow-y: auto;
-      padding: 12px 10px;
-    }
+	#settingsPanel {
+	    display: none;
+	    flex-direction: column;
+	    flex: 1;
+	    overflow-y: auto;
+	    padding: 0px 10px 10px 10px;
+	}
 
     #settingsPanel.active {
       display: flex;
@@ -1327,7 +1391,114 @@
 	    background: var(--card-bg);
 	    border-radius: var(--border-radius);
 	    flex-direction: column;
+	    margin-bottom: 8px;
 	}
+	
+	.settings-row:last-child{
+		margin-bottom: 0;
+	}
+
+	.ie-toggle-row {
+		background: transparent;
+		border: 1px solid var(--border-color);
+		gap: 10px;
+	}
+
+	.ie-toggle-sep {
+		border: none;
+		border-top: 1px solid var(--border-color);
+		margin: 0;
+	}
+
+	.settings-header {
+	    display: flex;
+	    align-items: center;
+	    gap: var(--gap-small);
+	    padding: 10px 0px 4px 0;
+	    position: sticky;
+	    top: 0;
+	    z-index: 10;
+	    background: var(--background-color);
+	    padding-bottom: 10px;
+	}
+
+    #settingsBackBtn, .settings-icon-btn {
+      flex-shrink: 0;
+      background: var(--primary-button-background);
+      color: var(--primary-button-text);
+      padding: var(--padding-small);
+      border-radius: var(--border-radius);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s background;
+    }
+
+    #settingsBackBtn:hover, .settings-icon-btn:hover {
+      background: var(--secondary-button-background);
+    }
+
+    .settings-search {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding-right: 5px;
+    }
+
+    #settingsSearchInput {
+      background: var(--input-background);
+      border: none;
+      padding: var(--padding-small);
+      border-radius: var(--border-radius);
+      color: var(--input-text-color);
+      display: block;
+      width: 100%;
+      padding-left: 40px;
+      z-index: 2;
+      font-size: 15px;
+    }
+
+    #settingsSearchInput:focus {
+      outline: none;
+    }
+
+    .settings-search .search-svg {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 20px;
+      color: var(--link-color);
+    }
+
+    #clearSettingsSearchBtn {
+      flex-shrink: 0;
+      border: none;
+      background: transparent;
+      color: var(--secondary-button-text);
+      padding: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.15s all;
+      z-index: 2;
+    }
+
+    #clearSettingsSearchBtn:hover {
+      background: var(--border-color);
+      color: var(--input-text-color);
+    }
+
+    .settings-row.settings-hidden {
+      display: none;
+    }
 
 	.trash-expiry-row {
 	    display: flex;
@@ -1451,7 +1622,7 @@
     .toggle-track::after {
       content: '';
       position: absolute;
-      top: 3px;
+      top: 50%;
       left: 3px;
       width: 18px;
       height: 18px;
@@ -1459,6 +1630,7 @@
       border-radius: 50%;
       transition: transform 0.22s cubic-bezier(.4,0,.2,1), background 0.22s;
       box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+      transform: translateY(-50%);
     }
 
     .toggle-slider input:checked + .toggle-track {
@@ -1466,14 +1638,14 @@
     }
 
     .toggle-slider input:checked + .toggle-track::after {
-      transform: translateX(18px);
+      transform: translateY(-50%) translateX(18px);
     }
 
 	.data {
 	    background: transparent;
 	    padding: 0;
 	    display: flex;
-	    align-items: center;
+	    flex-direction: column;
 	    justify-content: space-between;
 	    gap: 10px;
 	}
@@ -1482,7 +1654,7 @@
 	    width: 100%;
 	    display: flex;
 	    align-items: center;
-	    justify-content: center;
+	    justify-content: flex-start;
 	    color: var(--link-color);
 	    border: 1px solid var(--border-color);
 	    background: transparent;
@@ -1503,8 +1675,47 @@
 	}
 	
 	.about-app-name a {
-		color: var(--link-color);
+	    color: var(--link-color);
+	    display: flex;
+	    gap: 5px;
+	    align-items: center;
 	}
+
+    .about-modal-content {
+        max-width: 320px;
+    }
+
+    .about-modal-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+
+    .about-modal-header img {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+
+    .about-modal-header h3 {
+        margin: 0;
+        font-size: 16px;
+        color: var(--text-color);
+    }
+
+    .about-modal-header .about-version-label {
+        font-size: .8rem;
+        color: var(--link-color);
+    }
+
+    .about-description {
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--text-color);
+        opacity: 0.85;
+        margin: 10px 0;
+    }
 
     .sel-check {
       display: none;
@@ -1595,6 +1806,98 @@
       border-bottom: 1px solid var(--border-color);
       pointer-events: none;
       user-select: none;
+    }
+
+
+    .ctx-menu-sort-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+	.ctx-menu-sort-item {
+	    display: flex;
+	    align-items: center;
+	    gap: 8px;
+	    border-radius: 6px;
+	    background: var(--border-color);
+	    user-select: none;
+	    font-size: 12px;
+	    cursor: pointer;
+	    padding-right: 10px;
+	    transition: 0.2s background;
+	}
+	.ctx-menu-sort-item:hover{
+		background: var(--secondary-button-background);
+	}
+    .ctx-item-label {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ctx-item-toggle {
+      position: relative;
+      width: 28px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .ctx-item-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+	.ctx-drag-handle {
+	    cursor: grab;
+	    width: 35px;
+	    height: 30px;
+	    padding: 5px;
+	    border-right: 2px solid var(--card-bg);
+	}
+    .ctx-toggle-slider {
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background: var(--card-bg);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .ctx-toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      left: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.2s;
+    }
+    .ctx-item-toggle input:checked + .ctx-toggle-slider {
+      background: var(--accent);
+    }
+    .ctx-item-toggle input:checked + .ctx-toggle-slider::before {
+      transform: translateY(-50%) translateX(12px);
+    }
+
+    #bookmarksList.sortable-active li a:hover {
+      background: var(--link-background) !important;
+    }
+    #bookmarksList.sortable-active li:hover .bookmark-buttons {
+      display: none !important;
+    }
+    #bookmarksList.sortable-active li .menu-button:hover {
+      opacity: 1 !important;
+    }
+    #bookmarksList.sortable-active.grid-mode li > a:hover {
+      background: var(--link-background) !important;
+    }
+    #bookmarksList.sortable-active.grid-mode li:hover .bookmark-buttons {
+      display: none !important;
     }
 
     </style>
@@ -1737,7 +2040,109 @@
       </div>
     </div>
 
+    <div id="exportOptionsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="exportOptionsTitle"></h3>
+        </div>
+        <p style="font-size: 13px; margin-bottom: 10px;" data-i18n="exportOptionsDescription"></p>
+        <div class="settings-row ie-toggle-row">
+          <div class="settings-flex">
+            <span class="settings-label" data-i18n="ieIncludeSettingsLabel"></span>
+            <label class="toggle-slider">
+              <input type="checkbox" id="exportIncludeSettingsToggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+          <hr class="ie-toggle-sep">
+          <div class="settings-flex">
+            <span class="settings-label" data-i18n="ieIncludeBookmarksLabel"></span>
+            <label class="toggle-slider">
+              <input type="checkbox" id="exportIncludeBookmarksToggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelExportOptionsBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmExportOptionsBtn" data-i18n="exportButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="importOptionsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="importOptionsTitle"></h3>
+        </div>
+        <p style="font-size: 13px; margin-bottom: 10px;" data-i18n="importOptionsDescription"></p>
+        <div class="settings-row ie-toggle-row">
+          <div class="settings-flex">
+            <span class="settings-label" data-i18n="ieIncludeSettingsLabel"></span>
+            <label class="toggle-slider">
+              <input type="checkbox" id="importIncludeSettingsToggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+          <hr class="ie-toggle-sep">
+          <div class="settings-flex">
+            <span class="settings-label" data-i18n="ieIncludeBookmarksLabel"></span>
+            <label class="toggle-slider">
+              <input type="checkbox" id="importIncludeBookmarksToggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelImportOptionsBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmImportOptionsBtn" data-i18n="importContinueButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="aboutModal" class="modal">
+      <div class="modal-content about-modal-content">
+        <div class="modal-header about-modal-header">
+          <img src="icons/48.png" alt="Markleaf">
+          <div>
+            <h3>Markleaf</h3>
+            <span class="about-version-label"><span data-i18n="aboutVersion">Version</span>: <span id="aboutVersionNumber"></span></span>
+          </div>
+        </div>
+        <p class="about-description" data-i18n="aboutDescription"></p>
+        <div class="theme-btn-group data" style="flex-direction: column;">
+          <button class="data-btn" id="aboutWebsiteBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-world"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M3.6 9h16.8" /><path d="M3.6 15h16.8" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a17 17 0 0 1 0 18" /></svg>
+            <span data-i18n="aboutWebsiteButton">Website</span>
+          </button>
+          <button class="data-btn" id="aboutGithubBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+            <span data-i18n="aboutSourceButton">Source Code</span>
+          </button>
+          <button class="data-btn" id="aboutStoreBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M12 9h8.4" /><path d="M14.598 13.5l-4.2 7.275" /><path d="M9.402 13.5l-4.2 -7.275" /></svg>            <span data-i18n="aboutStoreButton">Chrome Web Store</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div id="settingsPanel">
+      <div class="settings-header">
+        <button id="settingsBackBtn" aria-label="Go back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6"/></svg>
+        </button>
+        <div class="settings-search">
+          <svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+          <input type="text" id="settingsSearchInput" data-i18n="settingsSearchPlaceholder" placeholder="Search...">
+          <button id="clearSettingsSearchBtn" style="display:none;" aria-label="Clear settings search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <button id="settingsInfoBtn" class="settings-icon-btn" aria-label="About Markleaf">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
+        </button>
+      </div>
+
       <div class="settings-row settings-row--theme">
         <span class="settings-label" data-i18n="settingThemeLabel">Theme</span>
         <select id="themeSelect" class="settings-select">
@@ -1813,6 +2218,15 @@
         <span class="settings-label" data-i18n="settingRootFolderLabel">Root folder</span>
         <select id="rootFolderSelect" class="settings-select"></select>
       </div>
+      
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingNewItemPositionLabel">Newly created item</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="newItemPosition" data-value="start"><span data-i18n="settingNewItemPositionStart">Add to beginning</span></button>
+          <button class="theme-btn setting-btn" data-setting="newItemPosition" data-value="end"><span data-i18n="settingNewItemPositionEnd">Add to end</span></button>
+        </div>
+      </div>
+      
       <div class="settings-row settings-row--theme">
         <span class="settings-label" data-i18n="settingDeleteModeLabel">Delete mode</span>
         <div class="theme-btn-group">
@@ -1835,6 +2249,32 @@
           <button class="theme-btn setting-btn" data-setting="view" data-value="list"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -2" /><path d="M4 16a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -2" /></svg><span data-i18n="settingViewList">List</span></button>
           <button class="theme-btn setting-btn" data-setting="view" data-value="grid"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-grid"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M14 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /></svg><span data-i18n="settingViewGrid">Grid</span></button>
         </div>
+      </div>
+      <div class="settings-row settings-row--theme" id="gridColumnsSettingsRow">
+        <span class="settings-label" data-i18n="settingGridColumnsLabel">Grid columns</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="gridColumns" data-value="2"><span data-i18n="settingGridColumns2">2</span></button>
+          <button class="theme-btn setting-btn" data-setting="gridColumns" data-value="3"><span data-i18n="settingGridColumns3">3</span></button>
+          <button class="theme-btn setting-btn" data-setting="gridColumns" data-value="4"><span data-i18n="settingGridColumns4">4</span></button>
+        </div>
+      </div>
+      <div class="settings-row settings-row--theme grid-view-dependent-row" id="gridWidthSettingsRow">
+        <span class="settings-label" data-i18n="settingGridWidthLabel">Grid width</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="300"><span data-i18n="settingGridWidth300">300px</span></button>
+          <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="400"><span data-i18n="settingGridWidth400">400px</span></button>
+          <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="500"><span data-i18n="settingGridWidth500">500px</span></button>
+        </div>
+      </div>
+      <div class="settings-row grid-view-dependent-row" id="gridShowTitlesSettingsRow">
+        <div class="settings-flex">
+          <span class="settings-label" data-i18n="settingShowGridTitlesLabel">Show titles</span>
+          <label class="toggle-slider">
+            <input type="checkbox" id="settingShowGridTitles">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <p data-i18n="showGridTitlesText"></p>
       </div>
       <div class="settings-row settings-row--theme">
         <span class="settings-label" data-i18n="settingFolderStyleLabel">Folder style</span>
@@ -1866,6 +2306,16 @@
       </div>
       <div class="settings-row">
 	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingShowScrollTopLabel">Scroll to top button</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingShowScrollTop" checked>
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="settingShowScrollTopText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
 	        <span class="settings-label" data-i18n="settingShowBreadcrumbLabel">Breadcrumb</span>
 	        <label class="toggle-slider">
 	          <input type="checkbox" id="settingShowBreadcrumb">
@@ -1873,6 +2323,16 @@
 	        </label>
 	      </div>
 	      <p data-i18n="settingShowBreadcrumbText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingScrollbarLabel">Scrollbar</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingShowScrollbar" checked>
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="scrollbarText"></p>
       </div>
       <div class="settings-row">
 	      <div class="settings-flex">
@@ -1897,6 +2357,20 @@
       
 
       
+      <div class="settings-row" id="contextMenuSettingsRow">
+        <span class="settings-label" data-i18n="settingContextMenuLabel">Context menu</span>
+        <p data-i18n="contextMenuItemsText" style="margin-bottom:6px;"></p>
+        <ul id="ctxMenuItemList" class="ctx-menu-sort-list"></ul>
+        <div class="settings-flex" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+          <span class="settings-label" data-i18n="contextMenuActionsLabel">Hızlı eylemler çubuğu</span>
+          <label class="toggle-slider">
+            <input type="checkbox" id="settingShowQuickActions" checked>
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <p data-i18n="settingShowQuickActionsText">Menü altında hızlı işlem butonlarını gösterir.</p>
+      </div>
+
       <div class="settings-row">
         <span class="settings-label" data-i18n="settingImportExportLabel">Import / Export</span>
         <div class="theme-btn-group data">
@@ -1909,27 +2383,11 @@
             <span data-i18n="importButton">Import</span>
           </button>
         </div>
-        <input type="file" id="importFileInput" accept=".json" style="display:none">
+        <input type="file" id="importFileInput" accept=".json,.html,.htm" style="display:none">
       </div>
-      <div class="settings-row">
-        <div class="about-version-bar">
-          <span class="about-app-name"><a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg" target="_blank">Markleaf</a></span>
-          <span class="about-version-label"><span data-i18n="aboutVersion">Version</span>: <span id="aboutVersionNumber"></span></span>
-        </div>
-        <div class="theme-btn-group data" style="flex-direction: column;">
-          <button class="data-btn" id="aboutWebsiteBtn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-world"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M3.6 9h16.8" /><path d="M3.6 15h16.8" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a17 17 0 0 1 0 18" /></svg>
-            <span data-i18n="aboutWebsiteButton">Website</span>
-          </button>
-          <button class="data-btn" id="aboutGithubBtn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
-            <span data-i18n="aboutSourceButton">Source Code</span>
-          </button>
-        </div>
-      </div>
-      
 
 
+    </div>
     </div>
 
     <div id="trashPanel">

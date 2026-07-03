@@ -56,15 +56,72 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
 });
 
+let pinnedIds = new Set();
+let isFixingPinOrder = false;
+
+async function loadPinnedIds() {
+  const data = await chrome.storage.local.get(['pinnedBookmarks']);
+  pinnedIds = new Set(Array.isArray(data.pinnedBookmarks) ? data.pinnedBookmarks : []);
+}
+loadPinnedIds();
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'local' && changes.pinnedBookmarks) {
+    pinnedIds = new Set(Array.isArray(changes.pinnedBookmarks.newValue) ? changes.pinnedBookmarks.newValue : []);
+  }
+});
+
+async function enforcePinOrder(parentId) {
+  if (isFixingPinOrder || pinnedIds.size === 0 || !parentId) return;
+  try {
+    const siblings = await chrome.bookmarks.getChildren(parentId);
+    if (!siblings || siblings.length < 2) return;
+    const pinnedSiblings = siblings.filter(s => pinnedIds.has(s.id));
+    if (pinnedSiblings.length === 0) return;
+    const isCorrect = siblings.slice(0, pinnedSiblings.length).every(s => pinnedIds.has(s.id));
+    if (isCorrect) return;
+    isFixingPinOrder = true;
+    for (let i = 0; i < pinnedSiblings.length; i++) {
+      await chrome.bookmarks.move(pinnedSiblings[i].id, { parentId, index: i });
+    }
+  } catch (e) {
+    
+  } finally {
+    isFixingPinOrder = false;
+  }
+}
+
+chrome.bookmarks.onMoved.addListener((id, moveInfo) => {
+  if (isFixingPinOrder) return;
+  enforcePinOrder(moveInfo.parentId);
+});
+
+chrome.bookmarks.onRemoved.addListener((id) => {
+  if (pinnedIds.has(id)) {
+    pinnedIds.delete(id);
+    chrome.storage.local.set({ pinnedBookmarks: Array.from(pinnedIds) });
+  }
+});
+
 chrome.action.onClicked.addListener((tab) => {
-  chrome.storage.local.get(['directAdd', 'selectedFolder'], (data) => {
+  chrome.storage.local.get(['directAdd', 'selectedFolder', 'newItemPosition'], async (data) => {
     if (data.directAdd) {
       const selectedFolder = data.selectedFolder;
       if (selectedFolder) {
+        let index;
+        if (data.newItemPosition === 'start') {
+          try {
+            const siblings = await chrome.bookmarks.getChildren(selectedFolder);
+            index = siblings.filter(s => pinnedIds.has(s.id)).length;
+          } catch (e) {
+            index = undefined;
+          }
+        }
         chrome.bookmarks.create({
           parentId: selectedFolder,
           title: tab.title,
-          url: tab.url
+          url: tab.url,
+          index
         });
       } else {
         alert('Please pick a folder!');

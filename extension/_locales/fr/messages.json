@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Modifier"
   },
+  "pinButton": {
+    "message": "Épingler"
+  },
+  "unpinButton": {
+    "message": "Désépingler"
+  },
   "removeButton": {
     "message": "Supprimer"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "Thème"
   },
+  "settingNewItemPositionLabel": {
+    "message": "Élément nouvellement créé"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Ajouter au début"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Ajouter à la fin"
+  },
   "settingViewLabel": {
     "message": "Favoris"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "Importer"
   },
+  "exportOptionsTitle": {
+    "message": "Exporter"
+  },
+  "importOptionsTitle": {
+    "message": "Importer"
+  },
+  "exportOptionsDescription": {
+    "message": "Choisissez ce que vous souhaitez exporter."
+  },
+  "importOptionsDescription": {
+    "message": "Choisissez ce que vous souhaitez importer."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Paramètres"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Favoris"
+  },
+  "importContinueButton": {
+    "message": "Continuer"
+  },
   "importError": {
     "message": "Échec de l'importation. Le fichier est peut-être invalide ou corrompu."
   },
   "importConfirmMessage": {
     "message": "Cela écrasera vos favoris, paramètres et données de la corbeille. Êtes-vous sûr ?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Cela écrasera vos favoris et les données de la corbeille. Êtes-vous sûr ?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Cela écrasera vos paramètres. Êtes-vous sûr ?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Cela écrasera vos favoris. Êtes-vous sûr ?"
   },
   "importConfirmTitle": {
     "message": "Confirmer l'importation"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Affiche le chemin du dossier pour accéder rapidement à n'importe quel dossier parent."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Bouton de retour en haut"
+  },
+  "settingShowScrollTopText": {
+    "message": "Affiche un bouton flottant pour remonter rapidement en haut de la liste."
   },
   "settingExtensionIconLabel": {
     "message": "Icône d'extension"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "Code source"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
   "aboutVersion": {
     "message": "Version"
+  },
+  "settingContextMenuLabel": {
+    "message": "Menu contextuel"
+  },
+  "contextMenuItemsText": {
+    "message": "Vous pouvez réorganiser en faisant glisser et activer/désactiver en cliquant."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Actions rapides"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Lorsqu'il est activé, les trois dernières options actives deviennent des boutons d'action."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Rechercher..."
+  },
+  "settingsNoResults": {
+    "message": "Aucun résultat trouvé"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Colonnes de la grille"
+  },
+  "settingGridColumns2": {
+    "message": "2 Colonnes"
+  },
+  "settingGridColumns3": {
+    "message": "3 Colonnes"
+  },
+  "settingGridColumns4": {
+    "message": "4 Colonnes"
+  },
+  "settingGridWidthLabel": {
+    "message": "Largeur de la grille"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Afficher les titres"
+  },
+  "showGridTitlesText": {
+    "message": "Affiche ou masque les titres sous les favoris en vue grille."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf est un gestionnaire de favoris gratuit et open source, axé sur la rapidité et la simplicité. Son code source est public, ce qui permet à chacun de l'examiner, de proposer des améliorations ou de contribuer de nouvelles fonctionnalités."
+  },
+  "settingScrollbarLabel": {
+    "message": "Barre de défilement"
+  },
+  "scrollbarText": {
+    "message": "Une fois désactivée, la barre de défilement est masquée dans toute l'extension."
   }
 }

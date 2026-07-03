@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Bearbeiten"
   },
+  "pinButton": {
+    "message": "Anheften"
+  },
+  "unpinButton": {
+    "message": "Lösen"
+  },
   "removeButton": {
     "message": "Entfernen"
   },
@@ -164,6 +170,15 @@
   "settingThemeLabel": {
     "message": "Design"
   },
+  "settingNewItemPositionLabel": {
+    "message": "Neu erstelltes Element"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Am Anfang hinzufügen"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Am Ende hinzufügen"
+  },
   "settingViewLabel": {
     "message": "Lesezeichen"
   },
@@ -206,11 +221,41 @@
   "importButton": {
     "message": "Importieren"
   },
+  "exportOptionsTitle": {
+    "message": "Exportieren"
+  },
+  "importOptionsTitle": {
+    "message": "Importieren"
+  },
+  "exportOptionsDescription": {
+    "message": "Wähle aus, was du exportieren möchtest."
+  },
+  "importOptionsDescription": {
+    "message": "Wähle aus, was du importieren möchtest."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Einstellungen"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Lesezeichen"
+  },
+  "importContinueButton": {
+    "message": "Weiter"
+  },
   "importError": {
     "message": "Import fehlgeschlagen. Die Datei ist möglicherweise ungültig oder beschädigt."
   },
   "importConfirmMessage": {
     "message": "Dies wird Ihre Lesezeichen, Einstellungen und Papierkorbdaten überschreiben. Sind Sie sicher?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Dies wird Ihre Lesezeichen und Papierkorbdaten überschreiben. Sind Sie sicher?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Dies wird Ihre Einstellungen überschreiben. Sind Sie sicher?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Dies wird Ihre Lesezeichen überschreiben. Sind Sie sicher?"
   },
   "importConfirmTitle": {
     "message": "Import bestätigen"
@@ -280,6 +325,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Zeigt den Ordnerpfad an, damit Sie schnell zu einem übergeordneten Ordner springen können."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Nach-oben-Button"
+  },
+  "settingShowScrollTopText": {
+    "message": "Zeigt eine schwebende Schaltfläche an, mit der du schnell zum Anfang der Liste zurückscrollst."
   },
   "settingExtensionIconLabel": {
     "message": "Erweiterungssymbol"
@@ -371,7 +422,67 @@
   "aboutSourceButton": {
     "message": "Quellcode"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
   "aboutVersion": {
     "message": "Version"
+  },
+  "settingContextMenuLabel": {
+    "message": "Kontextmenü"
+  },
+  "contextMenuItemsText": {
+    "message": "Durch Ziehen neu anordnen, durch Klicken ein-/ausblenden."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Schnellaktionen"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Wenn aktiviert, werden die letzten drei aktiven Optionen zu Aktionsschaltflächen."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Suchen..."
+  },
+  "settingsNoResults": {
+    "message": "Keine Ergebnisse gefunden"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Rasterspalten"
+  },
+  "settingGridColumns2": {
+    "message": "2 Spalten"
+  },
+  "settingGridColumns3": {
+    "message": "3 Spalten"
+  },
+  "settingGridColumns4": {
+    "message": "4 Spalten"
+  },
+  "settingGridWidthLabel": {
+    "message": "Rasterbreite"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Titel anzeigen"
+  },
+  "showGridTitlesText": {
+    "message": "Zeigt oder verbirgt Titel unter Lesezeichen in der Rasteransicht."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf ist ein kostenloser Open-Source-Lesezeichen-Manager, der auf Geschwindigkeit und Einfachheit setzt. Der Quellcode ist öffentlich einsehbar, sodass jeder ihn prüfen, verbessern oder erweitern kann."
+  },
+  "settingScrollbarLabel": {
+    "message": "Scrollleiste"
+  },
+  "scrollbarText": {
+    "message": "Wenn deaktiviert, wird die Scrollleiste in der gesamten Erweiterung ausgeblendet."
   }
 }

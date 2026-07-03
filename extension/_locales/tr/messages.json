@@ -17,6 +17,12 @@
   "editButton": {
     "message": "Düzenle"
   },
+  "pinButton": {
+    "message": "Sabitle"
+  },
+  "unpinButton": {
+    "message": "Sabitlemeyi Kaldır"
+  },
   "removeButton": {
     "message": "Kaldır"
   },
@@ -143,6 +149,18 @@
   "settingBookmarksLabel": {
     "message": "Yer İşaretleri"
   },
+  "settingGridColumnsLabel": {
+    "message": "Izgara sütunu"
+  },
+  "settingGridColumns2": {
+    "message": "2 Sütun"
+  },
+  "settingGridColumns3": {
+    "message": "3 Sütun"
+  },
+  "settingGridColumns4": {
+    "message": "4 Sütun"
+  },
   "settingFolderStyleLabel": {
     "message": "Klasör stili"
   },
@@ -163,6 +181,15 @@
   },
   "settingThemeLabel": {
     "message": "Tema"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "Yeni oluşturulan öğe"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Başa ekle"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Sona ekle"
   },
   "settingViewLabel": {
     "message": "Yer İşaretleri"
@@ -206,11 +233,41 @@
   "importButton": {
     "message": "İçe aktar"
   },
+  "exportOptionsTitle": {
+    "message": "Dışa Aktar"
+  },
+  "importOptionsTitle": {
+    "message": "İçe Aktar"
+  },
+  "exportOptionsDescription": {
+    "message": "Dışa aktarmak istediğiniz verileri seçin."
+  },
+  "importOptionsDescription": {
+    "message": "İçe aktarmak istediğiniz verileri seçin."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Ayarlar"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Yer İmleri"
+  },
+  "importContinueButton": {
+    "message": "Devam Et"
+  },
   "importError": {
     "message": "İçe aktarma başarısız oldu. Dosya geçersiz veya bozulmuş olabilir."
   },
   "importConfirmMessage": {
     "message": "Bu işlem yer işaretlerinizin, ayarlarınızın ve çöp kutusu verilerinizin üzerine yazacaktır. Emin misiniz?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Bu işlem yer işaretlerinizin ve çöp kutusu verilerinizin üzerine yazacaktır. Emin misiniz?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Bu işlem ayarlarınızın üzerine yazacaktır. Emin misiniz?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Bu işlem yer işaretlerinizin üzerine yazacaktır. Emin misiniz?"
   },
   "importConfirmTitle": {
     "message": "İçe Aktarmayı Onayla"
@@ -277,6 +334,12 @@
   },
   "settingShowBreadcrumbText": {
     "message": "Klasör yolunu göstererek herhangi bir üst klasöre hızlıca geçiş yapabilirsiniz."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Yukarı çık butonu"
+  },
+  "settingShowScrollTopText": {
+    "message": "Listenin en üstüne hızlıca dönmenizi sağlayan bir buton gösterir."
   },
   "settingExtensionIconLabel": {
     "message": "Eklenti simgesi"
@@ -368,7 +431,55 @@
   "aboutSourceButton": {
     "message": "Kaynak kodu"
   },
+  "aboutStoreButton": {
+    "message": "Chrome Web Mağazası"
+  },
   "aboutVersion": {
     "message": "Sürüm"
+  },
+  "settingContextMenuLabel": {
+    "message": "Sağ tık menüsü"
+  },
+  "contextMenuItemsText": {
+    "message": "Sürükleyerek sıralayabilir, tıklayarak görünümünü değiştirebilirsin."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Hızlı eylemler"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Etkinleştirildiğinde aktif olan son üç seçenek aksiyon butonuna dönüşür. "
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Ara..."
+  },
+  "settingsNoResults": {
+    "message": "Sonuç bulunamadı"
+  },
+  "settingGridWidthLabel": {
+    "message": "Izgara genişliği"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Başlığı göster"
+  },
+  "showGridTitlesText": {
+    "message": "Izgara görünümünde yer işaretlerinin altındaki başlıkları gösterir veya gizler."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf, hız ve sadeliği ön planda tutan, ücretsiz ve açık kaynaklı bir yer imi yöneticisidir. Kaynak kodu herkese açıktır; isteyen herkes inceleyebilir, katkıda bulunabilir ya da yeni özellikler önerebilir."
+  },
+  "settingScrollbarLabel": {
+    "message": "Kaydırma çubuğu"
+  },
+  "scrollbarText": {
+    "message": "Kapatıldığında kaydırma çubuğu uzantı genelinde gizlenir."
   }
 }
