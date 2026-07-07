@@ -567,6 +567,67 @@ header.hidden {
   white-space: nowrap;
 }
 
+.version-date.pending-review {
+  position: relative;
+  cursor: help;
+  transition: color 0.2s ease;
+}
+
+.version-date.pending-review:hover,
+.version-date.pending-review.tooltip-visible {
+  color: var(--primary);
+}
+
+.version-date.pending-review .tooltip-bubble {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: var(--gray-dark);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.version-date.pending-review .tooltip-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 14px;
+  border: 6px solid transparent;
+  border-top-color: var(--gray-dark);
+}
+
+.version-date.pending-review:hover .tooltip-bubble,
+.version-date.pending-review.tooltip-visible .tooltip-bubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .version-date.pending-review .tooltip-bubble {
+    right: auto;
+    left: 0;
+    white-space: normal;
+    width: 200px;
+  }
+
+  .version-date.pending-review .tooltip-bubble::after {
+    right: auto;
+    left: 14px;
+  }
+}
+
 @media (max-width: 768px) {
   .version-text {
     display: flex;
@@ -783,7 +844,7 @@ footer {
   <hr>
   <div class="accordion">
     <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.4.0: Hardcoded Purify  <span class="version-date">Not Released</span></span></button>
+      <button class="accordion-header"><span class="version-text">1.4.0: Hardcoded Purify  <span class="version-date pending-review" data-tooltip="Submitted to the store, awaiting approval">Pending Review</span></span></button>
       <div class="accordion-content">
         <ul>
           <li>Added bookmark pinning, pinned items stay grouped at the top and self-heal if dragged out of place.</li>
@@ -962,6 +1023,24 @@ window.addEventListener('scroll', () => {
   }
   lastScrollY = y;
 }, { passive: true });
+
+document.querySelectorAll('.version-date.pending-review').forEach(badge => {
+  const bubble = document.createElement('span');
+  bubble.className = 'tooltip-bubble';
+  bubble.textContent = badge.getAttribute('data-tooltip');
+  badge.appendChild(bubble);
+
+  badge.addEventListener('click', (e) => {
+    e.stopPropagation();
+    badge.classList.toggle('tooltip-visible');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.version-date.pending-review.tooltip-visible').forEach(badge => {
+    if (!badge.contains(e.target)) badge.classList.remove('tooltip-visible');
+  });
+});
 
 document.querySelectorAll('.accordion-header').forEach(button => {
   button.addEventListener('click', () => {
