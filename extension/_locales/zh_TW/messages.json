@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "顯示資料夾路徑，讓您可以快速跳轉至任意上層資料夾。"
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "保留路徑"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "即使返回主頁，也會持續顯示您最後造訪的資料夾路徑。"
+  },
   "settingShowScrollTopLabel": {
     "message": "回到頂端按鈕"
   },

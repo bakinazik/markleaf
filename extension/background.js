@@ -101,6 +101,26 @@ chrome.bookmarks.onRemoved.addListener((id) => {
     pinnedIds.delete(id);
     chrome.storage.local.set({ pinnedBookmarks: Array.from(pinnedIds) });
   }
+  chrome.storage.local.get(['folderStack', 'lastVisitedFolderStack', 'defaultFolderId'], (data) => {
+    const updates = {};
+    if (Array.isArray(data.lastVisitedFolderStack)) {
+      const idx = data.lastVisitedFolderStack.indexOf(id);
+      if (idx !== -1) {
+        const trimmed = data.lastVisitedFolderStack.slice(0, idx);
+        updates.lastVisitedFolderStack = trimmed.length > 1 ? trimmed : null;
+      }
+    }
+    if (Array.isArray(data.folderStack)) {
+      const idx = data.folderStack.indexOf(id);
+      if (idx !== -1) {
+        const trimmed = data.folderStack.slice(0, idx);
+        updates.folderStack = trimmed.length > 0 ? trimmed : [data.defaultFolderId || '1'];
+      }
+    }
+    if (Object.keys(updates).length > 0) {
+      chrome.storage.local.set(updates);
+    }
+  });
 });
 
 chrome.action.onClicked.addListener((tab) => {

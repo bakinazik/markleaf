@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "Отображает путь к папке, чтобы можно было быстро перейти в любую родительскую папку."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Сохранять путь"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Продолжает показывать путь к последней открытой папке даже после возврата на главный экран."
+  },
   "settingShowScrollTopLabel": {
     "message": "Кнопка «наверх»"
   },

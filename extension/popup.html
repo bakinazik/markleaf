@@ -312,10 +312,15 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
         min-height: 20px;
+        scroll-behavior: smooth;
     }
 
     .breadcrumb-bar::-webkit-scrollbar {
         display: none;
+    }
+
+    .breadcrumb-bar.breadcrumb-persisted .breadcrumb-item:hover {
+        color: var(--text-color);
     }
 
     .breadcrumb-item {
@@ -330,14 +335,11 @@
         background: transparent;
         border: none;
         white-space: nowrap;
-        max-width: 120px;
         transition: color 0.15s;
         flex-shrink: 0;
     }
 
     .breadcrumb-item span {
-        overflow: hidden;
-        text-overflow: ellipsis;
         white-space: nowrap;
     }
 
@@ -345,9 +347,13 @@
         color: var(--text-color);
     }
 
+    .breadcrumb-item.breadcrumb-drop-target {
+        background: var(--border-color);
+        color: var(--text-color);
+    }
+
     .breadcrumb-item.active {
         color: var(--text-color);
-        font-weight: 600;
         cursor: default;
         pointer-events: none;
     }
@@ -1231,7 +1237,7 @@
       --input-background: transparent;
       --input-border-color: var(--border-color);
       --input-text-color: var(--text-color);
-      --placeholder-color: #444;
+      --placeholder-color: #888;
       --context-menu-background: var(--card-bg);
       --context-menu-item-hover: var(--card-hover-bg);
       --icon-chip-bg: var(--border-color);
@@ -2257,17 +2263,15 @@
           <button class="theme-btn setting-btn" data-setting="gridColumns" data-value="3"><span data-i18n="settingGridColumns3">3</span></button>
           <button class="theme-btn setting-btn" data-setting="gridColumns" data-value="4"><span data-i18n="settingGridColumns4">4</span></button>
         </div>
-      </div>
-      <div class="settings-row settings-row--theme grid-view-dependent-row" id="gridWidthSettingsRow">
-        <span class="settings-label" data-i18n="settingGridWidthLabel">Grid width</span>
+        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+          <span class="settings-label" data-i18n="settingGridWidthLabel">Grid width</span>
+        </div>
         <div class="theme-btn-group">
           <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="300"><span data-i18n="settingGridWidth300">300px</span></button>
           <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="400"><span data-i18n="settingGridWidth400">400px</span></button>
           <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="500"><span data-i18n="settingGridWidth500">500px</span></button>
         </div>
-      </div>
-      <div class="settings-row grid-view-dependent-row" id="gridShowTitlesSettingsRow">
-        <div class="settings-flex">
+        <div class="settings-flex" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
           <span class="settings-label" data-i18n="settingShowGridTitlesLabel">Show titles</span>
           <label class="toggle-slider">
             <input type="checkbox" id="settingShowGridTitles">
@@ -2323,6 +2327,14 @@
 	        </label>
 	      </div>
 	      <p data-i18n="settingShowBreadcrumbText"></p>
+	      <div class="settings-flex" id="breadcrumbPersistFlex" style="display:none; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+	        <span class="settings-label" data-i18n="settingShowBreadcrumbPersistLabel">Persist path</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingShowBreadcrumbPersist" checked>
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="settingShowBreadcrumbPersistText" id="breadcrumbPersistText" style="display:none;"></p>
       </div>
       <div class="settings-row">
 	      <div class="settings-flex">

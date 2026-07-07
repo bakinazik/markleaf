@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "يعرض مسار المجلد حتى تتمكن من الانتقال بسرعة إلى أي مجلد أصلي."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "الاحتفاظ بالمسار"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "يستمر في عرض مسار آخر مجلد قمت بزيارته حتى بعد العودة إلى الشاشة الرئيسية."
+  },
   "settingShowScrollTopLabel": {
     "message": "زر العودة للأعلى"
   },

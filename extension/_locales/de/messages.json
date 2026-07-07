@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "Zeigt den Ordnerpfad an, damit Sie schnell zu einem übergeordneten Ordner springen können."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Pfad beibehalten"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Zeigt weiterhin den zuletzt besuchten Ordnerpfad an, auch wenn Sie zur Startseite zurückkehren."
+  },
   "settingShowScrollTopLabel": {
     "message": "Nach-oben-Button"
   },

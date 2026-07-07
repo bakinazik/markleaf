@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "Muestra la ruta de carpetas para que puedas saltar rápidamente a cualquier carpeta superior."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Mantener ruta"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Sigue mostrando la ruta de la última carpeta visitada aunque vuelvas a la pantalla principal."
+  },
   "settingShowScrollTopLabel": {
     "message": "Botón de subir"
   },

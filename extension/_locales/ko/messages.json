@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "폴더 경로를 표시하여 상위 폴더로 빠르게 이동할 수 있습니다."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "경로 유지"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "홈 화면으로 돌아가도 마지막으로 방문한 폴더 경로를 계속 표시합니다."
+  },
   "settingShowScrollTopLabel": {
     "message": "맨 위로 이동 버튼"
   },

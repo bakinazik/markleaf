@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "显示文件夹路径，以便快速跳转到任意上级文件夹。"
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "保留路径"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "即使返回主页，也会继续显示您最后访问的文件夹路径。"
+  },
   "settingShowScrollTopLabel": {
     "message": "返回顶部按钮"
   },

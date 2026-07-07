@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "फ़ोल्डर पथ दिखाता है ताकि आप किसी भी मूल फ़ोल्डर पर जल्दी से जा सकें।"
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "पथ बनाए रखें"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "होम स्क्रीन पर लौटने के बाद भी आपके द्वारा देखे गए अंतिम फ़ोल्डर पथ को दिखाना जारी रखता है।"
+  },
   "settingShowScrollTopLabel": {
     "message": "ऊपर जाएं बटन"
   },

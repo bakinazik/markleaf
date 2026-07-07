@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "Menampilkan jalur folder agar Anda dapat langsung berpindah ke folder induk mana pun."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Pertahankan jalur"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Tetap menampilkan jalur folder terakhir yang Anda kunjungi meskipun sudah kembali ke layar utama."
+  },
   "settingShowScrollTopLabel": {
     "message": "Tombol kembali ke atas"
   },

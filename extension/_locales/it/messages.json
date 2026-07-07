@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "Mostra il percorso della cartella per poter accedere rapidamente a qualsiasi cartella principale."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Mantieni percorso"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Continua a mostrare il percorso dell'ultima cartella visitata anche dopo essere tornati alla schermata principale."
+  },
   "settingShowScrollTopLabel": {
     "message": "Pulsante torna su"
   },

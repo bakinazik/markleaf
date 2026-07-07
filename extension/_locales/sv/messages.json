@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "Visar mappsökvägen så att du snabbt kan hoppa till valfri överordnad mapp."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Behåll sökväg"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Fortsätter visa sökvägen till den senast besökta mappen även efter att du återvänt till startskärmen."
+  },
   "settingShowScrollTopLabel": {
     "message": "Knapp för att scrolla upp"
   },

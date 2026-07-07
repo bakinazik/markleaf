@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "Apresenta o caminho da pasta para que possa aceder rapidamente a qualquer pasta principal."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Manter caminho"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Continua a mostrar o caminho da última pasta visitada mesmo depois de voltar ao ecrã principal."
+  },
   "settingShowScrollTopLabel": {
     "message": "Botão de voltar ao topo"
   },

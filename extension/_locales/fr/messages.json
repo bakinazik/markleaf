@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "Affiche le chemin du dossier pour accéder rapidement à n'importe quel dossier parent."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Conserver le chemin"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Continue d'afficher le chemin du dernier dossier visité même après être revenu à l'écran d'accueil."
+  },
   "settingShowScrollTopLabel": {
     "message": "Bouton de retour en haut"
   },

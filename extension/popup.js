@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isTrashSelectionMode = false;
   let selectedTrashIds = new Set();
   let selectionMoveMode = false;
+  const externallyMovedIds = new Set();
   let selectionFolderMode = false;
   const i18nElements = document.querySelectorAll('[data-i18n]');
   i18nElements.forEach(element => {
@@ -419,6 +420,11 @@ function renderTrashSelectBtnIcon() {
   let showScrollTopButton = true;
   const settingShowBreadcrumbToggle = document.getElementById('settingShowBreadcrumb');
   let showBreadcrumb = false;
+  const settingShowBreadcrumbPersistToggle = document.getElementById('settingShowBreadcrumbPersist');
+  const breadcrumbPersistFlex = document.getElementById('breadcrumbPersistFlex');
+  const breadcrumbPersistText = document.getElementById('breadcrumbPersistText');
+  let showBreadcrumbPersist = true;
+  let lastVisitedFolderStack = null;
   const settingShowScrollbarToggle = document.getElementById('settingShowScrollbar');
   let showScrollbar = true;
   const settingShowQuickActionsToggle = document.getElementById('settingShowQuickActions');
@@ -427,9 +433,7 @@ function renderTrashSelectBtnIcon() {
   const folderStyleSettingsRow = document.querySelector('[data-i18n="settingFolderStyleLabel"]')?.closest('.settings-row');
   const gridColumnsSettingsRow = document.getElementById('gridColumnsSettingsRow');
   let gridColumns = 3;
-  const gridWidthSettingsRow = document.getElementById('gridWidthSettingsRow');
   let gridWidth = 300;
-  const gridShowTitlesSettingsRow = document.getElementById('gridShowTitlesSettingsRow');
   const settingShowGridTitlesToggle = document.getElementById('settingShowGridTitles');
   let showGridTitles = true;
 
@@ -490,8 +494,6 @@ function renderTrashSelectBtnIcon() {
   function syncFolderStyleVisibility() {
     if (folderStyleSettingsRow) folderStyleSettingsRow.style.display = isGridView ? '' : 'none';
     if (gridColumnsSettingsRow) gridColumnsSettingsRow.style.display = isGridView ? '' : 'none';
-    if (gridWidthSettingsRow) gridWidthSettingsRow.style.display = isGridView ? '' : 'none';
-    if (gridShowTitlesSettingsRow) gridShowTitlesSettingsRow.style.display = isGridView ? '' : 'none';
   }
 
   function applyGridColumns() {
@@ -573,11 +575,32 @@ function renderTrashSelectBtnIcon() {
     updateUpButtonVisibility();
   });
 
+  function syncBreadcrumbPersistVisibility() {
+    const display = showBreadcrumb ? '' : 'none';
+    if (breadcrumbPersistFlex) breadcrumbPersistFlex.style.display = display;
+    if (breadcrumbPersistText) breadcrumbPersistText.style.display = display;
+  }
+
   settingShowBreadcrumbToggle.addEventListener('change', () => {
+    const wasOff = !showBreadcrumb;
     showBreadcrumb = settingShowBreadcrumbToggle.checked;
     chrome.storage.local.set({ showBreadcrumb });
+    if (showBreadcrumb && wasOff) {
+      showBreadcrumbPersist = true;
+      if (settingShowBreadcrumbPersistToggle) settingShowBreadcrumbPersistToggle.checked = true;
+      chrome.storage.local.set({ showBreadcrumbPersist });
+    }
+    syncBreadcrumbPersistVisibility();
     updateUpButtonVisibility();
   });
+
+  if (settingShowBreadcrumbPersistToggle) {
+    settingShowBreadcrumbPersistToggle.addEventListener('change', () => {
+      showBreadcrumbPersist = settingShowBreadcrumbPersistToggle.checked;
+      chrome.storage.local.set({ showBreadcrumbPersist });
+      updateUpButtonVisibility();
+    });
+  }
 
   function applyScrollbarVisibility() {
     document.documentElement.classList.toggle('scrollbar-hidden', !showScrollbar);
@@ -598,8 +621,7 @@ function renderTrashSelectBtnIcon() {
   settingShowQuickActionsToggle.addEventListener('change', () => {
     showQuickActions = settingShowQuickActionsToggle.checked;
     chrome.storage.local.set({ showQuickActions });
-    renderCtxMenuSettings();
-    listItems(currentFolderId);
+    updateCtxMenuActionIndicators();
   });
 
   const settingCheckBeforeAddToggle = document.getElementById('settingCheckBeforeAdd');
@@ -832,14 +854,33 @@ function renderTrashSelectBtnIcon() {
     listItems(currentFolderId);
   }
 
+  function getCtxMenuActionIds() {
+    const enabledItems = ctxMenuItems.filter(item => item.enabled);
+    return new Set(showQuickActions ? enabledItems.slice(-3).map(i => i.id) : []);
+  }
+
+  function updateCtxMenuActionIndicators() {
+    const list = document.getElementById('ctxMenuItemList');
+    if (!list) return;
+    const actionIds = getCtxMenuActionIds();
+    list.querySelectorAll('.ctx-menu-sort-item').forEach((li) => {
+      const handle = li.querySelector('.ctx-drag-handle');
+      if (!handle) return;
+      const shouldBeAction = actionIds.has(li.dataset.id);
+      const isAction = handle.style.color === 'var(--accent)';
+      if (shouldBeAction !== isAction) {
+        handle.style.color = shouldBeAction ? 'var(--accent)' : '';
+      }
+    });
+  }
+
   function renderCtxMenuSettings() {
     const list = document.getElementById('ctxMenuItemList');
     if (!list) return;
     
     list.innerHTML = '';
 
-    const enabledItems = ctxMenuItems.filter(item => item.enabled);
-    const actionIds = showQuickActions ? enabledItems.slice(-3).map(i => i.id) : [];
+    const actionIds = getCtxMenuActionIds();
 
     ctxMenuItems.forEach((item) => {
       const li = document.createElement('li');
@@ -847,7 +888,7 @@ function renderTrashSelectBtnIcon() {
       li.dataset.id = item.id;
       const label = chrome.i18n.getMessage(item.labelKey) || item.id;
       
-      const isAction = actionIds.includes(item.id);
+      const isAction = actionIds.has(item.id);
       const dragSvg = ICONS.dragHandle(isAction);
 
       li.innerHTML = `${dragSvg}<span class="ctx-item-label">${label}</span><label class="ctx-item-toggle"><input type="checkbox" ${item.enabled ? 'checked' : ''}><span class="ctx-toggle-slider"></span></label>`;
@@ -873,11 +914,7 @@ function renderTrashSelectBtnIcon() {
         const it = ctxMenuItems.find(x => x.id === item.id);
         if (it) it.enabled = e.target.checked;
         chrome.storage.local.set({ ctxMenuItems });
-        const track = li.querySelector('.ctx-toggle-slider');
-        track.addEventListener('transitionend', () => {
-          renderCtxMenuSettings();
-          listItems(currentFolderId);
-        }, { once: true });
+        updateCtxMenuActionIndicators();
       });
       list.appendChild(li);
     });
@@ -890,8 +927,7 @@ function renderTrashSelectBtnIcon() {
         const newOrder = Array.from(list.children).map(li => li.dataset.id);
         ctxMenuItems.sort((a, b) => newOrder.indexOf(a.id) - newOrder.indexOf(b.id));
         chrome.storage.local.set({ ctxMenuItems });
-        renderCtxMenuSettings();
-        listItems(currentFolderId);
+        updateCtxMenuActionIndicators();
       }
     });
   }
@@ -1440,6 +1476,8 @@ function updateSettingsUI() {
   settingShowUpButtonToggle.checked = showUpButton;
   settingShowScrollTopToggle.checked = showScrollTopButton;
   settingShowBreadcrumbToggle.checked = showBreadcrumb;
+  if (settingShowBreadcrumbPersistToggle) settingShowBreadcrumbPersistToggle.checked = showBreadcrumbPersist;
+  syncBreadcrumbPersistVisibility();
   settingShowScrollbarToggle.checked = showScrollbar;
   applyScrollbarVisibility();
   settingSearchInFolderToggle.checked = searchInFolder;
@@ -1591,7 +1629,8 @@ function updateSettingsUI() {
     chrome.storage.local.set({ defaultFolderId: newRootId });
     folderStack = [newRootId];
     currentFolderId = newRootId;
-    chrome.storage.local.set({ folderStack });
+    lastVisitedFolderStack = null;
+    chrome.storage.local.set({ folderStack, lastVisitedFolderStack: null });
     listItems(currentFolderId);
   });
   function getVisibleItems() {
@@ -1746,8 +1785,14 @@ function updateSettingsUI() {
               bookmarksList.classList.remove('sortable-active');
               window.bookmarksSortable.option('disabled', true);
               const newOrder = Array.from(bookmarksList.children)
-                .filter(el => el.dataset.bookmarkId)
+                .filter(el => el.dataset.bookmarkId && !externallyMovedIds.has(el.dataset.bookmarkId))
                 .map(item => item.dataset.bookmarkId);
+              const draggedId = evt.item?.dataset.bookmarkId;
+              if (draggedId && externallyMovedIds.has(draggedId)) {
+                externallyMovedIds.delete(draggedId);
+                window.bookmarksSortable.option('disabled', false);
+                return;
+              }
               let pending = newOrder.length;
               if (pending === 0) { window.bookmarksSortable.option('disabled', false); return; }
               newOrder.forEach((itemId, index) => {
@@ -2511,13 +2556,18 @@ async function showEmptyAreaContextMenu(x, y) {
     upButton.innerHTML = originalUpText;
   };
   upButton.addEventListener('dragleave', resetUpButton);
-  upButton.addEventListener('drop', (e) => {
+  upButton.addEventListener('drop', async (e) => {
     e.preventDefault(); resetUpButton();
     const draggedItem = document.querySelector('.sortable-chosen');
     const draggedId = draggedItem?.dataset.bookmarkId;
     const parentId = folderStack[folderStack.length - 2];
     if (draggedId && parentId) {
-      chrome.bookmarks.move(draggedId, { parentId: parentId }, () => listItems(currentFolderId));
+      externallyMovedIds.add(draggedId);
+      const idx = await resolveNewItemIndex(parentId);
+      chrome.bookmarks.move(draggedId, { parentId: parentId, index: idx }, () => {
+        externallyMovedIds.delete(draggedId);
+        listItems(currentFolderId);
+      });
     }
   });
   upButton.addEventListener('click', () => {
@@ -2544,14 +2594,38 @@ async function showEmptyAreaContextMenu(x, y) {
 
   const breadcrumbBar = document.getElementById('breadcrumbBar');
 
+  let breadcrumbScrolledOnce = false;
+
+  if (breadcrumbBar) {
+    breadcrumbBar.addEventListener('wheel', (e) => {
+      if (breadcrumbBar.scrollWidth <= breadcrumbBar.clientWidth) return;
+      const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (delta === 0) return;
+      breadcrumbBar.scrollBy({ left: delta, behavior: 'smooth' });
+      e.preventDefault();
+    }, { passive: false });
+
+    breadcrumbBar.addEventListener('dragover', (e) => e.preventDefault());
+    breadcrumbBar.addEventListener('drop', (e) => e.preventDefault());
+  }
+
   function updateBreadcrumb() {
     if (!breadcrumbBar) return;
-    if (folderStack.length <= 1 || !showBreadcrumb) {
+    const isDeep = folderStack.length > 1;
+    if (isDeep) {
+      lastVisitedFolderStack = folderStack.slice();
+      chrome.storage.local.set({ lastVisitedFolderStack });
+    }
+    const showPersisted = !isDeep && showBreadcrumb && showBreadcrumbPersist &&
+      Array.isArray(lastVisitedFolderStack) && lastVisitedFolderStack.length > 1;
+    if (!showBreadcrumb || (!isDeep && !showPersisted)) {
       breadcrumbBar.style.display = 'none';
       breadcrumbBar.innerHTML = '';
+      breadcrumbBar.classList.remove('breadcrumb-persisted');
       return;
     }
-    const ids = folderStack.slice();
+    const ids = (isDeep ? folderStack : lastVisitedFolderStack).slice();
+    breadcrumbBar.classList.toggle('breadcrumb-persisted', showPersisted);
     const getNames = ids.map(id => new Promise(resolve => {
       chrome.bookmarks.get(id, (results) => {
         const err = chrome.runtime.lastError;
@@ -2566,15 +2640,37 @@ async function showEmptyAreaContextMenu(x, y) {
       breadcrumbBar.innerHTML = '';
       folders.forEach((folder, idx) => {
         const isLast = idx === folders.length - 1;
+        const isActive = isDeep ? isLast : idx === 0;
         const btn = document.createElement('button');
-        btn.className = 'breadcrumb-item' + (isLast ? ' active' : '');
+        btn.className = 'breadcrumb-item' + (isActive ? ' active' : '');
         btn.title = folder.title;
         btn.innerHTML = `<span>${folder.title}</span>`;
-        if (!isLast) {
+        if (!isActive) {
           btn.addEventListener('click', () => {
-            folderStack = folderStack.slice(0, idx + 1);
+            folderStack = ids.slice(0, idx + 1);
             currentFolderId = folder.id;
             listItems(currentFolderId);
+          });
+          btn.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            btn.classList.add('breadcrumb-drop-target');
+          });
+          btn.addEventListener('dragleave', () => {
+            btn.classList.remove('breadcrumb-drop-target');
+          });
+          btn.addEventListener('drop', async (e) => {
+            e.preventDefault();
+            btn.classList.remove('breadcrumb-drop-target');
+            const draggedItem = document.querySelector('.sortable-chosen');
+            const draggedId = draggedItem?.dataset.bookmarkId;
+            if (draggedId && draggedId !== folder.id) {
+              externallyMovedIds.add(draggedId);
+              const idx = await resolveNewItemIndex(folder.id);
+              chrome.bookmarks.move(draggedId, { parentId: folder.id, index: idx }, () => {
+                externallyMovedIds.delete(draggedId);
+                listItems(currentFolderId);
+              });
+            }
           });
         }
         breadcrumbBar.appendChild(btn);
@@ -2587,10 +2683,49 @@ async function showEmptyAreaContextMenu(x, y) {
       });
       breadcrumbBar.style.display = 'flex';
       requestAnimationFrame(() => {
-        breadcrumbBar.scrollLeft = breadcrumbBar.scrollWidth;
+        breadcrumbBar.scrollTo({
+          left: isDeep ? breadcrumbBar.scrollWidth : 0,
+          behavior: breadcrumbScrolledOnce ? 'smooth' : 'instant'
+        });
+        breadcrumbScrolledOnce = true;
       });
     });
   }
+
+  chrome.bookmarks.onRemoved.addListener((removedId) => {
+    let breadcrumbChanged = false;
+
+    if (Array.isArray(lastVisitedFolderStack)) {
+      const idx = lastVisitedFolderStack.indexOf(removedId);
+      if (idx !== -1) {
+        const trimmed = lastVisitedFolderStack.slice(0, idx);
+        lastVisitedFolderStack = trimmed.length > 1 ? trimmed : null;
+        chrome.storage.local.set({ lastVisitedFolderStack });
+        breadcrumbChanged = true;
+      }
+    }
+
+    const stackIdx = folderStack.indexOf(removedId);
+    if (stackIdx !== -1) {
+      const trimmed = folderStack.slice(0, stackIdx);
+      if (trimmed.length > 0) {
+        folderStack = trimmed;
+        currentFolderId = folderStack[folderStack.length - 1];
+        chrome.storage.local.set({ folderStack });
+        listItems(currentFolderId);
+      } else {
+        chrome.storage.local.get(['defaultFolderId'], (data) => {
+          const fallbackId = data.defaultFolderId || (isMobile ? '3' : '1');
+          folderStack = [fallbackId];
+          currentFolderId = fallbackId;
+          chrome.storage.local.set({ folderStack });
+          listItems(currentFolderId);
+        });
+      }
+    } else if (breadcrumbChanged) {
+      updateBreadcrumb();
+    }
+  });
   function updateItemsList(itemsToDisplay) {
     bookmarksList.innerHTML = '';
     clearKeyboardSelection();
@@ -2720,7 +2855,7 @@ async function showEmptyAreaContextMenu(x, y) {
     !isMobile && searchInput.focus();
   });
 
-  chrome.storage.local.get(['folderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showScrollbar', 'searchInFolder', 'ctxMenuItems', 'showQuickActions', 'gridColumns', 'gridWidth', 'showGridTitles', 'pinnedBookmarks', 'newItemPosition'], (data) => {
+  chrome.storage.local.get(['folderStack', 'lastVisitedFolderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showBreadcrumbPersist', 'showScrollbar', 'searchInFolder', 'ctxMenuItems', 'showQuickActions', 'gridColumns', 'gridWidth', 'showGridTitles', 'pinnedBookmarks', 'newItemPosition'], (data) => {
     pinnedBookmarks = new Set(Array.isArray(data.pinnedBookmarks) ? data.pinnedBookmarks : []);
     newItemPosition = data.newItemPosition === 'start' ? 'start' : 'end';
     if (data.folderStack && data.folderStack.length > 0) {
@@ -2758,6 +2893,12 @@ async function showEmptyAreaContextMenu(x, y) {
     showUpButton = data.showUpButton !== undefined ? !!data.showUpButton : true;
     showScrollTopButton = data.showScrollTopButton !== undefined ? !!data.showScrollTopButton : true;
     showBreadcrumb = data.showBreadcrumb !== undefined ? !!data.showBreadcrumb : false;
+    showBreadcrumbPersist = data.showBreadcrumbPersist !== undefined ? !!data.showBreadcrumbPersist : true;
+    lastVisitedFolderStack = Array.isArray(data.lastVisitedFolderStack) && data.lastVisitedFolderStack.length > 1
+      ? data.lastVisitedFolderStack
+      : (folderStack.length > 1 ? folderStack.slice() : null);
+    if (settingShowBreadcrumbPersistToggle) settingShowBreadcrumbPersistToggle.checked = showBreadcrumbPersist;
+    syncBreadcrumbPersistVisibility();
     showScrollbar = data.showScrollbar !== undefined ? !!data.showScrollbar : true;
     if (settingShowScrollbarToggle) settingShowScrollbarToggle.checked = showScrollbar;
     applyScrollbarVisibility();
@@ -3089,6 +3230,8 @@ async function showEmptyAreaContextMenu(x, y) {
     updateSettingsUI();
     folderStack = ['1'];
     currentFolderId = '1';
+    lastVisitedFolderStack = null;
+    chrome.storage.local.set({ lastVisitedFolderStack: null });
     listItems(currentFolderId);
   }
   
@@ -3229,7 +3372,7 @@ ${body}</DL><p>
 
     const storageData = await new Promise(resolve => {
       chrome.storage.local.get(
-        ['deleteMode', 'trashExpiryDays', 'isGridView', 'gridColumns', 'gridWidth', 'showGridTitles', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showScrollbar', 'searchInFolder', 'extensionIconStyle', 'customIconData', 'faviconProvider', 'ctxMenuItems', 'showQuickActions', 'exportIncludeSettings', 'exportIncludeBookmarks', 'importIncludeSettings', 'importIncludeBookmarks', 'pinnedBookmarks', 'newItemPosition', TRASH_STORAGE_KEY],
+        ['deleteMode', 'trashExpiryDays', 'isGridView', 'gridColumns', 'gridWidth', 'showGridTitles', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showBreadcrumbPersist', 'showScrollbar', 'searchInFolder', 'extensionIconStyle', 'customIconData', 'faviconProvider', 'ctxMenuItems', 'showQuickActions', 'exportIncludeSettings', 'exportIncludeBookmarks', 'importIncludeSettings', 'importIncludeBookmarks', 'pinnedBookmarks', 'newItemPosition', TRASH_STORAGE_KEY],
         resolve
       );
     });
@@ -3252,6 +3395,7 @@ ${body}</DL><p>
         showUpButton: storageData.showUpButton !== undefined ? storageData.showUpButton : true,
         showScrollTopButton: storageData.showScrollTopButton !== undefined ? storageData.showScrollTopButton : true,
         showBreadcrumb: !!storageData.showBreadcrumb,
+        showBreadcrumbPersist: storageData.showBreadcrumbPersist !== undefined ? storageData.showBreadcrumbPersist : true,
         showScrollbar: storageData.showScrollbar !== undefined ? storageData.showScrollbar : true,
         searchInFolder: !!storageData.searchInFolder,
         newItemPosition: storageData.newItemPosition === 'start' ? 'start' : 'end',
@@ -3321,6 +3465,9 @@ ${body}</DL><p>
       if (settingShowScrollTopToggle) settingShowScrollTopToggle.checked = showScrollTopButton;
       if (!showScrollTopButton) hideScrollToTop();
       showBreadcrumb = !!s.showBreadcrumb;
+      showBreadcrumbPersist = s.showBreadcrumbPersist !== undefined ? !!s.showBreadcrumbPersist : true;
+      if (settingShowBreadcrumbPersistToggle) settingShowBreadcrumbPersistToggle.checked = showBreadcrumbPersist;
+      syncBreadcrumbPersistVisibility();
       showScrollbar = s.showScrollbar !== undefined ? !!s.showScrollbar : true;
       if (settingShowScrollbarToggle) settingShowScrollbarToggle.checked = showScrollbar;
       applyScrollbarVisibility();
@@ -3330,7 +3477,8 @@ ${body}</DL><p>
       if (s.defaultFolderId) {
         folderStack = [s.defaultFolderId];
         currentFolderId = s.defaultFolderId;
-        chrome.storage.local.set({ folderStack });
+        lastVisitedFolderStack = null;
+        chrome.storage.local.set({ folderStack, lastVisitedFolderStack: null });
       }
       if (s.appTheme) {
         themeSelect.value = s.appTheme;

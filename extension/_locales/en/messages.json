@@ -335,6 +335,12 @@
   "settingShowBreadcrumbText": {
     "message": "Shows the folder path so you can quickly jump to any parent folder."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Persist path"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Keeps showing your last visited folder path even after returning to the home screen."
+  },
   "settingShowScrollTopLabel": {
     "message": "Scroll to top button"
   },

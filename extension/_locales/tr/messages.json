@@ -335,6 +335,12 @@
   "settingShowBreadcrumbText": {
     "message": "Klasör yolunu göstererek herhangi bir üst klasöre hızlıca geçiş yapabilirsiniz."
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Konumu koru"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Ana sayfaya dönseniz bile son ziyaret ettiğiniz klasör yolunu göstermeye devam eder."
+  },
   "settingShowScrollTopLabel": {
     "message": "Yukarı çık butonu"
   },

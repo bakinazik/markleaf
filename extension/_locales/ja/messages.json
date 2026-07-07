@@ -326,6 +326,12 @@
   "settingShowBreadcrumbText": {
     "message": "フォルダーのパスを表示し、任意の親フォルダーにすばやくジャンプできます。"
   },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "パスを保持"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "ホーム画面に戻っても、最後に開いたフォルダのパスを表示し続けます。"
+  },
   "settingShowScrollTopLabel": {
     "message": "上へ戻るボタン"
   },
