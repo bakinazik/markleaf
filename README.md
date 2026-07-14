@@ -28,7 +28,7 @@ Simple and practical bookmark manager.
 </details>
 
 
-## Features and Roadmap
+## Features: Released and ready to use
 - [x] List and grid layout
 - [x] Create: Folder and bookmark/current page
 - [x] Edit: URL and name
@@ -55,6 +55,12 @@ Simple and practical bookmark manager.
 - [x] Breadcrumb navigation with up button and drag-to-move support
 - [x] Favicon provider selection (Browser / Google / DuckDuckGo)
 - [ ] Looking for another feature? [Click here](https://github.com/bakinazik/markleaf/issues/new)
+
+## Roadmap: Currently in development
+- [ ] Double-Click Active Page Button to Scroll to Top (This will provides an easy way to return to the top when the Scroll to Top button is hidden.)
+- [ ] Move bookmarks and folders into a folder with Ctrl + drag (You can already move items by navigating to the parent folder button or dragging them onto the breadcrumbs. This option will be disabled by default because Ctrl + click already opens bookmarks in a new tab. Users can decide which behavior they prefer. It's an additional feature, not a replacement for the default behavior.)
+- [ ] Google Sync (Chrome only. Sync extension settings with your Google account and eliminate the need to import or export them manually.)
+- [ ] Firefox Add-ons support
 
 ## Shortcuts
 
