@@ -28,7 +28,7 @@ Simple and practical bookmark manager.
 </details>
 
 
-## Features: Released and ready to use
+## Features
 - [x] List and grid layout
 - [x] Create: Folder and bookmark/current page
 - [x] Edit: URL and name
@@ -58,7 +58,7 @@ Simple and practical bookmark manager.
 - [x] Quick scroll-to-top for the active tab with position restore
 - [ ] Looking for another feature? [Click here](https://github.com/bakinazik/markleaf/issues/new)
 
-## Roadmap: Currently in development
+## Roadmap
 - [ ] Account Sync (Chrome/Firefox)
 - [ ] Firefox Add-ons support
 
@@ -76,6 +76,10 @@ Simple and practical bookmark manager.
 | Shift + click | Open in new window                    |
 
 ---
+
+## Credits
+- [SortableJS](https://github.com/sortablejs/Sortable)
+- [Tabler Icons](https://github.com/tabler/tabler-icons)
 
 ## License
 
