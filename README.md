@@ -54,26 +54,26 @@ Simple and practical bookmark manager.
 - [x] Toggle to show/hide the scrollbar
 - [x] Breadcrumb navigation with up button and drag-to-move support
 - [x] Favicon provider selection (Browser / Google / DuckDuckGo)
+- [x] Ctrl + Drag to Move
+- [x] Quick scroll-to-top for the active tab with position restore
 - [ ] Looking for another feature? [Click here](https://github.com/bakinazik/markleaf/issues/new)
 
 ## Roadmap: Currently in development
-- [ ] Double-Click Active Page Button to Scroll to Top (This will provides an easy way to return to the top when the Scroll to Top button is hidden.)
-- [ ] Move bookmarks and folders into a folder with Ctrl + drag (You can already move items by navigating to the parent folder button or dragging them onto the breadcrumbs. This option will be disabled by default because Ctrl + click already opens bookmarks in a new tab. Users can decide which behavior they prefer. It's an additional feature, not a replacement for the default behavior.)
-- [ ] Google Sync (Chrome only. Sync extension settings with your Google account and eliminate the need to import or export them manually.)
+- [ ] Account Sync (Chrome/Firefox)
 - [ ] Firefox Add-ons support
 
 ## Shortcuts
 
-| Key           | Action                              |
-|---------------|-------------------------------------|
-| Up / Down     | Navigate through the list           |
-| Enter         | Open selected item or enter folder  |
-| Left / Tab    | Go to parent folder                 |
-| Left click    | Open in current tab                 |
-| Right click   | Open context menu                   |
-| Middle click  | Open in new tab                     |
-| Ctrl + click  | Open in new tab                     |
-| Shift + click | Open in new window                  |
+| Key           | Action                                |
+|---------------|---------------------------------------|
+| Up / Down     | Navigate through the list             |
+| Enter         | Open selected item or enter folder    |
+| Left / Tab    | Go to parent folder                   |
+| Left click    | Open in current tab                   |
+| Right click   | Open context menu                     |
+| Middle click  | Open in new tab                       |
+| Ctrl + click  | Open in new tab or move the bookmark  |
+| Shift + click | Open in new window                    |
 
 ---
 
