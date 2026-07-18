@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "Lorsqu'activé, les signets avec la même URL déjà présents à l'emplacement cible seront ignorés."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-glisser pour déplacer"
+  },
+  "ctrlDragMoveText": {
+    "message": "Une fois activé, maintenez Ctrl en faisant glisser un signet ou un dossier pour le déposer directement sur un autre dossier et le déplacer."
+  },
   "settingShowUpButtonLabel": {
     "message": "Dossier parent"
   },

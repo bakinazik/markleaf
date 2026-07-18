@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "Quando ativado, os marcadores com o mesmo URL já presentes na localização de destino serão ignorados."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-arrastar para mover"
+  },
+  "ctrlDragMoveText": {
+    "message": "Quando ativado, mantenha Ctrl premido ao arrastar um marcador ou uma pasta e largue-o diretamente noutra pasta para o mover."
+  },
   "settingShowUpButtonLabel": {
     "message": "Pasta principal"
   },

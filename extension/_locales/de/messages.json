@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "Wenn aktiviert, werden Lesezeichen mit derselben URL, die bereits am Zielort vorhanden sind, übersprungen."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Strg-Ziehen zum Verschieben"
+  },
+  "ctrlDragMoveText": {
+    "message": "Wenn aktiviert, kannst du bei gedrückter Strg-Taste ein Lesezeichen oder einen Ordner direkt auf einen anderen Ordner ziehen, um es bzw. ihn dorthin zu verschieben."
+  },
   "settingShowUpButtonLabel": {
     "message": "Übergeordneter Ordner"
   },

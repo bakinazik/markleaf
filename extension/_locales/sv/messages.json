@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "När aktiverat hoppas bokmärken med samma URL som redan finns på målplatsen över."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-dra för att flytta"
+  },
+  "ctrlDragMoveText": {
+    "message": "När det är aktiverat kan du hålla ned Ctrl medan du drar ett bokmärke eller en mapp och släppa det direkt på en annan mapp för att flytta det."
+  },
   "settingShowUpButtonLabel": {
     "message": "Överordnad mapp"
   },

@@ -1,5 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
   const bookmarksList = document.getElementById('bookmarksList');
+  let ctrlDragActive = false;
+  bookmarksList.addEventListener('dragstart', (e) => {
+    if (ctrlDragMoveEnabled && (e.ctrlKey || e.metaKey)) {
+      ctrlDragActive = true;
+      if (window.bookmarksSortable) window.bookmarksSortable.option('disabled', true);
+    }
+  });
+  bookmarksList.addEventListener('dragend', () => {
+    if (ctrlDragActive) {
+      ctrlDragActive = false;
+      if (window.bookmarksSortable && !isSelectionMode) window.bookmarksSortable.option('disabled', false);
+    }
+    bookmarksList.querySelectorAll('.folder-drop-target').forEach(el => {
+      el.classList.remove('folder-drop-target');
+      const icon = el.querySelector('.item-icon');
+      if (icon) icon.innerHTML = ICONS.folder;
+    });
+  });
+  bookmarksList.addEventListener('dragover', (e) => {
+    if (ctrlDragActive) e.preventDefault();
+  });
+  bookmarksList.addEventListener('drop', (e) => {
+    if (ctrlDragActive) e.preventDefault();
+  });
   const addBookmarkBtn = document.getElementById('addBookmark');
   const createFolderBtn = document.getElementById('createFolder');
   const searchInput = document.getElementById('searchInput');
@@ -54,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dragHandle: (accent = false) => `<svg class="ctx-drag-handle"${accent ? ' style="color: var(--accent);"' : ''} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h.01M8 12h.01M8 18h.01M16 6h.01M16 12h.01M16 18h.01"/></svg>`,
     edit: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>`,
     folder: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`,
+    folderFilled: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 3a1 1 0 0 1 .608 .206l.1 .087l2.706 2.707h6.586a3 3 0 0 1 2.995 2.824l.005 .176v8a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-11a3 3 0 0 1 2.824 -2.995l.176 -.005h4z" /></svg>`,
     folderLarge: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>`,
     folderAdd: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v4" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>`,
     menu: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>`,
@@ -450,6 +475,7 @@ function renderTrashSelectBtnIcon() {
   let checkBeforeAdd = false;
   let searchInFolder = false;
   let newItemPosition = 'end';
+  let ctrlDragMoveEnabled = false;
 
   const DEFAULT_CTX_ITEMS = [
     { id: 'edit', labelKey: 'editButton', enabled: true },
@@ -628,6 +654,12 @@ function renderTrashSelectBtnIcon() {
   settingCheckBeforeAddToggle.addEventListener('change', () => {
     checkBeforeAdd = settingCheckBeforeAddToggle.checked;
     chrome.storage.local.set({ checkBeforeAdd });
+  });
+
+  const settingCtrlDragMoveToggle = document.getElementById('settingCtrlDragMove');
+  settingCtrlDragMoveToggle.addEventListener('change', () => {
+    ctrlDragMoveEnabled = settingCtrlDragMoveToggle.checked;
+    chrome.storage.local.set({ ctrlDragMoveEnabled });
   });
 
   const settingSearchInFolderToggle = document.getElementById('settingSearchInFolder');
@@ -968,10 +1000,38 @@ function renderTrashSelectBtnIcon() {
 
   let previousTab = 'bookmarks';
   let currentTab = 'bookmarks';
+  const tabScrollMemory = { bookmarks: 0, trash: 0, settings: 0 };
 
-  tabBookmarks.addEventListener('click', () => { previousTab = currentTab; currentTab = 'bookmarks'; showTab('bookmarks'); });
-  tabTrash.addEventListener('click', () => { previousTab = currentTab; currentTab = 'trash'; showTab('trash'); });
-  tabSettings.addEventListener('click', () => { previousTab = currentTab; currentTab = 'settings'; showTab('settings'); });
+  function getScrollContainerForTab(tab) {
+    if (tab === 'trash') return document.getElementById('trashList');
+    if (tab === 'settings') return document.getElementById('settingsPanel');
+    return document.getElementById('bookmarksList');
+  }
+
+  function toggleTabScroll(tab) {
+    const container = getScrollContainerForTab(tab);
+    if (!container) return;
+    if (container.scrollTop > 0) {
+      tabScrollMemory[tab] = container.scrollTop;
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      container.scrollTo({ top: tabScrollMemory[tab] || 0, behavior: 'smooth' });
+    }
+  }
+
+  function handleTabButtonClick(tab, btn) {
+    if (btn.classList.contains('active')) {
+      toggleTabScroll(tab);
+      return;
+    }
+    previousTab = currentTab;
+    currentTab = tab;
+    showTab(tab);
+  }
+
+  tabBookmarks.addEventListener('click', () => handleTabButtonClick('bookmarks', tabBookmarks));
+  tabTrash.addEventListener('click', () => handleTabButtonClick('trash', tabTrash));
+  tabSettings.addEventListener('click', () => handleTabButtonClick('settings', tabSettings));
   
   const settingsBackBtn = document.getElementById('settingsBackBtn');
   if (settingsBackBtn) {
@@ -1473,6 +1533,7 @@ function updateSettingsUI() {
   syncFolderStyleVisibility();
   settingFolderBadgeToggle.checked = showFolderBadge;
   settingCheckBeforeAddToggle.checked = checkBeforeAdd;
+  settingCtrlDragMoveToggle.checked = ctrlDragMoveEnabled;
   settingShowUpButtonToggle.checked = showUpButton;
   settingShowScrollTopToggle.checked = showScrollTopButton;
   settingShowBreadcrumbToggle.checked = showBreadcrumb;
@@ -1922,6 +1983,7 @@ async function showEmptyAreaContextMenu(x, y) {
     showEmptyAreaContextMenu(e.clientX, e.clientY);
   });
   function createListItem(node, precomputedData = {}) {
+    let gridFolderIconEl = null;
     const listItem = document.createElement('li');
     listItem.dataset.bookmarkId = node.id;
     listItem.classList.add(node.url ? 'bookmark-item' : 'folder-item');
@@ -2001,6 +2063,9 @@ async function showEmptyAreaContextMenu(x, y) {
       });
     } else {
       link.addEventListener('mousedown', (event) => {
+        if (ctrlDragMoveEnabled && event.button === 0 && (event.ctrlKey || event.metaKey)) {
+          return;
+        }
         if (event.button !== 0 || event.ctrlKey || event.shiftKey || event.metaKey) {
           event.preventDefault(); event.stopPropagation(); return false;
         }
@@ -2036,6 +2101,52 @@ async function showEmptyAreaContextMenu(x, y) {
     } else {
       icon.innerHTML = ICONS.folder;
       icon.style.marginRight = '8px';
+      const setFolderHighlight = (on) => {
+        listItem.classList.toggle('folder-drop-target', on);
+        icon.innerHTML = on ? ICONS.folderFilled : ICONS.folder;
+        if (gridFolderIconEl) gridFolderIconEl.innerHTML = on ? ICONS.folderFilled : ICONS.folderLarge;
+      };
+      let dragDepth = 0;
+      listItem.addEventListener('dragenter', (event) => {
+        if (!ctrlDragActive) return;
+        const draggedItem = document.querySelector('.sortable-chosen');
+        if (!draggedItem || draggedItem === listItem) return;
+        event.preventDefault();
+        dragDepth++;
+        if (dragDepth === 1) setFolderHighlight(true);
+      });
+      listItem.addEventListener('dragover', (event) => {
+        if (!ctrlDragActive) return;
+        const draggedItem = document.querySelector('.sortable-chosen');
+        if (!draggedItem || draggedItem === listItem) return;
+        event.preventDefault();
+        if (event.dataTransfer) event.dataTransfer.dropEffect = 'move';
+      });
+      listItem.addEventListener('dragleave', () => {
+        if (dragDepth === 0) return;
+        dragDepth--;
+        if (dragDepth === 0) setFolderHighlight(false);
+      });
+      listItem.addEventListener('dragend', () => {
+        dragDepth = 0;
+        setFolderHighlight(false);
+      });
+      listItem.addEventListener('drop', async (event) => {
+        if (!ctrlDragActive) return;
+        event.preventDefault();
+        event.stopPropagation();
+        dragDepth = 0;
+        setFolderHighlight(false);
+        const draggedItem = document.querySelector('.sortable-chosen');
+        const draggedId = draggedItem?.dataset.bookmarkId;
+        if (!draggedId || draggedId === node.id) return;
+        externallyMovedIds.add(draggedId);
+        const idx = await resolveNewItemIndex(node.id);
+        chrome.bookmarks.move(draggedId, { parentId: node.id, index: idx }, () => {
+          externallyMovedIds.delete(draggedId);
+          listItems(currentFolderId);
+        });
+      });
     }
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('bookmark-content');
@@ -2090,7 +2201,11 @@ async function showEmptyAreaContextMenu(x, y) {
         if (!showFolderBadge) gridBadge.style.display = 'none';
         gridIconWrap.appendChild(gridBadge);
       } else {
-        gridIconWrap.innerHTML = ICONS.folderLarge;
+        const gridFolderIcon = document.createElement('span');
+        gridFolderIcon.classList.add('grid-folder-icon');
+        gridFolderIcon.innerHTML = ICONS.folderLarge;
+        gridIconWrap.appendChild(gridFolderIcon);
+        gridFolderIconEl = gridFolderIcon;
         const gridBadge = document.createElement('span');
         gridBadge.classList.add('grid-folder-badge');
         gridBadge.textContent = precomputedData.count !== undefined ? precomputedData.count : '';
@@ -2778,6 +2893,8 @@ async function showEmptyAreaContextMenu(x, y) {
     if (tabTrash.classList.contains('active')) {
       const tList = document.getElementById('trashList');
       tList.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (tabSettings.classList.contains('active')) {
+      document.getElementById('settingsPanel').scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       const bList = document.getElementById('bookmarksList');
       bList.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2855,7 +2972,7 @@ async function showEmptyAreaContextMenu(x, y) {
     !isMobile && searchInput.focus();
   });
 
-  chrome.storage.local.get(['folderStack', 'lastVisitedFolderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showBreadcrumbPersist', 'showScrollbar', 'searchInFolder', 'ctxMenuItems', 'showQuickActions', 'gridColumns', 'gridWidth', 'showGridTitles', 'pinnedBookmarks', 'newItemPosition'], (data) => {
+  chrome.storage.local.get(['folderStack', 'lastVisitedFolderStack', 'isGridView', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'defaultFolderId', 'deleteMode', 'trashExpiryDays', 'showFolderBadge', 'checkBeforeAdd', 'ctrlDragMoveEnabled', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showBreadcrumbPersist', 'showScrollbar', 'searchInFolder', 'ctxMenuItems', 'showQuickActions', 'gridColumns', 'gridWidth', 'showGridTitles', 'pinnedBookmarks', 'newItemPosition'], (data) => {
     pinnedBookmarks = new Set(Array.isArray(data.pinnedBookmarks) ? data.pinnedBookmarks : []);
     newItemPosition = data.newItemPosition === 'start' ? 'start' : 'end';
     if (data.folderStack && data.folderStack.length > 0) {
@@ -2890,6 +3007,7 @@ async function showEmptyAreaContextMenu(x, y) {
     trashExpiryDays = data.trashExpiryDays || 30;
     showFolderBadge = data.showFolderBadge !== undefined ? !!data.showFolderBadge : true;
     checkBeforeAdd = !!data.checkBeforeAdd;
+    ctrlDragMoveEnabled = !!data.ctrlDragMoveEnabled;
     showUpButton = data.showUpButton !== undefined ? !!data.showUpButton : true;
     showScrollTopButton = data.showScrollTopButton !== undefined ? !!data.showScrollTopButton : true;
     showBreadcrumb = data.showBreadcrumb !== undefined ? !!data.showBreadcrumb : false;
@@ -3372,7 +3490,7 @@ ${body}</DL><p>
 
     const storageData = await new Promise(resolve => {
       chrome.storage.local.get(
-        ['deleteMode', 'trashExpiryDays', 'isGridView', 'gridColumns', 'gridWidth', 'showGridTitles', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'defaultFolderId', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showBreadcrumbPersist', 'showScrollbar', 'searchInFolder', 'extensionIconStyle', 'customIconData', 'faviconProvider', 'ctxMenuItems', 'showQuickActions', 'exportIncludeSettings', 'exportIncludeBookmarks', 'importIncludeSettings', 'importIncludeBookmarks', 'pinnedBookmarks', 'newItemPosition', TRASH_STORAGE_KEY],
+        ['deleteMode', 'trashExpiryDays', 'isGridView', 'gridColumns', 'gridWidth', 'showGridTitles', 'isFolderStackMode', 'appTheme', 'customThemeColors', 'showFolderBadge', 'checkBeforeAdd', 'ctrlDragMoveEnabled', 'defaultFolderId', 'showUpButton', 'showScrollTopButton', 'showBreadcrumb', 'showBreadcrumbPersist', 'showScrollbar', 'searchInFolder', 'extensionIconStyle', 'customIconData', 'faviconProvider', 'ctxMenuItems', 'showQuickActions', 'exportIncludeSettings', 'exportIncludeBookmarks', 'importIncludeSettings', 'importIncludeBookmarks', 'pinnedBookmarks', 'newItemPosition', TRASH_STORAGE_KEY],
         resolve
       );
     });
@@ -3392,6 +3510,7 @@ ${body}</DL><p>
         customThemeColors: storageData.customThemeColors || null,
         showFolderBadge: storageData.showFolderBadge !== undefined ? storageData.showFolderBadge : true,
         checkBeforeAdd: !!storageData.checkBeforeAdd,
+        ctrlDragMoveEnabled: !!storageData.ctrlDragMoveEnabled,
         showUpButton: storageData.showUpButton !== undefined ? storageData.showUpButton : true,
         showScrollTopButton: storageData.showScrollTopButton !== undefined ? storageData.showScrollTopButton : true,
         showBreadcrumb: !!storageData.showBreadcrumb,
@@ -3460,6 +3579,8 @@ ${body}</DL><p>
       isFolderStackMode = !!s.isFolderStackMode;
       showFolderBadge = s.showFolderBadge !== undefined ? !!s.showFolderBadge : true;
       checkBeforeAdd = !!s.checkBeforeAdd;
+      ctrlDragMoveEnabled = !!s.ctrlDragMoveEnabled;
+      if (settingCtrlDragMoveToggle) settingCtrlDragMoveToggle.checked = ctrlDragMoveEnabled;
       showUpButton = s.showUpButton !== undefined ? !!s.showUpButton : true;
       showScrollTopButton = s.showScrollTopButton !== undefined ? !!s.showScrollTopButton : true;
       if (settingShowScrollTopToggle) settingShowScrollTopToggle.checked = showScrollTopButton;

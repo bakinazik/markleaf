@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "启用后，目标位置中已存在相同 URL 的书签将被跳过。"
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "按住Ctrl拖动移动"
+  },
+  "ctrlDragMoveText": {
+    "message": "启用后,拖动书签或文件夹时按住Ctrl键,直接放到另一个文件夹上即可移动。"
+  },
   "settingShowUpButtonLabel": {
     "message": "上级文件夹"
   },

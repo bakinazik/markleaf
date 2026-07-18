@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "啟用後，目標位置中已存在相同 URL 的書籤將被略過。"
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "按住Ctrl拖曳移動"
+  },
+  "ctrlDragMoveText": {
+    "message": "啟用後,拖曳書籤或資料夾時按住Ctrl鍵,直接放到另一個資料夾上即可移動。"
+  },
   "settingShowUpButtonLabel": {
     "message": "上層資料夾"
   },

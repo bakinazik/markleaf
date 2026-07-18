@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "Saat diaktifkan, bookmark dengan URL yang sama yang sudah ada di lokasi target akan dilewati."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-seret untuk memindahkan"
+  },
+  "ctrlDragMoveText": {
+    "message": "Jika diaktifkan, tahan Ctrl saat menyeret markah atau folder dan lepaskan langsung ke folder lain untuk memindahkannya."
+  },
   "settingShowUpButtonLabel": {
     "message": "Folder induk"
   },

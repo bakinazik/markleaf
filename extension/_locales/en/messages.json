@@ -323,6 +323,12 @@
   "checkBeforeAddText": {
     "message": "When enabled, bookmarks with the same URL already present in the target location will be skipped."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Control-drag to move"
+  },
+  "ctrlDragMoveText": {
+    "message": "When enabled, hold Ctrl while dragging a bookmark or folder and drop it directly onto a folder to move it there."
+  },
   "settingShowUpButtonLabel": {
     "message": "Parent folder"
   },

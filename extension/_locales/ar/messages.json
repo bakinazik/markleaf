@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "عند التفعيل، سيتم تخطي الإشارات المرجعية التي تحتوي على نفس الرابط الموجود بالفعل في الموقع المستهدف."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "السحب بـ Ctrl للنقل"
+  },
+  "ctrlDragMoveText": {
+    "message": "عند التفعيل، اضغط باستمرار على Ctrl أثناء سحب إشارة مرجعية أو مجلد وأفلته مباشرة فوق مجلد آخر لنقله إليه."
+  },
   "settingShowUpButtonLabel": {
     "message": "المجلد الأصلي"
   },

@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "Cuando está activado, se omitirán los marcadores con la misma URL que ya estén presentes en la ubicación de destino."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-arrastrar para mover"
+  },
+  "ctrlDragMoveText": {
+    "message": "Al activarlo, mantén Ctrl mientras arrastras un marcador o una carpeta y suéltalo directamente sobre otra carpeta para moverlo."
+  },
   "settingShowUpButtonLabel": {
     "message": "Carpeta superior"
   },

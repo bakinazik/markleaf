@@ -323,6 +323,12 @@
   "checkBeforeAddText": {
     "message": "Etkinleştirildiğinde, hedef konumda aynı URL'ye sahip yer imleri zaten varsa atlanacaktır."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Kontrol ile sürükle taşı"
+  },
+  "ctrlDragMoveText": {
+    "message": "Etkinleştirildiğinde, bir yer imini ya da klasörü Ctrl tuşuna basılı tutarak sürükleyip doğrudan bir klasörün üzerine bırakarak taşıyabilirsiniz."
+  },
   "settingShowUpButtonLabel": {
     "message": "Üst klasör"
   },

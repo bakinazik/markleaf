@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "有効にすると、対象の場所に同じURLのブックマークがすでに存在する場合、スキップされます。"
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrlドラッグで移動"
+  },
+  "ctrlDragMoveText": {
+    "message": "有効にすると、Ctrlキーを押しながらブックマークまたはフォルダをドラッグし、フォルダに直接ドロップして移動できます。"
+  },
   "settingShowUpButtonLabel": {
     "message": "親フォルダー"
   },

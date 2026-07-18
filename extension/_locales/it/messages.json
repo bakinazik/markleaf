@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "Se abilitato, i segnalibri con lo stesso URL già presenti nella posizione di destinazione verranno ignorati."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-trascina per spostare"
+  },
+  "ctrlDragMoveText": {
+    "message": "Se attivato, tieni premuto Ctrl mentre trascini un segnalibro o una cartella e rilascialo direttamente su un'altra cartella per spostarlo."
+  },
   "settingShowUpButtonLabel": {
     "message": "Cartella principale"
   },

@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "सक्षम होने पर, लक्ष्य स्थान पर पहले से मौजूद समान URL वाले बुकमार्क को छोड़ दिया जाएगा।"
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-ड्रैग करके ले जाएं"
+  },
+  "ctrlDragMoveText": {
+    "message": "सक्षम होने पर, बुकमार्क या फ़ोल्डर खींचते समय Ctrl दबाए रखें और उसे सीधे किसी अन्य फ़ोल्डर पर छोड़कर स्थानांतरित करें।"
+  },
   "settingShowUpButtonLabel": {
     "message": "मूल फ़ोल्डर"
   },

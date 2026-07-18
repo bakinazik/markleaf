@@ -314,6 +314,12 @@
   "checkBeforeAddText": {
     "message": "Quando ativado, favoritos com a mesma URL já presentes no local de destino serão ignorados."
   },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-arrastar para mover"
+  },
+  "ctrlDragMoveText": {
+    "message": "Quando ativado, mantenha Ctrl pressionado ao arrastar um favorito ou uma pasta e solte-o diretamente em outra pasta para movê-lo."
+  },
   "settingShowUpButtonLabel": {
     "message": "Pasta pai"
   },
