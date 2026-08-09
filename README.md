@@ -6,6 +6,11 @@ Simple and practical bookmark manager.
 <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg">
       <img width="206" src="https://github.com/user-attachments/assets/d027e2b0-e4c2-4f36-98ce-84e7c18f7db5" alt="Chrome Web Store" />
 </a>
+<br>
+<br>
+
+> [!NOTE]
+> This project is now in maintenance mode. Development will focus primarily on bug fixes, minor improvements, and general maintenance going forward. Feature requests and issue reports are still welcome and can be submitted through the repository's issue tracker.
 
 
 ## Screenshots
