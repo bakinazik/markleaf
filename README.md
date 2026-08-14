@@ -56,11 +56,11 @@ Simple and practical bookmark manager.
 - [x] Favicon provider selection (Browser / Google / DuckDuckGo)
 - [x] Ctrl + Drag to Move
 - [x] Quick scroll-to-top for the active tab with position restore
+- [x] Firefox Add-ons support
 - [ ] Looking for another feature? [Click here](https://github.com/bakinazik/markleaf/issues/new)
 
 ## Roadmap
 - [ ] Account Sync (Chrome/Firefox)
-- [ ] Firefox Add-ons support
 
 ## Shortcuts
 
