@@ -1,0 +1,536 @@
+{
+  "searchPlaceholder": {
+    "message": "검색..."
+  },
+  "noBookmarksMessage": {
+    "message": "북마크가 없습니다."
+  },
+  "noSearchResultsMessage": {
+    "message": "검색 결과가 없습니다."
+  },
+  "saveButton": {
+    "message": "저장"
+  },
+  "cancelButton": {
+    "message": "취소"
+  },
+  "editButton": {
+    "message": "수정"
+  },
+  "pinButton": {
+    "message": "고정"
+  },
+  "unpinButton": {
+    "message": "고정 해제"
+  },
+  "removeButton": {
+    "message": "삭제"
+  },
+  "createFolderButton": {
+    "message": "여기에 폴더 생성"
+  },
+  "newFolderName": {
+    "message": "새 폴더"
+  },
+  "addCurrentSiteButton": {
+    "message": "현재 탭을 여기에 추가"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "탭을 폴더에 추가"
+  },
+  "addAllTabsButton": {
+    "message": "활성 탭을 여기에 추가"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "활성 탭을 폴더에 추가"
+  },
+  "confirmRemoval": {
+    "message": "정말 삭제하시겠습니까?"
+  },
+  "moveButton": {
+    "message": "폴더로 이동"
+  },
+  "searchFolderPlaceholder": {
+    "message": "폴더 검색..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "폴더를 찾을 수 없습니다."
+  },
+  "moveBtnText": {
+    "message": "이동"
+  },
+  "upFolderButton": {
+    "message": "상위 폴더로 이동"
+  },
+  "addBookmark": {
+    "message": "북마크 추가"
+  },
+  "newFolderTitle": {
+    "message": "새 폴더 생성"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "폴더 이름"
+  },
+  "createFolderModalButton": {
+    "message": "생성"
+  },
+  "editTitle": {
+    "message": "수정"
+  },
+  "editTitlePlaceholder": {
+    "message": "제목"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "모두 열기"
+  },
+  "confirmOpenAllMessage": {
+    "message": "<b>$1</b> 폴더에 있는 <b>$2</b>개의 북마크를 여시겠습니까?"
+  },
+  "confirmOpenAllButton": {
+    "message": "예"
+  },
+  "copyLinkButton": {
+    "message": "링크 복사"
+  },
+  "openInCurrentTab": {
+    "message": "현재 탭에서 열기"
+  },
+  "openInNewTab": {
+    "message": "새 탭에서 열기"
+  },
+  "trashSearchPlaceholder": {
+    "message": "검색..."
+  },
+  "trashIsEmpty": {
+    "message": "휴지통이 비어 있습니다"
+  },
+  "trashNoResults": {
+    "message": "결과가 없습니다"
+  },
+  "trashRestoreButton": {
+    "message": "복원"
+  },
+  "restoreAllTrashButton": {
+    "message": "모두 복원"
+  },
+  "restoreAllTrashTitle": {
+    "message": "휴지통의 모든 북마크를 복원하시겠습니까?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "예"
+  },
+  "trashDeletePermanently": {
+    "message": "영구 삭제"
+  },
+  "trashConfirmDelete": {
+    "message": "정말 삭제하시겠습니까?"
+  },
+  "emptyTrashTitle": {
+    "message": "휴지통의 모든 북마크를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다!"
+  },
+  "emptyTrashButton": {
+    "message": "예"
+  },
+  "settingDeleteModeLabel": {
+    "message": "삭제 모드"
+  },
+  "settingDeleteModeTrash": {
+    "message": "휴지통"
+  },
+  "settingDeleteModePermanent": {
+    "message": "즉시 삭제"
+  },
+  "settingTrashFolderLabel": {
+    "message": "휴지통 폴더"
+  },
+  "settingBookmarksLabel": {
+    "message": "북마크"
+  },
+  "settingFolderStyleLabel": {
+    "message": "폴더 스타일"
+  },
+  "settingFolderStyleIcon": {
+    "message": "폴더"
+  },
+  "settingFolderStyleStack": {
+    "message": "스택"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "폴더 배지"
+  },
+  "settingFolderBadgeYes": {
+    "message": "예"
+  },
+  "settingFolderBadgeNo": {
+    "message": "아니요"
+  },
+  "settingThemeLabel": {
+    "message": "테마"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "새로 만든 항목"
+  },
+  "settingNewItemPositionStart": {
+    "message": "맨 앞에 추가"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "맨 뒤에 추가"
+  },
+  "settingViewLabel": {
+    "message": "북마크"
+  },
+  "settingViewList": {
+    "message": "목록"
+  },
+  "settingViewGrid": {
+    "message": "그리드"
+  },
+  "folderBadgeText": {
+    "message": "폴더 내 북마크의 총 개수를 표시합니다."
+  },
+  "folderStyleText": {
+    "message": "이 설정은 그리드 보기에서만 적용됩니다."
+  },
+  "deleteModeText": {
+    "message": "휴지통 모드가 활성화되면 삭제된 북마크는 휴지통으로 이동하며 설정된 기간 후에 완전히 삭제됩니다."
+  },
+  "trashDaysLeft": {
+    "message": "일"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "자동 삭제 기간"
+  },
+  "trashExpiry3Days": {
+    "message": "3일"
+  },
+  "trashExpiry7Days": {
+    "message": "7일"
+  },
+  "trashExpiry1Month": {
+    "message": "1개월"
+  },
+  "settingImportExportLabel": {
+    "message": "데이터 관리"
+  },
+  "exportButton": {
+    "message": "내보내기"
+  },
+  "importButton": {
+    "message": "가져오기"
+  },
+  "exportOptionsTitle": {
+    "message": "내보내기"
+  },
+  "importOptionsTitle": {
+    "message": "가져오기"
+  },
+  "exportOptionsDescription": {
+    "message": "내보낼 항목을 선택하세요."
+  },
+  "importOptionsDescription": {
+    "message": "가져올 항목을 선택하세요."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "설정"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "북마크"
+  },
+  "importContinueButton": {
+    "message": "계속"
+  },
+  "importError": {
+    "message": "가져오기에 실패했습니다. 파일이 잘못되었거나 손상되었을 수 있습니다."
+  },
+  "importConfirmMessage": {
+    "message": "북마크, 설정 및 휴지통 데이터가 덮어씌워집니다. 계속하시겠습니까?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "북마크 및 휴지통 데이터가 덮어씌워집니다. 계속하시겠습니까?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "설정이 덮어씌워집니다. 계속하시겠습니까?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "북마크가 덮어씌워집니다. 계속하시겠습니까?"
+  },
+  "importConfirmTitle": {
+    "message": "가져오기 확인"
+  },
+  "importConfirmYes": {
+    "message": "예"
+  },
+  "viewToggleLabel": {
+    "message": "보기 전환"
+  },
+  "contextMenuLabel": {
+    "message": "옵션"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "선택"
+  },
+  "selectionModeButtonTrash": {
+    "message": "선택"
+  },
+  "bulkOpenSelected": {
+    "message": "선택 항목 열기 ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "폴더로 이동"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "선택 항목으로 폴더 생성"
+  },
+  "bulkDelete": {
+    "message": "선택 항목 삭제"
+  },
+  "bulkConfirmDelete": {
+    "message": "정말 삭제하시겠습니까?"
+  },
+  "bulkRestoreSelected": {
+    "message": "선택 항목 복원"
+  },
+  "bulkDeletePermanently": {
+    "message": "영구 삭제"
+  },
+  "selectionCount": {
+    "message": "$1개 선택됨"
+  },
+  "settingRootFolderLabel": {
+    "message": "루트 폴더"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "이름 없는 폴더"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "추가 전 확인"
+  },
+  "checkBeforeAddText": {
+    "message": "활성화하면 대상 위치에 이미 동일한 URL의 북마크가 있을 경우 건너뜁니다."
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl 드래그로 이동"
+  },
+  "ctrlDragMoveText": {
+    "message": "활성화하면 Ctrl 키를 누른 채 북마크나 폴더를 드래그하여 다른 폴더에 바로 놓아 이동할 수 있습니다."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "상위 폴더"
+  },
+  "settingShowUpButtonText": {
+    "message": "상위 폴더로 이동하는 버튼을 표시합니다."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "탐색 경로"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "폴더 경로를 표시하여 상위 폴더로 빠르게 이동할 수 있습니다."
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "경로 유지"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "홈 화면으로 돌아가도 마지막으로 방문한 폴더 경로를 계속 표시합니다."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "맨 위로 이동 버튼"
+  },
+  "settingShowScrollTopText": {
+    "message": "목록 맨 위로 빠르게 이동할 수 있는 버튼을 표시합니다."
+  },
+  "settingExtensionIconLabel": {
+    "message": "확장 프로그램 아이콘"
+  },
+  "settingIconColorful": {
+    "message": "컬러풀"
+  },
+  "settingIconBlack": {
+    "message": "검정"
+  },
+  "settingIconWhite": {
+    "message": "흰색"
+  },
+  "settingIconGray": {
+    "message": "회색"
+  },
+  "settingIconCustom": {
+    "message": "사용자 정의"
+  },
+  "settingIconChooseFile": {
+    "message": "파일 선택"
+  },
+  "settingIconPreviewLabel": {
+    "message": "미리보기"
+  },
+  "settingIconRemove": {
+    "message": "제거"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP를 지원합니다. 이미지가 자동으로 잘립니다."
+  },
+  "settingIconInvalidFile": {
+    "message": "유효한 이미지 파일을 선택해 주세요 (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "브라우저"
+  },
+  "settingThemeLight": {
+    "message": "밝게"
+  },
+  "settingThemeDark": {
+    "message": "어둡게"
+  },
+  "settingThemeBlack": {
+    "message": "블랙"
+  },
+  "settingThemeCustom": {
+    "message": "사용자 정의"
+  },
+  "settingThemeBgColor": {
+    "message": "배경"
+  },
+  "settingThemeTextColor": {
+    "message": "텍스트"
+  },
+  "settingThemeAccentColor": {
+    "message": "강조색"
+  },
+  "settingThemeBorderColor": {
+    "message": "테두리"
+  },
+  "settingThemeCardColor": {
+    "message": "카드"
+  },
+  "settingFontLabel": {
+    "message": "글꼴"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "사용자 정의"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "예: Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "Google Fonts의 폰트 이름을 입력하세요. 예: Roboto, Poppins"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "파비콘 제공자"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "브라우저"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "폴더 내 검색"
+  },
+  "searchInFolderText": {
+    "message": "활성화하면 현재 폴더와 하위 폴더 안에서만 검색합니다."
+  },
+  "settingAboutLabel": {
+    "message": "정보"
+  },
+  "aboutWebsiteButton": {
+    "message": "웹사이트"
+  },
+  "aboutSourceButton": {
+    "message": "소스 코드"
+  },
+  "aboutVersion": {
+    "message": "버전"
+  },
+  "settingContextMenuLabel": {
+    "message": "컨텍스트 메뉴"
+  },
+  "contextMenuItemsText": {
+    "message": "드래그하여 순서를 변경하고 클릭하여 표시 여부를 전환할 수 있습니다."
+  },
+  "contextMenuActionsLabel": {
+    "message": "빠른 작업"
+  },
+  "settingShowQuickActionsText": {
+    "message": "활성화하면 마지막 세 개의 활성 옵션이 작업 버튼으로 바뀝니다."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "검색..."
+  },
+  "settingsNoResults": {
+    "message": "결과가 없습니다"
+  },
+  "settingGridColumnsLabel": {
+    "message": "그리드 열"
+  },
+  "settingGridColumns2": {
+    "message": "2열"
+  },
+  "settingGridColumns3": {
+    "message": "3열"
+  },
+  "settingGridColumns4": {
+    "message": "4열"
+  },
+  "settingGridWidthLabel": {
+    "message": "그리드 너비"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "제목 표시"
+  },
+  "showGridTitlesText": {
+    "message": "그리드 보기에서 북마크 아래 제목을 표시하거나 숨깁니다."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf는 속도와 단순함에 중점을 둔 무료 오픈소스 북마크 관리자입니다. 소스 코드가 공개되어 있어 누구나 살펴보고 개선을 제안하거나 새로운 기능을 기여할 수 있습니다."
+  },
+  "settingScrollbarLabel": {
+    "message": "스크롤바"
+  },
+  "scrollbarText": {
+    "message": "끄면 확장 프로그램 전체에서 스크롤바가 숨겨집니다."
+  },
+  "settingIconPickerIntro": {
+    "message": "Firefox에서는 확장 프로그램 팝업에서 파일 선택 창을 열면 팝업이 자동으로 닫힙니다. 이 버그는 오래전부터 개발자들 사이에서 언급되었지만, 이를 고치기 위한 실질적인 조치는 취해지지 않았습니다. 그래서 아이콘을 선택할 수 있도록 이 페이지로 안내하게 되었습니다."
+  },
+  "settingIconProcessing": {
+    "message": "처리 중..."
+  },
+  "settingIconProcessFailed": {
+    "message": "이미지를 처리할 수 없습니다. 다른 파일을 시도해 보세요."
+  },
+  "filePickerImportIntro": {
+    "message": "Firefox에서는 확장 프로그램 팝업에서 파일 선택 창을 열면 팝업이 자동으로 닫힙니다. 이 버그는 개발자들이 오랫동안 보고해 왔지만 실제로 수정된 적은 없습니다. 그래서 가져올 파일을 선택할 수 있도록 이 페이지로 이동시켜 드려야 했습니다."
+  },
+  "filePickerImportReading": {
+    "message": "파일 읽는 중..."
+  },
+  "filePickerImportFailed": {
+    "message": "파일을 읽을 수 없습니다. 다른 파일을 시도해 주세요."
+  }
+}

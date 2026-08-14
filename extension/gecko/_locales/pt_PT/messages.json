@@ -1,0 +1,536 @@
+{
+  "searchPlaceholder": {
+    "message": "Pesquisar..."
+  },
+  "noBookmarksMessage": {
+    "message": "Sem marcadores aqui."
+  },
+  "noSearchResultsMessage": {
+    "message": "Nenhum resultado encontrado para os seus critérios de pesquisa."
+  },
+  "saveButton": {
+    "message": "Guardar"
+  },
+  "cancelButton": {
+    "message": "Cancelar"
+  },
+  "editButton": {
+    "message": "Editar"
+  },
+  "pinButton": {
+    "message": "Fixar"
+  },
+  "unpinButton": {
+    "message": "Desafixar"
+  },
+  "removeButton": {
+    "message": "Remover"
+  },
+  "createFolderButton": {
+    "message": "Criar pasta aqui"
+  },
+  "newFolderName": {
+    "message": "Nova pasta"
+  },
+  "addCurrentSiteButton": {
+    "message": "Adicionar separador atual aqui"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Adicionar separador à pasta"
+  },
+  "addAllTabsButton": {
+    "message": "Adicionar separadores ativos aqui"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Adicionar separadores ativos à pasta"
+  },
+  "confirmRemoval": {
+    "message": "Tem a certeza?"
+  },
+  "moveButton": {
+    "message": "Mover para a pasta"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Pesquisar em pastas..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "Nenhuma pasta encontrada."
+  },
+  "moveBtnText": {
+    "message": "Mover"
+  },
+  "upFolderButton": {
+    "message": "Subir nível da pasta"
+  },
+  "addBookmark": {
+    "message": "Adicionar marcador"
+  },
+  "newFolderTitle": {
+    "message": "Criar Nova Pasta"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Nome da pasta"
+  },
+  "createFolderModalButton": {
+    "message": "Criar"
+  },
+  "editTitle": {
+    "message": "Editar"
+  },
+  "editTitlePlaceholder": {
+    "message": "Título"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Abrir Tudo"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Deseja abrir <b>$2</b> marcadores na pasta <b>$1</b>?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Sim"
+  },
+  "copyLinkButton": {
+    "message": "Copiar hiperligação"
+  },
+  "openInCurrentTab": {
+    "message": "Abrir no separador atual"
+  },
+  "openInNewTab": {
+    "message": "Abrir num novo separador"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Pesquisar..."
+  },
+  "trashIsEmpty": {
+    "message": "A reciclagem está vazia"
+  },
+  "trashNoResults": {
+    "message": "Nenhum resultado encontrado"
+  },
+  "trashRestoreButton": {
+    "message": "Restaurar"
+  },
+  "restoreAllTrashButton": {
+    "message": "Restaurar tudo"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Tem a certeza de que deseja restaurar todos os marcadores da reciclagem?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Sim"
+  },
+  "trashDeletePermanently": {
+    "message": "Eliminar permanentemente"
+  },
+  "trashConfirmDelete": {
+    "message": "Tem a certeza?"
+  },
+  "emptyTrashTitle": {
+    "message": "Tem a certeza de que deseja eliminar todos os marcadores na reciclagem? Esta ação não pode ser desfeita!"
+  },
+  "emptyTrashButton": {
+    "message": "Sim"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Modo de eliminação"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Reciclagem"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Eliminar"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Pasta de reciclagem"
+  },
+  "settingBookmarksLabel": {
+    "message": "Marcadores"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Estilo da pasta"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Pasta"
+  },
+  "settingFolderStyleStack": {
+    "message": "Empilhado"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Contador da pasta"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Sim"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Não"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "Item recém-criado"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Adicionar ao início"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Adicionar ao fim"
+  },
+  "settingViewLabel": {
+    "message": "Marcadores"
+  },
+  "settingViewList": {
+    "message": "Lista"
+  },
+  "settingViewGrid": {
+    "message": "Grelha"
+  },
+  "folderBadgeText": {
+    "message": "Exibe o número total de marcadores dentro das pastas."
+  },
+  "folderStyleText": {
+    "message": "Esta definição aplica-se apenas à vista em grelha."
+  },
+  "deleteModeText": {
+    "message": "Quando a reciclagem está ativada, os marcadores eliminados são movidos para a mesma e removidos definitivamente após o período especificado."
+  },
+  "trashDaysLeft": {
+    "message": "d"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Eliminação automática após"
+  },
+  "trashExpiry3Days": {
+    "message": "3 dias"
+  },
+  "trashExpiry7Days": {
+    "message": "7 dias"
+  },
+  "trashExpiry1Month": {
+    "message": "1 mês"
+  },
+  "settingImportExportLabel": {
+    "message": "Gestão de dados"
+  },
+  "exportButton": {
+    "message": "Exportar"
+  },
+  "importButton": {
+    "message": "Importar"
+  },
+  "exportOptionsTitle": {
+    "message": "Exportar"
+  },
+  "importOptionsTitle": {
+    "message": "Importar"
+  },
+  "exportOptionsDescription": {
+    "message": "Escolha o que pretende exportar."
+  },
+  "importOptionsDescription": {
+    "message": "Escolha o que pretende importar."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Definições"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Marcadores"
+  },
+  "importContinueButton": {
+    "message": "Continuar"
+  },
+  "importError": {
+    "message": "Falha na importação. O ficheiro pode ser inválido ou estar corrompido."
+  },
+  "importConfirmMessage": {
+    "message": "Isto irá substituir os seus marcadores, definições e dados da reciclagem. Tem a certeza?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Isto irá substituir os seus marcadores e os dados da reciclagem. Tem a certeza?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Isto irá substituir as suas definições. Tem a certeza?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Isto irá substituir os seus marcadores. Tem a certeza?"
+  },
+  "importConfirmTitle": {
+    "message": "Confirmar Importação"
+  },
+  "importConfirmYes": {
+    "message": "Sim"
+  },
+  "viewToggleLabel": {
+    "message": "Alternar vista"
+  },
+  "contextMenuLabel": {
+    "message": "Opções"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Selecionar"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Selecionar"
+  },
+  "bulkOpenSelected": {
+    "message": "Abrir selecionados ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Mover para pasta"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Criar pasta da seleção"
+  },
+  "bulkDelete": {
+    "message": "Eliminar selecionados"
+  },
+  "bulkConfirmDelete": {
+    "message": "Tem a certeza?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Restaurar selecionados"
+  },
+  "bulkDeletePermanently": {
+    "message": "Eliminar permanentemente"
+  },
+  "selectionCount": {
+    "message": "$1 selecionado(s)"
+  },
+  "settingRootFolderLabel": {
+    "message": "Pasta raiz"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Pasta sem nome"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Verificar antes de adicionar"
+  },
+  "checkBeforeAddText": {
+    "message": "Quando ativado, os marcadores com o mesmo URL já presentes na localização de destino serão ignorados."
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-arrastar para mover"
+  },
+  "ctrlDragMoveText": {
+    "message": "Quando ativado, mantenha Ctrl premido ao arrastar um marcador ou uma pasta e largue-o diretamente noutra pasta para o mover."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Pasta principal"
+  },
+  "settingShowUpButtonText": {
+    "message": "Apresenta um botão para navegar para a pasta principal."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Navegação estrutural"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Apresenta o caminho da pasta para que possa aceder rapidamente a qualquer pasta principal."
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Manter caminho"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Continua a mostrar o caminho da última pasta visitada mesmo depois de voltar ao ecrã principal."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Botão de voltar ao topo"
+  },
+  "settingShowScrollTopText": {
+    "message": "Mostra um botão flutuante para voltar rapidamente ao topo da lista."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Ícone da extensão"
+  },
+  "settingIconColorful": {
+    "message": "Colorido"
+  },
+  "settingIconBlack": {
+    "message": "Preto"
+  },
+  "settingIconWhite": {
+    "message": "Branco"
+  },
+  "settingIconGray": {
+    "message": "Cinzento"
+  },
+  "settingIconCustom": {
+    "message": "Personalizado"
+  },
+  "settingIconChooseFile": {
+    "message": "Escolher ficheiro"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Pré-visualização"
+  },
+  "settingIconRemove": {
+    "message": "Remover"
+  },
+  "settingIconCustomHint": {
+    "message": "Aceita PNG, JPG, SVG, WebP. A imagem será cortada automaticamente."
+  },
+  "settingIconInvalidFile": {
+    "message": "Selecione um ficheiro de imagem válido (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Navegador"
+  },
+  "settingThemeLight": {
+    "message": "Claro"
+  },
+  "settingThemeDark": {
+    "message": "Escuro"
+  },
+  "settingThemeBlack": {
+    "message": "Preto"
+  },
+  "settingThemeCustom": {
+    "message": "Personalizado"
+  },
+  "settingThemeBgColor": {
+    "message": "Fundo"
+  },
+  "settingThemeTextColor": {
+    "message": "Texto"
+  },
+  "settingThemeAccentColor": {
+    "message": "Destaque"
+  },
+  "settingThemeBorderColor": {
+    "message": "Borda"
+  },
+  "settingThemeCardColor": {
+    "message": "Cartão"
+  },
+  "settingFontLabel": {
+    "message": "Tipo de letra"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "Personalizado"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "ex.: Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "Escreva o nome de um tipo de letra do Google Fonts, como Roboto ou Poppins."
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Fornecedor de favicon"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Navegador"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Pesquisar na pasta"
+  },
+  "searchInFolderText": {
+    "message": "Quando ativado, a pesquisa abrange apenas a pasta atual e as suas subpastas."
+  },
+  "settingAboutLabel": {
+    "message": "Sobre"
+  },
+  "aboutWebsiteButton": {
+    "message": "Website"
+  },
+  "aboutSourceButton": {
+    "message": "Código-fonte"
+  },
+  "aboutVersion": {
+    "message": "Versão"
+  },
+  "settingContextMenuLabel": {
+    "message": "Menu de contexto"
+  },
+  "contextMenuItemsText": {
+    "message": "Pode reordenar arrastando e alternar a visibilidade clicando."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Ações rápidas"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Quando ativado, as últimas três opções ativas tornam-se botões de ação."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Pesquisar..."
+  },
+  "settingsNoResults": {
+    "message": "Nenhum resultado encontrado"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Colunas da grelha"
+  },
+  "settingGridColumns2": {
+    "message": "2 Colunas"
+  },
+  "settingGridColumns3": {
+    "message": "3 Colunas"
+  },
+  "settingGridColumns4": {
+    "message": "4 Colunas"
+  },
+  "settingGridWidthLabel": {
+    "message": "Largura da grelha"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Mostrar títulos"
+  },
+  "showGridTitlesText": {
+    "message": "Mostra ou oculta os títulos abaixo dos marcadores na vista de grelha."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "O Markleaf é um gestor de marcadores gratuito e de código aberto, focado na velocidade e na simplicidade. O seu código-fonte é público, para que qualquer pessoa possa analisá-lo, sugerir melhorias ou contribuir com novas funcionalidades."
+  },
+  "settingScrollbarLabel": {
+    "message": "Barra de deslocamento"
+  },
+  "scrollbarText": {
+    "message": "Quando desativada, a barra de deslocamento fica oculta em toda a extensão."
+  },
+  "settingIconPickerIntro": {
+    "message": "No Firefox, ao abrir o seletor de ficheiros a partir do popup da extensão, o popup fecha-se automaticamente. Apesar de este erro já ser reportado pelos desenvolvedores há bastante tempo, não foi tomada nenhuma medida concreta para o corrigir. Por isso, tive de te redirecionar para esta página para poderes escolher o teu ícone."
+  },
+  "settingIconProcessing": {
+    "message": "A processar..."
+  },
+  "settingIconProcessFailed": {
+    "message": "Não foi possível processar a imagem. Tenta outro ficheiro."
+  },
+  "filePickerImportIntro": {
+    "message": "No Firefox, quando o seletor de ficheiros é aberto a partir do popup da extensão, o popup fecha automaticamente. Embora este erro seja reportado pelos programadores há muito tempo, não foram tomadas medidas reais para o corrigir. Por isso, tive de te redirecionar para esta página para que possas escolher o ficheiro a importar."
+  },
+  "filePickerImportReading": {
+    "message": "A ler o ficheiro..."
+  },
+  "filePickerImportFailed": {
+    "message": "Não foi possível ler o ficheiro. Tenta outro ficheiro."
+  }
+}

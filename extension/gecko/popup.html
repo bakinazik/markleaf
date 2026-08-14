@@ -1,0 +1,2620 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Markleaf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    :root {
+      --accent: #00b017;
+      --background-color: #fff;
+      --text-color: #111;
+      --primary-button-background: #ededf2;
+      --primary-button-text: #111;
+      --secondary-button-background: #dddde2;
+      --secondary-button-text: #111;
+      --link-background: #ededf2;
+      --link-color: #111;
+      --box-shadow: 0 4px 25px rgb(179 179 179 / 35%);
+      --hover-color-edit: #757575;
+      --hover-color-remove: #ff5c5c;
+      --border-color: #ddd;
+      --form-background: #eee;
+      --input-background: transparent;
+      --input-border-color: #ddd;
+      --input-text-color: #111;
+      --placeholder-color: #aaa;
+      --scrollbar-width: 0px;
+      --context-menu-background: #ededf2;
+      --context-menu-item-hover: #f0f0f0;
+      --font-family: sans-serif;
+      --padding-small: 9px 12px;
+      --padding-medium: 10px;
+      --border-radius: 10px;
+      --gap-small: 10px;
+      --gap-medium: 15px;
+      --icon-size-button: 30px;
+      --card-bg: #f0f0f5;
+      --card-hover-bg: #e4e4ec;
+      --icon-chip-bg: #cdcdd2;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --background-color: #222;
+            --text-color: #ffffff;
+            --primary-button-background: #333;
+            --primary-button-text: #ccc;
+            --secondary-button-background: #3f3f3f;
+            --secondary-button-text: #ccc;
+            --link-background: #333;
+            --link-color: #ccc;
+            --border-color: #444;
+            --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+            --form-background: #333;
+            --input-background: transparent;
+            --input-border-color: #444;
+            --input-text-color: #fff;
+            --placeholder-color: #aaa;
+            --context-menu-background: #333;
+            --context-menu-item-hover: #444;
+            --card-bg: #2e2e2e;
+            --card-hover-bg: #383838;
+            --icon-chip-bg: #444;
+        }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      outline: none;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+      font-size: .90rem;
+      font-family: inherit;
+    }
+
+	*:not(input):not(textarea) {
+	  -webkit-user-select: none;
+	  user-select: none;
+	}
+
+	::selection {
+	  background: var(--accent);
+	  color: var(--text-color);
+	}
+
+    body {
+        width: 300px;
+        font-family: var(--font-family);
+        display: flex;
+        flex-direction: column;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        height: 600px;
+        overflow: hidden;
+        position: relative;
+        font-size: 1rem;
+    }
+
+	body::before {
+	    content: '';
+	    position: absolute;
+	    inset: 0;
+	    background:
+	        radial-gradient(
+	            color-mix(in srgb, var(--accent) 6%, transparent) 0%,
+	            color-mix(in srgb, var(--accent) 4%, transparent) 38%,
+	            transparent 75%
+	        );
+	    transform: scale(1.3);
+	    filter: blur(40px);
+	    pointer-events: none;
+	    margin: auto;
+	    max-height: 75%;
+	    max-width: 75%;
+	    z-index: 5;
+	}
+
+    ul, #settingsPanel {
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-color) transparent;
+    }
+
+    ul::-webkit-scrollbar,
+    #settingsPanel::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ul::-webkit-scrollbar-thumb,
+    #settingsPanel::-webkit-scrollbar-thumb {
+        background-color: rgba(128,128,128, 0.2);
+        border-radius: 10px;
+        transition: background-color 0.3s;
+    }
+
+    ul::-webkit-scrollbar-thumb:hover,
+    #settingsPanel::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(128,128,128, 0.4);
+    }
+
+    ul::-webkit-scrollbar-track,
+    #settingsPanel::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    html.scrollbar-hidden ul,
+    html.scrollbar-hidden #settingsPanel,
+    html.scrollbar-hidden .modal,
+    html.scrollbar-hidden .modal-list {
+        scrollbar-width: none;
+    }
+
+    html.scrollbar-hidden ul::-webkit-scrollbar,
+    html.scrollbar-hidden #settingsPanel::-webkit-scrollbar,
+    html.scrollbar-hidden .modal::-webkit-scrollbar,
+    html.scrollbar-hidden .modal-list::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--gap-small);
+      align-items: center;
+      padding: 0 10px;
+    }
+
+    .nav {
+      display: flex;
+      gap: var(--gap-small);
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: sticky;
+        top: 0;
+        margin-bottom: 0;
+        z-index: 15;
+        background: var(--background-color);
+        padding: 10px 0px;
+    }
+
+	.search {
+	    display: flex;
+	    align-items: center;
+	    position: relative;
+	    width: 100%;
+	    border: 1px solid var(--border-color);
+	    border-radius: 10px;
+      padding-right: 5px;
+	}
+
+	#searchInput {
+	    background: var(--input-background);
+	    border: none;
+	    padding: var(--padding-small);
+	    border-radius: var(--border-radius);
+	    color: var(--input-text-color);
+	    display: block;
+	    width: 100%;
+	    padding-left: 40px;
+	    z-index: 2;
+	    font-size: 15px;
+	}
+
+    .search-svg {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 20px;
+      color: var(--link-color);
+    }
+
+    button {
+      padding: var(--padding-small);
+      border-radius: var(--border-radius);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      gap: var(--gap-small);
+      align-items: center;
+      transition: 0.2s all;
+    }
+
+    #addBookmark,
+    #createFolder,
+    #emptyTrashBtn,
+    #restoreAllTrashBtn{
+      background: var(--primary-button-background);
+      color: var(--primary-button-text);
+      transition: 0.2s background;
+      padding: var(--padding-small);
+    }
+
+    #addBookmark:hover,
+    #createFolder:hover,
+    #emptyTrashBtn:hover,
+    #restoreAllTrashBtn:hover{
+      background: var(--secondary-button-background);
+    }
+
+    #viewToggleBtn, #trashSelectBtn  {
+      flex-shrink: 0;
+      border: none;
+      background: transparent;
+      color: var(--secondary-button-text);
+      padding: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.15s all;
+      z-index: 2;
+    }
+
+    #viewToggleBtn:hover, #trashSelectBtn:hover  {
+      background: var(--border-color);
+      color: var(--input-text-color);
+    }
+
+    #viewToggleBtn.select-mode-on,
+    #trashSelectBtn.select-mode-on {
+      color: var(--accent);
+    }
+
+    .clear-search-btn {
+      flex-shrink: 0;
+      border: none;
+      background: transparent;
+      color: var(--secondary-button-text);
+      padding: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.15s all;
+      z-index: 2;
+    }
+
+    .clear-search-btn:hover {
+      background: var(--border-color);
+      color: var(--input-text-color);
+    }
+
+    .up-button {
+        display: none;
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--link-color);
+        transition: 0.2s all;
+        margin: 0 10px;
+    }
+
+    .up-button:hover {
+        background: var(--border-color);
+    }
+
+	.up-button:hover .shortcut {
+	    background: var(--background-color);
+	}
+
+    .breadcrumb-bar {
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        gap: 2px;
+        padding: 0 10px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        min-height: 20px;
+        scroll-behavior: smooth;
+    }
+
+    .breadcrumb-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .breadcrumb-bar.breadcrumb-persisted .breadcrumb-item:hover {
+        color: var(--text-color);
+    }
+
+    .breadcrumb-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        color: color-mix(in srgb, var(--text-color) 40%, transparent);
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        white-space: nowrap;
+        transition: color 0.15s;
+        flex-shrink: 0;
+    }
+
+    .breadcrumb-item span {
+        white-space: nowrap;
+    }
+
+    .breadcrumb-item:hover {
+        color: var(--text-color);
+    }
+
+    .breadcrumb-item.breadcrumb-drop-target {
+        background: var(--border-color);
+        color: var(--text-color);
+    }
+
+    .breadcrumb-item.active {
+        color: var(--text-color);
+        cursor: default;
+        pointer-events: none;
+    }
+
+    .breadcrumb-sep {
+        color: color-mix(in srgb, var(--text-color) 40%, transparent);
+        font-size: 11px;
+        flex-shrink: 0;
+        padding: 0 1px;
+        line-height: 1;
+        user-select: none;
+        -moz-user-select: none;
+    }
+
+	.shortcut {
+	    border: 1px solid var(--border-color);
+	    padding: 2px 10px;
+	    margin-left: auto;
+	    border-radius: 7px;
+	    font-family: monospace;
+	    display: flex;
+	    align-items: center;
+	    gap: 5px;
+	    font-size: 12px;
+	}
+
+    select,
+    option {
+      border-radius: var(--border-radius);
+      padding: var(--padding-medium);
+      border-color: transparent;
+      width: 100%;
+    }
+
+    select {
+      padding-left: 40px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: var(--input-background);
+      border: 1px solid var(--input-border-color);
+      position: relative;
+      color: var(--input-text-color);
+    }
+
+    option {
+      background: var(--primary-button-background);
+      color: var(--primary-button-text);
+    }
+
+    .folder {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .folder svg {
+      position: absolute;
+      left: 10px;
+    }
+
+    ul {
+        list-style: none;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 100%;
+        margin: 0 10px 0;
+        border-radius: var(--border-radius);
+    }
+
+    li {
+      position: relative;
+    }
+
+    li a {
+        margin: 0;
+        padding: var(--padding-medium);
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        background: var(--link-background);
+        color: var(--link-color);
+        transition: 0.2s background;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    li:last-child > a {
+        border-bottom: none;
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+    }
+
+    .context-menu-item:last-of-type {
+    	border: none;
+    }
+
+    li a:hover {
+      background: var(--secondary-button-background);
+    }
+
+    li a img {
+      border-radius: 100%;
+    }
+
+    .item-icon {
+      display: flex;
+      align-items: center;
+    }
+
+    .bookmark-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+    }
+
+    .bookmark-title {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bookmark-title[contenteditable="true"] {
+      border: 1px solid var(--border-color);
+      padding: 2px 5px;
+      border-radius: 5px;
+    }
+
+    .bookmark-url {
+      font-size: 12px;
+      opacity: 0.7;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .empty-message {
+      text-align: center;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+    }
+
+    .bookmark-buttons {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        display: none;
+        background: var(--background-color);
+        border-radius: var(--border-radius);
+        color: var(--link-color);
+        z-index: 10;
+        height: 20px;
+        align-items: center;
+    }
+
+    a:has(.icon-tabler-folder) .bookmark-content{
+        margin-right: 45px;
+    }
+
+    li:hover .bookmark-buttons,
+    .bookmark-buttons.is-visible {
+      display: flex;
+    }
+
+    .menu-button {
+      width: var(--icon-size-button);
+      height: var(--icon-size-button);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      transition: 0.2s all;
+      color: var(--secondary-button-text);
+      padding: 5px;
+    }
+
+    .menu-button:hover {
+      opacity: 0.8;
+    }
+
+    .context-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 9999999;
+        display: none;
+        flex-direction: column;
+        border-radius: var(--border-radius);
+        padding: 0;
+        min-width: 225px;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+        animation: menuFadeIn 0.15s ease-out;
+        background: var(--background-color);
+    }
+
+    .context-menu.open-upwards {
+        top: auto;
+        bottom: 35px;
+        animation: menuFadeInUp 0.15s ease-out;
+    }
+
+    @keyframes menuFadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to   { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes menuFadeInUp {
+        from { opacity: 0; transform: translateY(5px) scale(0.95); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes menuFadeOut {
+        from { opacity: 1; transform: scale(1); }
+        to   { opacity: 0; transform: scale(0.95); }
+    }
+
+    @keyframes menuFadeOutUp {
+        from { opacity: 1; transform: translateY(0) scale(1); }
+        to   { opacity: 0; transform: translateY(5px) scale(0.95); }
+    }
+
+    .context-menu-item {
+        display: flex;
+        align-items: center;
+        gap: var(--gap-small);
+        padding: 8px 12px;
+        cursor: pointer;
+        color: var(--text-color);
+        background: transparent;
+        text-align: left;
+        margin: 0;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+    }
+
+    .context-menu .context-menu-item:last-child{
+        border-bottom: none;
+    }
+
+    .context-menu-item:hover {
+      background: var(--context-menu-item-hover);
+    }
+
+    .pin-indicator {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        width: 11px;
+        height: 11px;
+        color: var(--accent);
+        pointer-events: none;
+        z-index: 3;
+        display: flex;
+    }
+
+    .pin-indicator svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    li.folder-item .pin-indicator {
+        right: 44px;
+    }
+
+    ul.grid-mode li .pin-indicator {
+        top: 6px;
+        left: 6px;
+        right: auto;
+        transform: none;
+    }
+
+    .folder-count {
+        font-size: 12px;
+        color: var(--link-color);
+        background: var(--background-color);
+        padding: 3px 5px;
+        border-radius: 15px;
+        position: absolute;
+        min-width: 30px;
+        text-align: center;
+        max-width: 30px;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+    }
+
+	.quick-actions {
+	    display: flex;
+	    gap: 5px;
+	    overflow: hidden;
+	    padding: 10px;
+	    border-top: 1px solid var(--border-color);
+	}
+
+    .quick-action-btn {
+        flex: 1;
+        padding: 5px;
+        background: var(--context-menu-background);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+        color: var(--text-color);
+    }
+
+    .quick-action-btn:hover {
+      background: var(--secondary-button-background) !important;
+    }
+
+    .quick-action-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .edit-form {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: var(--padding-medium);
+      border-radius: var(--border-radius);
+      background: var(--form-background);
+      width: 100%;
+      z-index: 10;
+    }
+
+    .edit-form input {
+      border-radius: var(--border-radius);
+      padding: 8px 10px;
+      background: var(--input-background);
+      border: 1px solid var(--input-border-color);
+      color: var(--input-text-color);
+    }
+
+    .edit-form button {
+      height: auto;
+      padding: 7px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      transition: 0.2s all;
+      width: 100%;
+      margin: 8px 0 0;
+      background: var(--secondary-button-background);
+      color: var(--primary-button-text);
+    }
+
+    .edit-form button:hover {
+      opacity: 0.8;
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(25 25 25 / 60%);
+      background-color: color-mix(in srgb, var(--background-color) 20%, rgba(0, 0, 0, 0.65) 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #openAllMessage {
+        font-size: 14px;
+        margin: 5px 0 0;
+    }
+
+    .modal-content {
+      width: 80%;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: #eee;
+      transform: scale(0.7);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #closeCreateFolderModal, #closeMoveModal, #cancelOpenAllBtn, #cancelEmptyTrashBtn, #cancelImportBtn, #cancelRestoreAllTrashBtn, #cancelExportOptionsBtn, #cancelImportOptionsBtn {
+      background: transparent;
+      color: #eee;
+      border: 1px solid var(--border-color);
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      width: 100%;
+    }
+
+    .close-btn {
+      color: var(--text-color);
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      background: transparent;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+    }
+
+    .modal-list {
+      list-style-type: none;
+      max-height: 230px;
+      overflow-y: auto;
+    }
+
+    .modal-list li {
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--primary-button-background);
+        color: var(--text-color);
+        border: 1px solid transparent;
+        border-radius: 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .modal-list li:last-child {
+        border-bottom: none;
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+    }
+
+    li.empty-message {
+      background: transparent;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #eee;
+    }
+
+    li.empty-message:hover {
+      background: transparent !important;
+    }
+
+    .modal-list li:hover {
+      background-color: var(--secondary-button-background);
+    }
+
+    .modal-list li.selected {
+        background-color: var(--context-menu-item-hover);
+        border: 1px solid var(--context-menu-item-hover);
+        color: var(--text-color);
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+	#confirmEmptyTrashBtn, #confirmImportBtn, #confirmRestoreAllTrashBtn, #confirmExportOptionsBtn, #confirmImportOptionsBtn {
+	    width: 100%;
+	    text-align: center;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    background: var(--card-bg);
+	    color: var(--input-text-color);
+	}
+
+	#confirmExportOptionsBtn:hover, #confirmImportOptionsBtn:hover {
+	    opacity: 0.8;
+	}
+
+    #folderList {
+        padding-right: 5px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #folderSearchInput {
+        background: var(--input-background);
+        border: 1px solid var(--input-border-color);
+        padding: var(--padding-small);
+        border-radius: var(--border-radius);
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        z-index: 2;
+        font-size: 15px;
+        color: #ccc;
+    }
+
+    #folderSearchInput::placeholder {
+      color: #ccc;
+    }
+
+    #newFolderNameInput, #editTitleInput, #editUrlInput {
+        background: var(--input-background);
+        border: 1px solid var(--input-border-color);
+        padding: var(--padding-small);
+        border-radius: var(--border-radius);
+        color: #eee;
+        display: block;
+        width: 100%;
+        z-index: 2;
+        font-size: 15px;
+    }
+
+    #moveBtn:disabled, #createFolderInModalBtn:disabled, #saveEditBtn:disabled, #confirmExportOptionsBtn:disabled, #confirmImportOptionsBtn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .modal-close-btn, #moveBtn, #createFolderInModalBtn, #saveEditBtn, #cancelEditBtn {
+        border-radius: var(--border-radius);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        gap: var(--gap-small);
+        align-items: center;
+        background: var(--primary-button-background);
+        color: var(--primary-button-text);
+        transition: 0.2s background;
+        padding: var(--padding-small);
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-close-btn:hover, #closeCreateFolderModal:hover, #moveBtn:hover, #cancelOpenAllBtn:hover, #closeMoveModal:hover, #createFolderInModalBtn:hover, #saveEditBtn:hover, #cancelEditBtn:hover, #cancelEmptyTrashBtn:hover, #cancelImportBtn:hover, #cancelExportOptionsBtn:hover, #cancelImportOptionsBtn:hover {
+      background: var(--secondary-button-background);
+      color: var(--input-text-color);
+    }
+
+    #cancelEditBtn {
+        background: transparent;
+        color: #eee;
+        border: 1px solid var(--border-color);
+    }
+
+    #cancelEditBtn:hover {
+        background: var(--border-color);
+    }
+
+    a[href="#"] {
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    li.folder-item a {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    li.folder-item.folder-drop-target .item-icon {
+      color: var(--accent);
+    }
+
+    li.folder-item.folder-drop-target .bookmark-title {
+      color: var(--accent);
+    }
+
+    ul.grid-mode li.folder-item.folder-drop-target .grid-icon-wrap svg {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    ul.grid-mode li.folder-item.folder-drop-target .grid-label {
+      color: var(--accent);
+    }
+
+    .scroll-to-top {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translate(-50%, 100px);
+        width: 40px;
+        height: 40px;
+        background: var(--bg-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 100;
+        pointer-events: none;
+        border: 1px solid var(--border-color);
+        background: var(--background-color);
+    }
+
+    .scroll-to-top.active {
+        transform: translate(-50%, 0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .scroll-to-top.hiding {
+        transform: translate(-50%, 100px);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+	ul.grid-mode {
+		display: grid;
+		--grid-cols: 3;
+		grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+		gap: 8px;
+		align-content: start;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+    ul.grid-mode li.bookmark-item,
+    ul.grid-mode li.folder-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: visible;
+    }
+
+    ul.grid-mode li > a {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      padding: 12px 6px 10px !important;
+      border-bottom: none !important;
+      border-radius: 14px !important;
+      gap: 6px !important;
+      min-height: 82px !important;
+      text-align: center !important;
+      transition: background 0.18s, transform 0.15s !important;
+    }
+
+    ul.grid-mode li > a:hover {
+      background: var(--secondary-button-background) !important;
+    }
+
+    ul.grid-mode li .bookmark-url,
+    ul.grid-mode li .folder-count {
+      display: none !important;
+    }
+
+    li .grid-icon-wrap,
+    li .grid-label {
+      display: none !important;
+    }
+
+    ul.grid-mode li .item-icon,
+    ul.grid-mode li .bookmark-content {
+      display: none !important;
+    }
+
+    ul.grid-mode li .grid-icon-wrap,
+    ul.grid-mode li .grid-label {
+      display: flex !important;
+    }
+
+    ul.grid-mode li .grid-label {
+      display: block !important;
+    }
+
+    ul.grid-mode.hide-grid-titles li .grid-label {
+      display: none !important;
+    }
+
+    ul.grid-mode.hide-grid-titles li > a {
+      min-height: 0 !important;
+      gap: 0 !important;
+    }
+
+	ul.grid-mode li .grid-icon-wrap {
+	    width: 40px;
+	    height: 40px;
+	    border-radius: 12px;
+	    background: var(--icon-chip-bg, var(--border-color));
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    flex-shrink: 0;
+	}
+
+	ul.grid-mode li .grid-folder-collage {
+		display: grid !important;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		gap: 2px;
+		padding: 5px;
+	}
+
+    ul.grid-mode li .collage-cell {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--icon-chip-bg, var(--border-color));
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    ul.grid-mode li .collage-cell img {
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 0 !important;
+      object-fit: cover;
+    }
+
+    ul.grid-mode li .grid-icon-wrap img {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+    }
+
+    ul.grid-mode li .grid-icon-wrap svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.7;
+    }
+
+    ul.grid-mode li .grid-icon-wrap .grid-folder-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    ul.grid-mode li .grid-icon-wrap {
+      position: relative;
+    }
+
+	ul.grid-mode li .grid-folder-badge {
+	    position: absolute;
+	    top: -5px;
+	    right: -5px;
+	    min-width: 16px;
+	    height: 16px;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    line-height: 1;
+	    font-size: 12px;
+	    color: var(--link-color);
+	    background: var(--background-color);
+	    padding: 3px 5px;
+	    border-radius: 15px;
+	}
+
+	ul.grid-mode li .grid-label {
+	    font-size: 11px;
+	    color: var(--text-color);
+	    white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    width: 100%;
+	    min-width: 0;
+	    text-align: center;
+	    line-height: 1.3;
+	    padding: 0 4px;
+	}
+
+    ul.grid-mode li .bookmark-buttons {
+      position: absolute !important;
+      top: 0px !important;
+      left: 0px !important;
+      right: auto !important;
+      transform: none !important;
+      height: 22px !important;
+      width: 22px !important;
+      background: var(--background-color) !important;
+      border-radius: 50% !important;
+      border: 1.5px solid var(--border-color) !important;
+      display: none !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    ul.grid-mode li:hover .bookmark-buttons,
+    ul.grid-mode li .bookmark-buttons.is-visible {
+      display: flex !important;
+    }
+
+    ul.grid-mode li .menu-button {
+      width: 20px !important;
+      height: 20px !important;
+      padding: 2px !important;
+    }
+
+    ul.grid-mode .empty-message {
+      grid-column: 1 / -1;
+    }
+
+    #contextMenuOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999998;
+    }
+    #contextMenuOverlay.active {
+      display: block;
+    }
+
+    li.keyboard-selected > a {
+        background: var(--secondary-button-background) !important;
+    }
+
+    html.theme-force-dark {
+      --background-color: #222;
+      --text-color: #ffffff;
+      --primary-button-background: #333;
+      --primary-button-text: #ccc;
+      --secondary-button-background: #3f3f3f;
+      --secondary-button-text: #ccc;
+      --link-background: #333;
+      --link-color: #ccc;
+      --border-color: #444;
+      --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+      --form-background: #333;
+      --input-background: transparent;
+      --input-border-color: #444;
+      --input-text-color: #fff;
+      --placeholder-color: #aaa;
+      --context-menu-background: #333;
+      --context-menu-item-hover: #444;
+      --card-bg: #2e2e2e;
+      --card-hover-bg: #383838;
+      --icon-chip-bg: #444;
+      color-scheme: dark;
+    }
+
+    html.theme-force-light {
+      --background-color: #fff;
+      --text-color: #111;
+      --primary-button-background: #ededf2;
+      --primary-button-text: #111;
+      --secondary-button-background: #dddde2;
+      --secondary-button-text: #111;
+      --link-background: #ededf2;
+      --link-color: #111;
+      --border-color: #ddd;
+      --box-shadow: 0 4px 25px rgb(179 179 179 / 35%);
+      --form-background: #eee;
+      --input-background: transparent;
+      --input-border-color: #ddd;
+      --input-text-color: #111;
+      --placeholder-color: #aaa;
+      --context-menu-background: #ededf2;
+      --context-menu-item-hover: #f0f0f0;
+      --card-bg: #f0f0f5;
+      --card-hover-bg: #e4e4ec;
+      --icon-chip-bg: #cdcdd2;
+      color-scheme: light;
+    }
+
+    html.theme-force-black {
+      --background-color: #000000;
+      --text-color: #ddd;
+      --accent: #00b017;
+      --border-color: #333;
+      --card-bg: #222;
+      --card-hover-bg: #333;
+      --primary-button-background: var(--card-bg);
+      --primary-button-text: var(--text-color);
+      --secondary-button-background: #444444;
+      --secondary-button-text: var(--text-color);
+      --link-background: var(--card-bg);
+      --link-color: var(--text-color);
+      --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+      --form-background: var(--card-bg);
+      --input-background: transparent;
+      --input-border-color: var(--border-color);
+      --input-text-color: var(--text-color);
+      --placeholder-color: #888;
+      --context-menu-background: var(--card-bg);
+      --context-menu-item-hover: var(--card-hover-bg);
+      --icon-chip-bg: var(--border-color);
+      color-scheme: dark;
+    }
+
+    .settings-sublabel {
+      font-size: 12px;
+      color: var(--text-color);
+      opacity: 0.75;
+    }
+
+    .custom-theme-swatches {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    .theme-swatch-btn {
+      flex: 1 1 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 8px;
+      min-width: 0;
+    }
+
+    .theme-swatch {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 30px;
+      border-radius: 7px;
+      border: 1px solid var(--border-color);
+      background: var(--swatch-color, transparent);
+    }
+
+    .theme-swatch-btn.active .theme-swatch::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      box-shadow: 0 0 0 1.5px rgba(0,0,0,.45);
+    }
+
+    .color-picker-popover {
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 12px;
+      background: var(--form-background);
+      border: 1px solid var(--border-color);
+    }
+
+    .cp-active-label {
+      font-size: 11px;
+      color: var(--text-color);
+      opacity: .75;
+    }
+
+    .cp-sv-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      line-height: 0;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    .cp-sv-wrap canvas {
+      display: block;
+      width: 100%;
+      height: 120px;
+    }
+
+    .cp-sv-thumb {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      margin-left: -7px;
+      margin-top: -7px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.4);
+      pointer-events: none;
+    }
+
+    .cp-hue-wrap {
+      position: relative;
+      width: 100%;
+      height: 14px;
+      border-radius: 7px;
+      background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+      cursor: pointer;
+      touch-action: none;
+    }
+
+    .cp-hue-thumb {
+      position: absolute;
+      top: -2px;
+      width: 18px;
+      height: 18px;
+      margin-left: -9px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.4);
+      pointer-events: none;
+    }
+
+    .cp-hex-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cp-swatch-preview {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--swatch-color, transparent);
+      flex-shrink: 0;
+    }
+
+    .cp-hex-prefix {
+      color: var(--text-color);
+      opacity: .6;
+      font-size: 13px;
+    }
+
+    #cpHexInput {
+      flex: 1;
+      min-width: 0;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--input-background);
+      color: var(--input-text-color);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    #trashPanel {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+    }
+    #trashPanel.active {
+      display: flex;
+    }
+    #trashList {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin: 0 10px 10px;
+      border-radius: var(--border-radius);
+    }
+    .trash-item {
+      position: relative;
+    }
+    .trash-item a {
+      margin: 0;
+      padding: var(--padding-medium);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: var(--link-background);
+      color: var(--link-color);
+      border-bottom: 1px solid var(--border-color);
+      text-decoration: none;
+    }
+    .trash-item:last-child > a {
+      border-bottom: none;
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+    .trash-item:first-child > a {
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
+    .trash-days {
+      font-size: 11px;
+      opacity: 0.55;
+      white-space: nowrap;
+      margin-left: auto;
+      padding-left: 6px;
+      flex-shrink: 0;
+    }
+    .trash-header {
+      display: flex;
+      gap: var(--gap-small);
+      padding: 10px 10px 10px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+    .trash-header .search {
+      flex: 1;
+    }
+    .trash-header #trashSearchInput {
+      background: var(--input-background);
+      border: none;
+      padding: var(--padding-small);
+      border-radius: var(--border-radius);
+      color: var(--input-text-color);
+      display: block;
+      width: 100%;
+      padding-left: 40px;
+      font-size: 15px;
+    }
+
+	.bottom-nav {
+	    display: flex;
+	    background: var(--background-color);
+	    flex-shrink: 0;
+	    padding: 10px;
+	    gap: 10px;
+	}
+
+	.bottom-nav-btn {
+	    flex: 1;
+	    flex-direction: row;
+	    gap: 4px;
+	    align-items: center;
+	    justify-content: center;
+	    padding: 10px 0;
+	    background: transparent;
+	    color: var(--link-color);
+	    font-size: 11px;
+	    transition: 0.2s all;
+	    border-radius: 10px;
+	    border: 1px solid var(--card-bg);
+	}
+
+	.bottom-nav-btn:hover{
+		background: var(--card-hover-bg);
+	}
+
+    .bottom-nav-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+	.bottom-nav-btn.active {
+	    color: var(--text-color);
+	    background: var(--card-bg);
+	}
+
+	#settingsPanel {
+	    display: none;
+	    flex-direction: column;
+	    flex: 1;
+	    overflow-y: auto;
+	    padding: 0px 10px 10px 10px;
+	}
+
+    #settingsPanel.active {
+      display: flex;
+    }
+
+	.settings-row {
+	    display: flex;
+	    justify-content: space-between;
+	    gap: 10px;
+	    padding: 10px 12px;
+	    background: var(--card-bg);
+	    border-radius: var(--border-radius);
+	    flex-direction: column;
+	    margin-bottom: 8px;
+	}
+
+	.settings-row:last-child{
+		margin-bottom: 0;
+	}
+
+	.ie-toggle-row {
+		background: transparent;
+		border: 1px solid var(--border-color);
+		gap: 10px;
+	}
+
+	.ie-toggle-sep {
+		border: none;
+		border-top: 1px solid var(--border-color);
+		margin: 0;
+	}
+
+	.settings-header {
+	    display: flex;
+	    align-items: center;
+	    gap: var(--gap-small);
+	    padding: 10px 0px 4px 0;
+	    position: sticky;
+	    top: 0;
+	    z-index: 10;
+	    background: var(--background-color);
+	    padding-bottom: 10px;
+	}
+
+    #settingsBackBtn, .settings-icon-btn {
+      flex-shrink: 0;
+      background: var(--primary-button-background);
+      color: var(--primary-button-text);
+      padding: var(--padding-small);
+      border-radius: var(--border-radius);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s background;
+    }
+
+    #settingsBackBtn:hover, .settings-icon-btn:hover {
+      background: var(--secondary-button-background);
+    }
+
+    .settings-search {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding-right: 5px;
+    }
+
+    #settingsSearchInput {
+      background: var(--input-background);
+      border: none;
+      padding: var(--padding-small);
+      border-radius: var(--border-radius);
+      color: var(--input-text-color);
+      display: block;
+      width: 100%;
+      padding-left: 40px;
+      z-index: 2;
+      font-size: 15px;
+    }
+
+    #settingsSearchInput:focus {
+      outline: none;
+    }
+
+    .settings-search .search-svg {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 20px;
+      color: var(--link-color);
+    }
+
+    #clearSettingsSearchBtn {
+      flex-shrink: 0;
+      border: none;
+      background: transparent;
+      color: var(--secondary-button-text);
+      padding: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.15s all;
+      z-index: 2;
+    }
+
+    #clearSettingsSearchBtn:hover {
+      background: var(--border-color);
+      color: var(--input-text-color);
+    }
+
+    .settings-row.settings-hidden {
+      display: none;
+    }
+
+	.trash-expiry-row {
+	    display: flex;
+	    justify-content: space-between;
+	    padding-top: 8px;
+	    border-top: 1px solid var(--border-color);
+	    margin-top: 2px;
+	    flex-direction: column;
+	    gap: 10px;
+	}
+
+	.trash-expiry-row.hidden {
+	    display: none;
+	}
+
+	.settings-flex {
+	    display: flex;
+	    flex-direction: row;
+	    align-items: center;
+	    width: 100%;
+	    justify-content: space-between;
+	}
+
+	.settings-label {
+	    font-size: 13px;
+	    color: var(--text-color);
+	    font-weight: 400;
+	    position: relative;
+	    max-width: fit-content;
+	}
+
+	.context-menu-item[data-state="initial"]:hover, .context-menu-item[data-state="confirm"] {
+	  color: var(--hover-color-remove);
+	}
+
+    .settings-sublabel {
+      font-size: 12px;
+      color: var(--text-color);
+    }
+
+	.settings-select {
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		color: var(--text-color);
+		font-size: 12px;
+		padding: 5px 8px;
+		cursor: pointer;
+		width: auto;
+		padding-left: 8px;
+		-webkit-appearance: auto;
+		-moz-appearance: auto;
+		appearance: auto;
+    width: 100%;
+	}
+
+  #customFontInput {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--input-background);
+    color: var(--input-text-color);
+    font-size: 12px;
+    padding: 5px 8px;
+    width: 100%;
+  }
+	.theme-btn-group {
+	    display: flex;
+	    gap: 3px;
+	    background: var(--background-color);
+	    border-radius: 9px;
+	    padding: 3px;
+	    flex-shrink: 0;
+	    width: 100%;
+	}
+
+	.theme-btn {
+	    padding: 5px 11px;
+	    border-radius: 6px;
+	    font-size: 12px;
+	    background: transparent;
+	    transition: 0.18s all;
+	    border: none;
+	    cursor: pointer;
+	    font-family: var(--font-family);
+	    white-space: nowrap;
+	    width: 100%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    color: var(--input-text-color);
+	}
+
+    .theme-btn.active {
+      background: var(--primary-button-background);
+      color: var(--text-color);
+    }
+
+    .theme-btn:hover:not(.active) {
+      color: var(--text-color);
+      background: var(--primary-button-background)
+    }
+
+    .toggle-slider {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .toggle-slider input[type="checkbox"] {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .toggle-track {
+      width: 42px;
+      height: 24px;
+      background: var(--border-color);
+      border-radius: 12px;
+      position: relative;
+      transition: background 0.22s;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .toggle-track::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.22s cubic-bezier(.4,0,.2,1), background 0.22s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+      transform: translateY(-50%);
+    }
+
+    .toggle-slider input:checked + .toggle-track {
+      background: var(--accent);
+    }
+
+    .toggle-slider input:checked + .toggle-track::after {
+      transform: translateY(-50%) translateX(18px);
+    }
+
+	.data {
+	    background: transparent;
+	    padding: 0;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: space-between;
+	    gap: 10px;
+	}
+
+	.data-btn {
+	    width: 100%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: flex-start;
+	    color: var(--link-color);
+	    border: 1px solid var(--border-color);
+	    background: transparent;
+	    transition: 0.2s all;
+	}
+
+	.data-btn:hover {
+	    background: var(--border-color);
+	}
+
+	.about-version-bar {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    padding: 0;
+	    font-size: .8rem;
+	    color: var(--link-color);
+	}
+
+	.about-app-name a {
+	    color: var(--link-color);
+	    display: flex;
+	    gap: 5px;
+	    align-items: center;
+	}
+
+    .about-modal-content {
+        max-width: 320px;
+    }
+
+    .about-modal-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+
+    .about-modal-header img {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+
+    .about-modal-header h3 {
+        margin: 0;
+        font-size: 16px;
+        color: var(--text-color);
+    }
+
+    .about-modal-header .about-version-label {
+        font-size: .8rem;
+        color: var(--link-color);
+    }
+
+    .about-description {
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--text-color);
+        opacity: 0.85;
+        margin: 10px 0;
+    }
+
+    .sel-check {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      background: var(--background-color);
+      z-index: 6;
+      pointer-events: none;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    #bookmarksList.selection-mode .sel-check,
+    #trashList.selection-mode .sel-check {
+      display: flex;
+    }
+
+    #bookmarksList.selection-mode .bookmark-buttons,
+    #trashList.selection-mode .bookmark-buttons {
+      display: none !important;
+    }
+
+    #bookmarksList.selection-mode li > a,
+    #trashList.selection-mode .trash-item > a {
+      padding-left: 38px !important;
+      cursor: pointer !important;
+      user-select: none;
+      -moz-user-select: none;
+    }
+
+    li.selection-selected > a,
+    .trash-item.selection-selected > a {
+      background: var(--card-hover-bg) !important;
+    }
+
+    li.selection-selected .sel-check,
+    .trash-item.selection-selected .sel-check {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--background-color);
+    }
+
+	.quick-actions:not(:has(.quick-action-btn:not([style*="display: none"]))) {
+	  display: none;
+	}
+
+    ul.grid-mode.selection-mode .sel-check {
+      top: 5px;
+      left: 5px;
+      transform: none;
+      width: 16px;
+      height: 16px;
+    }
+
+	#bookmarksList.grid-mode.selection-mode li > a {
+	    padding-left: 6px !important;
+	}
+
+    .bulk-context-menu {
+      position: fixed;
+      z-index: 9999999;
+      display: none;
+      flex-direction: column;
+      border-radius: var(--border-radius);
+      min-width: 230px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      animation: menuFadeIn 0.15s ease-out;
+      background: var(--background-color);
+    }
+
+    @keyframes itemBubbleIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .bulk-context-menu .selection-count-label {
+      padding: 7px 12px 5px;
+      font-size: 11px;
+      opacity: 0.55;
+      border-bottom: 1px solid var(--border-color);
+      pointer-events: none;
+      user-select: none;
+      -moz-user-select: none;
+    }
+
+    .ctx-menu-sort-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+	.ctx-menu-sort-item {
+	    display: flex;
+	    align-items: center;
+	    gap: 8px;
+	    border-radius: 6px;
+	    background: var(--border-color);
+	    user-select: none;
+	    -moz-user-select: none;
+	    font-size: 12px;
+	    cursor: pointer;
+	    padding-right: 10px;
+	    transition: 0.2s background;
+	}
+	.ctx-menu-sort-item:hover{
+		background: var(--secondary-button-background);
+	}
+    .ctx-item-label {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ctx-item-toggle {
+      position: relative;
+      width: 28px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .ctx-item-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+	.ctx-drag-handle {
+	    cursor: grab;
+	    width: 35px;
+	    height: 30px;
+	    padding: 5px;
+	    border-right: 2px solid var(--card-bg);
+	}
+    .ctx-toggle-slider {
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background: var(--card-bg);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .ctx-toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      left: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.2s;
+    }
+    .ctx-item-toggle input:checked + .ctx-toggle-slider {
+      background: var(--accent);
+    }
+    .ctx-item-toggle input:checked + .ctx-toggle-slider::before {
+      transform: translateY(-50%) translateX(12px);
+    }
+
+    #bookmarksList.sortable-active li a:hover {
+      background: var(--link-background) !important;
+    }
+    #bookmarksList.sortable-active li:hover .bookmark-buttons {
+      display: none !important;
+    }
+    #bookmarksList.sortable-active li .menu-button:hover {
+      opacity: 1 !important;
+    }
+    #bookmarksList.sortable-active.grid-mode li > a:hover {
+      background: var(--link-background) !important;
+    }
+    #bookmarksList.sortable-active.grid-mode li:hover .bookmark-buttons {
+      display: none !important;
+    }
+
+    </style>
+  </head>
+  <body>
+  <script src="Sortable.min.js"></script>
+  <script src="popup.js"></script>
+  <section>
+     <header>
+        <button id="createFolder">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-folder-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
+        </button>
+      <div class="search">
+        <svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+        <input type="text" id="searchInput" data-i18n="searchPlaceholder" placeholder="Search...">
+        <button id="clearSearchBtn" class="clear-search-btn" style="display:none;" aria-label="Clear search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+        </button>
+        <button id="viewToggleBtn">
+          <svg id="viewToggleIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>
+        </button>
+      </div>
+      <button id="addBookmark"></button>
+     </header>
+      <button id="upButton" class="up-button">
+         <svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
+         <span data-i18n="upFolderButton"></span>
+         <span class="shortcut">
+         TAB
+         </span>
+      </button>
+      <div id="breadcrumbBar" class="breadcrumb-bar" style="display:none;"></div>
+  </section>
+
+    <ul id="bookmarksList"></ul>
+
+    <div class="scroll-to-top" id="scrollToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>
+    </div>
+
+    <div id="moveModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <input type="text" id="folderSearchInput" placeholder="">
+        </div>
+        <ul id="folderList" class="modal-list"></ul>
+        <div class="modal-buttons">
+          <button id="closeMoveModal" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="moveBtn" data-i18n="moveBtnText"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><h3 data-i18n="editTitle">Düzenle</h3>
+            </div>
+            <input type="text" id="editTitleInput" placeholder="">
+            <input type="text" id="editUrlInput" placeholder="">
+            <div class="modal-buttons">
+                <button id="cancelEditBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+                <button id="saveEditBtn" data-i18n="saveButton"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="openAllModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder-share"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 19h-8a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v4" /><path d="M16 22l5 -5" /><path d="M21 21.5v-4.5h-4.5" /></svg><h3 data-i18n="confirmOpenAllTitle">Tümünü Aç</h3>
+        </div>
+        <p id="openAllMessage"></p>
+        <div class="modal-buttons">
+          <button id="cancelOpenAllBtn" class="modal-close-btn" data-i18n="cancelButton">İptal</button>
+          <button id="confirmOpenAllBtn" class="modal-close-btn" data-i18n="confirmOpenAllButton">Evet, Aç</button>
+        </div>
+      </div>
+    </div>
+    <div id="createFolderModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg><h3 data-i18n="newFolderTitle"></h3>
+        </div>
+        <input type="text" id="newFolderNameInput" placeholder="">
+        <div class="modal-buttons">
+          <button id="closeCreateFolderModal" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="createFolderInModalBtn" data-i18n="createFolderModalButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="addAllTabsConfirmModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p style="font-size: 14px;" data-i18n="addAllOpenTabsConfirmTitle"></p>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelAddAllTabsBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmAddAllTabsBtn" data-i18n="addAllOpenTabsConfirmButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="restoreAllTrashModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p style="font-size: 14px;" data-i18n="restoreAllTrashTitle"></p>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelRestoreAllTrashBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmRestoreAllTrashBtn" data-i18n="restoreAllTrashConfirmButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="emptyTrashModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+    		<p style="font-size: 14px;" data-i18n="emptyTrashTitle"></p>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelEmptyTrashBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmEmptyTrashBtn" data-i18n="emptyTrashButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="importConfirmModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p style="font-size: 14px;" data-i18n="importConfirmMessage"></p>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelImportBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmImportBtn" data-i18n="importButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="exportOptionsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="exportOptionsTitle"></h3>
+        </div>
+        <p style="font-size: 13px; margin-bottom: 10px;" data-i18n="exportOptionsDescription"></p>
+        <div class="settings-row ie-toggle-row">
+          <div class="settings-flex">
+            <span class="settings-label" data-i18n="ieIncludeSettingsLabel"></span>
+            <label class="toggle-slider">
+              <input type="checkbox" id="exportIncludeSettingsToggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+          <hr class="ie-toggle-sep">
+          <div class="settings-flex">
+            <span class="settings-label" data-i18n="ieIncludeBookmarksLabel"></span>
+            <label class="toggle-slider">
+              <input type="checkbox" id="exportIncludeBookmarksToggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelExportOptionsBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmExportOptionsBtn" data-i18n="exportButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="importOptionsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="importOptionsTitle"></h3>
+        </div>
+        <p style="font-size: 13px; margin-bottom: 10px;" data-i18n="importOptionsDescription"></p>
+        <div class="settings-row ie-toggle-row">
+          <div class="settings-flex">
+            <span class="settings-label" data-i18n="ieIncludeSettingsLabel"></span>
+            <label class="toggle-slider">
+              <input type="checkbox" id="importIncludeSettingsToggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+          <hr class="ie-toggle-sep">
+          <div class="settings-flex">
+            <span class="settings-label" data-i18n="ieIncludeBookmarksLabel"></span>
+            <label class="toggle-slider">
+              <input type="checkbox" id="importIncludeBookmarksToggle" checked>
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button id="cancelImportOptionsBtn" class="modal-close-btn" data-i18n="cancelButton"></button>
+          <button id="confirmImportOptionsBtn" data-i18n="importContinueButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="aboutModal" class="modal">
+      <div class="modal-content about-modal-content">
+        <div class="modal-header about-modal-header">
+          <img src="icons/48.png" alt="Markleaf">
+          <div>
+            <h3>Markleaf</h3>
+            <span class="about-version-label"><span data-i18n="aboutVersion">Version</span>: <span id="aboutVersionNumber"></span></span>
+          </div>
+        </div>
+        <p class="about-description" data-i18n="aboutDescription"></p>
+        <div class="theme-btn-group data" style="flex-direction: column;">
+          <button class="data-btn" id="aboutWebsiteBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-world"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M3.6 9h16.8" /><path d="M3.6 15h16.8" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a17 17 0 0 1 0 18" /></svg>
+            <span data-i18n="aboutWebsiteButton">Website</span>
+          </button>
+          <button class="data-btn" id="aboutGithubBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg>
+            <span data-i18n="aboutSourceButton">Source Code</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="settingsPanel">
+      <div class="settings-header">
+        <button id="settingsBackBtn" aria-label="Go back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6"/></svg>
+        </button>
+        <div class="settings-search">
+          <svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+          <input type="text" id="settingsSearchInput" data-i18n="settingsSearchPlaceholder" placeholder="Search...">
+          <button id="clearSettingsSearchBtn" style="display:none;" aria-label="Clear settings search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <button id="settingsInfoBtn" class="settings-icon-btn" aria-label="About Markleaf">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
+        </button>
+      </div>
+
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingThemeLabel">Theme</span>
+        <select id="themeSelect" class="settings-select">
+          <option value="auto" data-i18n="settingThemeBrowser">Browser</option>
+          <option value="light" data-i18n="settingThemeLight">Light</option>
+          <option value="dark" data-i18n="settingThemeDark">Dark</option>
+          <option value="black" data-i18n="settingThemeBlack">Black</option>
+          <option value="custom" data-i18n="settingThemeCustom">Custom</option>
+        </select>
+        <div id="customThemeArea" style="display:none; flex-direction:column; gap:10px; margin-top:4px;">
+          <div id="customThemeSwatches" class="custom-theme-swatches">
+            <button type="button" class="theme-swatch-btn" id="swatchBtnBg" data-key="bg" data-i18n-title="settingThemeBgColor"><span class="theme-swatch" id="swatchBg"></span></button>
+            <button type="button" class="theme-swatch-btn" id="swatchBtnText" data-key="text" data-i18n-title="settingThemeTextColor"><span class="theme-swatch" id="swatchText"></span></button>
+            <button type="button" class="theme-swatch-btn" id="swatchBtnAccent" data-key="accent" data-i18n-title="settingThemeAccentColor"><span class="theme-swatch" id="swatchAccent"></span></button>
+            <button type="button" class="theme-swatch-btn" id="swatchBtnBorder" data-key="border" data-i18n-title="settingThemeBorderColor"><span class="theme-swatch" id="swatchBorder"></span></button>
+            <button type="button" class="theme-swatch-btn" id="swatchBtnCard" data-key="card" data-i18n-title="settingThemeCardColor"><span class="theme-swatch" id="swatchCard"></span></button>
+          </div>
+
+          <div id="colorPickerPopover" class="color-picker-popover" style="display:none;">
+            <div id="cpActiveLabel" class="cp-active-label"></div>
+            <div class="cp-sv-wrap" id="cpSvWrap">
+              <canvas id="cpSvCanvas" width="240" height="120"></canvas>
+              <div class="cp-sv-thumb" id="cpSvThumb"></div>
+            </div>
+            <div class="cp-hue-wrap" id="cpHueWrap">
+              <div class="cp-hue-thumb" id="cpHueThumb"></div>
+            </div>
+            <div class="cp-hex-row">
+              <span class="cp-swatch-preview" id="cpSwatchPreview"></span>
+              <span class="cp-hex-prefix">#</span>
+              <input type="text" id="cpHexInput" maxlength="6" spellcheck="false" autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <span class="settings-label" data-i18n="settingFontLabel">Font</span>
+        <select id="fontSelect" class="settings-select">
+          <option value="sans-serif" data-i18n="settingFontSansSerif">Sans-serif</option>
+          <option value="serif" data-i18n="settingFontSerif">Serif</option>
+          <option value="monospace" data-i18n="settingFontMonospace">Monospace</option>
+          <option value="custom" data-i18n="settingFontCustom">Custom</option>
+        </select>
+        <div id="customFontArea" style="display:none; flex-direction:column">
+          <p data-i18n="settingFontCustomHint" style="margin-bottom: 10px;">Try any Google Fonts name, like Roboto or Poppins.</p>
+          <input type="text" id="customFontInput" data-i18n="settingFontCustomPlaceholder" spellcheck="false" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="settings-row" id="settingIconRow">
+        <div class="settings-flex">
+          <span class="settings-label" data-i18n="settingExtensionIconLabel">Extension icon</span>
+        </div>
+        <select id="extensionIconSelect" class="settings-select">
+          <option value="colorful" data-i18n="settingIconColorful">Colorful</option>
+          <option value="black" data-i18n="settingIconBlack">Black</option>
+          <option value="white" data-i18n="settingIconWhite">White</option>
+          <option value="gray" data-i18n="settingIconGray">Gray</option>
+          <option value="custom" data-i18n="settingIconCustom">Custom</option>
+        </select>
+        <div id="customIconArea" style="display:none; flex-direction:column; gap:8px; margin-top:4px;">
+          <button id="chooseCustomIconBtn" class="data-btn" style="width:100%; border:1px solid var(--border-color);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01"/><path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12"/><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5"/><path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3"/></svg>
+            <span data-i18n="settingIconChooseFile">Choose file</span>
+          </button>
+          <div id="customIconPreview" style="display:none; align-items:center; gap:8px; font-size:12px; color:var(--text-color);">
+            <img id="customIconPreviewImg" style="width:32px;height:32px;border-radius:6px;border:1px solid var(--border-color);" src="" alt="">
+            <span data-i18n="settingIconPreviewLabel">Preview</span>
+            <button id="removeCustomIconBtn" class="data-btn" style="width:auto; margin-left:auto; font-size:11px; padding:4px 10px;" data-i18n="settingIconRemove">Remove</button>
+          </div>
+          <p style="font-size:11px; color:var(--text-color)" data-i18n="settingIconCustomHint"></p>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <div class="settings-flex">
+          <span class="settings-label" data-i18n="settingFaviconProviderLabel">Favicon provider</span>
+        </div>
+        <select id="faviconProviderSelect" class="settings-select">
+          <option value="browser" data-i18n="settingFaviconProviderBrowser">Browser</option>
+          <option value="google" data-i18n="settingFaviconProviderGoogle">Google</option>
+          <option value="duckduckgo" data-i18n="settingFaviconProviderDuckDuckGo">DuckDuckGo</option>
+        </select>
+      </div>
+
+      <div class="settings-row">
+        <span class="settings-label" data-i18n="settingRootFolderLabel">Root folder</span>
+        <select id="rootFolderSelect" class="settings-select"></select>
+      </div>
+
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingNewItemPositionLabel">Newly created item</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="newItemPosition" data-value="start"><span data-i18n="settingNewItemPositionStart">Add to beginning</span></button>
+          <button class="theme-btn setting-btn" data-setting="newItemPosition" data-value="end"><span data-i18n="settingNewItemPositionEnd">Add to end</span></button>
+        </div>
+      </div>
+
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingDeleteModeLabel">Delete mode</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="deleteMode" data-value="trash"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg><span data-i18n="settingDeleteModeTrash">Trash</span></button>
+          <button class="theme-btn setting-btn" data-setting="deleteMode" data-value="permanent"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg><span data-i18n="settingDeleteModePermanent">Permanent</span></button>
+        </div>
+        <p data-i18n="deleteModeText"></p>
+        <div class="trash-expiry-row" id="trashExpiryRow">
+          <span class="settings-label" data-i18n="settingTrashExpiryLabel">Auto-delete after</span>
+          <div class="theme-btn-group">
+            <button class="theme-btn setting-btn" data-setting="trashExpiry" data-value="3"><span data-i18n="trashExpiry3Days">3 days</span></button>
+            <button class="theme-btn setting-btn" data-setting="trashExpiry" data-value="7"><span data-i18n="trashExpiry7Days">7 days</span></button>
+            <button class="theme-btn setting-btn" data-setting="trashExpiry" data-value="30"><span data-i18n="trashExpiry1Month">1 month</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingBookmarksLabel">Bookmarks</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="view" data-value="list"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-list"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -2" /><path d="M4 16a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -2" /></svg><span data-i18n="settingViewList">List</span></button>
+          <button class="theme-btn setting-btn" data-setting="view" data-value="grid"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-layout-grid"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /><path d="M14 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /></svg><span data-i18n="settingViewGrid">Grid</span></button>
+        </div>
+      </div>
+      <div class="settings-row settings-row--theme" id="gridColumnsSettingsRow">
+        <span class="settings-label" data-i18n="settingGridColumnsLabel">Grid columns</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="gridColumns" data-value="2"><span data-i18n="settingGridColumns2">2</span></button>
+          <button class="theme-btn setting-btn" data-setting="gridColumns" data-value="3"><span data-i18n="settingGridColumns3">3</span></button>
+          <button class="theme-btn setting-btn" data-setting="gridColumns" data-value="4"><span data-i18n="settingGridColumns4">4</span></button>
+        </div>
+        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+          <span class="settings-label" data-i18n="settingGridWidthLabel">Grid width</span>
+        </div>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="300"><span data-i18n="settingGridWidth300">300px</span></button>
+          <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="400"><span data-i18n="settingGridWidth400">400px</span></button>
+          <button class="theme-btn setting-btn" data-setting="gridWidth" data-value="500"><span data-i18n="settingGridWidth500">500px</span></button>
+        </div>
+        <div class="settings-flex" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+          <span class="settings-label" data-i18n="settingShowGridTitlesLabel">Show titles</span>
+          <label class="toggle-slider">
+            <input type="checkbox" id="settingShowGridTitles">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <p data-i18n="showGridTitlesText"></p>
+      </div>
+      <div class="settings-row settings-row--theme">
+        <span class="settings-label" data-i18n="settingFolderStyleLabel">Folder style</span>
+        <div class="theme-btn-group">
+          <button class="theme-btn setting-btn" data-setting="folderStyle" data-value="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg><span data-i18n="settingFolderStyleIcon">Folder</span></button>
+          <button class="theme-btn setting-btn" data-setting="folderStyle" data-value="stack"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-grid-dots"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M18 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M18 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg><span data-i18n="settingFolderStyleStack">Stack</span></button>
+        </div>
+        <p data-i18n="folderStyleText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingFolderBadgeLabel">Folder badge</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingFolderBadge">
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="folderBadgeText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingShowUpButtonLabel">Up button</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingShowUpButton" checked>
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="settingShowUpButtonText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingShowBreadcrumbLabel">Breadcrumb</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingShowBreadcrumb">
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="settingShowBreadcrumbText"></p>
+	      <div class="settings-flex" id="breadcrumbPersistFlex" style="display:none; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+	        <span class="settings-label" data-i18n="settingShowBreadcrumbPersistLabel">Persist path</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingShowBreadcrumbPersist" checked>
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="settingShowBreadcrumbPersistText" id="breadcrumbPersistText" style="display:none;"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingScrollbarLabel">Scrollbar</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingShowScrollbar" checked>
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="scrollbarText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingShowScrollTopLabel">Scroll to top button</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingShowScrollTop" checked>
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="settingShowScrollTopText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingCtrlDragMoveLabel">Ctrl-drag to move into folder</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingCtrlDragMove">
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="ctrlDragMoveText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingCheckBeforeAddLabel">Check before adding</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingCheckBeforeAdd">
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="checkBeforeAddText"></p>
+      </div>
+      <div class="settings-row">
+	      <div class="settings-flex">
+	        <span class="settings-label" data-i18n="settingSearchInFolderLabel">Search in folder</span>
+	        <label class="toggle-slider">
+	          <input type="checkbox" id="settingSearchInFolder">
+	          <span class="toggle-track"></span>
+	        </label>
+	      </div>
+	      <p data-i18n="searchInFolderText"></p>
+      </div>
+
+      <div class="settings-row" id="contextMenuSettingsRow">
+        <span class="settings-label" data-i18n="settingContextMenuLabel">Context menu</span>
+        <p data-i18n="contextMenuItemsText" style="margin-bottom:6px;"></p>
+        <ul id="ctxMenuItemList" class="ctx-menu-sort-list"></ul>
+        <div class="settings-flex" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+          <span class="settings-label" data-i18n="contextMenuActionsLabel">Hızlı eylemler çubuğu</span>
+          <label class="toggle-slider">
+            <input type="checkbox" id="settingShowQuickActions" checked>
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <p data-i18n="settingShowQuickActionsText">Menü altında hızlı işlem butonlarını gösterir.</p>
+      </div>
+
+      <div class="settings-row">
+        <span class="settings-label" data-i18n="settingImportExportLabel">Import / Export</span>
+        <div class="theme-btn-group data">
+          <button id="exportBtn" class="data-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>
+            <span data-i18n="exportButton">Export</span>
+          </button>
+          <button id="importBtn" class="data-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 9l5 -5l5 5"/><path d="M12 4l0 12"/></svg>
+            <span data-i18n="importButton">Import</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+    <div id="trashPanel">
+      <div class="trash-header">
+        <button id="restoreAllTrashBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3.06 13a9 9 0 1 0 .49 -4.087"/><path d="M3 4.001v5h5"/></svg>
+        </button>
+        <div class="search">
+		<svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+		<input type="text" id="trashSearchInput" data-i18n="trashSearchPlaceholder" placeholder="Search trash...">
+		<button id="clearTrashSearchBtn" class="clear-search-btn" style="display:none;" aria-label="Clear trash search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+        </button>
+		<button id="trashSelectBtn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M9 12l2 2l4 -4"></path></svg>
+		</button>
+        </div>
+
+        <button id="emptyTrashBtn">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>
+      </div>
+      <ul id="trashList"></ul>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="bottom-nav-btn active" id="tabBookmarks">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4h6a2 2 0 0 1 2 2v14l-5 -3l-5 3v-14a2 2 0 0 1 2 -2"/></svg>
+      </button>
+      <button class="bottom-nav-btn" id="tabTrash">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/></svg>
+      </button>
+      <button class="bottom-nav-btn" id="tabSettings">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>
+      </button>
+    </nav>
+
+    <div id="contextMenuOverlay"></div>
+
+  </body>
+</html>

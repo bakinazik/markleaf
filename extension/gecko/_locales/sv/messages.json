@@ -1,0 +1,536 @@
+{
+  "searchPlaceholder": {
+    "message": "Sök..."
+  },
+  "noBookmarksMessage": {
+    "message": "Inga bokmärken här."
+  },
+  "noSearchResultsMessage": {
+    "message": "Inga resultat matchade din sökning."
+  },
+  "saveButton": {
+    "message": "Spara"
+  },
+  "cancelButton": {
+    "message": "Avbryt"
+  },
+  "editButton": {
+    "message": "Redigera"
+  },
+  "pinButton": {
+    "message": "Fäst"
+  },
+  "unpinButton": {
+    "message": "Lossa"
+  },
+  "removeButton": {
+    "message": "Ta bort"
+  },
+  "createFolderButton": {
+    "message": "Skapa mapp här"
+  },
+  "newFolderName": {
+    "message": "Ny mapp"
+  },
+  "addCurrentSiteButton": {
+    "message": "Lägg till aktuell flik här"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Lägg till flik i mapp"
+  },
+  "addAllTabsButton": {
+    "message": "Lägg till aktiva flikar här"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Lägg till aktiva flikar i mapp"
+  },
+  "confirmRemoval": {
+    "message": "Är du säker?"
+  },
+  "moveButton": {
+    "message": "Flytta till mapp"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Sök i mappar..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "Inga mappar hittades."
+  },
+  "moveBtnText": {
+    "message": "Flytta"
+  },
+  "upFolderButton": {
+    "message": "Gå upp en mappnivå"
+  },
+  "addBookmark": {
+    "message": "Lägg till bokmärke"
+  },
+  "newFolderTitle": {
+    "message": "Skapa ny mapp"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Mappnamn"
+  },
+  "createFolderModalButton": {
+    "message": "Skapa"
+  },
+  "editTitle": {
+    "message": "Redigera"
+  },
+  "editTitlePlaceholder": {
+    "message": "Titel"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Öppna alla"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Vill du öppna <b>$2</b> bokmärken i mappen <b>$1</b>?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Ja"
+  },
+  "copyLinkButton": {
+    "message": "Kopiera länk"
+  },
+  "openInCurrentTab": {
+    "message": "Öppna i aktuell flik"
+  },
+  "openInNewTab": {
+    "message": "Öppna i ny flik"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Sök..."
+  },
+  "trashIsEmpty": {
+    "message": "Papperskorgen är tom"
+  },
+  "trashNoResults": {
+    "message": "Inga resultat hittades"
+  },
+  "trashRestoreButton": {
+    "message": "Återställ"
+  },
+  "restoreAllTrashButton": {
+    "message": "Återställ alla"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Är du säker på att du vill återställa alla bokmärken från papperskorgen?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Ja"
+  },
+  "trashDeletePermanently": {
+    "message": "Ta bort permanent"
+  },
+  "trashConfirmDelete": {
+    "message": "Är du säker?"
+  },
+  "emptyTrashTitle": {
+    "message": "Är du säker på att du vill ta bort alla bokmärken i papperskorgen? Denna åtgärd kan inte ångras!"
+  },
+  "emptyTrashButton": {
+    "message": "Ja"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Borttagningsläge"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Papperskorg"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Ta bort"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Mapp för papperskorg"
+  },
+  "settingBookmarksLabel": {
+    "message": "Bokmärken"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Mappstil"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Mapp"
+  },
+  "settingFolderStyleStack": {
+    "message": "Stapel"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Mappbricka"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Ja"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Nej"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "Nyskapat objekt"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Lägg till i början"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Lägg till i slutet"
+  },
+  "settingViewLabel": {
+    "message": "Bokmärken"
+  },
+  "settingViewList": {
+    "message": "Lista"
+  },
+  "settingViewGrid": {
+    "message": "Rutnät"
+  },
+  "folderBadgeText": {
+    "message": "Visar det totala antalet bokmärken i mappar."
+  },
+  "folderStyleText": {
+    "message": "Denna inställning gäller endast för rutnätsvy."
+  },
+  "deleteModeText": {
+    "message": "När papperskorgen är aktiverad flyttas borttagna bokmärken dit och raderas permanent efter den angivna tiden."
+  },
+  "trashDaysLeft": {
+    "message": "d"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Ta bort automatiskt efter"
+  },
+  "trashExpiry3Days": {
+    "message": "3 dagar"
+  },
+  "trashExpiry7Days": {
+    "message": "7 dagar"
+  },
+  "trashExpiry1Month": {
+    "message": "1 månad"
+  },
+  "settingImportExportLabel": {
+    "message": "Datahantering"
+  },
+  "exportButton": {
+    "message": "Exportera"
+  },
+  "importButton": {
+    "message": "Importera"
+  },
+  "exportOptionsTitle": {
+    "message": "Exportera"
+  },
+  "importOptionsTitle": {
+    "message": "Importera"
+  },
+  "exportOptionsDescription": {
+    "message": "Välj vad du vill exportera."
+  },
+  "importOptionsDescription": {
+    "message": "Välj vad du vill importera."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Inställningar"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Bokmärken"
+  },
+  "importContinueButton": {
+    "message": "Fortsätt"
+  },
+  "importError": {
+    "message": "Importen misslyckades. Filen kan vara ogiltig eller skadad."
+  },
+  "importConfirmMessage": {
+    "message": "Detta kommer att skriva över dina bokmärken, inställningar och data i papperskorgen. Är du säker?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Detta kommer att skriva över dina bokmärken och data i papperskorgen. Är du säker?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Detta kommer att skriva över dina inställningar. Är du säker?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Detta kommer att skriva över dina bokmärken. Är du säker?"
+  },
+  "importConfirmTitle": {
+    "message": "Bekräfta import"
+  },
+  "importConfirmYes": {
+    "message": "Ja"
+  },
+  "viewToggleLabel": {
+    "message": "Växla vy"
+  },
+  "contextMenuLabel": {
+    "message": "Alternativ"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Markera"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Markera"
+  },
+  "bulkOpenSelected": {
+    "message": "Öppna markerade ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Flytta till mapp"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Skapa mapp från markering"
+  },
+  "bulkDelete": {
+    "message": "Ta bort markerade"
+  },
+  "bulkConfirmDelete": {
+    "message": "Är du säker?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Återställ markerade"
+  },
+  "bulkDeletePermanently": {
+    "message": "Ta bort permanent"
+  },
+  "selectionCount": {
+    "message": "$1 markerade"
+  },
+  "settingRootFolderLabel": {
+    "message": "Rotmapp"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Namnlös mapp"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Kontrollera innan tillägg"
+  },
+  "checkBeforeAddText": {
+    "message": "När aktiverat hoppas bokmärken med samma URL som redan finns på målplatsen över."
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-dra för att flytta"
+  },
+  "ctrlDragMoveText": {
+    "message": "När det är aktiverat kan du hålla ned Ctrl medan du drar ett bokmärke eller en mapp och släppa det direkt på en annan mapp för att flytta det."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Överordnad mapp"
+  },
+  "settingShowUpButtonText": {
+    "message": "Visar en knapp för att navigera till den överordnade mappen."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Brödsmulor"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Visar mappsökvägen så att du snabbt kan hoppa till valfri överordnad mapp."
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Behåll sökväg"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Fortsätter visa sökvägen till den senast besökta mappen även efter att du återvänt till startskärmen."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Knapp för att scrolla upp"
+  },
+  "settingShowScrollTopText": {
+    "message": "Visar en flytande knapp för att snabbt scrolla tillbaka till toppen av listan."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Tilläggsikon"
+  },
+  "settingIconColorful": {
+    "message": "Färgglad"
+  },
+  "settingIconBlack": {
+    "message": "Svart"
+  },
+  "settingIconWhite": {
+    "message": "Vit"
+  },
+  "settingIconGray": {
+    "message": "Grå"
+  },
+  "settingIconCustom": {
+    "message": "Anpassad"
+  },
+  "settingIconChooseFile": {
+    "message": "Välj fil"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Förhandsvisning"
+  },
+  "settingIconRemove": {
+    "message": "Ta bort"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP stöds. Bilden beskärs automatiskt."
+  },
+  "settingIconInvalidFile": {
+    "message": "Välj en giltig bildfil (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Webbläsare"
+  },
+  "settingThemeLight": {
+    "message": "Ljus"
+  },
+  "settingThemeDark": {
+    "message": "Mörk"
+  },
+  "settingThemeBlack": {
+    "message": "Svart"
+  },
+  "settingThemeCustom": {
+    "message": "Anpassad"
+  },
+  "settingThemeBgColor": {
+    "message": "Bakgrund"
+  },
+  "settingThemeTextColor": {
+    "message": "Text"
+  },
+  "settingThemeAccentColor": {
+    "message": "Accent"
+  },
+  "settingThemeBorderColor": {
+    "message": "Ram"
+  },
+  "settingThemeCardColor": {
+    "message": "Kort"
+  },
+  "settingFontLabel": {
+    "message": "Typsnitt"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "Anpassad"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "t.ex. Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "Skriv namnet på valfritt Google Fonts-typsnitt, t.ex. Roboto eller Poppins."
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Favikonleverantör"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Webbläsare"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Sök i mapp"
+  },
+  "searchInFolderText": {
+    "message": "När aktiverat söks det bara i den aktuella mappen och dess undermappar."
+  },
+  "settingAboutLabel": {
+    "message": "Om"
+  },
+  "aboutWebsiteButton": {
+    "message": "Webbplats"
+  },
+  "aboutSourceButton": {
+    "message": "Källkod"
+  },
+  "aboutVersion": {
+    "message": "Version"
+  },
+  "settingContextMenuLabel": {
+    "message": "Snabbmeny"
+  },
+  "contextMenuItemsText": {
+    "message": "Du kan ändra ordning genom att dra och växla synlighet genom att klicka."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Snabbåtgärder"
+  },
+  "settingShowQuickActionsText": {
+    "message": "När aktiverat blir de tre sista aktiva alternativen åtgärdsknappar."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Sök..."
+  },
+  "settingsNoResults": {
+    "message": "Inga resultat hittades"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Rutnätskolumner"
+  },
+  "settingGridColumns2": {
+    "message": "2 Kolumner"
+  },
+  "settingGridColumns3": {
+    "message": "3 Kolumner"
+  },
+  "settingGridColumns4": {
+    "message": "4 Kolumner"
+  },
+  "settingGridWidthLabel": {
+    "message": "Rutnätsbredd"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Visa titlar"
+  },
+  "showGridTitlesText": {
+    "message": "Visar eller döljer titlar under bokmärken i rutnätsvyn."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf är en gratis bokmärkeshanterare med öppen källkod, fokuserad på snabbhet och enkelhet. Källkoden är offentlig, så vem som helst kan granska den, föreslå förbättringar eller bidra med nya funktioner."
+  },
+  "settingScrollbarLabel": {
+    "message": "Rullningslist"
+  },
+  "scrollbarText": {
+    "message": "När den är avstängd döljs rullningslisten i hela tillägget."
+  },
+  "settingIconPickerIntro": {
+    "message": "I Firefox stängs popup-fönstret automatiskt när filväljaren öppnas från tilläggets popup. Även om det här felet länge har rapporterats av utvecklare har inga konkreta åtgärder vidtagits för att fixa det. Så jag var tvungen att skicka dig till den här sidan så att du kan välja din ikon."
+  },
+  "settingIconProcessing": {
+    "message": "Bearbetar..."
+  },
+  "settingIconProcessFailed": {
+    "message": "Kunde inte bearbeta bilden. Prova en annan fil."
+  },
+  "filePickerImportIntro": {
+    "message": "I Firefox stängs popup-fönstret automatiskt när filväljaren öppnas från tilläggets popup. Även om den här buggen har rapporterats av utvecklare under lång tid har inga konkreta åtgärder vidtagits för att åtgärda den. Därför var jag tvungen att omdirigera dig till den här sidan så att du kan välja filen som ska importeras."
+  },
+  "filePickerImportReading": {
+    "message": "Läser fil..."
+  },
+  "filePickerImportFailed": {
+    "message": "Kunde inte läsa filen. Prova en annan fil."
+  }
+}

@@ -1,0 +1,536 @@
+{
+  "searchPlaceholder": {
+    "message": "Suchen..."
+  },
+  "noBookmarksMessage": {
+    "message": "Keine Lesezeichen vorhanden."
+  },
+  "noSearchResultsMessage": {
+    "message": "Keine Ergebnisse für Ihre Suchkriterien gefunden."
+  },
+  "saveButton": {
+    "message": "Speichern"
+  },
+  "cancelButton": {
+    "message": "Abbrechen"
+  },
+  "editButton": {
+    "message": "Bearbeiten"
+  },
+  "pinButton": {
+    "message": "Anheften"
+  },
+  "unpinButton": {
+    "message": "Lösen"
+  },
+  "removeButton": {
+    "message": "Entfernen"
+  },
+  "createFolderButton": {
+    "message": "Ordner hier erstellen"
+  },
+  "newFolderName": {
+    "message": "Neuer Ordner"
+  },
+  "addCurrentSiteButton": {
+    "message": "Aktuellen Tab hier hinzufügen"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Tab zum Ordner hinzufügen"
+  },
+  "addAllTabsButton": {
+    "message": "Aktive Tabs hier hinzufügen"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Aktive Tabs zum Ordner hinzufügen"
+  },
+  "confirmRemoval": {
+    "message": "Sind Sie sicher?"
+  },
+  "moveButton": {
+    "message": "In Ordner verschieben"
+  },
+  "searchFolderPlaceholder": {
+    "message": "In Ordnern suchen..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "Keine Ordner gefunden."
+  },
+  "moveBtnText": {
+    "message": "Verschieben"
+  },
+  "upFolderButton": {
+    "message": "Ordner nach oben"
+  },
+  "addBookmark": {
+    "message": "Lesezeichen hinzufügen"
+  },
+  "newFolderTitle": {
+    "message": "Neuen Ordner erstellen"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Ordnername"
+  },
+  "createFolderModalButton": {
+    "message": "Erstellen"
+  },
+  "editTitle": {
+    "message": "Bearbeiten"
+  },
+  "editTitlePlaceholder": {
+    "message": "Titel"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Alle öffnen"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Möchten Sie <b>$2</b> Lesezeichen im Ordner <b>$1</b> öffnen?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Ja"
+  },
+  "copyLinkButton": {
+    "message": "Link kopieren"
+  },
+  "openInCurrentTab": {
+    "message": "In aktuellem Tab öffnen"
+  },
+  "openInNewTab": {
+    "message": "In neuem Tab öffnen"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Suchen..."
+  },
+  "trashIsEmpty": {
+    "message": "Papierkorb ist leer"
+  },
+  "trashNoResults": {
+    "message": "Keine Ergebnisse gefunden"
+  },
+  "trashRestoreButton": {
+    "message": "Wiederherstellen"
+  },
+  "restoreAllTrashButton": {
+    "message": "Alle wiederherstellen"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Sind Sie sicher, dass Sie alle Lesezeichen aus dem Papierkorb wiederherstellen möchten?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Ja"
+  },
+  "trashDeletePermanently": {
+    "message": "Endgültig löschen"
+  },
+  "trashConfirmDelete": {
+    "message": "Sind Sie sicher?"
+  },
+  "emptyTrashTitle": {
+    "message": "Sind Sie sicher, dass Sie alle Lesezeichen im Papierkorb löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!"
+  },
+  "emptyTrashButton": {
+    "message": "Ja"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Löschmodus"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Papierkorb"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Löschen"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Papierkorbordner"
+  },
+  "settingBookmarksLabel": {
+    "message": "Lesezeichen"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Ordnerstil"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Ordner"
+  },
+  "settingFolderStyleStack": {
+    "message": "Stapel"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Ordner-Badge"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Ja"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Nein"
+  },
+  "settingThemeLabel": {
+    "message": "Design"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "Neu erstelltes Element"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Am Anfang hinzufügen"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Am Ende hinzufügen"
+  },
+  "settingViewLabel": {
+    "message": "Lesezeichen"
+  },
+  "settingViewList": {
+    "message": "Liste"
+  },
+  "settingViewGrid": {
+    "message": "Raster"
+  },
+  "folderBadgeText": {
+    "message": "Zeigt die Gesamtzahl der Lesezeichen in den Ordnern an."
+  },
+  "folderStyleText": {
+    "message": "Diese Einstellung gilt nur für die Rasteransicht."
+  },
+  "deleteModeText": {
+    "message": "Wenn der Papierkorb aktiviert ist, werden gelöschte Lesezeichen in den Papierkorb verschoben und nach der angegebenen Dauer gelöscht."
+  },
+  "trashDaysLeft": {
+    "message": "T"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Automatisch löschen nach"
+  },
+  "trashExpiry3Days": {
+    "message": "3 Tagen"
+  },
+  "trashExpiry7Days": {
+    "message": "7 Tagen"
+  },
+  "trashExpiry1Month": {
+    "message": "1 Monat"
+  },
+  "settingImportExportLabel": {
+    "message": "Datenverwaltung"
+  },
+  "exportButton": {
+    "message": "Exportieren"
+  },
+  "importButton": {
+    "message": "Importieren"
+  },
+  "exportOptionsTitle": {
+    "message": "Exportieren"
+  },
+  "importOptionsTitle": {
+    "message": "Importieren"
+  },
+  "exportOptionsDescription": {
+    "message": "Wähle aus, was du exportieren möchtest."
+  },
+  "importOptionsDescription": {
+    "message": "Wähle aus, was du importieren möchtest."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Einstellungen"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Lesezeichen"
+  },
+  "importContinueButton": {
+    "message": "Weiter"
+  },
+  "importError": {
+    "message": "Import fehlgeschlagen. Die Datei ist möglicherweise ungültig oder beschädigt."
+  },
+  "importConfirmMessage": {
+    "message": "Dies wird Ihre Lesezeichen, Einstellungen und Papierkorbdaten überschreiben. Sind Sie sicher?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Dies wird Ihre Lesezeichen und Papierkorbdaten überschreiben. Sind Sie sicher?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Dies wird Ihre Einstellungen überschreiben. Sind Sie sicher?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Dies wird Ihre Lesezeichen überschreiben. Sind Sie sicher?"
+  },
+  "importConfirmTitle": {
+    "message": "Import bestätigen"
+  },
+  "importConfirmYes": {
+    "message": "Ja"
+  },
+  "viewToggleLabel": {
+    "message": "Ansicht umschalten"
+  },
+  "contextMenuLabel": {
+    "message": "Optionen"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Auswählen"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Auswählen"
+  },
+  "bulkOpenSelected": {
+    "message": "Ausgewählte öffnen ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "In Ordner verschieben"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Ordner aus Auswahl erstellen"
+  },
+  "bulkDelete": {
+    "message": "Ausgewählte löschen"
+  },
+  "bulkConfirmDelete": {
+    "message": "Sind Sie sicher?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Ausgewählte wiederherstellen"
+  },
+  "bulkDeletePermanently": {
+    "message": "Endgültig löschen"
+  },
+  "selectionCount": {
+    "message": "$1 ausgewählt"
+  },
+  "settingRootFolderLabel": {
+    "message": "Stammordner"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Unbenannter Ordner"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Vor dem Hinzufügen prüfen"
+  },
+  "checkBeforeAddText": {
+    "message": "Wenn aktiviert, werden Lesezeichen mit derselben URL, die bereits am Zielort vorhanden sind, übersprungen."
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Strg-Ziehen zum Verschieben"
+  },
+  "ctrlDragMoveText": {
+    "message": "Wenn aktiviert, kannst du bei gedrückter Strg-Taste ein Lesezeichen oder einen Ordner direkt auf einen anderen Ordner ziehen, um es bzw. ihn dorthin zu verschieben."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Übergeordneter Ordner"
+  },
+  "settingShowUpButtonText": {
+    "message": "Zeigt eine Schaltfläche zum Navigieren zum übergeordneten Ordner an."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Brotkrümelpfad"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Zeigt den Ordnerpfad an, damit Sie schnell zu einem übergeordneten Ordner springen können."
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Pfad beibehalten"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Zeigt weiterhin den zuletzt besuchten Ordnerpfad an, auch wenn Sie zur Startseite zurückkehren."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Nach-oben-Button"
+  },
+  "settingShowScrollTopText": {
+    "message": "Zeigt eine schwebende Schaltfläche an, mit der du schnell zum Anfang der Liste zurückscrollst."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Erweiterungssymbol"
+  },
+  "settingIconColorful": {
+    "message": "Bunt"
+  },
+  "settingIconBlack": {
+    "message": "Schwarz"
+  },
+  "settingIconWhite": {
+    "message": "Weiß"
+  },
+  "settingIconGray": {
+    "message": "Grau"
+  },
+  "settingIconCustom": {
+    "message": "Benutzerdefiniert"
+  },
+  "settingIconChooseFile": {
+    "message": "Datei auswählen"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Vorschau"
+  },
+  "settingIconRemove": {
+    "message": "Entfernen"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP unterstützt. Das Bild wird automatisch quadratisch zugeschnitten."
+  },
+  "settingIconInvalidFile": {
+    "message": "Bitte wählen Sie eine gültige Bilddatei (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Browser"
+  },
+  "settingThemeLight": {
+    "message": "Hell"
+  },
+  "settingThemeDark": {
+    "message": "Dunkel"
+  },
+  "settingThemeBlack": {
+    "message": "Schwarz"
+  },
+  "settingThemeCustom": {
+    "message": "Benutzerdefiniert"
+  },
+  "settingThemeBgColor": {
+    "message": "Hintergrund"
+  },
+  "settingThemeTextColor": {
+    "message": "Text"
+  },
+  "settingThemeAccentColor": {
+    "message": "Akzent"
+  },
+  "settingThemeBorderColor": {
+    "message": "Rahmen"
+  },
+  "settingThemeCardColor": {
+    "message": "Karte"
+  },
+  "settingFontLabel": {
+    "message": "Schriftart"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "Benutzerdefiniert"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "z. B. Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "Gib einfach einen Google-Fonts-Namen ein, z. B. Roboto oder Poppins."
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Favicon-Anbieter"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Browser"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Im Ordner suchen"
+  },
+  "searchInFolderText": {
+    "message": "Wenn aktiviert, wird die Suche nur im aktuellen Ordner und seinen Unterordnern durchgeführt."
+  },
+  "settingAboutLabel": {
+    "message": "Über"
+  },
+  "aboutWebsiteButton": {
+    "message": "Webseite"
+  },
+  "aboutSourceButton": {
+    "message": "Quellcode"
+  },
+  "aboutVersion": {
+    "message": "Version"
+  },
+  "settingContextMenuLabel": {
+    "message": "Kontextmenü"
+  },
+  "contextMenuItemsText": {
+    "message": "Durch Ziehen neu anordnen, durch Klicken ein-/ausblenden."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Schnellaktionen"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Wenn aktiviert, werden die letzten drei aktiven Optionen zu Aktionsschaltflächen."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Suchen..."
+  },
+  "settingsNoResults": {
+    "message": "Keine Ergebnisse gefunden"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Rasterspalten"
+  },
+  "settingGridColumns2": {
+    "message": "2 Spalten"
+  },
+  "settingGridColumns3": {
+    "message": "3 Spalten"
+  },
+  "settingGridColumns4": {
+    "message": "4 Spalten"
+  },
+  "settingGridWidthLabel": {
+    "message": "Rasterbreite"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Titel anzeigen"
+  },
+  "showGridTitlesText": {
+    "message": "Zeigt oder verbirgt Titel unter Lesezeichen in der Rasteransicht."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf ist ein kostenloser Open-Source-Lesezeichen-Manager, der auf Geschwindigkeit und Einfachheit setzt. Der Quellcode ist öffentlich einsehbar, sodass jeder ihn prüfen, verbessern oder erweitern kann."
+  },
+  "settingScrollbarLabel": {
+    "message": "Scrollleiste"
+  },
+  "scrollbarText": {
+    "message": "Wenn deaktiviert, wird die Scrollleiste in der gesamten Erweiterung ausgeblendet."
+  },
+  "settingIconPickerIntro": {
+    "message": "In Firefox schließt sich das Popup automatisch, wenn sich der Dateiauswahldialog aus dem Erweiterungs-Popup öffnet. Obwohl dieser Fehler schon lange von Entwicklern gemeldet wurde, wurden bisher keine konkreten Schritte zur Behebung unternommen. Deshalb musste ich dich auf diese Seite weiterleiten, damit du dein Symbol auswählen kannst."
+  },
+  "settingIconProcessing": {
+    "message": "Wird verarbeitet..."
+  },
+  "settingIconProcessFailed": {
+    "message": "Das Bild konnte nicht verarbeitet werden. Bitte versuche eine andere Datei."
+  },
+  "filePickerImportIntro": {
+    "message": "In Firefox schließt sich das Popup automatisch, wenn die Dateiauswahl aus dem Erweiterungs-Popup geöffnet wird. Obwohl dieser Fehler von Entwicklern schon lange gemeldet wurde, wurden keine echten Schritte zur Behebung unternommen. Deshalb musste ich dich auf diese Seite weiterleiten, damit du die zu importierende Datei auswählen kannst."
+  },
+  "filePickerImportReading": {
+    "message": "Datei wird gelesen..."
+  },
+  "filePickerImportFailed": {
+    "message": "Die Datei konnte nicht gelesen werden. Bitte versuche es mit einer anderen Datei."
+  }
+}

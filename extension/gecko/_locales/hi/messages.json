@@ -1,0 +1,536 @@
+{
+  "searchPlaceholder": {
+    "message": "खोजें..."
+  },
+  "noBookmarksMessage": {
+    "message": "यहाँ कोई बुकमार्क नहीं है।"
+  },
+  "noSearchResultsMessage": {
+    "message": "आपके खोज मानदंडों से मेल खाने वाला कोई परिणाम नहीं मिला।"
+  },
+  "saveButton": {
+    "message": "सहेजें"
+  },
+  "cancelButton": {
+    "message": "रद्द करें"
+  },
+  "editButton": {
+    "message": "संपादित करें"
+  },
+  "pinButton": {
+    "message": "पिन करें"
+  },
+  "unpinButton": {
+    "message": "अनपिन करें"
+  },
+  "removeButton": {
+    "message": "हटाएं"
+  },
+  "createFolderButton": {
+    "message": "यहाँ फ़ोल्डर बनाएं"
+  },
+  "newFolderName": {
+    "message": "नया फ़ोल्डर"
+  },
+  "addCurrentSiteButton": {
+    "message": "वर्तमान टैब यहाँ जोड़ें"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "फ़ोल्डर में टैब जोड़ें"
+  },
+  "addAllTabsButton": {
+    "message": "सक्रिय टैब यहां जोड़ें"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "सक्रिय टैब फ़ोल्डर में जोड़ें"
+  },
+  "confirmRemoval": {
+    "message": "क्या आप सुनिश्चित हैं?"
+  },
+  "moveButton": {
+    "message": "फ़ोल्डर में ले जाएं"
+  },
+  "searchFolderPlaceholder": {
+    "message": "फ़ोल्डरों में खोजें..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "कोई फ़ोल्डर नहीं मिला।"
+  },
+  "moveBtnText": {
+    "message": "ले जाएं"
+  },
+  "upFolderButton": {
+    "message": "ऊपरी फ़ोल्डर पर जाएं"
+  },
+  "addBookmark": {
+    "message": "बुकमार्क जोड़ें"
+  },
+  "newFolderTitle": {
+    "message": "नया फ़ोल्डर बनाएं"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "फ़ोल्डर का नाम"
+  },
+  "createFolderModalButton": {
+    "message": "बनाएं"
+  },
+  "editTitle": {
+    "message": "संपादित करें"
+  },
+  "editTitlePlaceholder": {
+    "message": "शीर्षक"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "सभी खोलें"
+  },
+  "confirmOpenAllMessage": {
+    "message": "क्या आप <b>$1</b> फ़ोल्डर में <b>$2</b> बुकमार्क खोलना चाहते हैं?"
+  },
+  "confirmOpenAllButton": {
+    "message": "हाँ"
+  },
+  "copyLinkButton": {
+    "message": "लिंक कॉपी करें"
+  },
+  "openInCurrentTab": {
+    "message": "वर्तमान टैब में खोलें"
+  },
+  "openInNewTab": {
+    "message": "नए टैब में खोलें"
+  },
+  "trashSearchPlaceholder": {
+    "message": "खोजें..."
+  },
+  "trashIsEmpty": {
+    "message": "रद्दी खाली है"
+  },
+  "trashNoResults": {
+    "message": "कोई परिणाम नहीं मिला"
+  },
+  "trashRestoreButton": {
+    "message": "पुनर्स्थापित करें"
+  },
+  "restoreAllTrashButton": {
+    "message": "सभी पुनर्स्थापित करें"
+  },
+  "restoreAllTrashTitle": {
+    "message": "क्या आप सुनिश्चित हैं कि आप रद्दी से सभी बुकमार्क पुनर्स्थापित करना चाहते हैं?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "हाँ"
+  },
+  "trashDeletePermanently": {
+    "message": "स्थायी रूप से हटाएं"
+  },
+  "trashConfirmDelete": {
+    "message": "क्या आप सुनिश्चित हैं?"
+  },
+  "emptyTrashTitle": {
+    "message": "क्या आप सुनिश्चित हैं कि आप रद्दी के सभी बुकमार्क हटाना चाहते हैं? यह क्रिया वापस नहीं ली जा सकती!"
+  },
+  "emptyTrashButton": {
+    "message": "हाँ"
+  },
+  "settingDeleteModeLabel": {
+    "message": "हटाने का तरीका"
+  },
+  "settingDeleteModeTrash": {
+    "message": "रद्दी"
+  },
+  "settingDeleteModePermanent": {
+    "message": "हटाएं"
+  },
+  "settingTrashFolderLabel": {
+    "message": "रद्दी फ़ोल्डर"
+  },
+  "settingBookmarksLabel": {
+    "message": "बुकमार्क"
+  },
+  "settingFolderStyleLabel": {
+    "message": "फ़ोल्डर शैली"
+  },
+  "settingFolderStyleIcon": {
+    "message": "फ़ोल्डर"
+  },
+  "settingFolderStyleStack": {
+    "message": "स्टैक"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "फ़ोल्डर बैज"
+  },
+  "settingFolderBadgeYes": {
+    "message": "हाँ"
+  },
+  "settingFolderBadgeNo": {
+    "message": "नहीं"
+  },
+  "settingThemeLabel": {
+    "message": "थीम"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "नई बनाई गई वस्तु"
+  },
+  "settingNewItemPositionStart": {
+    "message": "शुरुआत में जोड़ें"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "अंत में जोड़ें"
+  },
+  "settingViewLabel": {
+    "message": "बुकमार्क"
+  },
+  "settingViewList": {
+    "message": "सूची"
+  },
+  "settingViewGrid": {
+    "message": "ग्रिड"
+  },
+  "folderBadgeText": {
+    "message": "फ़ोल्डरों के भीतर बुकमार्क की कुल संख्या प्रदर्शित करता है।"
+  },
+  "folderStyleText": {
+    "message": "यह सेटिंग केवल ग्रिड व्यू पर लागू होती है।"
+  },
+  "deleteModeText": {
+    "message": "जब रद्दी सक्षम होती है, तो हटाए गए बुकमार्क रद्दी में चले जाते हैं और निर्दिष्ट अवधि के बाद हटा दिए जाते हैं।"
+  },
+  "trashDaysLeft": {
+    "message": "दिन"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "इसके बाद स्वतः हटाएं"
+  },
+  "trashExpiry3Days": {
+    "message": "3 दिन"
+  },
+  "trashExpiry7Days": {
+    "message": "7 दिन"
+  },
+  "trashExpiry1Month": {
+    "message": "1 महीना"
+  },
+  "settingImportExportLabel": {
+    "message": "डेटा प्रबंधन"
+  },
+  "exportButton": {
+    "message": "निर्यात करें"
+  },
+  "importButton": {
+    "message": "आयात करें"
+  },
+  "exportOptionsTitle": {
+    "message": "निर्यात करें"
+  },
+  "importOptionsTitle": {
+    "message": "आयात करें"
+  },
+  "exportOptionsDescription": {
+    "message": "चुनें कि आप क्या निर्यात करना चाहते हैं।"
+  },
+  "importOptionsDescription": {
+    "message": "चुनें कि आप क्या आयात करना चाहते हैं।"
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "सेटिंग्स"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "बुकमार्क"
+  },
+  "importContinueButton": {
+    "message": "जारी रखें"
+  },
+  "importError": {
+    "message": "आयात विफल रहा। फ़ाइल अमान्य या दूषित हो सकती है।"
+  },
+  "importConfirmMessage": {
+    "message": "यह आपके बुकमार्क, सेटिंग्स और रद्दी डेटा को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "यह आपके बुकमार्क और रद्दी डेटा को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "यह आपकी सेटिंग्स को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "यह आपके बुकमार्क को अधिलेखित (overwrite) कर देगा। क्या आप सुनिश्चित हैं?"
+  },
+  "importConfirmTitle": {
+    "message": "आयात की पुष्टि करें"
+  },
+  "importConfirmYes": {
+    "message": "हाँ"
+  },
+  "viewToggleLabel": {
+    "message": "दृश्य बदलें"
+  },
+  "contextMenuLabel": {
+    "message": "विकल्प"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "चुनें"
+  },
+  "selectionModeButtonTrash": {
+    "message": "चुनें"
+  },
+  "bulkOpenSelected": {
+    "message": "चयनित खोलें ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "फ़ोल्डर में ले जाएं"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "चयन से फ़ोल्डर बनाएं"
+  },
+  "bulkDelete": {
+    "message": "चयनित हटाएं"
+  },
+  "bulkConfirmDelete": {
+    "message": "क्या आप सुनिश्चित हैं?"
+  },
+  "bulkRestoreSelected": {
+    "message": "चयनित पुनर्स्थापित करें"
+  },
+  "bulkDeletePermanently": {
+    "message": "स्थायी रूप से हटाएं"
+  },
+  "selectionCount": {
+    "message": "$1 चयनित"
+  },
+  "settingRootFolderLabel": {
+    "message": "मूल फ़ोल्डर"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "अनाम फ़ोल्डर"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "जोड़ने से पहले जाँचें"
+  },
+  "checkBeforeAddText": {
+    "message": "सक्षम होने पर, लक्ष्य स्थान पर पहले से मौजूद समान URL वाले बुकमार्क को छोड़ दिया जाएगा।"
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-ड्रैग करके ले जाएं"
+  },
+  "ctrlDragMoveText": {
+    "message": "सक्षम होने पर, बुकमार्क या फ़ोल्डर खींचते समय Ctrl दबाए रखें और उसे सीधे किसी अन्य फ़ोल्डर पर छोड़कर स्थानांतरित करें।"
+  },
+  "settingShowUpButtonLabel": {
+    "message": "मूल फ़ोल्डर"
+  },
+  "settingShowUpButtonText": {
+    "message": "मूल फ़ोल्डर पर नेविगेट करने के लिए एक बटन दिखाता है।"
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "ब्रेडक्रम्ब"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "फ़ोल्डर पथ दिखाता है ताकि आप किसी भी मूल फ़ोल्डर पर जल्दी से जा सकें।"
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "पथ बनाए रखें"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "होम स्क्रीन पर लौटने के बाद भी आपके द्वारा देखे गए अंतिम फ़ोल्डर पथ को दिखाना जारी रखता है।"
+  },
+  "settingShowScrollTopLabel": {
+    "message": "ऊपर जाएं बटन"
+  },
+  "settingShowScrollTopText": {
+    "message": "सूची के शीर्ष पर तेज़ी से वापस जाने के लिए एक फ़्लोटिंग बटन दिखाता है।"
+  },
+  "settingExtensionIconLabel": {
+    "message": "एक्सटेंशन आइकन"
+  },
+  "settingIconColorful": {
+    "message": "रंगीन"
+  },
+  "settingIconBlack": {
+    "message": "काला"
+  },
+  "settingIconWhite": {
+    "message": "सफेद"
+  },
+  "settingIconGray": {
+    "message": "ग्रे"
+  },
+  "settingIconCustom": {
+    "message": "कस्टम"
+  },
+  "settingIconChooseFile": {
+    "message": "फ़ाइल चुनें"
+  },
+  "settingIconPreviewLabel": {
+    "message": "पूर्वावलोकन"
+  },
+  "settingIconRemove": {
+    "message": "हटाएं"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP स्वीकार्य है। छवि स्वचालित रूप से काटी जाएगी।"
+  },
+  "settingIconInvalidFile": {
+    "message": "कृपया एक वैध छवि फ़ाइल चुनें (PNG, JPG, SVG, WebP)।"
+  },
+  "settingThemeBrowser": {
+    "message": "ब्राउज़र"
+  },
+  "settingThemeLight": {
+    "message": "हल्का"
+  },
+  "settingThemeDark": {
+    "message": "गहरा"
+  },
+  "settingThemeBlack": {
+    "message": "काला"
+  },
+  "settingThemeCustom": {
+    "message": "कस्टम"
+  },
+  "settingThemeBgColor": {
+    "message": "पृष्ठभूमि"
+  },
+  "settingThemeTextColor": {
+    "message": "पाठ"
+  },
+  "settingThemeAccentColor": {
+    "message": "एक्सेंट"
+  },
+  "settingThemeBorderColor": {
+    "message": "बॉर्डर"
+  },
+  "settingThemeCardColor": {
+    "message": "कार्ड"
+  },
+  "settingFontLabel": {
+    "message": "फ़ॉन्ट"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "कस्टम"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "उदा. Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "कोई भी Google Fonts नाम लिखें, जैसे Roboto या Poppins."
+  },
+  "settingFaviconProviderLabel": {
+    "message": "फ़ेविकॉन प्रदाता"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "ब्राउज़र"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "फ़ोल्डर में खोजें"
+  },
+  "searchInFolderText": {
+    "message": "सक्षम होने पर, खोज केवल वर्तमान फ़ोल्डर और उसके उपफ़ोल्डर में की जाती है।"
+  },
+  "settingAboutLabel": {
+    "message": "के बारे में"
+  },
+  "aboutWebsiteButton": {
+    "message": "वेबसाइट"
+  },
+  "aboutSourceButton": {
+    "message": "स्रोत कोड"
+  },
+  "aboutVersion": {
+    "message": "संस्करण"
+  },
+  "settingContextMenuLabel": {
+    "message": "संदर्भ मेनू"
+  },
+  "contextMenuItemsText": {
+    "message": "खींचकर क्रम बदलें, क्लिक करके दृश्यता बदलें।"
+  },
+  "contextMenuActionsLabel": {
+    "message": "त्वरित क्रियाएँ"
+  },
+  "settingShowQuickActionsText": {
+    "message": "सक्षम होने पर, अंतिम तीन सक्रिय विकल्प क्रिया बटन बन जाते हैं।"
+  },
+  "settingsSearchPlaceholder": {
+    "message": "खोजें..."
+  },
+  "settingsNoResults": {
+    "message": "कोई परिणाम नहीं मिला"
+  },
+  "settingGridColumnsLabel": {
+    "message": "ग्रिड स्तंभ"
+  },
+  "settingGridColumns2": {
+    "message": "2 स्तंभ"
+  },
+  "settingGridColumns3": {
+    "message": "3 स्तंभ"
+  },
+  "settingGridColumns4": {
+    "message": "4 स्तंभ"
+  },
+  "settingGridWidthLabel": {
+    "message": "ग्रिड चौड़ाई"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "शीर्षक दिखाएं"
+  },
+  "showGridTitlesText": {
+    "message": "ग्रिड दृश्य में बुकमार्क के नीचे शीर्षक दिखाता या छिपाता है।"
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf एक मुफ़्त, ओपन-सोर्स बुकमार्क मैनेजर है जो गति और सरलता पर केंद्रित है। इसका सोर्स कोड सार्वजनिक है, ताकि कोई भी इसे देख सके, सुधार सुझा सके या नए फीचर्स में योगदान दे सके।"
+  },
+  "settingScrollbarLabel": {
+    "message": "स्क्रॉलबार"
+  },
+  "scrollbarText": {
+    "message": "बंद करने पर, स्क्रॉलबार पूरे एक्सटेंशन में छिप जाता है।"
+  },
+  "settingIconPickerIntro": {
+    "message": "Firefox में, एक्सटेंशन पॉपअप से फ़ाइल चयनकर्ता खुलने पर पॉपअप स्वचालित रूप से बंद हो जाता है। हालांकि डेवलपर्स लंबे समय से इस बग की शिकायत कर रहे हैं, फिर भी इसे ठीक करने के लिए कोई ठोस कदम नहीं उठाया गया है। इसलिए मुझे तुम्हें इस पेज पर भेजना पड़ा ताकि तुम अपना आइकॉन चुन सको।"
+  },
+  "settingIconProcessing": {
+    "message": "प्रोसेस हो रहा है..."
+  },
+  "settingIconProcessFailed": {
+    "message": "इमेज प्रोसेस नहीं हो सकी। कोई दूसरी फ़ाइल आज़माएं।"
+  },
+  "filePickerImportIntro": {
+    "message": "Firefox में, जब एक्सटेंशन पॉपअप से फ़ाइल पिकर खुलता है, तो पॉपअप अपने आप बंद हो जाता है। हालांकि डेवलपर्स लंबे समय से इस बग की रिपोर्ट कर रहे हैं, इसे ठीक करने के लिए कोई ठोस कदम नहीं उठाया गया है। इसलिए मुझे आपको इस पेज पर भेजना पड़ा ताकि आप इंपोर्ट करने के लिए फ़ाइल चुन सकें।"
+  },
+  "filePickerImportReading": {
+    "message": "फ़ाइल पढ़ी जा रही है..."
+  },
+  "filePickerImportFailed": {
+    "message": "फ़ाइल नहीं पढ़ी जा सकी। कृपया कोई दूसरी फ़ाइल आज़माएं।"
+  }
+}

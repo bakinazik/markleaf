@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Markleaf</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#222;
+  --card:#333;
+  --border:#434543;
+  --text:#f2f2f2;
+  --muted:#a1a6ad;
+  --hover:#111;
+  --accent:#00b317;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+}
+
+body{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  background:var(--bg);
+  font:13px/1.5 system-ui,sans-serif;
+  color:var(--text);
+}
+
+#intro{
+  width:100%;
+  max-width:340px;
+  margin:0 0 12px;
+  padding:12px 18px;
+  border:1px solid #3d2e1a;
+  border-radius:12px;
+  background:#1c1508;
+  color:#d4a84b;
+  font-size:13px;
+  text-align:center;
+}
+
+#panel{
+  width:100%;
+  max-width:340px;
+  padding:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
+
+input[type=file]{
+  width:100%;
+  min-width:0;
+  height:58px;
+  padding:6px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:var(--bg);
+  color:var(--muted);
+  font:inherit;
+  cursor:pointer;
+  transition:border-color .2s,background .2s;
+  outline: none;
+}
+
+input[type=file]:hover{
+  border-color:#555;
+  background:var(--hover);
+}
+
+input[type=file]:focus-visible{
+  outline: none;
+}
+
+input[type=file]::file-selector-button{
+  height:44px;
+  margin-right:10px;
+  padding:0 16px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#3b3d3b;
+  color:var(--text);
+  font:inherit;
+  cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+
+input[type=file]::file-selector-button:hover{
+  background:#454845;
+  border-color:#5a5d5a;
+}
+
+#status{
+  width:100%;
+  max-width:340px;
+  margin:12px 0 0;
+  min-height:18px;
+  font-size:12px;
+  color:var(--muted);
+  text-align:center;
+}
+
+#cropCanvas{
+  display:none;
+}
+</style>
+</head>
+<body>
+
+<p id="intro"></p>
+
+<div id="panel">
+
+  <input type="file" id="fileInput">
+
+  <canvas id="cropCanvas"></canvas>
+
+</div>
+
+<p id="status"></p>
+
+<script src="helper.js"></script>
+</body>
+</html>
