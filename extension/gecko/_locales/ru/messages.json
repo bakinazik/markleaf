@@ -1,0 +1,539 @@
+{
+  "searchPlaceholder": {
+    "message": "Поиск..."
+  },
+  "noBookmarksMessage": {
+    "message": "Здесь нет закладок."
+  },
+  "noSearchResultsMessage": {
+    "message": "Результатов, соответствующих вашему поиску, не найдено."
+  },
+  "saveButton": {
+    "message": "Сохранить"
+  },
+  "cancelButton": {
+    "message": "Отмена"
+  },
+  "editButton": {
+    "message": "Изменить"
+  },
+  "pinButton": {
+    "message": "Закрепить"
+  },
+  "unpinButton": {
+    "message": "Открепить"
+  },
+  "removeButton": {
+    "message": "Удалить"
+  },
+  "createFolderButton": {
+    "message": "Создать папку здесь"
+  },
+  "newFolderName": {
+    "message": "Новая папка"
+  },
+  "addCurrentSiteButton": {
+    "message": "Добавить текущую вкладку сюда"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Добавить вкладку в папку"
+  },
+  "addAllTabsButton": {
+    "message": "Добавить активные вкладки сюда"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Добавить активные вкладки в папку"
+  },
+  "confirmRemoval": {
+    "message": "Вы уверены?"
+  },
+  "moveButton": {
+    "message": "Переместить в папку"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Поиск в папках..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "Папки не найдены."
+  },
+  "moveBtnText": {
+    "message": "Переместить"
+  },
+  "upFolderButton": {
+    "message": "На уровень выше"
+  },
+  "addBookmark": {
+    "message": "Добавить закладку"
+  },
+  "newFolderTitle": {
+    "message": "Создать новую папку"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Имя папки"
+  },
+  "createFolderModalButton": {
+    "message": "Создать"
+  },
+  "editTitle": {
+    "message": "Изменить"
+  },
+  "editTitlePlaceholder": {
+    "message": "Заголовок"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL-адрес"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Открыть все"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Вы хотите открыть <b>$2</b> закладок в папке <b>$1</b>?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Да"
+  },
+  "copyLinkButton": {
+    "message": "Копировать ссылку"
+  },
+  "openInCurrentTab": {
+    "message": "Открыть в текущей вкладке"
+  },
+  "openInNewTab": {
+    "message": "Открыть в новой вкладке"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Поиск..."
+  },
+  "trashIsEmpty": {
+    "message": "Корзина пуста"
+  },
+  "trashNoResults": {
+    "message": "Результатов не найдено"
+  },
+  "trashRestoreButton": {
+    "message": "Восстановить"
+  },
+  "restoreAllTrashButton": {
+    "message": "Восстановить все"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Вы уверены, что хотите восстановить все закладки из корзины?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Да"
+  },
+  "trashDeletePermanently": {
+    "message": "Удалить навсегда"
+  },
+  "trashConfirmDelete": {
+    "message": "Вы уверены?"
+  },
+  "emptyTrashTitle": {
+    "message": "Вы уверены, что хотите удалить все закладки в корзине? Это действие нельзя отменить!"
+  },
+  "emptyTrashButton": {
+    "message": "Да"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Режим удаления"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Корзина"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Удалить"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Папка корзины"
+  },
+  "settingBookmarksLabel": {
+    "message": "Закладки"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Стиль папки"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Папка"
+  },
+  "settingFolderStyleStack": {
+    "message": "Стопка"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Счетчик папки"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Да"
+  },
+  "settingFolderBadgeNo": {
+    "message": "Нет"
+  },
+  "settingThemeLabel": {
+    "message": "Тема"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "Новый элемент"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Добавлять в начало"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Добавлять в конец"
+  },
+  "settingViewLabel": {
+    "message": "Закладки"
+  },
+  "settingViewList": {
+    "message": "Список"
+  },
+  "settingViewGrid": {
+    "message": "Сетка"
+  },
+  "folderBadgeText": {
+    "message": "Отображает общее количество закладок внутри папок."
+  },
+  "folderStyleText": {
+    "message": "Этот параметр применяется только к виду сетки."
+  },
+  "deleteModeText": {
+    "message": "Когда корзина включена, удаленные закладки перемещаются в нее и окончательно удаляются через указанное время."
+  },
+  "trashDaysLeft": {
+    "message": "д"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Автоудаление через"
+  },
+  "trashExpiry3Days": {
+    "message": "3 дня"
+  },
+  "trashExpiry7Days": {
+    "message": "7 дней"
+  },
+  "trashExpiry1Month": {
+    "message": "1 месяц"
+  },
+  "settingImportExportLabel": {
+    "message": "Управление данными"
+  },
+  "exportButton": {
+    "message": "Экспорт"
+  },
+  "importButton": {
+    "message": "Импорт"
+  },
+  "exportOptionsTitle": {
+    "message": "Экспорт"
+  },
+  "importOptionsTitle": {
+    "message": "Импорт"
+  },
+  "exportOptionsDescription": {
+    "message": "Выберите, что вы хотите экспортировать."
+  },
+  "importOptionsDescription": {
+    "message": "Выберите, что вы хотите импортировать."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Настройки"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Закладки"
+  },
+  "importContinueButton": {
+    "message": "Продолжить"
+  },
+  "importError": {
+    "message": "Ошибка импорта. Файл может быть недействительным или поврежденным."
+  },
+  "importConfirmMessage": {
+    "message": "Это перезапишет ваши закладки, настройки и данные корзины. Вы уверены?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Это перезапишет ваши закладки и данные корзины. Вы уверены?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Это перезапишет ваши настройки. Вы уверены?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Это перезапишет ваши закладки. Вы уверены?"
+  },
+  "importConfirmTitle": {
+    "message": "Подтверждение импорта"
+  },
+  "importConfirmYes": {
+    "message": "Да"
+  },
+  "viewToggleLabel": {
+    "message": "Переключить вид"
+  },
+  "contextMenuLabel": {
+    "message": "Опции"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Выбрать"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Выбрать"
+  },
+  "bulkOpenSelected": {
+    "message": "Открыть выбранные ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Переместить в папку"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Создать папку из выбранного"
+  },
+  "bulkDelete": {
+    "message": "Удалить выбранные"
+  },
+  "bulkConfirmDelete": {
+    "message": "Вы уверены?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Восстановить выбранные"
+  },
+  "bulkDeletePermanently": {
+    "message": "Удалить навсегда"
+  },
+  "selectionCount": {
+    "message": "Выбрано: $1"
+  },
+  "settingRootFolderLabel": {
+    "message": "Корневая папка"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Папка без имени"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Проверять перед добавлением"
+  },
+  "checkBeforeAddText": {
+    "message": "При включении закладки с одинаковым URL, уже находящиеся в целевой папке, будут пропущены."
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-перетаскивание для перемещения"
+  },
+  "ctrlDragMoveText": {
+    "message": "Если включено, удерживая Ctrl при перетаскивании закладки или папки, вы можете переместить её, отпустив прямо над другой папкой."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Родительская папка"
+  },
+  "settingShowUpButtonText": {
+    "message": "Показывает кнопку для перехода в родительскую папку."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Навигационная цепочка"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Отображает путь к папке, чтобы можно было быстро перейти в любую родительскую папку."
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Сохранять путь"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Продолжает показывать путь к последней открытой папке даже после возврата на главный экран."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Кнопка «наверх»"
+  },
+  "settingShowScrollTopText": {
+    "message": "Показывает плавающую кнопку для быстрого возврата к началу списка."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Иконка расширения"
+  },
+  "settingIconColorful": {
+    "message": "Цветная"
+  },
+  "settingIconBlack": {
+    "message": "Чёрная"
+  },
+  "settingIconWhite": {
+    "message": "Белая"
+  },
+  "settingIconGray": {
+    "message": "Серая"
+  },
+  "settingIconCustom": {
+    "message": "Своя"
+  },
+  "settingIconChooseFile": {
+    "message": "Выбрать файл"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Предпросмотр"
+  },
+  "settingIconRemove": {
+    "message": "Удалить"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG, JPG, SVG, WebP. Изображение будет обрезано автоматически."
+  },
+  "settingIconInvalidFile": {
+    "message": "Выберите корректный файл изображения (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Браузер"
+  },
+  "settingThemeLight": {
+    "message": "Светлая"
+  },
+  "settingThemeDark": {
+    "message": "Тёмная"
+  },
+  "settingThemeBlack": {
+    "message": "Чёрная"
+  },
+  "settingThemeCustom": {
+    "message": "Своя"
+  },
+  "settingThemeBgColor": {
+    "message": "Фон"
+  },
+  "settingThemeTextColor": {
+    "message": "Текст"
+  },
+  "settingThemeAccentColor": {
+    "message": "Акцент"
+  },
+  "settingThemeBorderColor": {
+    "message": "Граница"
+  },
+  "settingThemeCardColor": {
+    "message": "Карточка"
+  },
+  "settingFontLabel": {
+    "message": "Шрифт"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "Своя"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "напр. Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "Введите название любого шрифта Google Fonts, например Roboto или Poppins."
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Поставщик favicon"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Браузер"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Искать в папке"
+  },
+  "searchInFolderText": {
+    "message": "При включении поиск выполняется только в текущей папке и её подпапках."
+  },
+  "settingAboutLabel": {
+    "message": "О приложении"
+  },
+  "aboutWebsiteButton": {
+    "message": "Сайт"
+  },
+  "aboutSourceButton": {
+    "message": "Исходный код"
+  },
+  "aboutStoreButton": {
+    "message": "Интернет-магазин Chrome"
+  },
+  "aboutVersion": {
+    "message": "Версия"
+  },
+  "settingContextMenuLabel": {
+    "message": "Контекстное меню"
+  },
+  "contextMenuItemsText": {
+    "message": "Перетаскивайте для изменения порядка, нажимайте для переключения видимости."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Быстрые действия"
+  },
+  "settingShowQuickActionsText": {
+    "message": "При включении последние три активные опции превращаются в кнопки действий."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Поиск..."
+  },
+  "settingsNoResults": {
+    "message": "Результатов не найдено"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Столбцы сетки"
+  },
+  "settingGridColumns2": {
+    "message": "2 столбца"
+  },
+  "settingGridColumns3": {
+    "message": "3 столбца"
+  },
+  "settingGridColumns4": {
+    "message": "4 столбца"
+  },
+  "settingGridWidthLabel": {
+    "message": "Ширина сетки"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Показывать заголовки"
+  },
+  "showGridTitlesText": {
+    "message": "Показывает или скрывает заголовки под закладками в виде сетки."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf — это бесплатный менеджер закладок с открытым исходным кодом, ориентированный на скорость и простоту. Исходный код доступен публично, поэтому каждый может изучить его, предложить улучшения или внести новые функции."
+  },
+  "settingScrollbarLabel": {
+    "message": "Полоса прокрутки"
+  },
+  "scrollbarText": {
+    "message": "При отключении полоса прокрутки скрывается во всём расширении."
+  },
+  "settingIconPickerIntro": {
+    "message": "В Firefox при открытии выбора файла из всплывающего окна расширения это окно автоматически закрывается. Хотя разработчики уже давно сообщают об этой ошибке, никаких конкретных шагов для её исправления так и не было сделано. Поэтому мне пришлось перенаправить вас на эту страницу, чтобы вы могли выбрать значок."
+  },
+  "settingIconProcessing": {
+    "message": "Обработка..."
+  },
+  "settingIconProcessFailed": {
+    "message": "Не удалось обработать изображение. Попробуйте другой файл."
+  },
+  "filePickerImportIntro": {
+    "message": "В Firefox при открытии выбора файла из всплывающего окна расширения это окно автоматически закрывается. Хотя разработчики давно сообщают об этой ошибке, реальных шагов по её исправлению предпринято не было. Поэтому мне пришлось перенаправить вас на эту страницу, чтобы вы могли выбрать файл для импорта."
+  },
+  "filePickerImportReading": {
+    "message": "Чтение файла..."
+  },
+  "filePickerImportFailed": {
+    "message": "Не удалось прочитать файл. Попробуйте другой файл."
+  }
+}

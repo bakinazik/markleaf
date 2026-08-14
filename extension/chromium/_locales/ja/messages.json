@@ -1,0 +1,521 @@
+{
+  "searchPlaceholder": {
+    "message": "検索..."
+  },
+  "noBookmarksMessage": {
+    "message": "ブックマークがありません。"
+  },
+  "noSearchResultsMessage": {
+    "message": "検索条件に一致する結果は見つかりませんでした。"
+  },
+  "saveButton": {
+    "message": "保存"
+  },
+  "cancelButton": {
+    "message": "キャンセル"
+  },
+  "editButton": {
+    "message": "編集"
+  },
+  "pinButton": {
+    "message": "ピン留め"
+  },
+  "unpinButton": {
+    "message": "ピン留め解除"
+  },
+  "removeButton": {
+    "message": "削除"
+  },
+  "createFolderButton": {
+    "message": "ここにフォルダを作成"
+  },
+  "newFolderName": {
+    "message": "新しいフォルダ"
+  },
+  "addCurrentSiteButton": {
+    "message": "現在のタブをここに追加"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "タブをフォルダに追加"
+  },
+  "addAllTabsButton": {
+    "message": "アクティブなタブをここに追加"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "アクティブなタブをフォルダに追加"
+  },
+  "confirmRemoval": {
+    "message": "本当によろしいですか？"
+  },
+  "moveButton": {
+    "message": "フォルダに移動"
+  },
+  "searchFolderPlaceholder": {
+    "message": "フォルダ内を検索..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "フォルダが見つかりませんでした。"
+  },
+  "moveBtnText": {
+    "message": "移動"
+  },
+  "upFolderButton": {
+    "message": "上のフォルダへ"
+  },
+  "addBookmark": {
+    "message": "ブックマークを追加"
+  },
+  "newFolderTitle": {
+    "message": "新規フォルダ作成"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "フォルダ名"
+  },
+  "createFolderModalButton": {
+    "message": "作成"
+  },
+  "editTitle": {
+    "message": "編集"
+  },
+  "editTitlePlaceholder": {
+    "message": "タイトル"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "すべて開く"
+  },
+  "confirmOpenAllMessage": {
+    "message": "<b>$1</b> フォルダ内の <b>$2</b> 個のブックマークを開きますか？"
+  },
+  "confirmOpenAllButton": {
+    "message": "はい"
+  },
+  "copyLinkButton": {
+    "message": "リンクをコピー"
+  },
+  "openInCurrentTab": {
+    "message": "現在のタブで開く"
+  },
+  "openInNewTab": {
+    "message": "新しいタブで開く"
+  },
+  "trashSearchPlaceholder": {
+    "message": "検索..."
+  },
+  "trashIsEmpty": {
+    "message": "ゴミ箱は空です"
+  },
+  "trashNoResults": {
+    "message": "結果が見つかりませんでした"
+  },
+  "trashRestoreButton": {
+    "message": "復元"
+  },
+  "restoreAllTrashButton": {
+    "message": "すべて復元"
+  },
+  "restoreAllTrashTitle": {
+    "message": "ゴミ箱内のすべてのブックマークを復元してもよろしいですか？"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "はい"
+  },
+  "trashDeletePermanently": {
+    "message": "完全に削除"
+  },
+  "trashConfirmDelete": {
+    "message": "本当によろしいですか？"
+  },
+  "emptyTrashTitle": {
+    "message": "ゴミ箱内のすべてのブックマークを削除してもよろしいですか？この操作は取り消せません！"
+  },
+  "emptyTrashButton": {
+    "message": "はい"
+  },
+  "settingDeleteModeLabel": {
+    "message": "削除モード"
+  },
+  "settingDeleteModeTrash": {
+    "message": "ゴミ箱"
+  },
+  "settingDeleteModePermanent": {
+    "message": "直接削除"
+  },
+  "settingTrashFolderLabel": {
+    "message": "ゴミ箱フォルダ"
+  },
+  "settingBookmarksLabel": {
+    "message": "ブックマーク"
+  },
+  "settingFolderStyleLabel": {
+    "message": "フォルダスタイル"
+  },
+  "settingFolderStyleIcon": {
+    "message": "フォルダ"
+  },
+  "settingFolderStyleStack": {
+    "message": "スタック"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "フォルダバッジ"
+  },
+  "settingFolderBadgeYes": {
+    "message": "はい"
+  },
+  "settingFolderBadgeNo": {
+    "message": "いいえ"
+  },
+  "settingThemeLabel": {
+    "message": "テーマ"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "新規作成アイテム"
+  },
+  "settingNewItemPositionStart": {
+    "message": "先頭に追加"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "末尾に追加"
+  },
+  "settingViewLabel": {
+    "message": "ブックマーク"
+  },
+  "settingViewList": {
+    "message": "リスト"
+  },
+  "settingViewGrid": {
+    "message": "グリッド"
+  },
+  "folderBadgeText": {
+    "message": "フォルダ内のブックマークの総数を表示します。"
+  },
+  "folderStyleText": {
+    "message": "この設定はグリッド表示にのみ適用されます。"
+  },
+  "deleteModeText": {
+    "message": "ゴミ箱が有効な場合、削除されたブックマークはゴミ箱に移動され、指定した期間の経過後に削除されます。"
+  },
+  "trashDaysLeft": {
+    "message": "日"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "自動削除までの期間"
+  },
+  "trashExpiry3Days": {
+    "message": "3日間"
+  },
+  "trashExpiry7Days": {
+    "message": "7日間"
+  },
+  "trashExpiry1Month": {
+    "message": "1ヶ月間"
+  },
+  "settingImportExportLabel": {
+    "message": "データ管理"
+  },
+  "exportButton": {
+    "message": "エクスポート"
+  },
+  "importButton": {
+    "message": "インポート"
+  },
+  "exportOptionsTitle": {
+    "message": "エクスポート"
+  },
+  "importOptionsTitle": {
+    "message": "インポート"
+  },
+  "exportOptionsDescription": {
+    "message": "エクスポートする項目を選択してください。"
+  },
+  "importOptionsDescription": {
+    "message": "インポートする項目を選択してください。"
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "設定"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "ブックマーク"
+  },
+  "importContinueButton": {
+    "message": "続ける"
+  },
+  "importError": {
+    "message": "インポートに失敗しました。ファイルが無効か破損している可能性があります。"
+  },
+  "importConfirmMessage": {
+    "message": "ブックマーク、設定、ゴミ箱のデータが上書きされます。本当によろしいですか？"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "ブックマークとゴミ箱のデータが上書きされます。本当によろしいですか？"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "設定が上書きされます。本当によろしいですか？"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "ブックマークが上書きされます。本当によろしいですか？"
+  },
+  "importConfirmTitle": {
+    "message": "インポートの確認"
+  },
+  "importConfirmYes": {
+    "message": "はい"
+  },
+  "viewToggleLabel": {
+    "message": "表示の切り替え"
+  },
+  "contextMenuLabel": {
+    "message": "オプション"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "選択"
+  },
+  "selectionModeButtonTrash": {
+    "message": "選択"
+  },
+  "bulkOpenSelected": {
+    "message": "選択した項目を開く ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "フォルダに移動"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "選択範囲からフォルダを作成"
+  },
+  "bulkDelete": {
+    "message": "選択した項目を削除"
+  },
+  "bulkConfirmDelete": {
+    "message": "本当によろしいですか？"
+  },
+  "bulkRestoreSelected": {
+    "message": "選択した項目を復元"
+  },
+  "bulkDeletePermanently": {
+    "message": "完全に削除"
+  },
+  "selectionCount": {
+    "message": "$1 個選択中"
+  },
+  "settingRootFolderLabel": {
+    "message": "ルートフォルダー"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "名前なしフォルダー"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "追加前に確認"
+  },
+  "checkBeforeAddText": {
+    "message": "有効にすると、対象の場所に同じURLのブックマークがすでに存在する場合、スキップされます。"
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrlドラッグで移動"
+  },
+  "ctrlDragMoveText": {
+    "message": "有効にすると、Ctrlキーを押しながらブックマークまたはフォルダをドラッグし、フォルダに直接ドロップして移動できます。"
+  },
+  "settingShowUpButtonLabel": {
+    "message": "親フォルダー"
+  },
+  "settingShowUpButtonText": {
+    "message": "親フォルダーに移動するためのボタンを表示します。"
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "パンくずリスト"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "フォルダーのパスを表示し、任意の親フォルダーにすばやくジャンプできます。"
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "パスを保持"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "ホーム画面に戻っても、最後に開いたフォルダのパスを表示し続けます。"
+  },
+  "settingShowScrollTopLabel": {
+    "message": "上へ戻るボタン"
+  },
+  "settingShowScrollTopText": {
+    "message": "リストの先頭にすばやく戻るためのボタンを表示します。"
+  },
+  "settingExtensionIconLabel": {
+    "message": "拡張機能アイコン"
+  },
+  "settingIconColorful": {
+    "message": "カラフル"
+  },
+  "settingIconBlack": {
+    "message": "黒"
+  },
+  "settingIconWhite": {
+    "message": "白"
+  },
+  "settingIconGray": {
+    "message": "グレー"
+  },
+  "settingIconCustom": {
+    "message": "カスタム"
+  },
+  "settingIconChooseFile": {
+    "message": "ファイルを選択"
+  },
+  "settingIconPreviewLabel": {
+    "message": "プレビュー"
+  },
+  "settingIconRemove": {
+    "message": "削除"
+  },
+  "settingIconCustomHint": {
+    "message": "PNG、JPG、SVG、WebP に対応しています。画像は自動的にトリミングされます。"
+  },
+  "settingIconInvalidFile": {
+    "message": "有効な画像ファイル（PNG、JPG、SVG、WebP）を選択してください。"
+  },
+  "settingThemeBrowser": {
+    "message": "ブラウザ"
+  },
+  "settingThemeLight": {
+    "message": "ライト"
+  },
+  "settingThemeDark": {
+    "message": "ダーク"
+  },
+  "settingThemeBlack": {
+    "message": "ブラック"
+  },
+  "settingThemeCustom": {
+    "message": "カスタム"
+  },
+  "settingThemeBgColor": {
+    "message": "背景"
+  },
+  "settingThemeTextColor": {
+    "message": "テキスト"
+  },
+  "settingThemeAccentColor": {
+    "message": "アクセント"
+  },
+  "settingThemeBorderColor": {
+    "message": "ボーダー"
+  },
+  "settingThemeCardColor": {
+    "message": "カード"
+  },
+  "settingFontLabel": {
+    "message": "フォント"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "カスタム"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "例: Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "Google Fontsのフォント名を入力してください。例: Roboto、Poppins"
+  },
+  "settingFaviconProviderLabel": {
+    "message": "ファビコンプロバイダー"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "ブラウザ"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "フォルダー内を検索"
+  },
+  "searchInFolderText": {
+    "message": "有効にすると、現在のフォルダーとそのサブフォルダー内のみを検索します。"
+  },
+  "settingAboutLabel": {
+    "message": "このアプリについて"
+  },
+  "aboutWebsiteButton": {
+    "message": "ウェブサイト"
+  },
+  "aboutSourceButton": {
+    "message": "ソースコード"
+  },
+  "aboutStoreButton": {
+    "message": "Chrome ウェブストア"
+  },
+  "aboutVersion": {
+    "message": "バージョン"
+  },
+  "settingContextMenuLabel": {
+    "message": "コンテキストメニュー"
+  },
+  "contextMenuItemsText": {
+    "message": "ドラッグで並び替え、クリックで表示/非表示を切り替えられます。"
+  },
+  "contextMenuActionsLabel": {
+    "message": "クイックアクション"
+  },
+  "settingShowQuickActionsText": {
+    "message": "有効にすると、最後の3つのアクティブな選択肢がアクションボタンになります。"
+  },
+  "settingsSearchPlaceholder": {
+    "message": "検索..."
+  },
+  "settingsNoResults": {
+    "message": "結果が見つかりませんでした"
+  },
+  "settingGridColumnsLabel": {
+    "message": "グリッド列数"
+  },
+  "settingGridColumns2": {
+    "message": "2列"
+  },
+  "settingGridColumns3": {
+    "message": "3列"
+  },
+  "settingGridColumns4": {
+    "message": "4列"
+  },
+  "settingGridWidthLabel": {
+    "message": "グリッドの幅"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "タイトルを表示"
+  },
+  "showGridTitlesText": {
+    "message": "グリッド表示でブックマークの下にタイトルを表示または非表示にします。"
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleafは、スピードとシンプルさを重視した無料のオープンソースブックマークマネージャーです。ソースコードは公開されており、誰でも確認したり、改善を提案したり、機能を追加したりできます。"
+  },
+  "settingScrollbarLabel": {
+    "message": "スクロールバー"
+  },
+  "scrollbarText": {
+    "message": "オフにすると、拡張機能全体でスクロールバーが非表示になります。"
+  }
+}

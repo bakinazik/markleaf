@@ -1,0 +1,521 @@
+{
+  "searchPlaceholder": {
+    "message": "Cerca..."
+  },
+  "noBookmarksMessage": {
+    "message": "Nessun segnalibro qui."
+  },
+  "noSearchResultsMessage": {
+    "message": "Nessun risultato trovato per i criteri di ricerca."
+  },
+  "saveButton": {
+    "message": "Salva"
+  },
+  "cancelButton": {
+    "message": "Annulla"
+  },
+  "editButton": {
+    "message": "Modifica"
+  },
+  "pinButton": {
+    "message": "Fissa"
+  },
+  "unpinButton": {
+    "message": "Rimuovi fissaggio"
+  },
+  "removeButton": {
+    "message": "Rimuovi"
+  },
+  "createFolderButton": {
+    "message": "Crea cartella qui"
+  },
+  "newFolderName": {
+    "message": "Nuova cartella"
+  },
+  "addCurrentSiteButton": {
+    "message": "Aggiungi scheda corrente qui"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Aggiungi scheda alla cartella"
+  },
+  "addAllTabsButton": {
+    "message": "Aggiungi schede attive qui"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Aggiungi schede attive alla cartella"
+  },
+  "confirmRemoval": {
+    "message": "Sei sicuro?"
+  },
+  "moveButton": {
+    "message": "Sposta nella cartella"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Cerca nelle cartelle..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "Nessuna cartella trovata."
+  },
+  "moveBtnText": {
+    "message": "Sposta"
+  },
+  "upFolderButton": {
+    "message": "Torna alla cartella superiore"
+  },
+  "addBookmark": {
+    "message": "Aggiungi segnalibro"
+  },
+  "newFolderTitle": {
+    "message": "Crea nuova cartella"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Nome cartella"
+  },
+  "createFolderModalButton": {
+    "message": "Crea"
+  },
+  "editTitle": {
+    "message": "Modifica"
+  },
+  "editTitlePlaceholder": {
+    "message": "Titolo"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Apri tutto"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Vuoi aprire <b>$2</b> segnalibri nella cartella <b>$1</b>?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Sì"
+  },
+  "copyLinkButton": {
+    "message": "Copia link"
+  },
+  "openInCurrentTab": {
+    "message": "Apri nella scheda corrente"
+  },
+  "openInNewTab": {
+    "message": "Apri in una nuova scheda"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Cerca..."
+  },
+  "trashIsEmpty": {
+    "message": "Il cestino è vuoto"
+  },
+  "trashNoResults": {
+    "message": "Nessun risultato trovato"
+  },
+  "trashRestoreButton": {
+    "message": "Ripristina"
+  },
+  "restoreAllTrashButton": {
+    "message": "Ripristina tutto"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Sei sicuro di voler ripristinare tutti i segnalibri dal cestino?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Sì"
+  },
+  "trashDeletePermanently": {
+    "message": "Elimina definitivamente"
+  },
+  "trashConfirmDelete": {
+    "message": "Sei sicuro?"
+  },
+  "emptyTrashTitle": {
+    "message": "Sei sicuro di voler eliminare tutti i segnalibri nel cestino? Questa azione non può essere annullata!"
+  },
+  "emptyTrashButton": {
+    "message": "Sì"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Modalità eliminazione"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Cestino"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Elimina"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Cartella cestino"
+  },
+  "settingBookmarksLabel": {
+    "message": "Segnalibri"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Stile cartella"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Cartella"
+  },
+  "settingFolderStyleStack": {
+    "message": "Pila"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Badge cartella"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Sì"
+  },
+  "settingFolderBadgeNo": {
+    "message": "No"
+  },
+  "settingThemeLabel": {
+    "message": "Tema"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "Elemento appena creato"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Aggiungi all’inizio"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Aggiungi alla fine"
+  },
+  "settingViewLabel": {
+    "message": "Segnalibri"
+  },
+  "settingViewList": {
+    "message": "Elenco"
+  },
+  "settingViewGrid": {
+    "message": "Griglia"
+  },
+  "folderBadgeText": {
+    "message": "Visualizza il numero totale di segnalibri all'interno delle cartelle."
+  },
+  "folderStyleText": {
+    "message": "Questa impostazione si applica solo alla visualizzazione a griglia."
+  },
+  "deleteModeText": {
+    "message": "Quando il cestino è abilitato, i segnalibri eliminati vengono spostati nel cestino e rimossi definitivamente dopo la durata specificata."
+  },
+  "trashDaysLeft": {
+    "message": "g"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Elimina automaticamente dopo"
+  },
+  "trashExpiry3Days": {
+    "message": "3 giorni"
+  },
+  "trashExpiry7Days": {
+    "message": "7 giorni"
+  },
+  "trashExpiry1Month": {
+    "message": "1 mese"
+  },
+  "settingImportExportLabel": {
+    "message": "Gestione dati"
+  },
+  "exportButton": {
+    "message": "Esporta"
+  },
+  "importButton": {
+    "message": "Importa"
+  },
+  "exportOptionsTitle": {
+    "message": "Esporta"
+  },
+  "importOptionsTitle": {
+    "message": "Importa"
+  },
+  "exportOptionsDescription": {
+    "message": "Scegli cosa vuoi esportare."
+  },
+  "importOptionsDescription": {
+    "message": "Scegli cosa vuoi importare."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Impostazioni"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Preferiti"
+  },
+  "importContinueButton": {
+    "message": "Continua"
+  },
+  "importError": {
+    "message": "Importazione fallita. Il file potrebbe essere non valido o danneggiato."
+  },
+  "importConfirmMessage": {
+    "message": "Questo sovrascriverà i tuoi segnalibri, le impostazioni e i dati del cestino. Sei sicuro?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "Questo sovrascriverà i tuoi segnalibri e i dati del cestino. Sei sicuro?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "Questo sovrascriverà le tue impostazioni. Sei sicuro?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "Questo sovrascriverà i tuoi segnalibri. Sei sicuro?"
+  },
+  "importConfirmTitle": {
+    "message": "Conferma importazione"
+  },
+  "importConfirmYes": {
+    "message": "Sì"
+  },
+  "viewToggleLabel": {
+    "message": "Cambia visualizzazione"
+  },
+  "contextMenuLabel": {
+    "message": "Opzioni"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Seleziona"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Seleziona"
+  },
+  "bulkOpenSelected": {
+    "message": "Apri selezionati ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Sposta nella cartella"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Crea cartella dalla selezione"
+  },
+  "bulkDelete": {
+    "message": "Elimina selezionati"
+  },
+  "bulkConfirmDelete": {
+    "message": "Sei sicuro?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Ripristina selezionati"
+  },
+  "bulkDeletePermanently": {
+    "message": "Elimina definitivamente"
+  },
+  "selectionCount": {
+    "message": "$1 selezionati"
+  },
+  "settingRootFolderLabel": {
+    "message": "Cartella radice"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Cartella senza nome"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Controlla prima di aggiungere"
+  },
+  "checkBeforeAddText": {
+    "message": "Se abilitato, i segnalibri con lo stesso URL già presenti nella posizione di destinazione verranno ignorati."
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Ctrl-trascina per spostare"
+  },
+  "ctrlDragMoveText": {
+    "message": "Se attivato, tieni premuto Ctrl mentre trascini un segnalibro o una cartella e rilascialo direttamente su un'altra cartella per spostarlo."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Cartella principale"
+  },
+  "settingShowUpButtonText": {
+    "message": "Mostra un pulsante per navigare alla cartella principale."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Percorso di navigazione"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Mostra il percorso della cartella per poter accedere rapidamente a qualsiasi cartella principale."
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Mantieni percorso"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Continua a mostrare il percorso dell'ultima cartella visitata anche dopo essere tornati alla schermata principale."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Pulsante torna su"
+  },
+  "settingShowScrollTopText": {
+    "message": "Mostra un pulsante flottante per tornare rapidamente all'inizio dell'elenco."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Icona estensione"
+  },
+  "settingIconColorful": {
+    "message": "Colorato"
+  },
+  "settingIconBlack": {
+    "message": "Nero"
+  },
+  "settingIconWhite": {
+    "message": "Bianco"
+  },
+  "settingIconGray": {
+    "message": "Grigio"
+  },
+  "settingIconCustom": {
+    "message": "Personalizzato"
+  },
+  "settingIconChooseFile": {
+    "message": "Scegli file"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Anteprima"
+  },
+  "settingIconRemove": {
+    "message": "Rimuovi"
+  },
+  "settingIconCustomHint": {
+    "message": "Accetta PNG, JPG, SVG, WebP. L'immagine verrà ritagliata automaticamente."
+  },
+  "settingIconInvalidFile": {
+    "message": "Seleziona un file immagine valido (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Browser"
+  },
+  "settingThemeLight": {
+    "message": "Chiaro"
+  },
+  "settingThemeDark": {
+    "message": "Scuro"
+  },
+  "settingThemeBlack": {
+    "message": "Nero"
+  },
+  "settingThemeCustom": {
+    "message": "Personalizzato"
+  },
+  "settingThemeBgColor": {
+    "message": "Sfondo"
+  },
+  "settingThemeTextColor": {
+    "message": "Testo"
+  },
+  "settingThemeAccentColor": {
+    "message": "Accento"
+  },
+  "settingThemeBorderColor": {
+    "message": "Bordo"
+  },
+  "settingThemeCardColor": {
+    "message": "Scheda"
+  },
+  "settingFontLabel": {
+    "message": "Carattere"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "Personalizzato"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "es. Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "Digita il nome di un font di Google Fonts, ad esempio Roboto o Poppins."
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Provider favicon"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Browser"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Cerca nella cartella"
+  },
+  "searchInFolderText": {
+    "message": "Se abilitato, la ricerca viene eseguita solo nella cartella corrente e nelle sue sottocartelle."
+  },
+  "settingAboutLabel": {
+    "message": "Informazioni"
+  },
+  "aboutWebsiteButton": {
+    "message": "Sito web"
+  },
+  "aboutSourceButton": {
+    "message": "Codice sorgente"
+  },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
+  "aboutVersion": {
+    "message": "Versione"
+  },
+  "settingContextMenuLabel": {
+    "message": "Menu contestuale"
+  },
+  "contextMenuItemsText": {
+    "message": "Puoi riordinare trascinando e attivare/disattivare cliccando."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Azioni rapide"
+  },
+  "settingShowQuickActionsText": {
+    "message": "Se abilitato, le ultime tre opzioni attive diventano pulsanti di azione."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Cerca..."
+  },
+  "settingsNoResults": {
+    "message": "Nessun risultato trovato"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Colonne griglia"
+  },
+  "settingGridColumns2": {
+    "message": "2 Colonne"
+  },
+  "settingGridColumns3": {
+    "message": "3 Colonne"
+  },
+  "settingGridColumns4": {
+    "message": "4 Colonne"
+  },
+  "settingGridWidthLabel": {
+    "message": "Larghezza griglia"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Mostra titoli"
+  },
+  "showGridTitlesText": {
+    "message": "Mostra o nasconde i titoli sotto i segnalibri nella vista griglia."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf è un gestore di segnalibri gratuito e open source, pensato per velocità e semplicità. Il codice sorgente è pubblico, così chiunque può esaminarlo, proporre miglioramenti o contribuire con nuove funzionalità."
+  },
+  "settingScrollbarLabel": {
+    "message": "Barra di scorrimento"
+  },
+  "scrollbarText": {
+    "message": "Se disattivata, la barra di scorrimento viene nascosta in tutta l'estensione."
+  }
+}

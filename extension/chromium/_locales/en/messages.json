@@ -1,0 +1,518 @@
+{
+  "searchPlaceholder": {
+    "message": "Search..."
+  },
+  "noBookmarksMessage": {
+    "message": "No bookmarks here."
+  },
+  "noSearchResultsMessage": {
+    "message": "No results found matching your search criteria."
+  },
+  "saveButton": {
+    "message": "Save"
+  },
+  "cancelButton": {
+    "message": "Cancel"
+  },
+  "editButton": {
+    "message": "Edit"
+  },
+  "pinButton": {
+    "message": "Pin"
+  },
+  "unpinButton": {
+    "message": "Unpin"
+  },
+  "removeButton": {
+    "message": "Remove"
+  },
+  "createFolderButton": {
+    "message": "Create folder here"
+  },
+  "newFolderName": {
+    "message": "New folder"
+  },
+  "addCurrentSiteButton": {
+    "message": "Add current tab here"
+  },
+  "addCurrentSiteToFolderButton": {
+    "message": "Add current tab to folder"
+  },
+  "addAllTabsButton": {
+    "message": "Add active tabs here"
+  },
+  "addAllTabsToFolderButton": {
+    "message": "Add active tabs to folder"
+  },
+  "confirmRemoval": {
+    "message": "Are you sure?"
+  },
+  "moveButton": {
+    "message": "Move to folder"
+  },
+  "searchFolderPlaceholder": {
+    "message": "Search in folders..."
+  },
+  "noFoldersFoundMessage": {
+    "message": "No folders found."
+  },
+  "moveBtnText": {
+    "message": "Move"
+  },
+  "upFolderButton": {
+    "message": "Go up folder"
+  },
+  "addBookmark": {
+    "message": "Add bookmark"
+  },
+  "newFolderTitle": {
+    "message": "Create New Folder"
+  },
+  "newFolderNamePlaceholder": {
+    "message": "Folder name"
+  },
+  "createFolderModalButton": {
+    "message": "Create"
+  },
+  "editTitle": {
+    "message": "Edit"
+  },
+  "editTitlePlaceholder": {
+    "message": "Title"
+  },
+  "editUrlPlaceholder": {
+    "message": "URL"
+  },
+  "confirmOpenAllTitle": {
+    "message": "Open All"
+  },
+  "confirmOpenAllMessage": {
+    "message": "Do you want to open <b>$2</b> bookmarks in <b>$1</b> folder?"
+  },
+  "confirmOpenAllButton": {
+    "message": "Yes"
+  },
+  "copyLinkButton": {
+    "message": "Copy link"
+  },
+  "openInCurrentTab": {
+    "message": "Open in current tab"
+  },
+  "openInNewTab": {
+    "message": "Open in new tab"
+  },
+  "trashSearchPlaceholder": {
+    "message": "Search..."
+  },
+  "trashIsEmpty": {
+    "message": "Trash is empty"
+  },
+  "trashNoResults": {
+    "message": "No results found"
+  },
+  "trashRestoreButton": {
+    "message": "Restore"
+  },
+  "restoreAllTrashButton": {
+    "message": "Restore all"
+  },
+  "restoreAllTrashTitle": {
+    "message": "Are you sure you want to restore all bookmarks from the trash?"
+  },
+  "restoreAllTrashConfirmButton": {
+    "message": "Yes"
+  },
+  "trashDeletePermanently": {
+    "message": "Delete permanently"
+  },
+  "trashConfirmDelete": {
+    "message": "Are you sure?"
+  },
+  "emptyTrashTitle": {
+    "message": "Are you sure you want to delete all the bookmarks in the trash? This action cannot be undone!"
+  },
+  "emptyTrashButton": {
+    "message": "Yes"
+  },
+  "settingDeleteModeLabel": {
+    "message": "Delete mode"
+  },
+  "settingDeleteModeTrash": {
+    "message": "Trash"
+  },
+  "settingDeleteModePermanent": {
+    "message": "Delete"
+  },
+  "settingTrashFolderLabel": {
+    "message": "Trash folder"
+  },
+  "settingBookmarksLabel": {
+    "message": "Bookmarks"
+  },
+  "settingGridColumnsLabel": {
+    "message": "Grid columns"
+  },
+  "settingGridColumns2": {
+    "message": "2 Columns"
+  },
+  "settingGridColumns3": {
+    "message": "3 Columns"
+  },
+  "settingGridColumns4": {
+    "message": "4 Columns"
+  },
+  "settingFolderStyleLabel": {
+    "message": "Folder style"
+  },
+  "settingFolderStyleIcon": {
+    "message": "Folder"
+  },
+  "settingFolderStyleStack": {
+    "message": "Stack"
+  },
+  "settingFolderBadgeLabel": {
+    "message": "Folder badge"
+  },
+  "settingFolderBadgeYes": {
+    "message": "Yes"
+  },
+  "settingFolderBadgeNo": {
+    "message": "No"
+  },
+  "settingThemeLabel": {
+    "message": "Theme"
+  },
+  "settingNewItemPositionLabel": {
+    "message": "Newly created item"
+  },
+  "settingNewItemPositionStart": {
+    "message": "Add to beginning"
+  },
+  "settingNewItemPositionEnd": {
+    "message": "Add to end"
+  },
+  "settingViewLabel": {
+    "message": "Bookmarks"
+  },
+  "settingViewList": {
+    "message": "List"
+  },
+  "settingViewGrid": {
+    "message": "Grid"
+  },
+  "folderBadgeText": {
+    "message": "Displays the total number of bookmarks within the folders."
+  },
+  "folderStyleText": {
+    "message": "This setting applies only to the grid view."
+  },
+  "deleteModeText": {
+    "message": "When trash is enabled, deleted bookmarks are moved to the trash and are deleted after the specified duration."
+  },
+  "trashDaysLeft": {
+    "message": "d"
+  },
+  "settingTrashExpiryLabel": {
+    "message": "Auto-delete after"
+  },
+  "trashExpiry3Days": {
+    "message": "3 days"
+  },
+  "trashExpiry7Days": {
+    "message": "7 days"
+  },
+  "trashExpiry1Month": {
+    "message": "1 month"
+  },
+  "settingImportExportLabel": {
+    "message": "Data management"
+  },
+  "exportButton": {
+    "message": "Export"
+  },
+  "importButton": {
+    "message": "Import"
+  },
+  "exportOptionsTitle": {
+    "message": "Export"
+  },
+  "importOptionsTitle": {
+    "message": "Import"
+  },
+  "exportOptionsDescription": {
+    "message": "Choose what you'd like to export."
+  },
+  "importOptionsDescription": {
+    "message": "Choose what you'd like to import."
+  },
+  "ieIncludeSettingsLabel": {
+    "message": "Settings"
+  },
+  "ieIncludeBookmarksLabel": {
+    "message": "Bookmarks"
+  },
+  "importContinueButton": {
+    "message": "Continue"
+  },
+  "importError": {
+    "message": "Import failed. The file may be invalid or corrupted."
+  },
+  "importConfirmMessage": {
+    "message": "This will overwrite your bookmarks, settings and trash data. Are you sure?"
+  },
+  "importConfirmMessageBookmarksTrash": {
+    "message": "This will overwrite your bookmarks and trash data. Are you sure?"
+  },
+  "importConfirmMessageSettingsOnly": {
+    "message": "This will overwrite your settings. Are you sure?"
+  },
+  "importConfirmMessageBookmarksOnly": {
+    "message": "This will overwrite your bookmarks. Are you sure?"
+  },
+  "importConfirmTitle": {
+    "message": "Confirm Import"
+  },
+  "importConfirmYes": {
+    "message": "Yes"
+  },
+  "viewToggleLabel": {
+    "message": "Toggle view"
+  },
+  "keyboardShortcutLabel": {
+    "message": "TAB"
+  },
+  "selectionModeButton": {
+    "message": "Select"
+  },
+  "selectionModeButtonTrash": {
+    "message": "Select"
+  },
+  "bulkOpenSelected": {
+    "message": "Open selected ($1)"
+  },
+  "bulkMoveToFolder": {
+    "message": "Move to folder"
+  },
+  "bulkNewFolderAndMove": {
+    "message": "Create folder from selection"
+  },
+  "bulkDelete": {
+    "message": "Delete selected"
+  },
+  "bulkConfirmDelete": {
+    "message": "Are you sure?"
+  },
+  "bulkRestoreSelected": {
+    "message": "Restore selected"
+  },
+  "bulkDeletePermanently": {
+    "message": "Delete permanently"
+  },
+  "selectionCount": {
+    "message": "$1 selected"
+  },
+  "settingRootFolderLabel": {
+    "message": "Root folder"
+  },
+  "settingRootFolderUnnamed": {
+    "message": "Unnamed folder"
+  },
+  "settingCheckBeforeAddLabel": {
+    "message": "Check before adding"
+  },
+  "checkBeforeAddText": {
+    "message": "When enabled, bookmarks with the same URL already present in the target location will be skipped."
+  },
+  "settingCtrlDragMoveLabel": {
+    "message": "Control-drag to move"
+  },
+  "ctrlDragMoveText": {
+    "message": "When enabled, hold Ctrl while dragging a bookmark or folder and drop it directly onto a folder to move it there."
+  },
+  "settingShowUpButtonLabel": {
+    "message": "Parent folder"
+  },
+  "settingShowUpButtonText": {
+    "message": "Shows a button to navigate to the parent folder."
+  },
+  "settingShowBreadcrumbLabel": {
+    "message": "Breadcrumb"
+  },
+  "settingShowBreadcrumbText": {
+    "message": "Shows the folder path so you can quickly jump to any parent folder."
+  },
+  "settingShowBreadcrumbPersistLabel": {
+    "message": "Persist path"
+  },
+  "settingShowBreadcrumbPersistText": {
+    "message": "Keeps showing your last visited folder path even after returning to the home screen."
+  },
+  "settingShowScrollTopLabel": {
+    "message": "Scroll to top button"
+  },
+  "settingShowScrollTopText": {
+    "message": "Shows a floating button that quickly scrolls back to the top of the list."
+  },
+  "settingExtensionIconLabel": {
+    "message": "Extension icon"
+  },
+  "settingIconColorful": {
+    "message": "Colorful"
+  },
+  "settingIconBlack": {
+    "message": "Black"
+  },
+  "settingIconWhite": {
+    "message": "White"
+  },
+  "settingIconGray": {
+    "message": "Gray"
+  },
+  "settingIconCustom": {
+    "message": "Custom"
+  },
+  "settingIconChooseFile": {
+    "message": "Choose file"
+  },
+  "settingIconPreviewLabel": {
+    "message": "Preview"
+  },
+  "settingIconRemove": {
+    "message": "Remove"
+  },
+  "settingIconCustomHint": {
+    "message": "Accepts PNG, JPG, SVG, WebP. The image will be cropped to a square and resized automatically."
+  },
+  "settingIconInvalidFile": {
+    "message": "Please select a valid image file (PNG, JPG, SVG, WebP)."
+  },
+  "settingThemeBrowser": {
+    "message": "Browser"
+  },
+  "settingThemeLight": {
+    "message": "Light"
+  },
+  "settingThemeDark": {
+    "message": "Dark"
+  },
+  "settingThemeBlack": {
+    "message": "Black"
+  },
+  "settingThemeCustom": {
+    "message": "Custom"
+  },
+  "settingThemeBgColor": {
+    "message": "Background"
+  },
+  "settingThemeTextColor": {
+    "message": "Text"
+  },
+  "settingThemeAccentColor": {
+    "message": "Accent"
+  },
+  "settingThemeBorderColor": {
+    "message": "Border"
+  },
+  "settingThemeCardColor": {
+    "message": "Card"
+  },
+  "settingFontLabel": {
+    "message": "Font"
+  },
+  "settingFontSansSerif": {
+    "message": "Sans-serif"
+  },
+  "settingFontSerif": {
+    "message": "Serif"
+  },
+  "settingFontMonospace": {
+    "message": "Monospace"
+  },
+  "settingFontCustom": {
+    "message": "Custom"
+  },
+  "settingFontCustomPlaceholder": {
+    "message": "e.g. Roboto"
+  },
+  "settingFontCustomHint": {
+    "message": "Type any Google Fonts name — like Roboto or Poppins."
+  },
+  "settingFaviconProviderLabel": {
+    "message": "Favicon provider"
+  },
+  "settingFaviconProviderBrowser": {
+    "message": "Browser"
+  },
+  "settingFaviconProviderGoogle": {
+    "message": "Google"
+  },
+  "settingFaviconProviderDuckDuckGo": {
+    "message": "DuckDuckGo"
+  },
+  "settingSearchInFolderLabel": {
+    "message": "Search in folder"
+  },
+  "searchInFolderText": {
+    "message": "When enabled, searches only within the current folder and its subfolders."
+  },
+  "settingAboutLabel": {
+    "message": "About"
+  },
+  "aboutWebsiteButton": {
+    "message": "Website"
+  },
+  "aboutSourceButton": {
+    "message": "Source code"
+  },
+  "aboutStoreButton": {
+    "message": "Chrome Web Store"
+  },
+  "aboutVersion": {
+    "message": "Version"
+  },
+  "settingContextMenuLabel": {
+    "message": "Context menu"
+  },
+  "contextMenuItemsText": {
+    "message": "You can reorder by dragging, and toggle visibility by clicking."
+  },
+  "contextMenuActionsLabel": {
+    "message": "Quick actions"
+  },
+  "settingShowQuickActionsText": {
+    "message": "When enabled, the last three active options become action buttons."
+  },
+  "settingsSearchPlaceholder": {
+    "message": "Search..."
+  },
+  "settingsNoResults": {
+    "message": "No results found"
+  },
+  "settingGridWidthLabel": {
+    "message": "Grid width"
+  },
+  "settingGridWidth300": {
+    "message": "300px"
+  },
+  "settingShowGridTitlesLabel": {
+    "message": "Show titles"
+  },
+  "showGridTitlesText": {
+    "message": "Shows or hides titles under bookmarks in grid view."
+  },
+  "settingGridWidth400": {
+    "message": "400px"
+  },
+  "settingGridWidth500": {
+    "message": "500px"
+  },
+  "aboutDescription": {
+    "message": "Markleaf is a free, open-source bookmark manager focused on speed and simplicity. Its source code is public, so anyone can inspect it, suggest improvements, or contribute new features."
+  },
+  "settingScrollbarLabel": {
+    "message": "Scrollbar"
+  },
+  "scrollbarText": {
+    "message": "When turned off, the scrollbar is hidden throughout the extension."
+  }
+}
