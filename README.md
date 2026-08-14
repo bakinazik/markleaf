@@ -66,7 +66,7 @@ Simple and practical bookmark manager.
 
 | Key           | Action                                |
 |---------------|---------------------------------------|
-| Up / Down     | Navigate through the list             |
+| Up / Down / Left / Right     | Navigate through the list             |
 | Enter         | Open selected item or enter folder    |
 | Left / Tab    | Go to parent folder                   |
 | Left click    | Open in current tab                   |
