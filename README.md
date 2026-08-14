@@ -80,6 +80,7 @@ Simple and practical bookmark manager.
 ## Credits
 - [SortableJS](https://github.com/sortablejs/Sortable)
 - [Tabler Icons](https://github.com/tabler/tabler-icons)
+- [Bunny Fonts](https://fonts.bunny.net/)
 
 ## License
 
