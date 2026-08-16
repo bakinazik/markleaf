@@ -8,14 +8,17 @@ body:
     id: bug_report
     attributes:
       label: Bug Report
-      description: Please fill in the information below.
       value: |
-        - Description: ********
+        **Description**
 
-        - Expected Behavior: ********
+        ********
 
-        - Markleaf Version: ********
+        **Expected behavior**
 
-        - Browser: ********
+        ********
+
+        **Markleaf version:** ********
+
+        **Browser:** ********
     validations:
       required: true
