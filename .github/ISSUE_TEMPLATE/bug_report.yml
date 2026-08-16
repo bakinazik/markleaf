@@ -11,14 +11,14 @@ body:
       value: |
         **Description**
 
-        ********
+        xxx
 
         **Expected behavior**
 
-        ********
+        xxx
 
-        **Markleaf version:** ********
+        **Markleaf version:** xxx
 
-        **Browser:** ********
+        **Browser:** xxx
     validations:
       required: true
