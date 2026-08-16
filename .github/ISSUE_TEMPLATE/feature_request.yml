@@ -11,10 +11,10 @@ body:
       value: |
         **Description**
 
-        ********
+        xxx
 
         **Proposed solution**
 
-        ********
+        xxx
     validations:
       required: true
