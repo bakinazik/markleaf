@@ -1652,7 +1652,7 @@ function updateSettingsUI() {
   function applyTheme(theme, customColors) {
     const html = document.documentElement;
     html.classList.remove('theme-force-dark', 'theme-force-light', 'theme-force-black', 'theme-force-custom');
-    html.removeAttribute('style');
+    ['--background-color', '--text-color', '--accent', '--border-color', '--card-bg', '--card-hover-bg', '--primary-button-background', '--primary-button-text', '--secondary-button-background', '--secondary-button-text', '--link-background', '--link-color', '--form-background', '--input-background', '--input-border-color', '--input-text-color', '--placeholder-color', '--context-menu-background', '--context-menu-item-hover', '--icon-chip-bg'].forEach(p => html.style.removeProperty(p));
     if (theme === 'dark')   html.classList.add('theme-force-dark');
     else if (theme === 'light')  html.classList.add('theme-force-light');
     else if (theme === 'black')  html.classList.add('theme-force-black');
