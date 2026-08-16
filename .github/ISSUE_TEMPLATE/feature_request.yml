@@ -8,10 +8,13 @@ body:
     id: feature_request
     attributes:
       label: Feature Request
-      description: Please fill in the information below.
       value: |
-        - Description: ********
-        
-        - Proposed Solution: ********
+        **Description**
+
+        ********
+
+        **Proposed solution**
+
+        ********
     validations:
       required: true
