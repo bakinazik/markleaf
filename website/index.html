@@ -552,96 +552,6 @@ header.hidden {
   transform: rotate(180deg);
 }
 
-.version-text {
-    display: flex;
-    width: 100%;
-    align-items: center;
-}
-
-.version-date {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: var(--text-secondary, #888);
-  margin-left: auto;
-  margin-right: 12px;
-  white-space: nowrap;
-}
-
-.version-date.pending-review {
-  position: relative;
-  cursor: help;
-  transition: color 0.2s ease;
-}
-
-.version-date.pending-review:hover,
-.version-date.pending-review.tooltip-visible {
-  color: var(--primary);
-}
-
-.version-date.pending-review .tooltip-bubble {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  right: 0;
-  background: var(--gray-dark);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 400;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  pointer-events: none;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-.version-date.pending-review .tooltip-bubble::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  right: 14px;
-  border: 6px solid transparent;
-  border-top-color: var(--gray-dark);
-}
-
-.version-date.pending-review:hover .tooltip-bubble,
-.version-date.pending-review.tooltip-visible .tooltip-bubble {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-@media (max-width: 768px) {
-  .version-date.pending-review .tooltip-bubble {
-    right: auto;
-    left: 0;
-    white-space: normal;
-    width: 200px;
-  }
-
-  .version-date.pending-review .tooltip-bubble::after {
-    right: auto;
-    left: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .version-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .version-date {
-    margin-left: 0;
-    margin-right: 0;
-    font-size: 0.75rem;
-  }
-}
-
 .accordion-content {
   height: 0;
   max-height: 0;
@@ -674,6 +584,11 @@ footer {
   padding: 3rem 1rem;
   text-align: center;
   width: 100%;
+}
+
+footer a {
+  display: inline-block;
+  margin: 0 8px;
 }
 
 @media (min-width: 769px) {
@@ -727,6 +642,31 @@ footer {
   
   .store {
     padding: 1rem;
+  }
+}
+
+.version-text {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+}
+
+.version-date {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-light);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .version-text {
+    flex-wrap: wrap;
+  }
+  .version-date {
+    font-size: 0.7rem;
+    margin-left: 0;
   }
 }
 </style>
@@ -842,176 +782,23 @@ footer {
 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
   <h2>Changelog</h2>
   <hr>
-  <div class="accordion">
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.5.1: Minor Polish  <span class="version-date">August 16, 2026</span></span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Minor bug fixes.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.5.0: Fox Arrives  <span class="version-date">August 16, 2026</span></span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Firefox Add-ons support!</li>
-          <li>Added a built-in color picker for custom theme colors (drag to pick hue/saturation, or type a hex code) no more relying on the browser's native color input.</li>
-          <li>Added custom font support: pick Sans-serif, Serif, Monospace, or type any Google Fonts (Bunny Fonts for more privacy) name to apply it.</li>
-          <li>Added full keyboard navigation in grid view (arrow keys now move by row/column instead of list order).</li>
-          <li>Auto-focuses the search bar when scrolling via switching tabs.</li>
-          <li>Minor bug fixes.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.4.1: Humble Tweaks  <span class="version-date">July 23, 2026</span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Added Ctrl + Drag support for moving bookmarks and folders into another folder. You can enable it in the settings. Disabled by default because Ctrl + Click normally opens a new tab.</li>
-          <li>Added quick scroll-to-top for the active tab with position restore.</li>
-          <li>Minor bug fixes.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.4.0: Hardcoded Purify  <span class="version-date">July 07, 2026</span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Added bookmark pinning, pinned items stay grouped at the top and self-heal if dragged out of place.</li>
-          <li>Added a "new item position" setting, choose whether new bookmarks go to the start or end of the folder.</li>
-          <li>Import/export now support scope selection (bookmarks, settings, or both) and Netscape HTML format, Chrome/Firefox compatible.</li>
-          <li>Added a settings search bar with a clear button and persistent input focus.</li>
-          <li>Added context menu customization with drag and drop reordering.</li>
-          <li>Added grid view controls for column count, item width, and title visibility.</li>
-          <li>Added toggles for quick actions, scrollbar, and the scroll to top button.</li>
-          <li>Added a new About panel, with version number, store, website and github links.</li>
-          <li>Refactored the icon system into a centralized 'icons' object.</li>
-          <li>Improved breadcrumbs, you can now drag and drop folders or bookmarks onto them to move them.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.3.0: Design Journey  <span class="version-date">Jun 25, 2026</span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Redesigned Theme System (Browser/Light/Dark/Black/Custom). You can choose from predefined themes or create your own custom theme.</li>
-          <li>Extension Icon customization (Color/Black/White/Gray/Custom). Set a built-in icon or upload your own.</li>
-          <li>Favicon Provider options (Browser/Google/DuckDuckGo). Browser mode loads favicons without external requests while Google and DuckDuckGo can fetch them via their services.</li>
-          <li>Folder-only search setting added. When enabled, search will be limited to the current folder and its subfolders. By default, search applies to all bookmarks.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.2.1: Important Space  <span class="version-date">Apr 23, 2026</span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Main folder selection added (Bookmarks Bar / Other Bookmarks).</li>
-          <li>Context menu can now be opened by clicking on empty space.</li>
-          <li>Breadcrumb navigation added (toggle in settings).</li>
-          <li>New context action: add active tabs to a selected location or folder.</li>
-          <li>Search bar now includes a clear "x" button when input is present.</li>
-          <li>Bug fix: missing favicons (unvisited sites) now load instantly without requiring extension reopen.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.2.0: New paths  <span class="version-date">Apr 12, 2026</span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Multi-select mode with bulk actions.</li>
-          <li>Trash system with restore and auto-delete.</li>
-          <li>Import / Export (full backup & restore).</li>
-          <li>Improved search performance and responsiveness.</li>
-          <li>Theme control and UI customization options.</li>
-          <li>Other details available on <a href="https://github.com/bakinazik/markleaf/releases/tag/1.2.0" target="_blank">GitHub</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.1.1: Fresh Start  <span class="version-date">Feb 10, 2026</span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Markleaf is now open source! <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a></li>
-          <li>You can navigate search results using the arrow keys. Pressing the up and down arrows moves through the list; pressing right or Enter opens the selected item; pressing left or Tab goes up a folder. Moving the mouse cancels the keyboard selection.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.1.0: Silent Refactor  <span class="version-date">Jan 20, 2026</span></span></button>
-      <div class="accordion-content">
-        <ul>
-          <li>Content loads at least 30% faster. Folder item counts and favicon previews are now calculated from already-loaded data instead of making separate requests for each item.</li>
-          <li>A three-column grid layout has been implemented.</li>
-          <li>Right-clicking on an empty area no longer opens the browser's native menu the custom menu closes instead.</li>
-          <li>The context menu now plays a closing animation, just like it does when opening.</li>
-          <li>Moving a folder into itself or one of its own subfolders is no longer possible.</li>
-          <li>Scrolling back to the top is now smoother. It now uses the browser's built-in scroll engine instead of a custom animation, resulting in a more natural and consistent feel.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.0.5: First Orion  <span class="version-date">Dec 29, 2025</span></span></button>
-      <div class="accordion-content">
-        <ul>
-            <li>Context menu animations have been improved.</li>
-            <li>Browsers that do not support the browser's default favicon feature (such as Opera) automatically use Google's favicon service. This parameter will be removed in the future if they adopt the newer system.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.0.4: Enhanced Violet  <span class="version-date">Dec 4, 2025</span></span></button>
-      <div class="accordion-content">
-        <ul>
-            <li>The list view has been redesigned with a modern design approach.</li>
-            <li>You can now open the context menu by right-clicking a list item.</li>
-            <li>Folders now display the total number of bookmarks they contain.</li>
-            <li>Shortcut improvements.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.0.3: Smooth Horizon  <span class="version-date">Nov 12, 2025</span></span></button>
-      <div class="accordion-content">
-        <ul>
-            <li>Added a “Back to Top” button.</li>
-            <li>Scrollbar is now visible.</li>
-            <li>Performance and design improvements.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.0.2: Vanilla Touch  <span class="version-date">Oct 28, 2025</span></span></button>
-      <div class="accordion-content">
-        <p>Performance and design improvements.</p>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.0.1: Apple Pie  <span class="version-date">Aug 16, 2025</span></span></button>
-      <div class="accordion-content">
-        <ul>
-            <li>Open all bookmarks in a folder with middle-click.</li>
-            <li>Performance improvements.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <button class="accordion-header"><span class="version-text">1.0.0: Black Hole  <span class="version-date">Aug 12, 2025</span></span></button>
-      <div class="accordion-content">
-        <p>First version of the extension.</p>
-      </div>
-    </div>
+  <div id="changelog-container" class="accordion">
+    <p style="text-align:center;padding:2rem;color:var(--text-light);">Loading changelog...</p>
   </div>
 </section>
 
 <footer id="contact">
-  <p>Source code: <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a></p>
+  <p>
+    Source code: <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>
+    &nbsp;·&nbsp;
+    Changelog: <a href="changelog.txt" target="_blank">changelog.txt</a>
+  </p>
 </footer>
 
 <script>
 const ICONS = {
-  dark:  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
-  light: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`
+  dark:  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+  light: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
 };
 const ORDER = ['dark', 'light'];
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1023,19 +810,19 @@ function applyTheme() {
   const t = ORDER[themeIdx];
   const btn = document.getElementById('theme-toggle');
   const LABELS = { dark: 'Dark', light: 'Light' };
-  btn.innerHTML = ICONS[t] + `<span>${LABELS[t]}</span>`;
+  btn.innerHTML = ICONS[t] + '<span>' + LABELS[t] + '</span>';
   btn.title = LABELS[t];
   document.documentElement.setAttribute('data-theme', t);
   localStorage.setItem('theme', t);
   const prefix = t === 'dark' ? 'dark' : 'light';
-  document.querySelectorAll('.ss-img').forEach((img, i) => {
-    img.src = `screenshots/${prefix}-${i + 1}.webp`;
-    img.alt = `${prefix.charAt(0).toUpperCase() + prefix.slice(1)} ${i + 1}`;
+  document.querySelectorAll('.ss-img').forEach(function(img, i) {
+    img.src = 'screenshots/' + prefix + '-' + (i + 1) + '.webp';
+    img.alt = prefix.charAt(0).toUpperCase() + prefix.slice(1) + ' ' + (i + 1);
   });
 }
 
 applyTheme();
-document.getElementById('theme-toggle').addEventListener('click', () => {
+document.getElementById('theme-toggle').addEventListener('click', function() {
   themeIdx = (themeIdx + 1) % ORDER.length;
   applyTheme();
 });
@@ -1044,7 +831,7 @@ let lastScrollY = 0;
 const siteHeader = document.getElementById('site-header');
 const mobileMenu = document.getElementById('mobile-menu');
 
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', function() {
   const y = window.scrollY;
   if (y > lastScrollY && y > 80) {
     siteHeader.classList.add('hidden');
@@ -1055,29 +842,11 @@ window.addEventListener('scroll', () => {
   lastScrollY = y;
 }, { passive: true });
 
-document.querySelectorAll('.version-date.pending-review').forEach(badge => {
-  const bubble = document.createElement('span');
-  bubble.className = 'tooltip-bubble';
-  bubble.textContent = badge.getAttribute('data-tooltip');
-  badge.appendChild(bubble);
-
-  badge.addEventListener('click', (e) => {
-    e.stopPropagation();
-    badge.classList.toggle('tooltip-visible');
-  });
-});
-
-document.addEventListener('click', (e) => {
-  document.querySelectorAll('.version-date.pending-review.tooltip-visible').forEach(badge => {
-    if (!badge.contains(e.target)) badge.classList.remove('tooltip-visible');
-  });
-});
-
-document.querySelectorAll('.accordion-header').forEach(button => {
-  button.addEventListener('click', () => {
+document.querySelectorAll('#qa .accordion-header').forEach(function(button) {
+  button.addEventListener('click', function() {
     const isActive = button.classList.contains('active');
     
-    document.querySelectorAll('.accordion-header.active').forEach(activeBtn => {
+    document.querySelectorAll('#qa .accordion-header.active').forEach(function(activeBtn) {
       if (activeBtn !== button) {
         activeBtn.classList.remove('active');
         activeBtn.nextElementSibling.classList.remove('active');
@@ -1104,13 +873,13 @@ function closeMobileMenu() {
   menuToggle.classList.remove('active');
 }
 
-menuToggle.addEventListener('click', () => {
+menuToggle.addEventListener('click', function() {
   mobileMenu.classList.contains('active') ? closeMobileMenu() : openMobileMenu();
 });
 
 menuBackdrop.addEventListener('click', closeMobileMenu);
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
     closeMobileMenu();
@@ -1118,6 +887,158 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+const CHANGELOG_URL = 'https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt';
+
+async function loadChangelog() {
+  const container = document.getElementById('changelog-container');
+  
+  try {
+    const response = await fetch(CHANGELOG_URL);
+    if (!response.ok) throw new Error('Failed to fetch changelog');
+    const text = await response.text();
+    
+    const entries = parseChangelog(text);
+    if (entries.length === 0) {
+      container.innerHTML = '<p style="text-align:center;padding:2rem;color:var(--text-light);">No changelog entries found.</p>';
+      return;
+    }
+    
+    let html = '';
+    entries.forEach(function(entry, index) {
+      const isFirst = index === 0;
+      html += '<div class="accordion-item">';
+      html += '<button class="accordion-header' + (isFirst ? ' active' : '') + '">';
+      html += '<span class="version-text">' + entry.version + '<span class="version-date">' + entry.date + '</span></span>';
+      html += '</button>';
+      html += '<div class="accordion-content' + (isFirst ? ' active' : '') + '">';
+      html += entry.content;
+      html += '</div>';
+      html += '</div>';
+    });
+    
+    container.innerHTML = html;
+    
+    container.querySelectorAll('.accordion-header').forEach(function(button) {
+      button.addEventListener('click', function() {
+        const isActive = this.classList.contains('active');
+        
+        container.querySelectorAll('.accordion-header.active').forEach(function(activeBtn) {
+          if (activeBtn !== this) {
+            activeBtn.classList.remove('active');
+            activeBtn.nextElementSibling.classList.remove('active');
+          }
+        });
+        
+        this.classList.toggle('active');
+        this.nextElementSibling.classList.toggle('active');
+      });
+    });
+    
+  } catch (error) {
+    container.innerHTML = '<p style="text-align:center;padding:2rem;color:var(--text-light);">Could not load changelog. <br><small>Try again later or view <a href="' + CHANGELOG_URL + '" target="_blank">changelog.txt</a> directly.</small></p>';
+  }
+}
+
+function parseChangelog(text) {
+  const entries = [];
+  const lines = text.split('\n');
+  let current = null;
+  let contentLines = [];
+  let inContent = false;
+  
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i].trim();
+    if (!line) continue;
+    
+    const versionMatch = line.match(/^([\d.]+)\s*[-–]\s*(.+?)(?:\s*[-–]\s*(.+))?$/);
+    if (versionMatch) {
+      if (current) {
+        entries.push({
+          version: current.version,
+          date: current.date,
+          content: formatContent(contentLines)
+        });
+        contentLines = [];
+        inContent = false;
+      }
+      
+      const version = versionMatch[1];
+      const datePart = versionMatch[2].trim();
+      const subtitle = versionMatch[3] ? versionMatch[3].trim() : '';
+      
+      let date = datePart;
+      if (!datePart.match(/\d{4}/)) {
+        date = subtitle;
+      }
+      
+      current = { version: version, date: date };
+      inContent = true;
+      continue;
+    }
+    
+    if (inContent && current) {
+      if (line.match(/^[-=]{3,}$/)) continue;
+      
+      if (line.startsWith('-') || line.startsWith('•') || line.startsWith('*')) {
+        contentLines.push(line);
+      } else if (line.startsWith('+') || line.startsWith('>')) {
+        contentLines.push(line);
+      } else if (line && !line.match(/^[=\-]{3,}$/)) {
+        contentLines.push(line);
+      }
+    }
+  }
+  
+  if (current) {
+    entries.push({
+      version: current.version,
+      date: current.date,
+      content: formatContent(contentLines)
+    });
+  }
+  
+  return entries;
+}
+
+function formatContent(lines) {
+  if (lines.length === 0) return '<p>No details available.</p>';
+  
+  let html = '';
+  let inList = false;
+  
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i].trim();
+    if (!line) continue;
+    
+    if (line.startsWith('-') || line.startsWith('•') || line.startsWith('*')) {
+      const text = line.replace(/^[-•*]\s*/, '');
+      if (!inList) {
+        html += '<ul>';
+        inList = true;
+      }
+      html += '<li>' + linkify(text) + '</li>';
+    } else if (line.startsWith('+') || line.startsWith('>')) {
+      const text = line.replace(/^[+>]\s*/, '');
+      html += '<p style="color:var(--primary);font-weight:500;">' + linkify(text) + '</p>';
+    } else {
+      if (inList) {
+        html += '</ul>';
+        inList = false;
+      }
+      html += '<p>' + linkify(line) + '</p>';
+    }
+  }
+  
+  if (inList) html += '</ul>';
+  return html;
+}
+
+function linkify(text) {
+  return text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+}
+
+document.addEventListener('DOMContentLoaded', loadChangelog);
 </script>
 </body>
 </html>
