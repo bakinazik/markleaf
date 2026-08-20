@@ -790,8 +790,6 @@ footer a {
 <footer id="contact">
   <p>
     Source code: <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>
-    &nbsp;·&nbsp;
-    Changelog: <a href="changelog.txt" target="_blank">changelog.txt</a>
   </p>
 </footer>
 
@@ -905,13 +903,12 @@ async function loadChangelog() {
     }
     
     let html = '';
-    entries.forEach(function(entry, index) {
-      const isFirst = index === 0;
+    entries.forEach(function(entry) {
       html += '<div class="accordion-item">';
-      html += '<button class="accordion-header' + (isFirst ? ' active' : '') + '">';
+      html += '<button class="accordion-header">';
       html += '<span class="version-text">' + entry.version + '<span class="version-date">' + entry.date + '</span></span>';
       html += '</button>';
-      html += '<div class="accordion-content' + (isFirst ? ' active' : '') + '">';
+      html += '<div class="accordion-content">';
       html += entry.content;
       html += '</div>';
       html += '</div>';
@@ -921,17 +918,8 @@ async function loadChangelog() {
     
     container.querySelectorAll('.accordion-header').forEach(function(button) {
       button.addEventListener('click', function() {
-        const isActive = this.classList.contains('active');
-        
-        container.querySelectorAll('.accordion-header.active').forEach(function(activeBtn) {
-          if (activeBtn !== this) {
-            activeBtn.classList.remove('active');
-            activeBtn.nextElementSibling.classList.remove('active');
-          }
-        });
-        
-        this.classList.toggle('active');
-        this.nextElementSibling.classList.toggle('active');
+        button.classList.toggle('active');
+        button.nextElementSibling.classList.toggle('active');
       });
     });
     
