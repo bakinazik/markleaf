@@ -4,6 +4,8 @@ Simple and practical bookmark manager.
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/oicclpmppdfmaplopjgjjmdnkeolmamg.svg)](https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg)
 [![Firefox Add-ons](https://img.shields.io/amo/v/markleaf.svg)](https://addons.mozilla.org/firefox/addon/markleaf)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-orange.svg)](https://buymeacoffee.com/bakinazik)
+
 
 > [!NOTE]
 > This project is now in maintenance mode. Development will focus primarily on bug fixes, minor improvements, and general maintenance going forward. Feature requests and issue reports are still welcome and can be submitted through the repository's issue tracker.
