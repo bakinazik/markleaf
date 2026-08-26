@@ -4,7 +4,6 @@ Simple and practical bookmark manager.
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/oicclpmppdfmaplopjgjjmdnkeolmamg.svg)](https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg)
 [![Firefox Add-ons](https://img.shields.io/amo/v/markleaf.svg)](https://addons.mozilla.org/firefox/addon/markleaf)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-orange.svg)](https://buymeacoffee.com/bakinazik)
 
 ## Screenshots
 
@@ -74,6 +73,10 @@ Simple and practical bookmark manager.
 | Shift + click | Open in new window                    |
 
 ---
+
+## Support
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-orange.svg)](https://buymeacoffee.com/bakinazik)
+
 
 ## Credits
 - [SortableJS](https://github.com/sortablejs/Sortable)
