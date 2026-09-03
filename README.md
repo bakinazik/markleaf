@@ -1,29 +1,22 @@
-<h1><img src="https://bakinazik.github.io/markleaf/logo.webp" width="30"> Markleaf</h1>
+<p align="center">
+  <img src="https://bakinazik.github.io/markleaf/logo.webp" alt="Markleaf Logo" width="128" />
+</p>
 
-Simple and practical bookmark manager.
+<h1 align="center">Markleaf</h1>
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/oicclpmppdfmaplopjgjjmdnkeolmamg.svg)](https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg)
-[![Firefox Add-ons](https://img.shields.io/amo/v/markleaf.svg)](https://addons.mozilla.org/firefox/addon/markleaf)
+<p align="center">
+  <strong>Simple and practical bookmark manager.</strong>
+</p>
 
-## Screenshots
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg"><img src="https://img.shields.io/chrome-web-store/v/oicclpmppdfmaplopjgjjmdnkeolmamg.svg" alt="Chrome Web Store"></a>&nbsp;&nbsp;<a href="https://addons.mozilla.org/firefox/addon/markleaf"><img src="https://img.shields.io/amo/v/markleaf.svg" alt="Firefox Add-ons"></a>&nbsp;&nbsp;<a href="https://bakinazik.github.io/markleaf/"><img src="https://img.shields.io/badge/home page-website-00be19?style=flat-square" alt="website"></a>&nbsp;&nbsp;<a href="https://buymeacoffee.com/bakinazik"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-support-orange.svg" alt="buy me a coffee"></a>
+</p>
 
-<details>
-<summary>View Screenshots</summary>
-
-### Dark Theme
-
-| | | |
-|---|---|---|
-| ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-1.webp) | ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-2.webp) | ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-3.webp) |
-
-### Light Theme
-
-| | | |
-|---|---|---|
-| ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/light-1.webp) | ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/light-2.webp) | ![](https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/light-3.webp) |
-
-</details>
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-1.webp" alt="Markleaf Dark Theme" width="32%">
+  <img src="https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-2.webp" alt="Markleaf Dark Theme" width="32%">
+  <img src="https://raw.githubusercontent.com/bakinazik/markleaf/main/website/screenshots/dark-3.webp" alt="Markleaf Dark Theme" width="32%">
+</p>
 
 ## Features
 - [x] List and grid layout
@@ -74,10 +67,6 @@ Simple and practical bookmark manager.
 
 ---
 
-## Support
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-orange.svg)](https://buymeacoffee.com/bakinazik)
-
-
 ## Credits
 - [SortableJS](https://github.com/sortablejs/Sortable)
 - [Tabler Icons](https://github.com/tabler/tabler-icons)
@@ -92,5 +81,6 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-[GNU GPL](https://www.gnu.org/licenses/) for more details.
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the [GNU GPL](https://www.gnu.org/licenses/) for more details.
