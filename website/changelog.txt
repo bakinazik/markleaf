@@ -1,3 +1,8 @@
+1.5.3: Release - September 05, 2026
+- Fixed an issue where bookmarks were not visible after the initial installation.
+- Removed the Opera-specific check from favicon management. It now supports the default browser favicon system.
+- Performance improvements.
+
 1.5.1: Minor Polish - August 16, 2026
 - Minor bug fixes.
 
