@@ -143,6 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let allItems = [];
   let currentFolderId = '1';
   let folderStack = ['1'];
+  const subtreeCountCache = new Map();
+  let lastSortableSignature = null;
   let activeMenu = null;
   let activeBookmarkButtons = null;
   let itemToMoveId = null;
@@ -536,11 +538,11 @@ function renderTrashSelectBtnIcon() {
   const settingFolderBadgeToggle = document.getElementById('settingFolderBadge');
   let showFolderBadge = true;
   const settingShowUpButtonToggle = document.getElementById('settingShowUpButton');
-  let showUpButton = true;
+  let showUpButton = false;
   const settingShowScrollTopToggle = document.getElementById('settingShowScrollTop');
   let showScrollTopButton = true;
   const settingShowBreadcrumbToggle = document.getElementById('settingShowBreadcrumb');
-  let showBreadcrumb = false;
+  let showBreadcrumb = true;
   const settingShowBreadcrumbPersistToggle = document.getElementById('settingShowBreadcrumbPersist');
   const breadcrumbPersistFlex = document.getElementById('breadcrumbPersistFlex');
   const breadcrumbPersistText = document.getElementById('breadcrumbPersistText');
@@ -2083,11 +2085,14 @@ function updateSettingsUI() {
   }, { passive: true });
   function countItemsInSubtree(node) {
     if (node.url) return 1;
-    if (!node.children) return 0;
+    if (subtreeCountCache.has(node.id)) return subtreeCountCache.get(node.id);
     let count = 0;
-    for (const child of node.children) {
-      count += countItemsInSubtree(child);
+    if (node.children) {
+      for (const child of node.children) {
+        count += countItemsInSubtree(child);
+      }
     }
+    subtreeCountCache.set(node.id, count);
     return count;
   }
   function collectFaviconsFromTree(node, needed) {
@@ -2119,6 +2124,20 @@ function updateSettingsUI() {
     }
     return result;
   }
+  function resolveValidRootFolderId(preferredId, cb) {
+    chrome.bookmarks.getTree((tree) => {
+      const rootChildren = (tree && tree[0] && tree[0].children) || [];
+      if (preferredId && rootChildren.some(n => n.id === preferredId)) {
+        cb(preferredId);
+        return;
+      }
+      const guess = fallbackRootId(isMobile);
+      const guessNode = rootChildren.find(n => n.id === guess);
+      if (guessNode) { cb(guess); return; }
+      const firstFolder = rootChildren.find(n => !n.url);
+      cb(firstFolder ? firstFolder.id : null);
+    });
+  }
   function listItems(folderId, newlyAddedId) {
 
     if (isSelectionMode) {
@@ -2130,9 +2149,23 @@ function updateSettingsUI() {
     }
     chrome.storage.local.set({ folderStack: folderStack });
     chrome.bookmarks.getSubTree(folderId, (bookmarkNodes) => {
-      if (window.bookmarksSortable) {
-        window.bookmarksSortable.destroy();
-        window.bookmarksSortable = null;
+      if (chrome.runtime.lastError || !bookmarkNodes) {
+        void chrome.runtime.lastError;
+        chrome.storage.local.get(['defaultFolderId'], (data) => {
+          resolveValidRootFolderId(data.defaultFolderId, (fallbackId) => {
+            if (!fallbackId || folderId === fallbackId) {
+              bookmarksList.innerHTML = '';
+              allItems = [];
+              appendEmptyMessage(chrome.i18n.getMessage('noBookmarksMessage'));
+              return;
+            }
+            folderStack = [fallbackId];
+            currentFolderId = fallbackId;
+            chrome.storage.local.set({ folderStack, lastVisitedFolderStack: null, defaultFolderId: fallbackId });
+            listItems(fallbackId);
+          });
+        });
+        return;
       }
       bookmarksList.innerHTML = '';
       allItems = [];
@@ -2158,12 +2191,17 @@ function updateSettingsUI() {
       } else {
         appendEmptyMessage(chrome.i18n.getMessage('noBookmarksMessage'));
       }
-      if (allItems.length > 1 && searchInput.value === '') {
+      const canSort = allItems.length > 1 && searchInput.value === '';
+      const sortableSignature = canSort ? folderId + '|' + allItems.map(n => n.id).join(',') : null;
+      if (canSort && window.bookmarksSortable && sortableSignature === lastSortableSignature) {
+        // data unchanged since last setup, keep existing Sortable instance
+      } else if (canSort) {
         const initSortable = () => {
           if (window.bookmarksSortable) {
             window.bookmarksSortable.destroy();
             window.bookmarksSortable = null;
           }
+          lastSortableSignature = sortableSignature;
           window.bookmarksSortable = new Sortable(bookmarksList, {
             animation: 150,
             onStart: function () {
@@ -2209,6 +2247,12 @@ function updateSettingsUI() {
           });
         };
         initSortable();
+      } else {
+        if (window.bookmarksSortable) {
+          window.bookmarksSortable.destroy();
+          window.bookmarksSortable = null;
+        }
+        lastSortableSignature = null;
       }
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
@@ -2219,8 +2263,6 @@ function updateSettingsUI() {
       updateUpButtonVisibility();
       clearKeyboardSelection();
       !isMobile && searchInput.focus();
-
-      buildBookmarksCache();
     });
   }
   function appendEmptyMessage(text) {
@@ -2434,6 +2476,7 @@ async function showEmptyAreaContextMenu(x, y) {
       img.src = getFaviconUrl(node.url);
       wireFaviconEvents(img, node.url);
       img.alt = 'Favicon';
+      img.loading = 'lazy';
       img.style.cssText = 'width:16px;height:16px;margin-right:8px;border-radius:100%;';
       img.dataset.faviconMissing = '0';
       img.addEventListener('load', () => { img.dataset.faviconMissing = '0'; });
@@ -2519,6 +2562,7 @@ async function showEmptyAreaContextMenu(x, y) {
       gridImg.src = getFaviconUrl(node.url, 32);
       wireFaviconEvents(gridImg, node.url);
       gridImg.alt = '';
+      gridImg.loading = 'lazy';
       gridImg.dataset.faviconMissing = '0';
       gridImg.addEventListener('load', () => { gridImg.dataset.faviconMissing = '0'; });
       gridImg.addEventListener('error', () => { gridImg.dataset.faviconMissing = '1'; });
@@ -2536,6 +2580,7 @@ async function showEmptyAreaContextMenu(x, y) {
             img.src = getFaviconUrl(faviconUrls[i], 32);
             wireFaviconEvents(img, faviconUrls[i]);
             img.alt = '';
+            img.loading = 'lazy';
             cell.appendChild(img);
           }
           gridIconWrap.appendChild(cell);
@@ -3015,6 +3060,11 @@ async function showEmptyAreaContextMenu(x, y) {
           url: tab.url,
           index: idx
         }, (newBookmark) => {
+          if (chrome.runtime.lastError || !newBookmark) {
+            void chrome.runtime.lastError;
+            listItems(currentFolderId);
+            return;
+          }
           currentBookmarkId = newBookmark.id;
           updateAddBookmarkButton(true);
           listItems(currentFolderId, newBookmark.id);
@@ -3173,7 +3223,20 @@ async function showEmptyAreaContextMenu(x, y) {
     });
   }
 
+  chrome.bookmarks.onCreated.addListener(() => {
+    subtreeCountCache.clear();
+    allBookmarksCache = null;
+  });
+  chrome.bookmarks.onMoved.addListener(() => {
+    subtreeCountCache.clear();
+    allBookmarksCache = null;
+  });
+  chrome.bookmarks.onChanged.addListener(() => {
+    allBookmarksCache = null;
+  });
   chrome.bookmarks.onRemoved.addListener((removedId) => {
+    subtreeCountCache.clear();
+    allBookmarksCache = null;
     let breadcrumbChanged = false;
 
     if (Array.isArray(lastVisitedFolderStack)) {
@@ -3383,9 +3446,9 @@ async function showEmptyAreaContextMenu(x, y) {
     showFolderBadge = data.showFolderBadge !== undefined ? !!data.showFolderBadge : true;
     checkBeforeAdd = !!data.checkBeforeAdd;
     ctrlDragMoveEnabled = !!data.ctrlDragMoveEnabled;
-    showUpButton = data.showUpButton !== undefined ? !!data.showUpButton : true;
+    showUpButton = data.showUpButton !== undefined ? !!data.showUpButton : false;
     showScrollTopButton = data.showScrollTopButton !== undefined ? !!data.showScrollTopButton : true;
-    showBreadcrumb = data.showBreadcrumb !== undefined ? !!data.showBreadcrumb : false;
+    showBreadcrumb = data.showBreadcrumb !== undefined ? !!data.showBreadcrumb : true;
     showBreadcrumbPersist = data.showBreadcrumbPersist !== undefined ? !!data.showBreadcrumbPersist : true;
     lastVisitedFolderStack = Array.isArray(data.lastVisitedFolderStack) && data.lastVisitedFolderStack.length > 1
       ? data.lastVisitedFolderStack
@@ -3410,7 +3473,13 @@ async function showEmptyAreaContextMenu(x, y) {
     setToggleIcon();
     const resolvedDefaultId = data.defaultFolderId || fallbackRootId(isMobile);
     populateRootFolderSelect(resolvedDefaultId);
-    listItems(currentFolderId);
+    // chrome.bookmarks.getSubTree can return an empty/stale tree if bookmark
+    // sync hasn't finished hydrating yet right after the popup opens. A warm-up
+    // getTree() call forces the model to resolve first, same as what manually
+    // switching folders and back was working around.
+    chrome.bookmarks.getTree(() => {
+      listItems(currentFolderId);
+    });
     purgeExpiredTrashItems();
   });
 
@@ -4007,11 +4076,11 @@ ${body}</DL><p>
       checkBeforeAdd = !!s.checkBeforeAdd;
       ctrlDragMoveEnabled = !!s.ctrlDragMoveEnabled;
       if (settingCtrlDragMoveToggle) settingCtrlDragMoveToggle.checked = ctrlDragMoveEnabled;
-      showUpButton = s.showUpButton !== undefined ? !!s.showUpButton : true;
+      showUpButton = s.showUpButton !== undefined ? !!s.showUpButton : false;
       showScrollTopButton = s.showScrollTopButton !== undefined ? !!s.showScrollTopButton : true;
       if (settingShowScrollTopToggle) settingShowScrollTopToggle.checked = showScrollTopButton;
       if (!showScrollTopButton) hideScrollToTop();
-      showBreadcrumb = !!s.showBreadcrumb;
+      showBreadcrumb = s.showBreadcrumb !== undefined ? !!s.showBreadcrumb : true;
       showBreadcrumbPersist = s.showBreadcrumbPersist !== undefined ? !!s.showBreadcrumbPersist : true;
       if (settingShowBreadcrumbPersistToggle) settingShowBreadcrumbPersistToggle.checked = showBreadcrumbPersist;
       syncBreadcrumbPersistVisibility();
