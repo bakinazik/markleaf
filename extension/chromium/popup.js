@@ -1956,11 +1956,9 @@ function updateSettingsUI() {
   });
 
   function populateRootFolderSelect(selectedId) {
-    chrome.bookmarks.getTree((tree) => {
+    const fillOptions = (rootChildren) => {
       rootFolderSelect.innerHTML = '';
-      const root = tree[0];
-      if (!root || !root.children) return;
-      root.children.forEach(node => {
+      (rootChildren || []).forEach(node => {
         if (node.url) return;
         const opt = document.createElement('option');
         opt.value = node.id;
@@ -1968,6 +1966,14 @@ function updateSettingsUI() {
         opt.selected = node.id === String(selectedId);
         rootFolderSelect.appendChild(opt);
       });
+    };
+    chrome.bookmarks.getChildren('0', (rootChildren) => {
+      if (chrome.runtime.lastError || !rootChildren) {
+        void chrome.runtime.lastError;
+        chrome.bookmarks.getTree((tree) => fillOptions(tree && tree[0] && tree[0].children));
+        return;
+      }
+      fillOptions(rootChildren);
     });
   }
 
@@ -2070,6 +2076,25 @@ function updateSettingsUI() {
     }
     return result;
   }
+  function refreshFolderMeta(node, listItem) {
+    chrome.bookmarks.getSubTree(node.id, (subNodes) => {
+      if (chrome.runtime.lastError || !subNodes || !subNodes[0]) { void chrome.runtime.lastError; return; }
+      const folderNode = subNodes[0];
+      const count = countItemsInSubtree(folderNode);
+      (listItem._badgeEls || []).forEach(el => { el.textContent = count; });
+      if (listItem._collageCells && isFolderStackMode) {
+        const faviconUrls = collectFaviconsFromTree(folderNode, 4);
+        listItem._collageCells.forEach((cell, i) => {
+          if (!faviconUrls[i] || cell.querySelector('img')) return;
+          const img = document.createElement('img');
+          img.src = getFaviconUrl(faviconUrls[i], 32);
+          img.alt = '';
+          img.loading = 'lazy';
+          cell.appendChild(img);
+        });
+      }
+    });
+  }
   function resolveValidRootFolderId(preferredId, cb) {
     chrome.bookmarks.getTree((tree) => {
       const rootChildren = (tree && tree[0] && tree[0].children) || [];
@@ -2094,8 +2119,8 @@ function updateSettingsUI() {
       closeBulkContextMenu();
     }
     chrome.storage.local.set({ folderStack: folderStack });
-    chrome.bookmarks.getSubTree(folderId, (bookmarkNodes) => {
-      if (chrome.runtime.lastError || !bookmarkNodes) {
+    chrome.bookmarks.getChildren(folderId, (children) => {
+      if (chrome.runtime.lastError || !children) {
         void chrome.runtime.lastError;
         chrome.storage.local.get(['defaultFolderId'], (data) => {
           resolveValidRootFolderId(data.defaultFolderId, (fallbackId) => {
@@ -2118,29 +2143,19 @@ function updateSettingsUI() {
       document.querySelectorAll('body > .context-menu').forEach(el => el.remove());
       if (isGridView) bookmarksList.classList.add('grid-mode');
       else bookmarksList.classList.remove('grid-mode');
-      if (bookmarkNodes && bookmarkNodes.length > 0 && bookmarkNodes[0].children) {
-        const children = bookmarkNodes[0].children;
+      if (children.length > 0) {
         allItems = sortItemsByPin(children);
-        if (allItems.length > 0) {
-          allItems.forEach((node) => {
-            let precomputedData = {};
-            if (!node.url) {
-              precomputedData.count = countItemsInSubtree(node);
-              precomputedData.faviconUrls = collectFaviconsFromTree(node, 4);
-            }
-            const listItem = createListItem(node, precomputedData);
-            bookmarksList.appendChild(listItem);
-          });
-        } else {
-          appendEmptyMessage(chrome.i18n.getMessage('noBookmarksMessage'));
-        }
+        allItems.forEach((node) => {
+          const listItem = createListItem(node, {});
+          bookmarksList.appendChild(listItem);
+          if (!node.url) refreshFolderMeta(node, listItem);
+        });
       } else {
         appendEmptyMessage(chrome.i18n.getMessage('noBookmarksMessage'));
       }
       const canSort = allItems.length > 1 && searchInput.value === '';
       const sortableSignature = canSort ? folderId + '|' + allItems.map(n => n.id).join(',') : null;
       if (canSort && window.bookmarksSortable && sortableSignature === lastSortableSignature) {
-        // data unchanged since last setup, keep existing Sortable instance
       } else if (canSort) {
         const initSortable = () => {
           if (window.bookmarksSortable) {
@@ -2485,6 +2500,7 @@ async function showEmptyAreaContextMenu(x, y) {
       countSpan.classList.add('folder-count');
       countSpan.textContent = precomputedData.count !== undefined ? precomputedData.count : '0';
       if (!showFolderBadge) countSpan.style.display = 'none';
+      listItem._badgeEls = (listItem._badgeEls || []).concat(countSpan);
       const titleWrapper = document.createElement('div');
       titleWrapper.appendChild(titleSpan);
       titleWrapper.appendChild(countSpan);
@@ -2512,6 +2528,7 @@ async function showEmptyAreaContextMenu(x, y) {
       if (isFolderStackMode) {
         gridIconWrap.classList.add('grid-folder-collage');
         const faviconUrls = precomputedData.faviconUrls || [];
+        const collageCells = [];
         for (let i = 0; i < 4; i++) {
           const cell = document.createElement('div');
           cell.classList.add('collage-cell');
@@ -2522,13 +2539,16 @@ async function showEmptyAreaContextMenu(x, y) {
             img.loading = 'lazy';
             cell.appendChild(img);
           }
+          collageCells.push(cell);
           gridIconWrap.appendChild(cell);
         }
+        listItem._collageCells = collageCells;
         const gridBadge = document.createElement('span');
         gridBadge.classList.add('grid-folder-badge');
         gridBadge.textContent = precomputedData.count !== undefined ? precomputedData.count : '';
         if (!showFolderBadge) gridBadge.style.display = 'none';
         gridIconWrap.appendChild(gridBadge);
+        listItem._badgeEls = (listItem._badgeEls || []).concat(gridBadge);
       } else {
         const gridFolderIcon = document.createElement('span');
         gridFolderIcon.classList.add('grid-folder-icon');
@@ -2540,6 +2560,7 @@ async function showEmptyAreaContextMenu(x, y) {
         gridBadge.textContent = precomputedData.count !== undefined ? precomputedData.count : '';
         if (!showFolderBadge) gridBadge.style.display = 'none';
         gridIconWrap.appendChild(gridBadge);
+        listItem._badgeEls = (listItem._badgeEls || []).concat(gridBadge);
       }
     }
     const gridLabel = document.createElement('span');
@@ -3390,12 +3411,10 @@ async function showEmptyAreaContextMenu(x, y) {
     setToggleIcon();
     const resolvedDefaultId = data.defaultFolderId || (isMobile ? '3' : '1');
     populateRootFolderSelect(resolvedDefaultId);
-    // chrome.bookmarks.getSubTree can return an empty/stale tree if bookmark
-    // sync hasn't finished hydrating yet right after the popup opens. A warm-up
-    // getTree() call forces the model to resolve first, same as what manually
-    // switching folders and back was working around.
-    chrome.bookmarks.getTree(() => {
+    chrome.bookmarks.getChildren(currentFolderId, () => {
+      void chrome.runtime.lastError;
       listItems(currentFolderId);
+      if (!searchInFolder) setTimeout(() => buildBookmarksCache(), 300);
     });
     purgeExpiredTrashItems();
   });
