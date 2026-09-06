@@ -39,27 +39,13 @@ body {
 body::before {
     content: '';
     position: fixed;
-    inset: -10%;
+    inset: -30%;
     pointer-events: none;
-    z-index: 5;
+    z-index: 3;
     background:
-        radial-gradient(circle at 7% 13%, rgba(1, 190, 26, 0.28) 0 7px, transparent 15px),
-        radial-gradient(circle at 19% 42%, rgba(1, 190, 26, 0.22) 0 11px, transparent 22px),
-        radial-gradient(circle at 31% 8%, rgba(1, 190, 26, 0.3) 0 5px, transparent 13px),
-        radial-gradient(circle at 43% 61%, rgba(1, 190, 26, 0.2) 0 9px, transparent 19px),
-        radial-gradient(circle at 56% 24%, rgba(1, 190, 26, 0.28) 0 6px, transparent 15px),
-        radial-gradient(circle at 67% 72%, rgba(1, 190, 26, 0.24) 0 12px, transparent 24px),
-        radial-gradient(circle at 79% 37%, rgba(1, 190, 26, 0.3) 0 5px, transparent 13px),
-        radial-gradient(circle at 91% 16%, rgba(1, 190, 26, 0.22) 0 8px, transparent 18px),
-        radial-gradient(circle at 96% 81%, rgba(1, 190, 26, 0.28) 0 10px, transparent 21px),
-        radial-gradient(circle at 83% 94%, rgba(1, 190, 26, 0.2) 0 6px, transparent 15px),
-        radial-gradient(circle at 58% 91%, rgba(1, 190, 26, 0.26) 0 8px, transparent 17px),
-        radial-gradient(circle at 37% 83%, rgba(1, 190, 26, 0.22) 0 5px, transparent 13px),
-        radial-gradient(circle at 14% 91%, rgba(1, 190, 26, 0.3) 0 9px, transparent 20px),
-        radial-gradient(circle at 3% 67%, rgba(1, 190, 26, 0.24) 0 6px, transparent 14px),
-        radial-gradient(circle at 24% 66%, rgba(1, 190, 26, 0.18) 0 12px, transparent 24px),
-        radial-gradient(circle at 72% 7%, rgba(1, 190, 26, 0.2) 0 7px, transparent 16px);
-    filter: blur(18px);
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='%2301be1a'%3E%3Cpath opacity='.28' d='M7 13C-2 17 2 25 12 24C17 20 13 15 7 13Z'/%3E%3Cpath opacity='.22' d='M19 42C7 43 8 57 22 56C29 51 26 44 19 42Z'/%3E%3Cpath opacity='.3' d='M31 8C24 10 26 18 34 17C38 13 35 9 31 8Z'/%3E%3Cpath opacity='.2' d='M43 61C32 62 34 74 47 73C53 68 50 63 43 61Z'/%3E%3Cpath opacity='.28' d='M56 24C47 26 49 36 59 34C64 30 61 25 56 24Z'/%3E%3Cpath opacity='.24' d='M67 72C54 73 57 88 72 86C79 81 76 75 67 72Z'/%3E%3Cpath opacity='.3' d='M79 37C72 39 74 47 82 46C86 42 84 38 79 37Z'/%3E%3Cpath opacity='.22' d='M91 16C81 18 83 29 94 27C99 23 97 18 91 16Z'/%3E%3Cpath opacity='.28' d='M96 81C85 82 87 95 100 93C106 88 103 83 96 81Z'/%3E%3Cpath opacity='.2' d='M83 94C76 96 78 103 86 102C90 98 88 95 83 94Z'/%3E%3Cpath opacity='.26' d='M58 91C49 93 51 103 61 102C66 98 64 93 58 91Z'/%3E%3Cpath opacity='.22' d='M37 83C30 85 32 93 40 92C44 88 42 84 37 83Z'/%3E%3Cpath opacity='.3' d='M14 91C3 93 6 105 18 103C24 98 21 93 14 91Z'/%3E%3Cpath opacity='.24' d='M3 67C-5 69-3 77 5 76C9 72 8 68 3 67Z'/%3E%3Cpath opacity='.18' d='M24 66C12 67 15 81 28 80C35 75 32 68 24 66Z'/%3E%3Cpath opacity='.2' d='M72 7C63 9 65 19 75 18C80 14 77 8 72 7Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    filter: blur(60px);
     transform-origin: center;
     animation: orbital 35s linear infinite;
 }
@@ -253,7 +239,6 @@ header {
   right: 0;
   z-index: 999;
   height: 56px;
-  background: var(--header-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: transform 0.3s ease, opacity 0.3s ease;
