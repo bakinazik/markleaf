@@ -32,6 +32,46 @@ body {
   background: var(--light);
   color: var(--text);
   line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: -10%;
+    pointer-events: none;
+    z-index: 5;
+    background:
+        radial-gradient(circle at 7% 13%, rgba(1, 190, 26, 0.28) 0 7px, transparent 15px),
+        radial-gradient(circle at 19% 42%, rgba(1, 190, 26, 0.22) 0 11px, transparent 22px),
+        radial-gradient(circle at 31% 8%, rgba(1, 190, 26, 0.3) 0 5px, transparent 13px),
+        radial-gradient(circle at 43% 61%, rgba(1, 190, 26, 0.2) 0 9px, transparent 19px),
+        radial-gradient(circle at 56% 24%, rgba(1, 190, 26, 0.28) 0 6px, transparent 15px),
+        radial-gradient(circle at 67% 72%, rgba(1, 190, 26, 0.24) 0 12px, transparent 24px),
+        radial-gradient(circle at 79% 37%, rgba(1, 190, 26, 0.3) 0 5px, transparent 13px),
+        radial-gradient(circle at 91% 16%, rgba(1, 190, 26, 0.22) 0 8px, transparent 18px),
+        radial-gradient(circle at 96% 81%, rgba(1, 190, 26, 0.28) 0 10px, transparent 21px),
+        radial-gradient(circle at 83% 94%, rgba(1, 190, 26, 0.2) 0 6px, transparent 15px),
+        radial-gradient(circle at 58% 91%, rgba(1, 190, 26, 0.26) 0 8px, transparent 17px),
+        radial-gradient(circle at 37% 83%, rgba(1, 190, 26, 0.22) 0 5px, transparent 13px),
+        radial-gradient(circle at 14% 91%, rgba(1, 190, 26, 0.3) 0 9px, transparent 20px),
+        radial-gradient(circle at 3% 67%, rgba(1, 190, 26, 0.24) 0 6px, transparent 14px),
+        radial-gradient(circle at 24% 66%, rgba(1, 190, 26, 0.18) 0 12px, transparent 24px),
+        radial-gradient(circle at 72% 7%, rgba(1, 190, 26, 0.2) 0 7px, transparent 16px);
+    filter: blur(4px);
+    transform-origin: center;
+    animation: orbital 35s linear infinite;
+}
+
+@keyframes orbital {
+    from {
+        transform: rotate(0deg) scale(1.05);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.05);
+    }
 }
 
 :root {
