@@ -149,19 +149,6 @@ section {
   }
 }
 
-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse, rgba(1, 190, 26, 0.08) 0%, rgba(1, 190, 26, 0.04) 35%, transparent 70%);
-    transform: scale(1.2);
-    filter: blur(30px);
-    pointer-events: none;
-    margin: auto;
-    max-height: 75%;
-    max-width: 75%;
-}
-
 h1 { 
   font-size: clamp(2.2rem, 5vw, 3.5rem); 
   color: inherit;
@@ -600,7 +587,7 @@ header.hidden {
   align-items: center;
   color: var(--text);
   transition: all 0.3s ease;
-  background: var(--gray);
+  background: transparent;
   border: none;
   border-bottom: 1px solid var(--secondary);
 }
