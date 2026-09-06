@@ -1,12 +1,12 @@
-1.5.3: Release - September 05, 2026
+1.5.3:2026-09-05
 - Fixed an issue where bookmarks were not visible after the initial installation.
 - Removed the Opera-specific check from favicon management. It now supports the default browser favicon system.
 - Performance improvements.
 
-1.5.1: Minor Polish - August 16, 2026
+1.5.1:2026-08-16
 - Minor bug fixes.
 
-1.5.0: Fox Arrives - August 16, 2026
+1.5.0:2026-08-16
 - Firefox Add-ons support!
 - Added a built-in color picker for custom theme colors (drag to pick hue/saturation, or type a hex code) no more relying on the browser's native color input.
 - Added custom font support: pick Sans-serif, Serif, Monospace, or type any Google Fonts (Bunny Fonts for more privacy) name to apply it.
@@ -14,12 +14,12 @@
 - Auto-focuses the search bar when scrolling via switching tabs.
 - Minor bug fixes.
 
-1.4.1: Humble Tweaks - July 23, 2026
+1.4.1:2026-07-23
 - Added Ctrl + Drag support for moving bookmarks and folders into another folder. You can enable it in the settings. Disabled by default because Ctrl + Click normally opens a new tab.
 - Added quick scroll-to-top for the active tab with position restore.
 - Minor bug fixes.
 
-1.4.0: Hardcoded Purify - July 07, 2026
+1.4.0:2026-07-07
 - Added bookmark pinning, pinned items stay grouped at the top and self-heal if dragged out of place.
 - Added a "new item position" setting, choose whether new bookmarks go to the start or end of the folder.
 - Import/export now support scope selection (bookmarks, settings, or both) and Netscape HTML format, Chrome/Firefox compatible.
@@ -31,13 +31,13 @@
 - Refactored the icon system into a centralized 'icons' object.
 - Improved breadcrumbs, you can now drag and drop folders or bookmarks onto them to move them.
 
-1.3.0: Design Journey - Jun 25, 2026
+1.3.0:2026-06-25
 - Redesigned Theme System (Browser/Light/Dark/Black/Custom). You can choose from predefined themes or create your own custom theme.
 - Extension Icon customization (Color/Black/White/Gray/Custom). Set a built-in icon or upload your own.
 - Favicon Provider options (Browser/Google/DuckDuckGo). Browser mode loads favicons without external requests while Google and DuckDuckGo can fetch them via their services.
 - Folder-only search setting added. When enabled, search will be limited to the current folder and its subfolders. By default, search applies to all bookmarks.
 
-1.2.1: Important Space - Apr 23, 2026
+1.2.1:2026-04-23
 - Main folder selection added (Bookmarks Bar / Other Bookmarks).
 - Context menu can now be opened by clicking on empty space.
 - Breadcrumb navigation added (toggle in settings).
@@ -45,7 +45,7 @@
 - Search bar now includes a clear "x" button when input is present.
 - Bug fix: missing favicons (unvisited sites) now load instantly without requiring extension reopen.
 
-1.2.0: New paths - Apr 12, 2026
+1.2.0:2026-04-12
 - Multi-select mode with bulk actions.
 - Trash system with restore and auto-delete.
 - Import / Export (full backup & restore).
@@ -53,11 +53,11 @@
 - Theme control and UI customization options.
 - Other details available on GitHub.
 
-1.1.1: Fresh Start - Feb 10, 2026
+1.1.1:2026-02-10
 - Markleaf is now open source! https://github.com/bakinazik/markleaf
 - You can navigate search results using the arrow keys. Pressing the up and down arrows moves through the list; pressing right or Enter opens the selected item; pressing left or Tab goes up a folder. Moving the mouse cancels the keyboard selection.
 
-1.1.0: Silent Refactor - Jan 20, 2026
+1.1.0:2026-01-20
 - Content loads at least 30% faster. Folder item counts and favicon previews are now calculated from already-loaded data instead of making separate requests for each item.
 - A three-column grid layout has been implemented.
 - Right-clicking on an empty area no longer opens the browser's native menu the custom menu closes instead.
@@ -65,27 +65,27 @@
 - Moving a folder into itself or one of its own subfolders is no longer possible.
 - Scrolling back to the top is now smoother. It now uses the browser's built-in scroll engine instead of a custom animation, resulting in a more natural and consistent feel.
 
-1.0.5: First Orion - Dec 29, 2025
+1.0.5:2025-12-29
 - Context menu animations have been improved.
 - Browsers that do not support the browser's default favicon feature (such as Opera) automatically use Google's favicon service. This parameter will be removed in the future if they adopt the newer system.
 
-1.0.4: Enhanced Violet - Dec 4, 2025
+1.0.4:2025-12-04
 - The list view has been redesigned with a modern design approach.
 - You can now open the context menu by right-clicking a list item.
 - Folders now display the total number of bookmarks they contain.
 - Shortcut improvements.
 
-1.0.3: Smooth Horizon - Nov 12, 2025
+1.0.3:2025-11-12
 - Added a "Back to Top" button.
 - Scrollbar is now visible.
 - Performance and design improvements.
 
-1.0.2: Vanilla Touch - Oct 28, 2025
+1.0.2:2025-10-28
 - Performance and design improvements.
 
-1.0.1: Apple Pie - Aug 16, 2025
+1.0.1:2025-08-16
 - Open all bookmarks in a folder with middle-click.
 - Performance improvements.
 
-1.0.0: Black Hole - Aug 12, 2025
+1.0.0:2025-08-12
 - First version of the extension.

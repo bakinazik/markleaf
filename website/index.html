@@ -90,6 +90,30 @@ body {
   --overlay-bg: rgba(255, 255, 255, 0.6);
 }
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 10px;
+  border: 2px solid var(--light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -112,6 +136,17 @@ section {
     align-items: center;
     min-height: 100vh;
     position: relative;
+}
+
+#changelog {
+    justify-content: flex-start;
+    padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  #changelog {
+    padding-top: 100px;
+  }
 }
 
 section::before {
@@ -279,6 +314,67 @@ header.hidden {
 #theme-toggle:hover { background: var(--secondary); }
 #theme-toggle svg { width: 16px; height: 16px; flex-shrink: 0; }
 
+.lang-select {
+  position: relative;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  padding: 6px 8px;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.lang-toggle:hover { background: var(--secondary); }
+.lang-toggle .lang-flag { width: 18px; height: 13px; object-fit: cover; border-radius: 2px; display: block; }
+.lang-toggle svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+  min-width: 190px;
+  padding: 6px;
+  margin: 0;
+  display: none;
+  z-index: 1000;
+}
+
+.lang-menu.active { display: block; }
+
+.lang-menu::-webkit-scrollbar-thumb {
+  border-color: var(--white);
+}
+
+.lang-menu li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.lang-menu li:hover { background: var(--secondary); }
+.lang-menu li.active { color: var(--primary); font-weight: 600; }
+.lang-menu .lang-flag { width: 18px; height: 13px; object-fit: cover; border-radius: 2px; flex-shrink: 0; }
+
 .menu-toggle {
   display: none;
   background: none;
@@ -417,58 +513,39 @@ header.hidden {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 0.75rem;
   margin: 3rem 0 0;
   width: 100%;
-  max-width: 600px;
+  max-width: 640px;
 }
 
-.store-addon a {
-  display: block;
-  flex: 1;
-  min-width: 240px;
-  max-width: 100%;
-}
-  
-.store {
-  display: flex;
+.store-pill {
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.25rem 2rem;
+  gap: 0.65rem;
+  padding: 0.75rem 1.4rem;
   background: var(--gray);
-  border-radius: var(--radius);
-  color: var(--text);
-  width: 100%;
-  justify-content: center;
-  transition: 0.2s all;
   border: 1px solid var(--gray);
+  border-radius: 999px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  flex: 1;
+  justify-content: center;
 }
 
-.store:hover {
-  border-color: var(--gray);
+.store-pill:hover {
   background: transparent;
+  border-color: var(--gray);
+  color: var(--text);
 }
 
-.store img, .store svg { 
-  width: 44px; 
-  height: 44px;
+.store-pill img, .store-pill svg {
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
-}
-
-.store p { 
-  margin: 0; 
-  text-align: left;
-  color: inherit;
-  font-size: 0.9rem;
-}
-
-.store span {
-    font-weight: 100;
-}
-
-.store b { 
-  font-size: 1.1rem; 
-  color: inherit;
 }
 
 .screenshots {
@@ -611,13 +688,36 @@ footer a {
     flex: initial;
   }
   
-  .store-addon a {
-    min-width: 100%;
+  .store-addon {
+    max-width: 100%;
+    flex-direction: column;
   }
 
-  .screenshots { 
-    grid-template-columns: 1fr; 
+  .store-pill {
+    justify-content: center;
+    white-space: normal;
+  }
+
+  .screenshots {
+    display: flex;
+    grid-template-columns: unset;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     gap: 1rem;
+    padding: 0 11%;
+  }
+
+  .screenshots::-webkit-scrollbar {
+    display: none;
+  }
+
+  .screenshots > div {
+    flex: 0 0 78%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    opacity: 0.35;
   }
   
   .description{
@@ -640,36 +740,82 @@ footer a {
     margin-top: 0;
   }
   
-  .store {
-    padding: 1rem;
+  .store-pill {
+    padding: 0.65rem 1.1rem;
+    font-size: 0.85rem;
   }
 }
 
-.version-text {
-  display: flex;
+.changelog-chips-wrap {
+  position: relative;
   width: 100%;
-  align-items: center;
-  gap: 12px;
+  max-width: 600px;
+  margin: 0 0 15px;
 }
 
-.version-date {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: var(--text-light);
+.changelog-chips {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding: 0.25rem 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.changelog-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.changelog-chip {
+  flex-shrink: 0;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--secondary);
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
   white-space: nowrap;
-  margin-left: auto;
+  transition: all 0.2s ease;
 }
 
-@media (max-width: 768px) {
-  .version-text {
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: baseline;
-  }
-  .version-date {
-    font-size: 0.7rem;
-    margin-left: 0;
-  }
+.changelog-chip:hover {
+  color: var(--primary);
+}
+
+.changelog-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+.changelog-panel {
+  width: 100%;
+  max-width: 600px;
+  background: var(--gray);
+  padding: 1.5rem;
+  border-radius: 15px;
+}
+
+.changelog-date {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+}
+
+.changelog-panel p {
+  color: var(--text);
+}
+
+.changelog-panel ul {
+  margin-top: 0.5rem;
+}
+
+.changelog-panel li {
+  margin-bottom: 0.5rem;
 }
 </style>
 </head>
@@ -685,12 +831,19 @@ footer a {
     </div>
     <div class="header-center">
       <nav class="header-nav">
-        <a href="#screenshots">Screenshots</a>
-        <a href="#qa">Q&A</a>
-        <a href="#changelog">Changelog</a>
+        <a href="#screenshots" data-i18n="nav_screenshots">Screenshots</a>
+        <a href="#qa" data-i18n="nav_qa">Q&A</a>
+        <a href="#changelog" data-i18n="nav_changelog">Changelog</a>
       </nav>
     </div>
     <div class="header-right">
+      <div class="lang-select" id="lang-select">
+        <button class="lang-toggle" id="lang-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
+          <span class="lang-flag" id="lang-current-flag"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="lang-menu" id="lang-menu" role="listbox"></ul>
+      </div>
       <button id="theme-toggle" aria-label="Toggle theme"></button>
       <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
         <svg class="icon-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
@@ -702,15 +855,15 @@ footer a {
     <nav class="header-nav">
       <a href="#screenshots">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg>
-        Screenshots
+        <span data-i18n="nav_screenshots">Screenshots</span>
       </a>
       <a href="#qa">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h8" /><path d="M8 13h6" /><path d="M14 18h-1l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5" /><path d="M19 22v.01" /><path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" /></svg>
-        Q&A
+        <span data-i18n="nav_qa">Q&A</span>
       </a>
       <a href="#changelog">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
-        Changelog
+        <span data-i18n="nav_changelog">Changelog</span>
       </a>
     </nav>
   </div>
@@ -721,60 +874,56 @@ footer a {
 <section id="home">
   <div class="logo-section"><img class="logo" src="logo.webp" alt="Markleaf"><h1>Markleaf</h1></div>
   
-  <p class="description">Simple and practical bookmark manager</p>
+  <p class="description" data-i18n="home_description">Simple and practical bookmark manager</p>
   
   <div class="store-addon">
-  <a href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg" target="_blank" rel="noopener">
-    <div class="store">
-      <img src="chromewebstore.webp" alt="Chrome Web Store">
-      <div>
-        <p><span>Available on</span> <br><b>Google Web Store</b></p>
-      </div>
-    </div>
+  <a class="store-pill" href="https://chromewebstore.google.com/detail/markleaf-bookmark-manager/oicclpmppdfmaplopjgjjmdnkeolmamg" target="_blank" rel="noopener">
+    <img src="chromewebstore.webp" alt="Chrome Web Store">
+    <span>Chrome Web Store</span>
   </a>
-  <a href="https://addons.mozilla.org/firefox/addon/markleaf/" target="_blank" rel="noopener">
-    <div class="store">
-      <img src="firefox.webp" alt="Firefox Add-ons">
-      <div>
-        <p><span>Available on</span> <br><b>Firefox Add-ons</b></p>
-      </div>
-    </div>
+  <a class="store-pill" href="https://addons.mozilla.org/firefox/addon/markleaf/" target="_blank" rel="noopener">
+    <img src="firefox.webp" alt="Mozilla Add-ons">
+    <span>Mozilla Add-ons</span>
+  </a>
+  <a class="store-pill" href="https://github.com/bakinazik/markleaf" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.66.5 12.03c0 5.1 3.29 9.42 7.86 10.95.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.1-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.7.42.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12.03C23.5 5.66 18.35.5 12 .5Z"/></svg>
+    <span>GitHub</span>
   </a>
   </div>
 </section>
 
 <section id="screenshots">
 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg>
-  <h2>Screenshots</h2>
+  <h2 data-i18n="screenshots_title">Screenshots</h2>
   <hr>
-  <div class="screenshots">
-    <div><img class="ss-img" src="screenshots/dark-1.webp" alt="Dark 1"></div>
-    <div><img class="ss-img" src="screenshots/dark-2.webp" alt="Dark 2"></div>
-    <div><img class="ss-img" src="screenshots/dark-3.webp" alt="Dark 3"></div>
+  <div class="screenshots" id="screenshots-track">
+    <div><img class="ss-img" data-shot="1" src="screenshots/dark-1.webp" alt="Dark 1"></div>
+    <div><img class="ss-img" data-shot="2" src="screenshots/dark-2.webp" alt="Dark 2"></div>
+    <div><img class="ss-img" data-shot="3" src="screenshots/dark-3.webp" alt="Dark 3"></div>
   </div>
 </section>
 
 <section id="qa">
 <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h8" /><path d="M8 13h6" /><path d="M14 18h-1l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5" /><path d="M19 22v.01" /><path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" /></svg>   
-  <h2>Questions & Answers</h2>
+  <h2 data-i18n="qa_title">Questions & Answers</h2>
   <hr>
   <div class="accordion">
     <div class="accordion-item">
-      <button class="accordion-header">Is this free?</button>
+      <button class="accordion-header" data-i18n="qa_q1">Is this free?</button>
       <div class="accordion-content">
-        <p>Yes, Markleaf is completely free and open-source. You can view and contribute on <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.</p>
+        <p data-i18n="qa_a1">Yes, Markleaf is completely free and open-source. You can view and contribute on <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.</p>
       </div>
     </div>
     <div class="accordion-item">
-      <button class="accordion-header">Is any data being collected?</button>
+      <button class="accordion-header" data-i18n="qa_q2">Is any data being collected?</button>
       <div class="accordion-content">
-        <p>No, your data stays private. Markleaf runs entirely in your browser.</p>
+        <p data-i18n="qa_a2">No, your data stays private. Markleaf runs entirely in your browser.</p>
       </div>
     </div>
     <div class="accordion-item">
-      <button class="accordion-header">Can I request a feature?</button>
+      <button class="accordion-header" data-i18n="qa_q3">Can I request a feature?</button>
       <div class="accordion-content">
-        <p>Yes! Submit feature requests via <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">this page</a>.</p>
+        <p data-i18n="qa_a3">Yes! Submit feature requests via <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">this page</a>.</p>
       </div>
     </div>
   </div>
@@ -782,20 +931,138 @@ footer a {
 
 <section id="changelog">
 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
-  <h2>Changelog</h2>
+  <h2 data-i18n="changelog_title">Changelog</h2>
   <hr>
-  <div id="changelog-container" class="accordion">
-    <p style="text-align:center;padding:2rem;color:var(--text-light);">Loading changelog...</p>
+  <div class="changelog-chips-wrap">
+    <div id="changelog-chips" class="changelog-chips"></div>
+  </div>
+  <div id="changelog-panel" class="changelog-panel">
+    <p style="text-align:center;padding:2rem;color:var(--text-light);" data-i18n="changelog_loading">Loading changelog...</p>
   </div>
 </section>
 
 <footer id="contact">
-  <p>
-    Source code: <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>
-  </p>
 </footer>
 
 <script>
+const LANGS = [
+  { code: 'en', name: 'English', country: 'us' },
+  { code: 'es', name: 'Español', country: 'es' },
+  { code: 'de', name: 'Deutsch', country: 'de' },
+  { code: 'ja', name: '日本語', country: 'jp' },
+  { code: 'fr', name: 'Français', country: 'fr' },
+  { code: 'pt', name: 'Português', country: 'pt' },
+  { code: 'ru', name: 'Русский', country: 'ru' },
+  { code: 'it', name: 'Italiano', country: 'it' },
+  { code: 'nl', name: 'Nederlands', country: 'nl' },
+  { code: 'pl', name: 'Polski', country: 'pl' },
+  { code: 'tr', name: 'Türkçe', country: 'tr' },
+  { code: 'zh', name: '中文', country: 'cn' },
+  { code: 'id', name: 'Bahasa Indonesia', country: 'id' },
+  { code: 'cs', name: 'Čeština', country: 'cz' },
+  { code: 'vi', name: 'Tiếng Việt', country: 'vn' },
+  { code: 'ko', name: '한국어', country: 'kr' },
+  { code: 'fa', name: 'فارسی', country: 'ir' },
+  { code: 'uk', name: 'Українська', country: 'ua' },
+  { code: 'hu', name: 'Magyar', country: 'hu' },
+  { code: 'ar', name: 'العربية', country: 'sa' }
+];
+
+function flagUrl(country) {
+  return 'https://flagcdn.com/w40/' + country + '.png';
+}
+
+const TRANSLATIONS = {
+  en: { nav_screenshots: "Screenshots", nav_qa: "Q&A", nav_changelog: "Changelog", home_description: "Simple and practical bookmark manager", screenshots_title: "Screenshots", qa_title: "Questions & Answers", qa_q1: "Is this free?", qa_a1: 'Yes, Markleaf is completely free and open-source. You can view and contribute on <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Is any data being collected?", qa_a2: "No, your data stays private. Markleaf runs entirely in your browser.", qa_q3: "Can I request a feature?", qa_a3: 'Yes! Submit feature requests via <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">this page</a>.', changelog_title: "Changelog", changelog_loading: "Loading changelog...", changelog_empty: "No changelog entries found.", changelog_error: 'Could not load changelog. <br><small>Try again later or view <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> directly.</small>', theme_dark: "Dark", theme_light: "Light" },
+  es: { nav_screenshots: "Capturas", nav_qa: "Preguntas", nav_changelog: "Registro de cambios", home_description: "Gestor de marcadores simple y práctico", screenshots_title: "Capturas de pantalla", qa_title: "Preguntas y respuestas", qa_q1: "¿Es gratis?", qa_a1: 'Sí, Markleaf es completamente gratuito y de código abierto. Puedes verlo y contribuir en <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "¿Se recopilan datos?", qa_a2: "No, tus datos permanecen privados. Markleaf funciona completamente en tu navegador.", qa_q3: "¿Puedo solicitar una función?", qa_a3: '¡Sí! Envía solicitudes de funciones a través de <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">esta página</a>.', changelog_title: "Registro de cambios", changelog_loading: "Cargando registro de cambios...", changelog_empty: "No se encontraron entradas en el registro de cambios.", changelog_error: 'No se pudo cargar el registro de cambios. <br><small>Inténtalo más tarde o consulta <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> directamente.</small>', theme_dark: "Oscuro", theme_light: "Claro" },
+  de: { nav_screenshots: "Screenshots", nav_qa: "Fragen", nav_changelog: "Änderungsprotokoll", home_description: "Einfacher und praktischer Lesezeichen-Manager", screenshots_title: "Screenshots", qa_title: "Fragen & Antworten", qa_q1: "Ist das kostenlos?", qa_a1: 'Ja, Markleaf ist völlig kostenlos und quelloffen. Du kannst es auf <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a> ansehen und dazu beitragen.', qa_q2: "Werden Daten gesammelt?", qa_a2: "Nein, deine Daten bleiben privat. Markleaf läuft vollständig in deinem Browser.", qa_q3: "Kann ich eine Funktion vorschlagen?", qa_a3: 'Ja! Reiche Funktionswünsche über <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">diese Seite</a> ein.', changelog_title: "Änderungsprotokoll", changelog_loading: "Änderungsprotokoll wird geladen...", changelog_empty: "Keine Einträge im Änderungsprotokoll gefunden.", changelog_error: 'Änderungsprotokoll konnte nicht geladen werden. <br><small>Versuche es später erneut oder sieh dir <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> direkt an.</small>', theme_dark: "Dunkel", theme_light: "Hell" },
+  ja: { nav_screenshots: "スクリーンショット", nav_qa: "Q&A", nav_changelog: "変更履歴", home_description: "シンプルで実用的なブックマークマネージャー", screenshots_title: "スクリーンショット", qa_title: "よくある質問", qa_q1: "無料ですか?", qa_a1: 'はい、Markleafは完全に無料でオープンソースです。<a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>で閲覧・貢献できます。', qa_q2: "データは収集されますか?", qa_a2: "いいえ、データはプライベートに保たれます。Markleafはブラウザ内で完結して動作します。", qa_q3: "機能をリクエストできますか?", qa_a3: 'はい!<a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">こちらのページ</a>から機能リクエストを送信してください。', changelog_title: "変更履歴", changelog_loading: "変更履歴を読み込み中...", changelog_empty: "変更履歴の項目が見つかりません。", changelog_error: '変更履歴を読み込めませんでした。<br><small>後でもう一度お試しいただくか、<a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a>を直接ご確認ください。</small>', theme_dark: "ダーク", theme_light: "ライト" },
+  fr: { nav_screenshots: "Captures", nav_qa: "Questions", nav_changelog: "Journal des modifications", home_description: "Gestionnaire de favoris simple et pratique", screenshots_title: "Captures d'écran", qa_title: "Questions et réponses", qa_q1: "Est-ce gratuit ?", qa_a1: 'Oui, Markleaf est entièrement gratuit et open-source. Vous pouvez le consulter et y contribuer sur <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Des données sont-elles collectées ?", qa_a2: "Non, vos données restent privées. Markleaf fonctionne entièrement dans votre navigateur.", qa_q3: "Puis-je demander une fonctionnalité ?", qa_a3: 'Oui ! Envoyez vos demandes de fonctionnalités via <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">cette page</a>.', changelog_title: "Journal des modifications", changelog_loading: "Chargement du journal des modifications...", changelog_empty: "Aucune entrée trouvée dans le journal des modifications.", changelog_error: 'Impossible de charger le journal des modifications. <br><small>Réessayez plus tard ou consultez directement <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a>.</small>', theme_dark: "Sombre", theme_light: "Clair" },
+  pt: { nav_screenshots: "Capturas", nav_qa: "Perguntas", nav_changelog: "Registro de alterações", home_description: "Gerenciador de favoritos simples e prático", screenshots_title: "Capturas de tela", qa_title: "Perguntas e respostas", qa_q1: "Isso é gratuito?", qa_a1: 'Sim, o Markleaf é totalmente gratuito e de código aberto. Você pode ver e contribuir no <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Algum dado é coletado?", qa_a2: "Não, seus dados permanecem privados. O Markleaf funciona inteiramente no seu navegador.", qa_q3: "Posso solicitar um recurso?", qa_a3: 'Sim! Envie solicitações de recursos através <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">desta página</a>.', changelog_title: "Registro de alterações", changelog_loading: "Carregando registro de alterações...", changelog_empty: "Nenhuma entrada encontrada no registro de alterações.", changelog_error: 'Não foi possível carregar o registro de alterações. <br><small>Tente novamente mais tarde ou veja <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> diretamente.</small>', theme_dark: "Escuro", theme_light: "Claro" },
+  ru: { nav_screenshots: "Скриншоты", nav_qa: "Вопросы", nav_changelog: "Журнал изменений", home_description: "Простой и практичный менеджер закладок", screenshots_title: "Скриншоты", qa_title: "Вопросы и ответы", qa_q1: "Это бесплатно?", qa_a1: 'Да, Markleaf полностью бесплатен и с открытым исходным кодом. Вы можете просмотреть и внести вклад на <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Собираются ли данные?", qa_a2: "Нет, ваши данные остаются приватными. Markleaf работает полностью в вашем браузере.", qa_q3: "Могу ли я предложить функцию?", qa_a3: 'Да! Отправляйте запросы на функции через <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">эту страницу</a>.', changelog_title: "Журнал изменений", changelog_loading: "Загрузка журнала изменений...", changelog_empty: "Записи в журнале изменений не найдены.", changelog_error: 'Не удалось загрузить журнал изменений. <br><small>Попробуйте позже или посмотрите <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> напрямую.</small>', theme_dark: "Тёмная", theme_light: "Светлая" },
+  it: { nav_screenshots: "Screenshot", nav_qa: "Domande", nav_changelog: "Changelog", home_description: "Gestore di segnalibri semplice e pratico", screenshots_title: "Screenshot", qa_title: "Domande e risposte", qa_q1: "È gratuito?", qa_a1: 'Sì, Markleaf è completamente gratuito e open source. Puoi visualizzarlo e contribuire su <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Vengono raccolti dati?", qa_a2: "No, i tuoi dati restano privati. Markleaf funziona interamente nel tuo browser.", qa_q3: "Posso richiedere una funzionalità?", qa_a3: 'Sì! Invia le richieste di funzionalità tramite <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">questa pagina</a>.', changelog_title: "Changelog", changelog_loading: "Caricamento changelog...", changelog_empty: "Nessuna voce trovata nel changelog.", changelog_error: 'Impossibile caricare il changelog. <br><small>Riprova più tardi o consulta direttamente <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a>.</small>', theme_dark: "Scuro", theme_light: "Chiaro" },
+  nl: { nav_screenshots: "Screenshots", nav_qa: "Vragen", nav_changelog: "Wijzigingslogboek", home_description: "Eenvoudige en praktische bladwijzerbeheerder", screenshots_title: "Screenshots", qa_title: "Vragen en antwoorden", qa_q1: "Is dit gratis?", qa_a1: 'Ja, Markleaf is volledig gratis en open source. Je kunt het bekijken en bijdragen op <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Worden er gegevens verzameld?", qa_a2: "Nee, je gegevens blijven privé. Markleaf werkt volledig in je browser.", qa_q3: "Kan ik een functie aanvragen?", qa_a3: 'Ja! Dien functieverzoeken in via <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">deze pagina</a>.', changelog_title: "Wijzigingslogboek", changelog_loading: "Wijzigingslogboek laden...", changelog_empty: "Geen items gevonden in het wijzigingslogboek.", changelog_error: 'Kan wijzigingslogboek niet laden. <br><small>Probeer het later opnieuw of bekijk <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> rechtstreeks.</small>', theme_dark: "Donker", theme_light: "Licht" },
+  pl: { nav_screenshots: "Zrzuty ekranu", nav_qa: "Pytania", nav_changelog: "Dziennik zmian", home_description: "Prosty i praktyczny menedżer zakładek", screenshots_title: "Zrzuty ekranu", qa_title: "Pytania i odpowiedzi", qa_q1: "Czy to jest darmowe?", qa_a1: 'Tak, Markleaf jest całkowicie darmowy i open source. Możesz go zobaczyć i wesprzeć na <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Czy dane są zbierane?", qa_a2: "Nie, Twoje dane pozostają prywatne. Markleaf działa całkowicie w Twojej przeglądarce.", qa_q3: "Czy mogę zaproponować funkcję?", qa_a3: 'Tak! Zgłoś propozycję funkcji na <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">tej stronie</a>.', changelog_title: "Dziennik zmian", changelog_loading: "Wczytywanie dziennika zmian...", changelog_empty: "Nie znaleziono wpisów w dzienniku zmian.", changelog_error: 'Nie udało się wczytać dziennika zmian. <br><small>Spróbuj ponownie później lub zobacz <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> bezpośrednio.</small>', theme_dark: "Ciemny", theme_light: "Jasny" },
+  tr: { nav_screenshots: "Ekran Görüntüleri", nav_qa: "Soru & Cevap", nav_changelog: "Güncelleme Notları", home_description: "Basit ve pratik yer imi yöneticisi", screenshots_title: "Ekran Görüntüleri", qa_title: "Sıkça Sorulan Sorular", qa_q1: "Bu ücretsiz mi?", qa_a1: 'Evet, Markleaf tamamen ücretsiz ve açık kaynaklıdır. <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>\'da inceleyebilir ve katkıda bulunabilirsiniz.', qa_q2: "Veri toplanıyor mu?", qa_a2: "Hayır, verileriniz gizli kalır. Markleaf tamamen tarayıcınızda çalışır.", qa_q3: "Özellik talep edebilir miyim?", qa_a3: 'Evet! Özellik taleplerinizi <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">bu sayfadan</a> gönderebilirsiniz.', changelog_title: "Güncelleme Notları", changelog_loading: "Güncelleme Notları yükleniyor...", changelog_empty: "Güncelleme Notlarınde kayıt bulunamadı.", changelog_error: 'Güncelleme Notları yüklenemedi. <br><small>Daha sonra tekrar deneyin veya doğrudan <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> dosyasına bakın.</small>', theme_dark: "Koyu", theme_light: "Açık" },
+  zh: { nav_screenshots: "截图", nav_qa: "问答", nav_changelog: "更新日志", home_description: "简单实用的书签管理器", screenshots_title: "截图", qa_title: "常见问题", qa_q1: "这是免费的吗?", qa_a1: '是的,Markleaf 完全免费且开源。您可以在 <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a> 上查看并参与贡献。', qa_q2: "会收集数据吗?", qa_a2: "不会,您的数据保持私密。Markleaf 完全在您的浏览器中运行。", qa_q3: "我可以请求新功能吗?", qa_a3: '可以!请通过<a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">此页面</a>提交功能请求。', changelog_title: "更新日志", changelog_loading: "正在加载更新日志...", changelog_empty: "未找到更新日志条目。", changelog_error: '无法加载更新日志。<br><small>请稍后重试,或直接查看 <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a>。</small>', theme_dark: "深色", theme_light: "浅色" },
+  id: { nav_screenshots: "Tangkapan Layar", nav_qa: "Tanya Jawab", nav_changelog: "Log Perubahan", home_description: "Pengelola bookmark yang sederhana dan praktis", screenshots_title: "Tangkapan Layar", qa_title: "Tanya Jawab", qa_q1: "Apakah ini gratis?", qa_a1: 'Ya, Markleaf sepenuhnya gratis dan open-source. Anda dapat melihat dan berkontribusi di <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Apakah ada data yang dikumpulkan?", qa_a2: "Tidak, data Anda tetap pribadi. Markleaf berjalan sepenuhnya di browser Anda.", qa_q3: "Bisakah saya meminta fitur baru?", qa_a3: 'Bisa! Kirim permintaan fitur melalui <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">halaman ini</a>.', changelog_title: "Log Perubahan", changelog_loading: "Memuat log perubahan...", changelog_empty: "Tidak ada entri log perubahan yang ditemukan.", changelog_error: 'Gagal memuat log perubahan. <br><small>Coba lagi nanti atau lihat <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> secara langsung.</small>', theme_dark: "Gelap", theme_light: "Terang" },
+  cs: { nav_screenshots: "Snímky obrazovky", nav_qa: "Otázky", nav_changelog: "Historie změn", home_description: "Jednoduchý a praktický správce záložek", screenshots_title: "Snímky obrazovky", qa_title: "Otázky a odpovědi", qa_q1: "Je to zdarma?", qa_a1: 'Ano, Markleaf je zcela zdarma a open-source. Můžete si jej prohlédnout a přispět na <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHubu</a>.', qa_q2: "Sbírají se nějaká data?", qa_a2: "Ne, vaše data zůstávají soukromá. Markleaf běží zcela ve vašem prohlížeči.", qa_q3: "Můžu požádat o novou funkci?", qa_a3: 'Ano! Návrhy funkcí posílejte přes <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">tuto stránku</a>.', changelog_title: "Historie změn", changelog_loading: "Načítání historie změn...", changelog_empty: "Nebyly nalezeny žádné položky v historii změn.", changelog_error: 'Historii změn se nepodařilo načíst. <br><small>Zkuste to později nebo se podívejte přímo na <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a>.</small>', theme_dark: "Tmavý", theme_light: "Světlý" },
+  vi: { nav_screenshots: "Ảnh chụp màn hình", nav_qa: "Hỏi Đáp", nav_changelog: "Nhật ký thay đổi", home_description: "Trình quản lý dấu trang đơn giản và thực tế", screenshots_title: "Ảnh chụp màn hình", qa_title: "Câu hỏi thường gặp", qa_q1: "Cái này có miễn phí không?", qa_a1: 'Có, Markleaf hoàn toàn miễn phí và mã nguồn mở. Bạn có thể xem và đóng góp trên <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Có dữ liệu nào bị thu thập không?", qa_a2: "Không, dữ liệu của bạn luôn được giữ riêng tư. Markleaf chạy hoàn toàn trong trình duyệt của bạn.", qa_q3: "Tôi có thể yêu cầu tính năng mới không?", qa_a3: 'Có! Gửi yêu cầu tính năng qua <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">trang này</a>.', changelog_title: "Nhật ký thay đổi", changelog_loading: "Đang tải nhật ký thay đổi...", changelog_empty: "Không tìm thấy mục nhật ký thay đổi nào.", changelog_error: 'Không thể tải nhật ký thay đổi. <br><small>Thử lại sau hoặc xem trực tiếp <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a>.</small>', theme_dark: "Tối", theme_light: "Sáng" },
+  ko: { nav_screenshots: "스크린샷", nav_qa: "질문답변", nav_changelog: "변경 내역", home_description: "간단하고 실용적인 북마크 관리자", screenshots_title: "스크린샷", qa_title: "자주 묻는 질문", qa_q1: "무료인가요?", qa_a1: '네, Markleaf는 완전히 무료이며 오픈 소스입니다. <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>에서 확인하고 기여할 수 있습니다.', qa_q2: "데이터가 수집되나요?", qa_a2: "아니요, 데이터는 비공개로 유지됩니다. Markleaf는 브라우저 내에서만 작동합니다.", qa_q3: "기능을 요청할 수 있나요?", qa_a3: '네! <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">이 페이지</a>를 통해 기능을 요청하세요.', changelog_title: "변경 내역", changelog_loading: "변경 내역을 불러오는 중...", changelog_empty: "변경 내역 항목을 찾을 수 없습니다.", changelog_error: '변경 내역을 불러올 수 없습니다. <br><small>나중에 다시 시도하거나 <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a>를 직접 확인하세요.</small>', theme_dark: "다크", theme_light: "라이트" },
+  fa: { nav_screenshots: "تصاویر", nav_qa: "پرسش و پاسخ", nav_changelog: "تاریخچه تغییرات", home_description: "مدیریت بوکمارک ساده و کاربردی", screenshots_title: "تصاویر", qa_title: "پرسش‌های متداول", qa_q1: "آیا این رایگان است؟", qa_a1: 'بله، Markleaf کاملاً رایگان و متن‌باز است. می‌توانید در <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a> آن را مشاهده و در آن مشارکت کنید.', qa_q2: "آیا داده‌ای جمع‌آوری می‌شود؟", qa_a2: "خیر، داده‌های شما خصوصی باقی می‌مانند. Markleaf به‌طور کامل در مرورگر شما اجرا می‌شود.", qa_q3: "آیا می‌توانم درخواست ویژگی بدهم؟", qa_a3: 'بله! درخواست‌های ویژگی را از طریق <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">این صفحه</a> ارسال کنید.', changelog_title: "تاریخچه تغییرات", changelog_loading: "در حال بارگذاری تاریخچه تغییرات...", changelog_empty: "هیچ موردی در تاریخچه تغییرات یافت نشد.", changelog_error: 'بارگذاری تاریخچه تغییرات ممکن نشد. <br><small>بعداً دوباره امتحان کنید یا مستقیماً <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> را ببینید.</small>', theme_dark: "تیره", theme_light: "روشن" },
+  uk: { nav_screenshots: "Скриншоти", nav_qa: "Запитання", nav_changelog: "Журнал змін", home_description: "Простий і практичний менеджер закладок", screenshots_title: "Скриншоти", qa_title: "Запитання та відповіді", qa_q1: "Це безкоштовно?", qa_a1: 'Так, Markleaf повністю безкоштовний і з відкритим кодом. Ви можете переглянути та зробити внесок на <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "Чи збираються якісь дані?", qa_a2: "Ні, ваші дані залишаються приватними. Markleaf працює повністю у вашому браузері.", qa_q3: "Чи можу я запропонувати функцію?", qa_a3: 'Так! Надсилайте запити на функції через <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">цю сторінку</a>.', changelog_title: "Журнал змін", changelog_loading: "Завантаження журналу змін...", changelog_empty: "Записів у журналі змін не знайдено.", changelog_error: 'Не вдалося завантажити журнал змін. <br><small>Спробуйте пізніше або перегляньте <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> напряму.</small>', theme_dark: "Темна", theme_light: "Світла" },
+  hu: { nav_screenshots: "Képernyőképek", nav_qa: "Kérdések", nav_changelog: "Változásnapló", home_description: "Egyszerű és praktikus könyvjelzőkezelő", screenshots_title: "Képernyőképek", qa_title: "Gyakori kérdések", qa_q1: "Ingyenes ez?", qa_a1: 'Igen, a Markleaf teljesen ingyenes és nyílt forráskódú. Megtekintheted és hozzájárulhatsz a <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHubon</a>.', qa_q2: "Gyűjt bármilyen adatot?", qa_a2: "Nem, az adataid titokban maradnak. A Markleaf teljes egészében a böngésződben fut.", qa_q3: "Kérhetek egy funkciót?", qa_a3: 'Igen! Küldd el a funkciókéréseidet <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">ezen az oldalon</a> keresztül.', changelog_title: "Változásnapló", changelog_loading: "Változásnapló betöltése...", changelog_empty: "Nem található bejegyzés a változásnaplóban.", changelog_error: 'Nem sikerült betölteni a változásnaplót. <br><small>Próbáld újra később, vagy tekintsd meg közvetlenül a <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a> fájlt.</small>', theme_dark: "Sötét", theme_light: "Világos" },
+  ar: { nav_screenshots: "لقطات الشاشة", nav_qa: "أسئلة وأجوبة", nav_changelog: "سجل التغييرات", home_description: "مدير إشارات مرجعية بسيط وعملي", screenshots_title: "لقطات الشاشة", qa_title: "الأسئلة الشائعة", qa_q1: "هل هذا مجاني؟", qa_a1: 'نعم، Markleaf مجاني بالكامل ومفتوح المصدر. يمكنك الاطلاع عليه والمساهمة فيه على <a href="https://github.com/bakinazik/markleaf" target="_blank">GitHub</a>.', qa_q2: "هل يتم جمع أي بيانات؟", qa_a2: "لا، تبقى بياناتك خاصة. يعمل Markleaf بالكامل داخل متصفحك.", qa_q3: "هل يمكنني طلب ميزة جديدة؟", qa_a3: 'نعم! أرسل طلبات الميزات عبر <a href="https://github.com/bakinazik/markleaf/issues/new" target="_blank">هذه الصفحة</a>.', changelog_title: "سجل التغييرات", changelog_loading: "جارٍ تحميل سجل التغييرات...", changelog_empty: "لم يتم العثور على أي إدخالات في سجل التغييرات.", changelog_error: 'تعذر تحميل سجل التغييرات. <br><small>حاول مرة أخرى لاحقًا أو اطّلع مباشرة على <a href="https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt" target="_blank">changelog.txt</a>.</small>', theme_dark: "داكن", theme_light: "فاتح" }
+};
+
+function detectLang() {
+  const saved = localStorage.getItem('lang');
+  if (saved && TRANSLATIONS[saved]) return saved;
+  const navLangs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+  for (let i = 0; i < navLangs.length; i++) {
+    const code = (navLangs[i] || '').toLowerCase().split('-')[0];
+    if (TRANSLATIONS[code]) return code;
+  }
+  return 'en';
+}
+
+let currentLang = detectLang();
+
+function applyTranslations() {
+  const t = TRANSLATIONS[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    if (t[el.getAttribute('data-i18n')] !== undefined) {
+      el.innerHTML = t[el.getAttribute('data-i18n')];
+    }
+  });
+  document.documentElement.setAttribute('lang', currentLang);
+}
+
+function renderLangMenu() {
+  const menu = document.getElementById('lang-menu');
+  menu.innerHTML = LANGS.map(function(l) {
+    return '<li role="option" data-code="' + l.code + '" class="' + (l.code === currentLang ? 'active' : '') + '"><img class="lang-flag" src="' + flagUrl(l.country) + '" alt=""><span>' + l.name + '</span></li>';
+  }).join('');
+  menu.querySelectorAll('li').forEach(function(li) {
+    li.addEventListener('click', function() {
+      currentLang = li.dataset.code;
+      localStorage.setItem('lang', currentLang);
+      applyTranslations();
+      setLangFlag();
+      renderLangMenu();
+      applyTheme();
+      renderChangelogPanel();
+      document.getElementById('lang-menu').classList.remove('active');
+      document.getElementById('lang-toggle').setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+function setLangFlag() {
+  const langObj = LANGS.find(function(l) { return l.code === currentLang; });
+  document.getElementById('lang-current-flag').innerHTML = '<img class="lang-flag" src="' + flagUrl(langObj ? langObj.country : 'us') + '" alt="">';
+}
+
+applyTranslations();
+setLangFlag();
+renderLangMenu();
+
+const langToggleBtn = document.getElementById('lang-toggle');
+const langMenuEl = document.getElementById('lang-menu');
+
+langToggleBtn.addEventListener('click', function(e) {
+  e.stopPropagation();
+  const isActive = langMenuEl.classList.toggle('active');
+  langToggleBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+});
+
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('lang-select').contains(e.target)) {
+    langMenuEl.classList.remove('active');
+    langToggleBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+
 const ICONS = {
   dark: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
   light: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
@@ -809,15 +1076,15 @@ if (themeIdx === -1) themeIdx = prefersDark ? 0 : 1;
 function applyTheme() {
   const t = ORDER[themeIdx];
   const btn = document.getElementById('theme-toggle');
-  const LABELS = { dark: 'Dark', light: 'Light' };
-  btn.innerHTML = ICONS[t] + '<span>' + LABELS[t] + '</span>';
-  btn.title = LABELS[t];
+  const label = TRANSLATIONS[currentLang]['theme_' + t];
+  btn.innerHTML = ICONS[t] + '<span>' + label + '</span>';
+  btn.title = label;
   document.documentElement.setAttribute('data-theme', t);
   localStorage.setItem('theme', t);
   const prefix = t === 'dark' ? 'dark' : 'light';
-  document.querySelectorAll('.ss-img').forEach(function(img, i) {
-    img.src = 'screenshots/' + prefix + '-' + (i + 1) + '.webp';
-    img.alt = prefix.charAt(0).toUpperCase() + prefix.slice(1) + ' ' + (i + 1);
+  document.querySelectorAll('.ss-img').forEach(function(img) {
+    img.src = 'screenshots/' + prefix + '-' + img.dataset.shot + '.webp';
+    img.alt = prefix.charAt(0).toUpperCase() + prefix.slice(1) + ' ' + img.dataset.shot;
   });
 }
 
@@ -826,6 +1093,40 @@ document.getElementById('theme-toggle').addEventListener('click', function() {
   themeIdx = (themeIdx + 1) % ORDER.length;
   applyTheme();
 });
+
+const screenshotsTrack = document.getElementById('screenshots-track');
+const screenshotsMQ = window.matchMedia('(max-width: 768px)');
+let screenshotsScrollBound = false;
+
+function screenshotsUpdateOpacity() {
+  const center = screenshotsTrack.scrollLeft + screenshotsTrack.clientWidth / 2;
+  Array.from(screenshotsTrack.children).forEach(function(el) {
+    const elCenter = el.offsetLeft + el.offsetWidth / 2;
+    const dist = Math.abs(elCenter - center);
+    el.style.opacity = Math.max(0.35, 1 - dist / (screenshotsTrack.clientWidth * 0.6));
+  });
+}
+
+function screenshotsOnScroll() {
+  screenshotsUpdateOpacity();
+}
+
+function initScreenshotsCarousel() {
+  if (screenshotsMQ.matches) {
+    if (!screenshotsScrollBound) {
+      screenshotsTrack.addEventListener('scroll', screenshotsOnScroll, { passive: true });
+      screenshotsScrollBound = true;
+    }
+    screenshotsUpdateOpacity();
+  } else if (screenshotsScrollBound) {
+    screenshotsTrack.removeEventListener('scroll', screenshotsOnScroll);
+    screenshotsScrollBound = false;
+    Array.from(screenshotsTrack.children).forEach(function(el) { el.style.opacity = ''; });
+  }
+}
+
+initScreenshotsCarousel();
+window.addEventListener('resize', initScreenshotsCarousel);
 
 let lastScrollY = 0;
 const siteHeader = document.getElementById('site-header');
@@ -890,44 +1191,67 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
 
 const CHANGELOG_URL = 'https://raw.githubusercontent.com/bakinazik/markleaf/refs/heads/main/website/changelog.txt';
 
-async function loadChangelog() {
-  const container = document.getElementById('changelog-container');
-  
+let changelogEntries = null;
+let changelogShownIndex = 0;
+let changelogState = 'loading';
+
+function formatChangelogDate(isoDate) {
   try {
-    const response = await fetch(CHANGELOG_URL);
-    if (!response.ok) throw new Error('Failed to fetch changelog');
-    const text = await response.text();
-    
-    const entries = parseChangelog(text);
-    if (entries.length === 0) {
-      container.innerHTML = '<p style="text-align:center;padding:2rem;color:var(--text-light);">No changelog entries found.</p>';
-      return;
-    }
-    
-    let html = '';
-    entries.forEach(function(entry) {
-      html += '<div class="accordion-item">';
-      html += '<button class="accordion-header">';
-      html += '<span class="version-text">' + entry.version + '<span class="version-date">' + entry.date + '</span></span>';
-      html += '</button>';
-      html += '<div class="accordion-content">';
-      html += entry.content;
-      html += '</div>';
-      html += '</div>';
-    });
-    
-    container.innerHTML = html;
-    
-    container.querySelectorAll('.accordion-header').forEach(function(button) {
-      button.addEventListener('click', function() {
-        button.classList.toggle('active');
-        button.nextElementSibling.classList.toggle('active');
-      });
-    });
-    
-  } catch (error) {
-    container.innerHTML = '<p style="text-align:center;padding:2rem;color:var(--text-light);">Could not load changelog. <br><small>Try again later or view <a href="' + CHANGELOG_URL + '" target="_blank">changelog.txt</a> directly.</small></p>';
+    const date = new Date(isoDate + 'T00:00:00');
+    return new Intl.DateTimeFormat(currentLang, { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+  } catch (e) {
+    return isoDate;
   }
+}
+
+function renderChangelogChips() {
+  const chipsEl = document.getElementById('changelog-chips');
+  chipsEl.innerHTML = changelogEntries.map(function(entry, i) {
+    return '<button class="changelog-chip' + (i === changelogShownIndex ? ' active' : '') + '" data-index="' + i + '">' + entry.version + '</button>';
+  }).join('');
+  chipsEl.querySelectorAll('.changelog-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      showChangelogEntry(Number(chip.dataset.index));
+    });
+  });
+}
+
+function showChangelogEntry(index) {
+  changelogShownIndex = index;
+  const panelEl = document.getElementById('changelog-panel');
+  const entry = changelogEntries[index];
+  panelEl.innerHTML = '<div class="changelog-date">' + formatChangelogDate(entry.date) + '</div>' + entry.content;
+  document.querySelectorAll('.changelog-chip').forEach(function(chip) {
+    chip.classList.toggle('active', Number(chip.dataset.index) === index);
+  });
+}
+
+function renderChangelogPanel() {
+  const panelEl = document.getElementById('changelog-panel');
+  if (changelogState === 'empty') {
+    panelEl.innerHTML = '<p style="text-align:center;padding:2rem;color:var(--text-light);">' + TRANSLATIONS[currentLang].changelog_empty + '</p>';
+  } else if (changelogState === 'error') {
+    panelEl.innerHTML = '<p style="text-align:center;padding:2rem;color:var(--text-light);">' + TRANSLATIONS[currentLang].changelog_error + '</p>';
+  } else if (changelogState === 'loaded') {
+    renderChangelogChips();
+    showChangelogEntry(changelogShownIndex);
+  }
+}
+
+async function loadChangelog() {
+  try {
+    if (!changelogEntries) {
+      const response = await fetch(CHANGELOG_URL);
+      if (!response.ok) throw new Error('Failed to fetch changelog');
+      const text = await response.text();
+      changelogEntries = parseChangelog(text);
+    }
+
+    changelogState = changelogEntries.length === 0 ? 'empty' : 'loaded';
+  } catch (error) {
+    changelogState = 'error';
+  }
+  renderChangelogPanel();
 }
 
 function parseChangelog(text) {
@@ -941,7 +1265,7 @@ function parseChangelog(text) {
     let line = lines[i].trim();
     if (!line) continue;
     
-    const versionMatch = line.match(/^([\d.]+)\s*[-:]\s*(.+?)\s*[-–]\s*(.+)$/);
+    const versionMatch = line.match(/^([\d.]+):(\d{4}-\d{2}-\d{2})$/);
     if (versionMatch) {
       if (current) {
         entries.push({
@@ -954,10 +1278,9 @@ function parseChangelog(text) {
       }
       
       const version = versionMatch[1];
-      const title = versionMatch[2].trim();
-      const date = versionMatch[3].trim();
+      const date = versionMatch[2];
       
-      current = { version: version + ': ' + title, date: date };
+      current = { version: version, date: date };
       inContent = true;
       continue;
     }
