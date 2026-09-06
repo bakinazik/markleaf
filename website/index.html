@@ -138,6 +138,19 @@ section {
     position: relative;
 }
 
+section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse, rgba(1, 190, 26, 0.08) 0%, rgba(1, 190, 26, 0.04) 35%, transparent 70%);
+    transform: scale(1.2);
+    filter: blur(30px);
+    pointer-events: none;
+    margin: auto;
+    max-height: 75%;
+    max-width: 75%;
+}
+
 #changelog {
     justify-content: flex-start;
     padding-top: 120px;
